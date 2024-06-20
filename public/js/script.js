@@ -23,6 +23,17 @@ document.querySelector(".sidebar").addEventListener("mouseleave", function () {
     this.classList.add("close");
 });
 
+// Sub-menu toggle
+function toggleSubMenu(event) {
+    event.preventDefault();
+    const dropdown = event.currentTarget.closest(".dropdown");
+    dropdown.classList.toggle("active");
+}
+
+document.querySelectorAll(".dropdown > a").forEach((link) => {
+    link.addEventListener("click", toggleSubMenu);
+});
+
 // active window
 var path = window.location.pathname;
 
