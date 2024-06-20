@@ -9,9 +9,9 @@
             <h2>Schedule</h2>
         </div>
         <div class="dropdown-top">
-            <a href="/schedule" class="active">Schedule</a>
-            <a href="">|</a>
             <a href="/project">Project</a>
+            <a href="">|</a>
+            <a href="/schedule" class="active">Schedule</a>
         </div>
         <div class="user-info">
             <img src="image2.jpg" alt="">

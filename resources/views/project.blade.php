@@ -9,11 +9,9 @@
                 <h2>Project</h2>
             </div>
             <div class="dropdown-top">
-                {{-- <a href="/planning">Capacity Production</a>
-                <a href="">|</a> --}}
-                <a href="/schedule">Schedule</a>
-                <a href="">|</a>
                 <a href="/project" class="active">Project</a>
+                <a href="">|</a>
+                <a href="/schedule">Schedule</a>
             </div>
             <div class="user-info">
                 <img src="image2.jpg" alt="">
