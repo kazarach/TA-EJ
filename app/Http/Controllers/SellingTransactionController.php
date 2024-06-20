@@ -23,7 +23,10 @@ class SellingTransactionController extends Controller
                     $query->with(['type', 'category', 'size', 'color', 'sign'])
                           ->withPivot('quantity'); 
                 },
-                'customer', 'paymentmethod'
+                'customer' => function ($query) {
+                    $query->with('customerclass'); // assuming discount relationship is defined in Customer model
+                },
+                'paymentmethod'
             ])->get();
         
             $transactions = $transactions->map(function ($transaction) {
@@ -34,6 +37,7 @@ class SellingTransactionController extends Controller
                     $product->color = $product->color;
                     $product->sign = $product->sign;
                 });
+
                 return $transaction;
             });
         

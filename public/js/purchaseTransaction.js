@@ -3,6 +3,7 @@ let selectedTransaction = [];
 let tableItem;
 var discount = 0;
 
+
 $(document).ready(function () {
     var transactionTable = $("#transaction-table").DataTable({
         ajax: {
@@ -31,6 +32,13 @@ $(document).ready(function () {
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                 },
+            },
+            {
+                data: "discount",
+                render: function (data, type, row) {
+                    return data ? data + "%" : "N/A";
+                },
+                title: "Discount"
             },
             { data: "paymentmethod.name" },
             {

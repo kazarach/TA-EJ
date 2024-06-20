@@ -24,7 +24,6 @@
 
 
 
-
 {{-- form --}}
 <section class="form">
   @csrf
@@ -152,6 +151,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Total</th>
                 <th scope="col">Paid</th>
+                <th scope="col">Discount</th>
                 <th scope="col">Payment Method</th>
                 <th scope="col">Product</th>
                 <th scope="col">Time</th>
