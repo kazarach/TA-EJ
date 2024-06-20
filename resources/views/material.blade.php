@@ -10,9 +10,9 @@
                 <h2>Material</h2>
             </div>
             <div class="dropdown-top">
-                <a href="/product">Product</a>
-                <a href="">|</a>
                 <a href="/material" class="active">Material</a>
+                <a href="">|</a>
+                <a href="/product">Product</a>
             </div>
             <div class="user-info">
                 <img src="image2.jpg" alt="">

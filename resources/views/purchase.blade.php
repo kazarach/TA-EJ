@@ -9,6 +9,10 @@
             <h2>Purchase</h2>
         </div>
         <div class="dropdown-top">
+            <a href="/product">Product</a>
+            <a href="">|</a>
+            <a href="/material">Material</a>
+            <a href="">|</a>
             <a href="/purchase" class="active">Purchase</a>
             <a href="">|</a>
             <a href="/purchase/transaction">Transaction</a>

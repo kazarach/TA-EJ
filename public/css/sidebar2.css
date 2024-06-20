@@ -315,15 +315,20 @@ body.dark .nav-link.active a .text {
     color: #fff;
 }
 
-#submenu-link {
+.nav-link.dropdown {
     padding: 0;
 }
 
 #dropdowntext {
-    padding-right: 15rem;
+    padding-right: 8rem;
 }
 
-.sidebar.close #dropdowntext {
+#dropdowntext2 {
+    padding-right: 6rem;
+}
+
+.sidebar.close #dropdowntext,
+.sidebar.close #dropdowntext2 {
     padding-right: 0rem;
 }
 
@@ -348,21 +353,25 @@ a.togglesubmenu {
     flex-direction: column;
 }
 
+.menu-links .dropdown.active:hover .sub-menu {
+    display: flex;
+    left: 0rem;
+    transition: linear;
+}
+
 .menu-links .dropdown:hover .sub-menu {
     display: flex;
     padding-left: 2rem;
+    transition: linear;
 }
 
 .menu-links .dropdown.active .sub-menu {
-    display: flex;
-}
-
-.menu-links .dropdown.active .sub-menu {
-    display: flex; /* Change from block to flex */
+    display: block;
+    right: 60rem;
 }
 
 .sub-menu li a {
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, grey, black);
     font-size: 16px;
     display: flex;
     align-items: center;
@@ -371,7 +380,8 @@ a.togglesubmenu {
 }
 
 .sub-menu li a:hover {
-    background-color: var(--text-color);
+    background-color: var(--primary-color);
+    transition: linear;
 }
 
 .sub-menu li span {
@@ -379,7 +389,7 @@ a.togglesubmenu {
 }
 
 #submenutext {
-    color: #fff;
+    color: white;
 }
 
 /* Top Bar */

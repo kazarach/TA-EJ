@@ -40,11 +40,11 @@ var path = window.location.pathname;
 const links = [
     "dashboard",
     "order",
-    "inventory",
     "planning",
     "production",
-    "cash",
+    "inventory",
     "selling",
+    "cash",
     "purchase",
 ];
 const pathToLinkMap = {
@@ -62,9 +62,9 @@ const pathToLinkMap = {
     "/selling": "selling",
     "/selling/transaction": "selling",
     "/selling/item": "selling",
-    "/purchase": "purchase",
-    "/purchase/transaction": "purchase",
-    "/purchase/item": "purchase",
+    "/purchase": "inventory",
+    "/purchase/transaction": "inventory",
+    "/purchase/item": "inventory",
     "/order": "order",
     "/order/book": "order",
     "/order/archive": "order",
