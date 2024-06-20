@@ -17,6 +17,13 @@ $(document).ready(function () {
             { data: "id" },
             { data: "customer.name" },
             {
+                data: "customer.customerclass.discount",
+                render: function (data, type, row) {
+                    return data ? data + "%" : "N/A";
+                },
+                title: "Discount"
+            },
+            {
                 data: "total",
                 render: function (data, type, row) {
                     return data

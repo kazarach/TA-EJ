@@ -17,6 +17,7 @@ $(document).ready(function() {
                         transformedData.push({
                             transaction_id: transaction.id,
                             customer_name: transaction.customer.name,
+                            discount: transaction.customer.customerclass ? transaction.customer.customerclass.discount : "N/A",
                             total: transaction.total,
                             paid: transaction.paid,
                             payment_method: transaction.paymentmethod.name,
@@ -32,6 +33,7 @@ $(document).ready(function() {
         columns: [
             { data: "transaction_id", title: "ID" },
             { data: "customer_name", title: "Customer Name" },
+            { data: "discount", title: "Discount (%)" },
             {
                 data: "total",
                 title: "Total",

@@ -48,6 +48,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
+                <th scope="col">Discount</th>
                 <th scope="col">Total</th>
                 <th scope="col">Paid</th>
                 <th scope="col">Payment Method</th>
