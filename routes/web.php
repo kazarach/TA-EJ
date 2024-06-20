@@ -112,6 +112,24 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
+    Route::get('/order', function () {
+        return view('order', [
+            'title' => 'Order Page'
+        ]);
+    });
+
+    Route::get('/order/book', function () {
+        return view('orderbook', [
+            'title' => 'Order Book Page'
+        ]);
+    });
+
+    Route::get('/order/archive', function () {
+        return view('orderarchive', [
+            'title' => 'Order Archive Page'
+        ]);
+    });
+
     Route::get('/product', [ProductController::class, 'index'])->name('production');
     Route::get('/material', [MaterialController::class, 'index']);
     Route::get('/machine', [MachineController::class, 'index']);

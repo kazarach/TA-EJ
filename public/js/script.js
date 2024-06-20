@@ -28,6 +28,7 @@ var path = window.location.pathname;
 
 const links = [
     "dashboard",
+    "order",
     "inventory",
     "planning",
     "production",
@@ -53,6 +54,10 @@ const pathToLinkMap = {
     "/purchase": "purchase",
     "/purchase/transaction": "purchase",
     "/purchase/item": "purchase",
+    "/order": "order",
+    "/order/book": "order",
+    "/order/archive": "order",
+    "/customer": "order",
 };
 
 links.forEach((link) => {

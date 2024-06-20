@@ -6,19 +6,19 @@
     <div class="top-bar">
         <div class="header-wrapper">
             <div class="header-title">
-                <h2>Customer</h2>
+                <h2>Order</h2>
             </div>
             <div class="dropdown-top">
                 <a href="/order">Order</a>
                 <a href="">|</a>
                 <a href="/order/book">Order Book</a>
                 <a href="">|</a>
-                <a href="/order/archive">Order Archive</a>
+                <a href="/order/archive" class="active">Order Archive</a>
                 <a href="">|</a>
-                <a href="/customer" class="active">Customer</a>
+                <a href="/customer">Customer</a>
             </div>
             <div class="user-info">
-                <img src="image2.jpg" alt="">
+                <img src="../image2.jpg" alt="">
             </div>
         </div>
     </div>  
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="row g-3">
+    {{-- <div class="row g-3">
         <div class="col">
             <label for="">Class</label>
         <select id="Class" class="form-select mb-3" aria-label="Default select example">
@@ -49,7 +49,7 @@
             @endforeach
         </select>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row g-3 mb-3">
         <div class="col">

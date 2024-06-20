@@ -27,9 +27,15 @@
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
+          <li class="nav-link" id="order-link">
+            <a href="/order">
+              <i class = 'bx bx-cart icon'></i>
+              <span class="text nav-text">Order</span>
+            </a>
+          </li>
           <li class="nav-link" id="inventory-link">
             <a href="/product">
-              <i class = 'bx bx-cart icon'></i>
+              <i class='bx bx-cylinder icon'></i>
               <span class="text nav-text">Inventory</span>
             </a>
           </li>

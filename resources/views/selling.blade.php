@@ -26,7 +26,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="Selling" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Selling" aria-label="ID" readonly>
         </div>
     </div>
 

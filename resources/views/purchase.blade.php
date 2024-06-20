@@ -29,7 +29,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="Selling" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Purchase" aria-label="ID" readonly>
         </div>
     </div>
 
@@ -149,7 +149,7 @@
 </div>
 
     <div>
-        <button type="button" id="create-button" class="btn btn-primary">Sell</button>
+        <button type="button" id="create-button" class="btn btn-primary">Buy</button>
         <button type="button" id="saveChangesOut" class="btn btn-primary">Save changes</button>
     </div>
 </div>
