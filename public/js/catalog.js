@@ -1,21 +1,22 @@
-let selectedWorkforceId;
+let selectedWorkforceId=0;
 var selectedRows = [];
+let dueDate;
+
 
 $(document).ready(function() {
     var workforceTable = $('#workforce-table').DataTable({
         ajax: {
-            url: '/api/workforce/', 
+            url: '/api/catalog/', 
             type: 'GET',
             dataSrc: function (json) {
-                console.log(json.workforces);
-                return json.workforces;
+                console.log(json.catalogs);
+                return json.catalogs;
             }
         },
         columns: [
             { data: 'id' },
             { data: 'name' },
-            { data: 'workforceposition.name' },
-            { data: 'workforcestatus.name' },
+            { data: 'due_date' },
         ]
     });
 
@@ -53,6 +54,7 @@ $(document).ready(function() {
     $('#workforce-table').on('click', '.select-btn', function() {
         var WorkforceId = $(this).data('id');
         selectedWorkforceId=WorkforceId;
+        console.log(WorkforceId);
         fetchData(WorkforceId);
     });
 
@@ -62,17 +64,36 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function () {
+    $(".datepicker").datepicker({
+        dateFormat: "yy-mm-dd",
+        onSelect: function () {
+            $(this).trigger("change");
+        },
+    });
+
+    function handleInputChange() {
+        endDate = $("#dueDate").val();
+        console.log(endDate);
+    }
+
+    $("#dueDate").on(
+        "change input",
+        handleInputChange
+    );
+});
+
 function fetchData(WorkforceId) {
     console.log('FETCH');
-    fetch(`/api/workforce/${WorkforceId}`)
+    fetch(`/api/catalog/${WorkforceId}`)
         .then((response) => response.json())
         .then((workforceData) => {
             console.log(workforceData);
             selectedWorkforceId=workforceData.id;
+            console.log(selectedWorkforceId);
             document.getElementById("ID").value = "ID: " + workforceData.id;
             document.getElementById("workforceName").value = workforceData.name;
-            document.getElementById("workforcePosition").value = workforceData.position_id;
-            document.getElementById("workforceStatus").value = workforceData.status_id;
+            document.getElementById("dueDate").value = workforceData.due_date;
             changeTextColor();
 
         })
@@ -94,40 +115,30 @@ function changeTextColor() {
 function clearForm() {
     document.getElementById("ID").value = "ID: " + "";
     document.getElementById("workforceName").value = "";
-    document.getElementById("workforcePosition").value = "";
-    document.getElementById("workforceStatus").value = "";
-
-    document.getElementById("workforcePosition").selectedIndex = 0;
-    document.getElementById("workforceStatus").selectedIndex = 0;
+    document.getElementById("dueDate").value = "";
 }
 
 function createWorkforce() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
         const workforceName = document.getElementById("workforceName").value;
-        const workforcePosition = document.getElementById("workforcePosition").value;
-        const workforceStatus = document.getElementById("workforceStatus").value;
+        const dueDate = document.getElementById("dueDate").value;
 
         if (workforceName === 'Nama') {
             alert("Workforce name cannot be blank");
             return reject(new Error("Workforce name cannot be blank"));
         }
-        if (workforcePosition === 'Use') {
+        if (dueDate === 'Use') {
             alert("Workforce use cannot be blank");
             return reject(new Error("Workforce use cannot be blank"));
-        }
-        if (workforceStatus === 'Status') {
-            alert("Workforce status cannot be blank");
-            return reject(new Error("Workforce status cannot be blank"));
         }
 
         const workforceData = {
             name: workforceName,
-            position_id: workforcePosition,
-            status_id: workforceStatus,
+            due_date: dueDate,
         };
 
-        fetch(`/api/workforce`, {
+        fetch(`/api/catalog`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -155,31 +166,23 @@ function updateWorkforce() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
         if (selectedWorkforceId) {
-            console.log(selectedWorkforceId);
             const workforceName = document.getElementById("workforceName").value;
-            const workforcePosition = document.getElementById("workforcePosition").value;
-            const workforceStatus = document.getElementById("workforceStatus").value;
+            const dueDate = document.getElementById("dueDate").value;
 
             if (workforceName === 'Nama') {
                 alert("Workforce name cannot be blank");
                 return reject(new Error("Workforce name cannot be blank"));
             }
-            if (workforcePosition === 'Use') {
+            if (dueDate === 'Use') {
                 alert("Workforce use cannot be blank");
                 return reject(new Error("Workforce use cannot be blank"));
-            }
-            if (workforceStatus === 'Status') {
-                alert("Workforce status cannot be blank");
-                return reject(new Error("Workforce status cannot be blank"));
             }
 
             const workforceData = {
                 name: workforceName,
-                position_id: workforcePosition,
-                status_id: workforceStatus,
+                due_date: dueDate,
             };
-            console.log(workforceData);
-            fetch(`/api/workforce/${selectedWorkforceId}`, {
+            fetch(`/api/catalog/${selectedWorkforceId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -210,7 +213,8 @@ function deleteWorkforce() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
         if (selectedWorkforceId) {
-            fetch(`/api/workforce/${selectedWorkforceId}`, {
+            console.log(selectedWorkforceId);
+            fetch(`/api/catalog/${selectedWorkforceId}`, {
                 method: "DELETE",
             })
             .then((response) => {

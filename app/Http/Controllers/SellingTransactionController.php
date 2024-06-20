@@ -24,7 +24,7 @@ class SellingTransactionController extends Controller
                           ->withPivot('quantity'); 
                 },
                 'customer' => function ($query) {
-                    $query->with('customerclass'); // assuming discount relationship is defined in Customer model
+                    $query->with('customerclass');
                 },
                 'paymentmethod'
             ])->get();

@@ -12,7 +12,8 @@ use App\Http\Controllers\SellingController;
 use App\Http\Controllers\SellingTransactionController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseTransactionController;
-
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CatalogController;
 
 
 use Illuminate\Http\Request;
@@ -111,5 +112,17 @@ Route::put('/archive/purchase/{id}/updateItem', [PurchaseTransactionController::
 
 Route::get('/archive/purchase/item', [PurchaseItemController::class, 'index']);
 
+
+Route::get('order/', [OrderController::class, 'index']);
+Route::post('order/', [OrderController::class, 'store']);
+Route::get('order/{id}', [OrderController::class, 'show']);
+Route::put('order/{id}', [OrderController::class, 'update']);
+Route::delete('order/{id}', [OrderController::class, 'destroy']);
+
+Route::get('catalog/', [CatalogController::class, 'index']);
+Route::post('catalog/', [CatalogController::class, 'store']);
+Route::get('catalog/{id}', [CatalogController::class, 'show']);
+Route::put('catalog/{id}', [CatalogController::class, 'update']);
+Route::delete('catalog/{id}', [CatalogController::class, 'destroy']);
 
 

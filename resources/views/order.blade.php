@@ -31,36 +31,32 @@
               <input id="ID" type="text" class="form-control" placeholder="New Order" aria-label="ID" readonly>
           </div>
       </div>
-      <div class="row g-3 mb-3">
-          <div class="col">
-              <label for="customerName">Customer</label>
-              <select name="name" id="customerName" class="form-control" aria-label="Customer Name">
-                  <option selected hidden>Select a customer</option>
-                  <option value="" data-discount="">
-                      
-                  </option>
-              </select>
-          </div>
-      </div>
-      <div class="row g-3 mb-3">
-          <div class="col">
-              <label for="" class="form-label">Total</label>
-              <input id="totalPrice" type="text" class="form-control" placeholder="Total" readonly>
-          </div>
-          <div class="col">
-              <label for="" class="form-label">Paid</label>
-              <input id="paid" type="text" class="form-control" placeholder="Paid">
-          </div>
-      </div>
-      <div class="row g-3">
-          <div class="col">
-              <label for="">Payment</label>
-              <select id="Payment" class="form-select mb-3" aria-label="Default select example">
-                  <option selected hidden>Payment</option>
-                      <option value=""></option>
-              </select>
-          </div>
-      </div>
+        <div class="row g-3 mb-3">
+            <div class="col">
+                <label for="catalogName">Catalog</label>
+                <select name="name" id="catalogName" class="form-control" aria-label="Catalog Name">
+                    <option selected hidden>Select a catalog</option>
+                    @foreach($catalogs as $catalog)
+                    <option value="{{ $catalog->id }}">
+                        {{ $catalog->name }}
+                    </option>
+                    @endforeach 
+                </select>
+            </div>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col">
+                <label for="customerName">Customer</label>
+                <select name="name" id="customerName" class="form-control" aria-label="Customer Name">
+                    <option selected hidden>Select a customer</option>
+                    @foreach($customers as $customer)
+                    <option value="{{ $customer->id }}">
+                        {{ $customer->name }}
+                    </option>
+                    @endforeach 
+                </select>
+            </div>
+        </div>
   
       <button type="button" id="pilih-product" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Choose Products</button>
     
@@ -87,7 +83,6 @@
                                   <th scope="col">Price</th>
                                   <th scope="col">Quantity</th>
                                   <th scope="col">Total</th>
-                                  <th scope="col">Afer Discount</th>
                                   <th scope="col">Action</th>
                                   </tr>
                               </thead>
@@ -109,10 +104,9 @@
                                       <th scope="col">Name</th>
                                       <th scope="col">Size</th>
                                       <th scope="col">Code</th>
-                                      <th scope="col">Price</th>
+                                      <th scope="col">Color</th>
+                                      <th scope="col">Sign</th>
                                       <th scope="col">Quantity</th>
-                                      <th scope="col">Total</th>
-                                      <th scope="col">After Discount</th>
                                       <th scope="col">Action</th>
                                   </tr>
                               </thead>
@@ -165,10 +159,9 @@
                   <th scope="col">Name</th>
                   <th scope="col">Size</th>
                   <th scope="col">Code</th>
-                  <th scope="col">Price</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Sign</th>
                   <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Afer Discount</th>
                   <th scope="col">Action</th>
               </tr>
           </thead>
@@ -179,6 +172,6 @@
   </section>
   
   
-  <script src="/js/selling.js"></script>
+  <script src="/js/order.js"></script>
   
   @endsection

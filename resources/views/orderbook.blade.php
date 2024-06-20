@@ -23,59 +23,39 @@
         </div>
     </div>  
 
-{{-- form --}}
-<section class="form">
-  @csrf
-    <div class="row g-3 mb-3">
-        <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="New Customer" aria-label="ID" readonly>
-        </div>
-    </div>
-
-    <div class="row g-3 mb-3">
-        <div class="col">
-            <label for="">Customer Name</label>
-            <input id="Name" type="text" class="form-control" placeholder="Customer Name" aria-label="Nama">
-        </div>
-    </div>
-
-    {{-- <div class="row g-3">
-        <div class="col">
-            <label for="">Class</label>
-        <select id="Class" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Class</option>
-            @foreach($customerclasses as $class)
-                <option value="{{ $class->id }}">{{ $class->name }}</option>
-            @endforeach
-        </select>
-        </div>
-    </div> --}}
-
-    <div class="row g-3 mb-3">
-        <div class="col">
-            <label for="">No. Telp</label>
-            <input id="Telp" type="text" class="form-control" placeholder="08xx-xxxx-xxxx" aria-label="Telp">
-        </div>
-    </div>
-
-<div>
-    <button type="button" id="create-button" class="btn btn-primary">Create</button>
-    <button type="button" id="update-button" class="btn btn-success">Update</button>
-    <button type="button" id="delete-button" class="btn btn-danger">Delete</button>
-    <button type="button" onclick="clearForm()" class="btn btn-secondary">Clear Form</button>
+    <div class="filter-container-item">
+    <label for="">Position:
+    <select id="position-filter">
+        <option value="">All</option>
+        <option value="">Potong</option>
+        <option value="">Setrika</option>
+        <option value="">Jahit</option>
+    </select>
+    </label>
+    <label for="">Status:
+    <select id="status-filter">
+        <option value="">All</option>
+        <option value="">Masuk</option>
+        <option value="">Izin</option>
+        <option value="">Sakit</option>
+        <option value="">Bolos</option>
+    </select>
+    </label>
 </div>
 
-</section>
-
-<section class="home-tbl">
-    <table id="customer-table" class="table table-striped table-hover" style="width:100%">
+<section class="home">
+    <table id="order-table" class="table table-striped table-hover" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Golongan</th>
-                <th scope="col">No. Telp</th>
-                <th scope="col">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Total</th>
+                <th scope="col">Paid</th>
+                <th scope="col">Payment Method</th>
+                <th scope="col">Product</th>
+                <th scope="col">Time</th>
+                <th scope="col">Time</th>
             </tr>
         </thead>
         <tbody>
@@ -84,6 +64,6 @@
     </table>
 </section>
 
-<script src="/js/customerScript.js"></script>
+<script src="/js/orderBook.js"></script>
 
 @endsection

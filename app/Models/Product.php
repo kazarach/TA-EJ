@@ -41,5 +41,6 @@ class Product extends Model
         return $this->belongsToMany(ArchiveSellingTransaction::class, 'archive_selling_items', 'product_id', 'transaction_id')
                     ->withPivot('quantity');
     }
-    
+
+
 }

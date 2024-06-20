@@ -22,6 +22,7 @@
         </div>
     </div>
 
+    
 <div class="filter-container-item">
     <label for="">Position:
     <select id="position-filter">

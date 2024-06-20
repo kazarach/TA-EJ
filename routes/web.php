@@ -19,6 +19,10 @@ use App\Http\Controllers\SellingItemController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseTransactionController;
 use App\Http\Controllers\PurchaseItemController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CatalogController;
+
+
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -112,23 +116,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/order', function () {
-        return view('order', [
-            'title' => 'Order Page'
-        ]);
-    });
 
-    Route::get('/order/book', function () {
-        return view('orderbook', [
-            'title' => 'Order Book Page'
-        ]);
-    });
-
-    Route::get('/order/archive', function () {
-        return view('orderarchive', [
-            'title' => 'Order Archive Page'
-        ]);
-    });
 
     Route::get('/product', [ProductController::class, 'index'])->name('production');
     Route::get('/material', [MaterialController::class, 'index']);
@@ -142,6 +130,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase', [PurchaseController::class, 'index']);
     Route::get('/purchase/transaction', [PurchaseTransactionController::class, 'index']);
     Route::get('/purchase/item', [PurchaseItemController::class, 'index']);
+    Route::get('/order', [OrderController::class, 'index']);
+    Route::get('/order/book', [OrderController::class, 'indexbook']);
+    Route::get('/order/archive', [OrderController::class, 'indexarchive']);
+    Route::get('/catalog', [CatalogController::class, 'index']);
+
 
     Route::get('/cash', function () {
         return view('cash', [
