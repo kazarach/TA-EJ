@@ -74,7 +74,6 @@ function createItem() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
 
-
         const catalogName = document.getElementById("catalogName").value;
         const customerName = document.getElementById("customerName").value;
         
@@ -379,10 +378,23 @@ function clearDefaultValue(input) {
 }
 
 
-// searchbar
-$(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
-        allowClear: true,
-    });
-});
+// 3 digit separator
+// document.getElementById("paid").addEventListener("input", function (e) {
+//     let value = e.target.value.replace(/\./g, "");
+//     if (value === "") {
+//         e.target.value = "";
+//         return;
+//     }
+//     if (!isNaN(value.replace(",", ".")) && value.includes(",")) {
+//         let parts = value.split(",");
+//         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+//         parts[1] = parts[1].substring(0, 3);
+//         e.target.value = parts.join(",");
+//     } else if (!isNaN(value.replace(",", "."))) {
+//         value = parseFloat(value.replace(",", ".")).toLocaleString("de-DE", {
+//             minimumFractionDigits: 0,
+//             maximumFractionDigits: 3,
+//         });
+//         e.target.value = value.replace(",", ".");
+//     }
+// });

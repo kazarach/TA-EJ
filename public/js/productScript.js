@@ -79,32 +79,6 @@ $(document).ready(function () {
                     return materialsHtml;
                 },
             },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return `
-                        <td>
-                            <a href="#" onclick="resetSelectedMaterials(); 
-                                                    ${row.materials
-                                                        .map(
-                                                            (material) => `
-                                                        addToSelectedMaterials(
-                                                        '${material.id}',
-                                                        '${material.name}',
-                                                        '${material.purchase_price}',
-                                                        '${material.unit.name}',
-                                                        '${material.pivot.quantity}'
-                                                    );`
-                                                        )
-                                                        .join("")}
-                                                    selectedModal();
-                                                    populateFields('${
-                                                        row.id
-                                                    }');" class="btn btn-primary">Select</a>
-                        </td>
-                    `;
-                },
-            },
         ],
     });
 
@@ -112,7 +86,7 @@ $(document).ready(function () {
     $("#products-table tbody").on("click", "tr", function () {
         var data = productTable.row(this).data();
         console.log(data);
-        fetchProductData(data.id);
+        fetchProductData(data);
     });
 
     function refreshTable() {
@@ -189,35 +163,35 @@ $(document).ready(function () {
     });
 });
 
-// POPULATE POPULATE POPULATE POPULATE POPULATE
-function populateFields(productId) {
-    selectedProductId = productId;
-    fetchProductData(productId);
-}
-
 
 
 function fetchProductData(productId) {
-    fetch(`/api/products/${productId}`)
-        .then((response) => response.json())
-        .then((productData) => {
-            console.log(productData.category_id);
-            document.getElementById("ID").value = "ID: " + productData.id;
-            document.getElementById("productName").value = productData.name;
-            $('#productType').val(productData.type_id).trigger('change');//INI
-            $('#productCategory').val(productData.category_id).trigger('change');
-            $('#productSize').val(productData.size_id).trigger('change');
-            $('#productColor').val(productData.color_id).trigger('change');
-            $('#productSign').val(productData.sign_id).trigger('change');
-            document.getElementById("productCode").value = productData.code;
-            document.getElementById("productPurchasePrice").value =
-                productData.purchase_price;
-            document.getElementById("productSellingPrice").value =
-                productData.selling_price;
-            document.getElementById("productStock").value = productData.stock;
-            changeTextColor();
-        })
-        .catch((error) => console.error("Error fetching product data:", error));
+    console.log(productId);
+    document.getElementById("ID").value = "ID: " + productId.id;
+    document.getElementById("productName").value = productId.name;
+    $('#productType').val(productId.type_id).trigger('change');//INI
+    $('#productCategory').val(productId.category_id).trigger('change');
+    $('#productSize').val(productId.size_id).trigger('change');
+    $('#productColor').val(productId.color_id).trigger('change');
+    $('#productSign').val(productId.sign_id).trigger('change');
+    document.getElementById("productCode").value = productId.code;
+    document.getElementById("productPurchasePrice").value = productId.purchase_price;
+    document.getElementById("productSellingPrice").value = productId.selling_price;
+    document.getElementById("productStock").value = productId.stock;
+    changeTextColor();
+    selectedProductId = productId;
+    selectedModal();
+    resetSelectedMaterials();
+    productId.materials.forEach(material => {
+        addToSelectedMaterials(
+            material.id,
+            material.name,
+            material.purchase_price,
+            material.unit.name,
+            material.pivot.quantity
+        );
+    });
+
 }
 
 function clearForm() {

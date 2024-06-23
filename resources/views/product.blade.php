@@ -201,7 +201,6 @@
                     <th scope="col">Selling Price</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Materials</th>
-                    <th scope="col">Actions</th> <!-- New column for actions -->
                 </tr>
             </thead>
             <tbody>

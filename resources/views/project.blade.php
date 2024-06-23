@@ -152,7 +152,6 @@
                     <th scope="col">End Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Products</th>
-                    <th scope="col">Actions</th> <!-- New column for actions -->
                 </tr>
             </thead>
             <tbody>

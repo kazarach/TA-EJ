@@ -58,38 +58,11 @@ $(document).ready(function () {
                     return productsHtml;
                 },
             },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return `
-                        <td>
-                            <a href="#" onclick="resetSelectedProjects(); 
-                                                    ${row.products
-                                                        .map(
-                                                            (product) => `
-                                                        addToSelectedProjects(
-                                                        '${product.id}',                                           
-                                                        '${product.name}',
-                                                        '${product.size.name}',
-                                                        '${product.color.name}',
-                                                        '${product.code}',
-                                                        '${product.pivot.quantity}'
-                                                    );`
-                                                        )
-                                                        .join("")}
-                                                    selectedModal();
-                                                    populateFields('${
-                                                        row.id
-                                                    }');" class="btn btn-primary">Select</a>
-                        </td>
-                    `;
-                },
-            },
         ],
     });
     $("#projects-table tbody").on("click", "tr", function () {
         var data = projectTable.row(this).data();
-        fetchProjectData(data.id);
+        fetchProjectData(data);
     });
     function refreshTable() {
         projectTable.ajax.reload(null, false); // User paging is not reset on reload
@@ -149,7 +122,6 @@ $(document).ready(function () {
 
 // datepicker filter
 $(document).ready(function () {
-    // Initialize date pickers for both start and end dates
     $("#date-filter-start, #date-filter-end").datepicker({
         dateFormat: "yy-mm-dd",
         onSelect: function () {
@@ -216,28 +188,49 @@ $(document).ready(function () {
 });
 
 // POPULATE POPULATE POPULATE POPULATE POPULATE
-function populateFields(projectId) {
-    selectedProjectId = projectId;
-    console.log(projectId);
-    fetchProjectData(projectId);
-}
+// function populateFields(projectId) {
+//     selectedProjectId = projectId;
+//     console.log(projectId);
+//     fetchProjectData(projectId);
+// }
 
 function fetchProjectData(projectId) {
-    fetch(`/api/project/${projectId}`)
-        .then((response) => response.json())
-        .then((projectData) => {
-            console.log(projectData);
-            document.getElementById("ID").value =
-                "Project ID: " + projectData.id;
-            document.getElementById("projectName").value = projectData.name;
-            document.getElementById("projectStartDate").value =
-                projectData.start_date;
-            document.getElementById("projectEndDate").value =
-                projectData.end_date;
-            $('#projectStatus').val(projectData.status_id).trigger('change');
-            changeTextColor();
-        })
-        .catch((error) => console.error("Error fetching project data:", error));
+    console.log(projectId);
+    document.getElementById("ID").value = "Project ID: " + projectId.id;
+    document.getElementById("projectName").value = projectId.name;
+    document.getElementById("projectStartDate").value = projectId.start_date;
+    document.getElementById("projectEndDate").value = projectId.end_date;
+    $('#projectStatus').val(projectId.status_id).trigger('change');
+    changeTextColor();
+
+    selectedProjectId = projectId.id;
+    selectedModal();
+    resetSelectedProjects();
+
+    projectId.products.forEach(product => {
+        addToSelectedProjects(
+            product.id,
+            product.name,
+            product.size.name,
+            product.color.name,
+            product.code,
+            product.pivot.quantity
+        );
+    });
+
+
+    // fetch(`/api/project/${projectId}`)
+    //     .then((response) => response.json())
+    //     .then((projectData) => {
+    //         console.log(projectData);
+    //         document.getElementById("ID").value = "Project ID: " + projectData.id;
+    //         document.getElementById("projectName").value = projectData.name;
+    //         document.getElementById("projectStartDate").value = projectData.start_date;
+    //         document.getElementById("projectEndDate").value = projectData.end_date;
+    //         $('#projectStatus').val(projectData.status_id).trigger('change');
+    //         changeTextColor();
+    //     })
+    //     .catch((error) => console.error("Error fetching project data:", error));
 }
 
 function clearForm() {
