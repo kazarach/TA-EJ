@@ -40,7 +40,7 @@
         <div class="col">
             <label for="">Use</label>
         <select name="use_id" id="machineUse" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Use</option>
+            <option selected disabled hidden>Select Use</option>
             @foreach($machineuses as $use)
                 <option value="{{ $use->id }}">{{ $use->name }}</option>
             @endforeach
@@ -49,7 +49,7 @@
         <div class="col">
             <label for="">Status</label>
         <select name="status_id" id="machineStatus" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Status</option>
+            <option selected disabled hidden>Select Status</option>
             @foreach($machinestatuses as $status)
                 <option value="{{ $status->id }}">{{ $status->name }}</option>
             @endforeach

@@ -34,8 +34,8 @@
     <div class="row g-3 mb-3">
         <div class="col">
             <label for="customerName">Customer</label>
-            <select name="name" id="customerName" class="form-control" aria-label="Customer Name">
-                <option selected hidden>Select a customer</option>
+            <select name="name" id="customerName" class="form-select" aria-label="Customer Name">
+                <option selected disabled hidden>Select a customer</option>
                 @foreach($customers as $customer)
                 <option value="{{ $customer->id }}" data-discount="{{ $customer->customerclass->discount }}">
                     {{ $customer->name }} ({{ $customer->customerclass->discount }}%)
@@ -46,11 +46,11 @@
     </div>
     <div class="row g-3 mb-3">
         <div class="col">
-            <label for="" class="form-label">Total</label>
+            <label for="">Total</label>
             <input id="totalPrice" type="text" class="form-control" placeholder="Total" readonly>
         </div>
         <div class="col">
-            <label for="" class="form-label">Paid</label>
+            <label for="">Paid</label>
             <input id="paid" type="text" class="form-control" placeholder="Paid">
         </div>
     </div>
@@ -58,7 +58,7 @@
         <div class="col">
             <label for="">Payment</label>
             <select id="Payment" class="form-select mb-3" aria-label="Default select example">
-                <option selected disabled hidden>Payment</option>
+                <option selected disabled hidden>Select Payment</option>
                 @foreach($payments as $payment)
                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                 @endforeach

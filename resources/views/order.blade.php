@@ -34,8 +34,8 @@
         <div class="row g-3 mb-3">
             <div class="col">
                 <label for="catalogName">Catalog</label>
-                <select name="name" id="catalogName" class="form-control" aria-label="Catalog Name">
-                    <option selected hidden>Select a catalog</option>
+                <select name="name" id="catalogName" class="form-select" aria-label="Catalog Name">
+                    <option selected disabled hidden>Select a catalog</option>
                     @foreach($catalogs as $catalog)
                     <option value="{{ $catalog->id }}">
                         {{ $catalog->name }}
@@ -47,8 +47,8 @@
         <div class="row g-3 mb-3">
             <div class="col">
                 <label for="customerName">Customer</label>
-                <select name="name" id="customerName" class="form-control" aria-label="Customer Name">
-                    <option selected hidden>Select a customer</option>
+                <select name="name" id="customerName" class="form-select" aria-label="Customer Name">
+                    <option selected disabled hidden>Select a customer</option>
                     @foreach($customers as $customer)
                     <option value="{{ $customer->id }}">
                         {{ $customer->name }}

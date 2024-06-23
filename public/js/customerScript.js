@@ -84,6 +84,7 @@ function fetchData(Id) {
             console.log(Data);
             document.getElementById("ID").value = "ID: " + Data.id;
             document.getElementById("Name").value = Data.name;
+            $('#Class').val(Data.class_id).trigger('change');
             document.getElementById("Class").value = Data.class_id;
             document.getElementById("Telp").value = Data.telp;
             changeTextColor();

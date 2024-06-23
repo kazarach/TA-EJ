@@ -64,7 +64,7 @@
         <div class="col">
             <label for="">Payment</label>
             <select id="Payment" class="form-select mb-3" aria-label="Default select example">
-                <option selected disabled hidden>Payment</option>
+                <option selected disabled hidden>Select Payment</option>
                 @foreach($payments as $payment)
                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                 @endforeach

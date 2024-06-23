@@ -35,8 +35,8 @@
     <div class="row g-3 mb-3">
         <div class="col">
             <label for="catalogName">Catalog</label>
-            <select name="name" id="catalogName" class="form-control" aria-label="Catalog Name">
-                <option selected hidden>Select a catalog</option>
+            <select name="name" id="catalogName" class="form-select" aria-label="Catalog Name">
+                <option selected disabled hidden>Select a catalog</option>
                 @foreach($catalogs as $catalog)
                 <option value="{{ $catalog->id }}">
                     {{ $catalog->name }}
@@ -48,8 +48,8 @@
     <div class="row g-3 mb-3">
         <div class="col">
             <label for="customerName">Customer</label>
-            <select name="name" id="customerName" class="form-control" aria-label="Customer Name">
-                <option selected hidden>Select a customer</option>
+            <select name="name" id="customerName" class="form-select" aria-label="Customer Name">
+                <option selected disabled hidden>Select a customer</option>
                 @foreach($customers as $customer)
                 <option value="{{ $customer->id }}">
                     {{ $customer->name }}
@@ -61,8 +61,8 @@
     <div class="row g-3 mb-3">
         <div class="col">
             <label for="product">Product</label>
-            <select name="name" id="product" class="form-control" aria-label="Customer Name">
-                <option selected hidden>Select a product</option>
+            <select name="name" id="product" class="form-select" aria-label="Customer Name">
+                <option selected disabled hidden>Select a product</option>
                 @foreach($products as $product)
                 <option value="{{ $product->id }}">
                     {{ $product->name }} ({{ $product->size->name}})
@@ -73,7 +73,7 @@
     </div>
     <div class="row g-3 mb-3">
         <div class="col">
-            <label for="" class="form-label">Quantity</label>
+            <label for="">Quantity</label>
             <input id="quantity" type="text" class="form-control" placeholder="Quantity">
         </div>
     </div>
@@ -91,7 +91,7 @@
 <div class="filter-container">
     <label for="">Position:
     <select id="position-filter">
-        <option value="">All</option>
+        <option selected disabled>All</option>
         <option value="">Potong</option>
         <option value="">Setrika</option>
         <option value="">Jahit</option>
@@ -99,7 +99,7 @@
     </label>
     <label for="">Status:
     <select id="status-filter">
-        <option value="">All</option>
+        <option selected disabled>All</option>
         <option value="">Masuk</option>
         <option value="">Izin</option>
         <option value="">Sakit</option>

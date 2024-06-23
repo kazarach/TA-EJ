@@ -96,9 +96,9 @@ function fetchData(Id) {
         .then((Data) => {
             console.log(Data);
             document.getElementById("ID").value = "ID: " + Data.id;
-            document.getElementById("catalogName").value = Data.catalog_id;
-            document.getElementById("customerName").value = Data.customer_id;
-            document.getElementById("product").value = Data.customer_id;
+            $('#catalogName').val(Data.catalog_id).trigger('change');
+            $('#customerName').val(Data.customer_id).trigger('change');
+            $('#product').val(Data.product_id).trigger('change');
             document.getElementById("quantity").value = Data.quantity;
             changeTextColor();
         })
@@ -219,23 +219,10 @@ function deleteData() {
     });
 }
 
-// 3 digit separator
-// document.getElementById("paid").addEventListener("input", function (e) {
-//     let value = e.target.value.replace(/\./g, "");
-//     if (value === "") {
-//         e.target.value = "";
-//         return;
-//     }
-//     if (!isNaN(value.replace(",", ".")) && value.includes(",")) {
-//         let parts = value.split(",");
-//         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-//         parts[1] = parts[1].substring(0, 3);
-//         e.target.value = parts.join(",");
-//     } else if (!isNaN(value.replace(",", "."))) {
-//         value = parseFloat(value.replace(",", ".")).toLocaleString("de-DE", {
-//             minimumFractionDigits: 0,
-//             maximumFractionDigits: 3,
-//         });
-//         e.target.value = value.replace(",", ".");
-//     }
-// });
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

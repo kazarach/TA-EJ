@@ -29,23 +29,23 @@
     </div>
     <div class="row g-3 mb-3">
         <div class="col production">
-            <label for="" class="form-label">Project Name</label>
+            <label for="">Project Name</label>
             <input name="name" id="projectName" type="text" class="form-control" placeholder="Project Name" aria-label="Nama">
         </div>
     </div>
     <div class="form-group mb-3">
-        <label for="" class="form-label">Start Date</label>
+        <label for="">Start Date</label>
         <input type="text" class="form-control datepicker" id="projectStartDate" placeholder=" Start Date" required>
     </div>
     <div class="form-group mb-3">
-        <label for="" class="form-label">End Date</label>
+        <label for="" >End Date</label>
         <input type="text" class="form-control datepicker" id="projectEndDate" placeholder=" End Date">
     </div>
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <label for="" class="form-label">Status</label>
+            <label for="">Status</label>
         <select id="projectStatus" class="form-select mb-3" placeholder="Status" aria-label="Status">
-            <option selected hidden>Status</option>
+            <option selected disabled hidden>Select Status</option>
             @foreach($statuses as $status)
                 <option value="{{ $status->id }}">{{ $status->name }}</option>
             @endforeach
