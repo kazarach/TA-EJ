@@ -40,8 +40,8 @@
     <div class="row g-3 mb-3">
         <div class="col">
             <label for="supplierName">Supplier</label>
-            <select name="name" id="supplierName" class="form-control" aria-label="Supplier Name">
-                <option selected hidden>Select a supplier</option>
+            <select name="name" id="supplierName" class="form-select" aria-label="Supplier Name">
+                <option selected disabled hidden>Select a supplier</option>
                 @foreach($suppliers as $supplier)
                 <option value="{{ $supplier->id }}">
                     {{ $supplier->name }}
@@ -69,11 +69,11 @@
             <button type="button" id="change-discount" class="btn btn-primary" onclick="calculateTotalHTM()">Change</button>
         </div>
     </div>
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="">Payment</label>
             <select id="Payment" class="form-select mb-3" aria-label="Default select example">
-                <option selected hidden>Payment</option>
+                <option selected disabled hidden>Payment</option>
                 @foreach($payments as $payment)
                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                 @endforeach
@@ -161,7 +161,7 @@
 <div class="filter-container">
     <label for="">Position:
     <select id="position-filter">
-        <option value="">All</option>
+        <option disabled value="">All</option>
         <option value="">Potong</option>
         <option value="">Setrika</option>
         <option value="">Jahit</option>

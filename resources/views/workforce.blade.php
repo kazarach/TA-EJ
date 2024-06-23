@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="">Position</label>
         <select name="position_id" id="workforcePosition" class="form-select mb-3" aria-label="Default select example">

@@ -15,17 +15,23 @@ $(document).ready(function () {
             { data: "name" },
             { data: "customerclass.name" },
             { data: "telp" },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return (
-                        '<button class="btn btn-primary" onclick="fetchData(' +
-                        row.id +
-                        ');">Select</button>'
-                    );
-                },
-            },
+            // {
+            //     data: null,
+            //     render: function (data, type, row) {
+            //         return (
+            //             '<button class="btn btn-primary" onclick="fetchData(' +
+            //             row.id +
+            //             ');">Select</button>'
+            //         );
+            //     },
+            // },
         ],
+    });
+    // select
+    $("#customer-table tbody").on("click", "tr", function () {
+        var data = customerTable.row(this).data();
+        console.log(data);
+        fetchData(data.id);
     });
 
     function refreshTable() {
@@ -239,4 +245,12 @@ document.getElementById("Telp").addEventListener("input", function (e) {
     }
 
     e.target.value = formatted; // Update the input field
+});
+
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
 });

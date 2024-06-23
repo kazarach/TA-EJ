@@ -49,13 +49,17 @@ $(document).ready(function () {
             {
                 data: "purchase_price",
                 render: function (data, type, row) {
-                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    return data
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                 },
             },
             {
                 data: "selling_price",
                 render: function (data, type, row) {
-                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    return data
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                 },
             },
             { data: "stock" },
@@ -103,6 +107,14 @@ $(document).ready(function () {
             },
         ],
     });
+
+    // select
+    $("#products-table tbody").on("click", "tr", function () {
+        var data = productTable.row(this).data();
+        console.log(data);
+        fetchProductData(data.id);
+    });
+
     function refreshTable() {
         productTable.ajax.reload(null, false);
     }
@@ -183,21 +195,25 @@ function populateFields(productId) {
     fetchProductData(productId);
 }
 
+
+
 function fetchProductData(productId) {
     fetch(`/api/products/${productId}`)
         .then((response) => response.json())
         .then((productData) => {
-            console.log(productData);
+            console.log(productData.category_id);
             document.getElementById("ID").value = "ID: " + productData.id;
             document.getElementById("productName").value = productData.name;
-            document.getElementById("productType").value = productData.type_id;
-            document.getElementById("productCategory").value = productData.category_id;
-            document.getElementById("productSize").value = productData.size_id;
-            document.getElementById("productColor").value = productData.color_id;
-            document.getElementById("productSign").value = productData.sign_id;
+            $('#productType').val(productData.type_id).trigger('change');//INI
+            $('#productCategory').val(productData.category_id).trigger('change');
+            $('#productSize').val(productData.size_id).trigger('change');
+            $('#productColor').val(productData.color_id).trigger('change');
+            $('#productSign').val(productData.sign_id).trigger('change');
             document.getElementById("productCode").value = productData.code;
-            document.getElementById("productPurchasePrice").value = productData.purchase_price;
-            document.getElementById("productSellingPrice").value = productData.selling_price;
+            document.getElementById("productPurchasePrice").value =
+                productData.purchase_price;
+            document.getElementById("productSellingPrice").value =
+                productData.selling_price;
             document.getElementById("productStock").value = productData.stock;
             changeTextColor();
         })
@@ -236,13 +252,16 @@ function createProduct() {
         }
         const productName = document.getElementById("productName").value;
         const productType = document.getElementById("productType").value;
-        const productCategory = document.getElementById("productCategory").value;
+        const productCategory =
+            document.getElementById("productCategory").value;
         const productSize = document.getElementById("productSize").value;
         const productColor = document.getElementById("productColor").value;
         const productSign = document.getElementById("productSign").value;
         const productCode = document.getElementById("productCode").value;
         const productPurchasePrice = totalHTM;
-        const productSellingPrice = document.getElementById("productSellingPrice").value;
+        const productSellingPrice = document.getElementById(
+            "productSellingPrice"
+        ).value;
         const productStock = document.getElementById("productStock").value;
 
         if (productCode === "Nama") {
@@ -341,13 +360,16 @@ function updateProduct() {
         if (selectedProductId) {
             const productName = document.getElementById("productName").value;
             const productType = document.getElementById("productType").value;
-            const productCategory = document.getElementById("productCategory").value;
+            const productCategory =
+                document.getElementById("productCategory").value;
             const productSize = document.getElementById("productSize").value;
             const productColor = document.getElementById("productColor").value;
             const productSign = document.getElementById("productSign").value;
             const productCode = document.getElementById("productCode").value;
             const productPurchasePrice = totalHTM;
-            const productSellingPrice = document.getElementById("productSellingPrice").value;
+            const productSellingPrice = document.getElementById(
+                "productSellingPrice"
+            ).value;
             const productStock = document.getElementById("productStock").value;
 
             if (productCode === "Nama") {
@@ -518,7 +540,8 @@ function addToSelectedMaterials(
     name,
     purchase_price,
     unit,
-    quantity) {
+    quantity
+) {
     selectedMaterials.push({
         id: materialId,
         name: name,
@@ -724,3 +747,11 @@ type =
         $("#startdatepicker").datepicker();
         $("#enddatepicker").datepicker();
     });
+
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

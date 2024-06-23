@@ -533,13 +533,12 @@ body.dark .breadcrumbs-all a {
 
 .form-control {
     font-size: 14px;
-    color: blue;
-    color: grey;
+    color: #888888;
 }
 
 .form-select {
     font-size: 14px;
-    color: grey;
+    color: #888888;
 }
 
 .btn {
@@ -698,6 +697,10 @@ body.dark .breadcrumbs-all a {
     font-weight: 400;
 }
 
+.fc-content {
+    height: 2rem;
+}
+
 .form-group-start {
     margin-right: 10px;
 }
@@ -773,6 +776,23 @@ body.dark .breadcrumbs-all a {
 #modal-sell {
     width: 120rem;
     left: -12rem;
+}
+
+.select2-selection__clear span {
+    display: none;
+}
+
+.select2-selection__rendered {
+    font-size: 14px;
+    color: #888888 !important;
+}
+
+.select2-container--default .select2-selection--single {
+    border: none !important;
+}
+
+.dropdown-ph{
+    display: none;
 }
 
 /* media queries */

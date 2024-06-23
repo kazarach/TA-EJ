@@ -158,7 +158,7 @@ type;
 function changeTextColor() {
     // Select all input fields
     var inputControl = document.querySelectorAll(".form-control");
-    var inputSelect = document.querySelectorAll(".form-select");
+    var inputSelect = document.querySelectorAll(".select2-selection__rendered");
     var inputID = document.querySelectorAll("#ID");
 
     // Loop through each input field and change text color
@@ -170,5 +170,8 @@ function changeTextColor() {
     });
     inputID.forEach(function (field) {
         field.style.color = "white"; // Change to whatever color you want
+    });
+    inputSelect.forEach(function (field) {
+        field.style.cssText = "color: black !important;";
     });
 }

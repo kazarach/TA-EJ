@@ -61,14 +61,14 @@ $("#monthSelect").change(function () {
 });
 
 // Initialize datepicker
-// $(".datepicker").datepicker({
-//         dateFormat: 'yy-mm-dd'
-// });
+$(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd",
+});
 
 // Show modal on button click
-// $('#addNewButton').click(function() {
-//     $('#addEventModal').modal('show');
-// });
+$("#addNewButton").click(function () {
+    $("#addEventModal").modal("show");
+});
 
 // Save event
 // $('#saveEventButton').click(function() {

@@ -68,8 +68,8 @@ function fetchData(Id) {
             console.log(Data);
             document.getElementById("ID").value = "ID: " + Data.id;
             document.getElementById("machineName").value = Data.name;
-            document.getElementById("machineUse").value = Data.use_id;
-            document.getElementById("machineStatus").value = Data.status_id;
+            $('#machineUse').val(Data.use_id).trigger('change');
+            $('#machineStatus').val(Data.status_id).trigger('change');
             changeTextColor();
 
         })
@@ -228,3 +228,11 @@ function deleteData() {
         }
     });
 }
+
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

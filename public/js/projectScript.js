@@ -87,6 +87,10 @@ $(document).ready(function () {
             },
         ],
     });
+    $("#projects-table tbody").on("click", "tr", function () {
+        var data = projectTable.row(this).data();
+        fetchProjectData(data.id);
+    });
     function refreshTable() {
         projectTable.ajax.reload(null, false); // User paging is not reset on reload
     }
@@ -230,8 +234,7 @@ function fetchProjectData(projectId) {
                 projectData.start_date;
             document.getElementById("projectEndDate").value =
                 projectData.end_date;
-            document.getElementById("projectStatus").value =
-                projectData.status_id;
+            $('#projectStatus').val(projectData.status_id).trigger('change');
             changeTextColor();
         })
         .catch((error) => console.error("Error fetching project data:", error));
@@ -647,3 +650,11 @@ function clearDefaultValue(input) {
         input.value = ""; // Clear the default value
     }
 }
+
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

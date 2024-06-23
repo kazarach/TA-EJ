@@ -71,8 +71,8 @@ function fetchData(WorkforceId) {
             selectedWorkforceId=workforceData.id;
             document.getElementById("ID").value = "ID: " + workforceData.id;
             document.getElementById("workforceName").value = workforceData.name;
-            document.getElementById("workforcePosition").value = workforceData.position_id;
-            document.getElementById("workforceStatus").value = workforceData.status_id;
+            $('#workforcePosition').val(workforceData.position_id).trigger('change');
+            $('#workforceStatus').val(workforceData.status_id).trigger('change');
             changeTextColor();
 
         })
@@ -233,3 +233,11 @@ function deleteWorkforce() {
         }
     });
 }
+
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

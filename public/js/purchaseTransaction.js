@@ -150,10 +150,10 @@ function fetchData(Id) {
         .then((Data) => {
             console.log(Data);
             document.getElementById("ID").value = "ID: " + Data.id;
-            document.getElementById("supplierName").value = Data.supplier_id;
+            $('#supplierName').val(Data.supplier_id).trigger('change');
             document.getElementById("totalPrice").value = Data.total;
             document.getElementById("paid").value = Data.paid;
-            document.getElementById("Payment").value = Data.payment_id;
+            $('#Payment').val(Data.payment_id).trigger('change');
             changeTextColor();
             discount = Data.discount;
             selectedTransaction = [];
@@ -432,23 +432,10 @@ function revertModal() {
     // calculateTotalHTM();
 }
 
-// 3 digit separator
-// document.getElementById("paid").addEventListener("input", function (e) {
-//     let value = e.target.value.replace(/\./g, "");
-//     if (value === "") {
-//         e.target.value = "";
-//         return;
-//     }
-//     if (!isNaN(value.replace(",", ".")) && value.includes(",")) {
-//         let parts = value.split(",");
-//         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-//         parts[1] = parts[1].substring(0, 3);
-//         e.target.value = parts.join(",");
-//     } else if (!isNaN(value.replace(",", "."))) {
-//         value = parseFloat(value.replace(",", ".")).toLocaleString("de-DE", {
-//             minimumFractionDigits: 0,
-//             maximumFractionDigits: 3,
-//         });
-//         e.target.value = value.replace(",", ".");
-//     }
-// });
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

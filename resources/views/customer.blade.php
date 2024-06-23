@@ -39,11 +39,11 @@
         </div>
     </div>
 
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="">Class</label>
         <select id="Class" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Class</option>
+            <option selected disabled hidden>Class</option>
             @foreach($customerclasses as $class)
                 <option value="{{ $class->id }}">{{ $class->name }}</option>
             @endforeach
@@ -75,7 +75,7 @@
                 <th scope="col">Nama</th>
                 <th scope="col">Golongan</th>
                 <th scope="col">No. Telp</th>
-                <th scope="col">Action</th>
+                {{-- <th scope="col">Action</th> --}}
             </tr>
         </thead>
         <tbody>

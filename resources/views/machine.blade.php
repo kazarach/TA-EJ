@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="">Use</label>
         <select name="use_id" id="machineUse" class="form-select mb-3" aria-label="Default select example">

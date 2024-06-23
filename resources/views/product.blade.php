@@ -9,9 +9,15 @@
                 <h2>Product</h2>
             </div>
             <div class="dropdown-top">
+                <a href="/product" class="active">Product</a>
+                <a href="">|</a>
                 <a href="/material">Material</a>
                 <a href="">|</a>
-                <a href="/product" class="active">Product</a>
+                <a href="/purchase">Purchase</a>
+                <a href="">|</a>
+                <a href="/purchase/transaction">Transaction</a>
+                <a href="">|</a>
+                <a href="/purchase/item">Item</a>
             </div>
             <div class="user-info">
                 <img src="image2.jpg" alt="">
@@ -27,7 +33,7 @@
             <input id="ID" type="text" class="form-control" placeholder="New Product" aria-label="ID" readonly>
         </div>
     </div>
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col production">
             <label for="" class="form-label">Product Name</label>
             <input name="name" id="productName" type="text" class="form-control" placeholder="Product Name" aria-label="Nama">
@@ -35,38 +41,39 @@
         <div class="col">
             <label for="" class="form-label">Type</label>
             <select name="type_id" id="productType" placeholder="Type" class="form-select mb-3" aria-label="Default select example">
-                <option selected hidden>Type</option>
+                <option selected disabled hidden>Type</option>
                 @foreach($typess as $type)
                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
             </select>
         </div>
     </div>
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
-            <label for="" class="form-label">Category</label>
+            <label for="productCategory" class="form-label">Category</label>
             <select name="category_id" id="productCategory" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Category</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
+                <option selected disabled hidden>Category</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="col">
-            <label for="" class="form-label">Size</label>
+            <label for="productSize" class="form-label">Size</label>
             <select name="size_id" id="productSize" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Size</option>
-            @foreach($sizes as $size)
-                <option value="{{ $size->id }}">{{ $size->name }}</option>
-            @endforeach
-        </select>
+                <option selected disabled hidden>Size</option>
+                @foreach($sizes as $size)
+                    <option value="{{ $size->id }}">{{ $size->name }}</option>
+                @endforeach
+            </select>
         </div>
-      </div>
-    <div class="row g-3">
+    </div>
+    
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="" class="form-label">Color</label>
             <select name="color_id" id="productColor" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Color</option>
+            <option selected disabled hidden>Color</option>
             @foreach($colors as $color)
                 <option value="{{ $color->id }}">{{ $color->name }}</option>
             @endforeach
@@ -75,7 +82,7 @@
         <div class="col">
             <label for="" class="form-label">Merk</label>
             <select name="sign_id" id="productSign" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Merk</option>
+            <option selected disabled hidden>Merk</option>
             @foreach($signs as $sign)
                 <option value="{{ $sign->id }}">{{ $sign->name }}</option>
             @endforeach

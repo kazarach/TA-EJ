@@ -59,13 +59,7 @@ $(document).ready(function () {
             });
     });
 
-    $("#materials-table").on("click", ".select-btn", function () {
-        var materialId = $(this).data("id");
-        fetchMaterialData(materialId);
-        selectedMaterialId = materialId;
-    });
-
-    $('#materials-table tbody').on('click', 'tr', function () {
+    $("#materials-table tbody").on("click", "tr", function () {
         var data = materialTable.row(this).data();
         fetchMaterialData(data.id);
     });
@@ -75,14 +69,11 @@ function fetchMaterialData(materialId) {
     fetch(`/api/materials/${materialId}`)
         .then((response) => response.json())
         .then((materialData) => {
-            document.getElementById("ID").value =
-                "ID: " + materialData.id;
+            document.getElementById("ID").value = "ID: " + materialData.id;
             document.getElementById("materialName").value = materialData.name;
             document.getElementById("materialStock").value = materialData.stock;
-            document.getElementById("materialUnit").value =
-                materialData.unit_id;
-            document.getElementById("materialCategory").value =
-                materialData.category_id;
+            $('#materialUnit').val(materialData.unit_id).trigger('change');
+            $('#materialCategory').val(materialData.category_id).trigger('change');
             document.getElementById("materialCode").value = materialData.code;
             document.getElementById("materialPurchasePrice").value =
                 materialData.purchase_price;
@@ -91,18 +82,6 @@ function fetchMaterialData(materialId) {
         .catch((error) =>
             console.error("Error fetching Material data:", error)
         );
-}
-
-function changeTextColor() {
-    var inputControl = document.querySelectorAll(".form-control");
-    var inputSelect = document.querySelectorAll(".form-select");
-
-    inputControl.forEach(function (field) {
-        field.style.color = "black";
-    });
-    inputSelect.forEach(function (field) {
-        field.style.color = "black";
-    });
 }
 
 function clearForm() {
@@ -296,3 +275,11 @@ function deleteMaterial() {
         }
     });
 }
+
+// searchbar
+$(document).ready(function () {
+    $(".form-select").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

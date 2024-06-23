@@ -45,37 +45,44 @@
 </section>
 
 <!-- Modal -->
-{{-- <div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel" aria-hidden="true">
+<div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <form id="addEventForm">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="eventTitle">Event Title</label>
                         <input type="text" class="form-control" id="eventTitle" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="eventStart">Start Date</label>
                         <input type="text" class="form-control datepicker" id="eventStart" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="eventEnd">End Date</label>
                         <input type="text" class="form-control datepicker" id="eventEnd">
                     </div>
-                    <div class="form-group">
+                    <div class="row g-3 mb-3">
+                        <div class="col production">
+                            <label for="" class="form-label">Machine</label>
+                            <input name="name" id="productName" type="text" class="form-control" placeholder="Machine" aria-label="Nama">
+                        </div>
+                        <div class="col production">
+                            <label for="" class="form-label">Workforce</label>
+                            <input name="name" id="productName" type="text" class="form-control" placeholder="Workforce" aria-label="Nama">
+                        </div>
+                    </div>
+                    {{-- <div class="form-group">
                         <label for="eventColor">Event Color</label>
                         <input type="color" class="form-control" id="eventColor" value="#ff9f89">
                     </div>
                     <div class="form-group">
                         <label for="eventTextColor">Text Color</label>
                         <input type="color" class="form-control" id="eventTextColor" value="#000000">
-                    </div>
+                    </div> --}}
                 </form>
             </div>
             <div class="modal-footer">
@@ -84,7 +91,7 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
 
 <script src="/js/scheduleScript.js"></script>

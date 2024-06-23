@@ -94,21 +94,21 @@
               </ul>
             </li>
               <li class="nav-link dropdown" id="inventory-link">
-                  <a href="/material" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                  <a href="/inventory" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-cylinder icon'></i>
                       <span class="text nav-text" id="dropdowntext2">Inventory ></span>
                   </a>
                   <ul class="sub-menu">
                       <li class="nav-link">
-                        <a href="/material">
+                        <a href="/product">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Material</span>
+                          <span class="text nav-text" id="submenutext">Product</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/production">
+                        <a href="/material">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Product</span>
+                          <span class="text nav-text" id="submenutext">Material</span>
                         </a>
                       </li>
                       <li class="nav-link">

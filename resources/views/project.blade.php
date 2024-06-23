@@ -41,7 +41,7 @@
         <label for="" class="form-label">End Date</label>
         <input type="text" class="form-control datepicker" id="projectEndDate" placeholder=" End Date">
     </div>
-    <div class="row g-3 ">
+    <div class="row g-3 mb-3">
         <div class="col-new">
             <label for="" class="form-label">Status</label>
         <select id="projectStatus" class="form-select mb-3" placeholder="Status" aria-label="Status">

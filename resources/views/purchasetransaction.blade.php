@@ -10,6 +10,10 @@
             <h2>Transaction</h2>
         </div>
         <div class="dropdown-top">
+            <a href="/product">Product</a>
+            <a href="">|</a>
+            <a href="/material">Material</a>
+            <a href="">|</a>
             <a href="/purchase">Purchase</a>
             <a href="">|</a>
             <a href="/purchase/transaction" class="active">Transaction</a>
@@ -36,8 +40,8 @@
     <div class="row g-3 mb-3">
         <div class="col">
             <label for="supplierName">Supplier</label>
-            <select name="name" id="supplierName" class="form-control" aria-label="Supplier Name">
-                <option selected hidden>Select a supplier</option>
+            <select name="name" id="supplierName" class="form-select" aria-label="Supplier Name">
+                <option selected disabled hidden>Select a supplier</option>
                 @foreach($suppliers as $supplier)
                 <option value="{{ $supplier->id }}">
                     {{ $supplier->name }}
@@ -56,11 +60,11 @@
             <input id="paid" type="text" class="form-control" placeholder="Paid">
         </div>
     </div>
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="">Payment</label>
             <select id="Payment" class="form-select mb-3" aria-label="Default select example">
-                <option selected hidden>Payment</option>
+                <option selected disabled hidden>Payment</option>
                 @foreach($payments as $payment)
                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                 @endforeach

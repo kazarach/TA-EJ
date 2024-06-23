@@ -10,9 +10,15 @@
                 <h2>Material</h2>
             </div>
             <div class="dropdown-top">
+                <a href="/product">Product</a>
+                <a href="">|</a>
                 <a href="/material" class="active">Material</a>
                 <a href="">|</a>
-                <a href="/product">Product</a>
+                <a href="/purchase">Purchase</a>
+                <a href="">|</a>
+                <a href="/purchase/transaction">Transaction</a>
+                <a href="">|</a>
+                <a href="/purchase/item">Item</a>
             </div>
             <div class="user-info">
                 <img src="image2.jpg" alt="">
@@ -40,11 +46,11 @@
         </div>
     </div>
 
-    <div class="row g-3">
+    <div class="row g-3 mb-3">
         <div class="col">
             <label for="" class="form-label">Unit</label>
             <select name="unit_id" id="materialUnit" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Unit</option>
+            <option selected disabled hidden>Unit</option>
             @foreach($materialunits as $unit)
                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>
             @endforeach
@@ -53,7 +59,7 @@
         <div class="col">
             <label for="" class="form-label">Category</label>
             <select name="category_id" id="materialCategory" class="form-select mb-3" aria-label="Default select example">
-            <option selected hidden>Category</option>
+            <option selected disabled hidden>Category</option>
             @foreach($materialcategories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
@@ -67,7 +73,7 @@
         </div>
         <div class="col">
             <label for="" class="form-label">Purchase Price</label>
-            <input name="purchase_price" id="materialPurchasePrice" type="text" class="form-control" placeholder="Purchase Price" aria-label="Harga Beli">
+            <input name="purchase_price" id="materialPurchasePrice" type="text" class="form-control" placeholder="Purchase Price" aria-label="Harga Beli" readonly>
         </div>
     </div>
 
