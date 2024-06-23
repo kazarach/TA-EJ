@@ -45,6 +45,9 @@ class DatabaseSeeder extends Seeder
             PurchaseItemSeeder::class,
             CatalogSeeder::class,
             OrderSeeder::class,
+            ProductionSeeder::class,
+            ProductionMachineSeeder::class,
+            ProductionWorkforceSeeder::class,
 
             CalculatePriceSeeder::class,
 

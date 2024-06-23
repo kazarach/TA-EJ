@@ -70,7 +70,7 @@ $(document).ready(function () {
     $("#update-button").on("click", function () {
         updateProject()
             .then(() => {
-                refreshTable(); // Refresh the table after updateProject is successful
+                refreshTable();
             })
             .catch((error) => {
                 console.error("Update failed:", error);
@@ -88,7 +88,7 @@ $(document).ready(function () {
     $("#delete-button").on("click", function () {
         deleteProject()
             .then(() => {
-                refreshTable(); // Refresh the table after deleteProject is successful
+                refreshTable();
             })
             .catch((error) => {
                 console.error("Deletion failed:", error);

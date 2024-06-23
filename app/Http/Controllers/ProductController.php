@@ -155,64 +155,64 @@ class ProductController extends Controller
     }
 
 
-public function updateProductMaterials(Request $request, $id)
-{
-    $request->validate([
-        'productId' => 'required|exists:products,id',
-        'materials' => 'required|array', 
-        'materials.*.id' => 'required|exists:materials,id', 
-        'materials.*.quantity' => 'required|integer|min:0', 
-        'materials.*.name' => 'required|string', 
-        'materials.*.purchase_price' => 'required|numeric|min:0',
-        'materials.*.unit' => 'required|string', 
-    ]);
+    public function updateProductMaterials(Request $request, $id)
+    {
+        $request->validate([
+            'productId' => 'required|exists:products,id',
+            'materials' => 'required|array', 
+            'materials.*.id' => 'required|exists:materials,id', 
+            'materials.*.quantity' => 'required|integer|min:0', 
+            'materials.*.name' => 'required|string', 
+            'materials.*.purchase_price' => 'required|numeric|min:0',
+            'materials.*.unit' => 'required|string', 
+        ]);
 
-    $productId = $request->productId;
-    $materials = $request->materials;
-    $product = Product::with('materials')->find($productId);
+        $productId = $request->productId;
+        $materials = $request->materials;
+        $product = Product::with('materials')->find($productId);
 
-    if (!$product) {
-        return response()->json(['error' => 'Product not found'], Response::HTTP_NOT_FOUND);
-    }
-
-    $existingMaterials = $product->materials->pluck('id')->toArray();
-    $materialsToAttach = [];
-    $materialsToUpdate = [];
-    $materialsToDetach = [];
-
-    foreach ($materials as $material) {
-        $materialId = $material['id'];
-        $quantity = $material['quantity'];
-
-        if (in_array($materialId, $existingMaterials)) {
-            $materialsToUpdate[$materialId] = ['quantity' => $quantity];
-        } else {
-            $materialsToAttach[$materialId] = ['quantity' => $quantity];
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], Response::HTTP_NOT_FOUND);
         }
-    }
 
-    $materialsToDetach = array_diff($existingMaterials, array_column($materials, 'id'));
+        $existingMaterials = $product->materials->pluck('id')->toArray();
+        $materialsToAttach = [];
+        $materialsToUpdate = [];
+        $materialsToDetach = [];
 
-    if (!empty($materialsToDetach)) {
-        foreach ($materialsToDetach as $materialId) {
-            $product->materials()->detach($materialId);
+        foreach ($materials as $material) {
+            $materialId = $material['id'];
+            $quantity = $material['quantity'];
+
+            if (in_array($materialId, $existingMaterials)) {
+                $materialsToUpdate[$materialId] = ['quantity' => $quantity];
+            } else {
+                $materialsToAttach[$materialId] = ['quantity' => $quantity];
+            }
         }
-    }
 
-    if (!empty($materialsToAttach)) {
-        foreach ($materialsToAttach as $materialId => $data) {
-            $product->materials()->attach($materialId, $data);
+        $materialsToDetach = array_diff($existingMaterials, array_column($materials, 'id'));
+
+        if (!empty($materialsToDetach)) {
+            foreach ($materialsToDetach as $materialId) {
+                $product->materials()->detach($materialId);
+            }
         }
-    }
 
-    if (!empty($materialsToUpdate)) {
-        foreach ($materialsToUpdate as $materialId => $data) {
-            $product->materials()->updateExistingPivot($materialId, $data);
+        if (!empty($materialsToAttach)) {
+            foreach ($materialsToAttach as $materialId => $data) {
+                $product->materials()->attach($materialId, $data);
+            }
         }
-    }
 
-    return response()->json(['message' => 'Product materials updated successfully']);
-}
+        if (!empty($materialsToUpdate)) {
+            foreach ($materialsToUpdate as $materialId => $data) {
+                $product->materials()->updateExistingPivot($materialId, $data);
+            }
+        }
+
+        return response()->json(['message' => 'Product materials updated successfully']);
+    }
 
     public function createProductMaterials(Request $request)
     {

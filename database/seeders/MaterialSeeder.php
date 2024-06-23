@@ -25,7 +25,7 @@ class MaterialSeeder extends Seeder
             'category_id' => $categories[array_rand($categories)],
             'code' => 'KCGMR01',
             'purchase_price' => 1000,
-            'stock' => 200,
+            'stock' => 1000,
         ]);
 
         Material::create([
@@ -35,7 +35,7 @@ class MaterialSeeder extends Seeder
             'category_id' => $categories[array_rand($categories)],
             'code' => 'RLTPN01',
             'purchase_price' => 1500,
-            'stock' => 100,
+            'stock' => 2000,
         ]);
 
         Material::create([
@@ -45,7 +45,7 @@ class MaterialSeeder extends Seeder
             'category_id' => $categories[array_rand($categories)],
             'code' => 'BNGPT01',
             'purchase_price' => 5000,
-            'stock' => 25,
+            'stock' => 3000,
         ]);
 
         Material::create([
@@ -55,7 +55,7 @@ class MaterialSeeder extends Seeder
             'category_id' => $categories[array_rand($categories)],
             'code' => 'BNGMR01',
             'purchase_price' => 10000,
-            'stock' => 35,
+            'stock' => 4000,
         ]);
         Material::create([
             'name' => 'Kain merah',
@@ -64,7 +64,7 @@ class MaterialSeeder extends Seeder
             'category_id' => $categories[array_rand($categories)],
             'code' => 'KAIN01',
             'purchase_price' => 15000,
-            'stock' => 35,
+            'stock' => 5000,
         ]);
     }
 }

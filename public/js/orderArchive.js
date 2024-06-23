@@ -125,10 +125,9 @@ function clearForm() {
     document.getElementById("product").value = "";
     document.getElementById("quantity").value = "";
 
-
-    document.getElementById("catalogName").selectedIndex = 0;
-    document.getElementById("product").selectedIndex = 0;
-    document.getElementById("customerName").selectedIndex = 0;
+    $('#product').val(0).trigger('change');
+    $('#catalogName').val(0).trigger('change');
+    $('#customerName').val(0).trigger('change');
 }
 
 function updateData() {

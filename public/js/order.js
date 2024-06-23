@@ -47,6 +47,7 @@ $(document).ready(function () {
 });
 
 function clearForm() {
+    document.getElementById("ID").value = "";
     document.getElementById("catalogName").value = "";
     document.getElementById("customerName").value = "";
 
@@ -208,7 +209,6 @@ function populateItems(items) {
 function populateItems2(items) {
     console.log(items);
     items.sort((a, b) => a.id - b.id);
-    // var table = $("#selling-table").DataTable();
     tableSell.clear();
 
     const addedItemlIds = new Set();

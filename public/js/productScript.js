@@ -191,7 +191,6 @@ function fetchProductData(productId) {
             material.pivot.quantity
         );
     });
-
 }
 
 function clearForm() {

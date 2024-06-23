@@ -14,6 +14,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseTransactionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ProductionController;
 
 
 use Illuminate\Http\Request;
@@ -125,4 +126,22 @@ Route::get('catalog/{id}', [CatalogController::class, 'show']);
 Route::put('catalog/{id}', [CatalogController::class, 'update']);
 Route::delete('catalog/{id}', [CatalogController::class, 'destroy']);
 
+Route::get('productions/', [ProductionController::class, 'index']);
+Route::post('productions/', [ProductionController::class, 'store']);
+Route::get('productions/{id}', [ProductionController::class, 'show']);
+Route::put('productions/{id}', [ProductionController::class, 'update']);
+Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
 
+Route::get('productions/archive/', [ProductionController::class, 'index']);
+Route::post('productions/archive/', [ProductionController::class, 'store']);
+Route::get('productions/archive/{id}', [ProductionController::class, 'show']);
+Route::put('productions/archive/{id}', [ProductionController::class, 'update']);
+Route::delete('productions/archive/{id}', [ProductionController::class, 'destroy']);
+
+
+
+
+
+
+//BETWEEN DATABASE
+Route::post('/productions/{productId}/{quantity}', [ProductionController::class, 'produce']);

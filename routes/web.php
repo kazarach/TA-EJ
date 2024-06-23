@@ -21,6 +21,7 @@ use App\Http\Controllers\PurchaseTransactionController;
 use App\Http\Controllers\PurchaseItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ProductionController;
 
 
 
@@ -134,6 +135,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/book', [OrderController::class, 'indexbook']);
     Route::get('/order/archive', [OrderController::class, 'indexarchive']);
     Route::get('/catalog', [CatalogController::class, 'index']);
+    Route::get('/production', [ProductionController::class, 'index']);
+    Route::get('/production/archive', [ProductionController::class, 'indexArchive']);
 
 
     Route::get('/cash', function () {
