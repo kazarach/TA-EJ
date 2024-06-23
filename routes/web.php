@@ -118,7 +118,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/product', [ProductController::class, 'index'])->name('production');
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::get('/material', [MaterialController::class, 'index']);
     Route::get('/machine', [MachineController::class, 'index']);
     Route::get('/workforce', [WorkforceController::class, 'index']);

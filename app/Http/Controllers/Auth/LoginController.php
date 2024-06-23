@@ -34,7 +34,7 @@ class LoginController extends Controller
             } else if (auth()->user()->type == 'manager') {
                 return redirect()->route('manager.dashboard');
             } else {
-                return redirect()->route('production'); // Changed to 'production'
+                return redirect()->route('product'); // Changed to 'production'
             }
         } else {
             return redirect()->route('login')
