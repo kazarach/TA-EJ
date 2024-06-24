@@ -6,19 +6,19 @@
     <div class="top-bar">
         <div class="header-wrapper">
             <div class="header-title">
-                <h2>Order</h2>
+                <h2>Production Archive</h2>
             </div>
             <div class="dropdown-top">
-                <a href="/order" class="active">Order</a>
+                <a href="/production">Production</a>
                 <a href="">|</a>
-                <a href="/order/book">Order Book</a>
+                <a href="/production/archive" class="active">Production Archive</a>
                 <a href="">|</a>
-                <a href="/order/archive">Order Archive</a>
+                <a href="/machine">Machine</a>
                 <a href="">|</a>
-                <a href="/customer">Customer</a>
+                <a href="/workforce">Workforce</a>
             </div>
             <div class="user-info">
-                <img src="image2.jpg" alt="">
+                <img src="../image2.jpg" alt="">
             </div>
         </div>
     </div>  

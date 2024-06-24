@@ -699,6 +699,7 @@ body.dark .breadcrumbs-all a {
 
 .fc-content {
     height: 2rem;
+    background-color: var(--primary-color);
 }
 
 .form-group-start {

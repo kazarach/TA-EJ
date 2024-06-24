@@ -80,6 +80,18 @@
               </a>
               <ul class="sub-menu">
                   <li class="nav-link">
+                    <a href="/production">
+                      <i class='bx bx-sitemap icon' id="submenutext"></i>
+                      <span class="text nav-text" id="submenutext">Production</span>
+                    </a>
+                  </li>
+                  <li class="nav-link">
+                    <a href="/production/archive">
+                      <i class='bx bx-sitemap icon' id="submenutext"></i>
+                      <span class="text nav-text" id="submenutext">Production Archive</span>
+                    </a>
+                  </li>
+                  <li class="nav-link">
                     <a href="/machine">
                       <i class='bx bx-sitemap icon' id="submenutext"></i>
                       <span class="text nav-text" id="submenutext">Machine</span>

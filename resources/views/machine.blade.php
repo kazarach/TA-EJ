@@ -10,6 +10,10 @@
                 <h2>Machine</h2>
             </div>
             <div class="dropdown-top">
+                <a href="/production">Production</a>
+                <a href="">|</a>
+                <a href="/production/archive">Production Archive</a>
+                <a href="">|</a>
                 <a href="/machine" class="active">Machine</a>
                 <a href="">|</a>
                 <a href="/workforce">Workforce</a>

@@ -69,6 +69,9 @@ const pathToLinkMap = {
     "/order/book": "order",
     "/order/archive": "order",
     "/customer": "order",
+    "/production": "production",
+    "/production/archive": "production",
+
 };
 
 links.forEach((link) => {
