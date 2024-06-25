@@ -177,6 +177,7 @@
                   <th scope="col">Production Date</th>
                   <th scope="col">Machine</th>
                   <th scope="col">Workforce</th>
+                  <th scope="col">Action</th>
               </tr>
           </thead>
           <tbody>
