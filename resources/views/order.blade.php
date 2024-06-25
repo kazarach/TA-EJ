@@ -63,14 +63,13 @@
   {{---Modal---}}
   <div class="modal fade mb-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
-          <div class="modal-content" id="modal-sell">
+          <div class="modal-content" id="modal">
               <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Product</h1>
                   <button type="button" onclick="revertModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                   <div class="d-flex">
-                      <!-- Selected Materials Section -->
                       <div class="flex-fill me-3">
                           <h3>Selected Products</h3>
                           <table id="selectedItemsTable" class="table">

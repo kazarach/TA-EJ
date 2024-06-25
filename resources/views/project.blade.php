@@ -58,7 +58,7 @@
 {{---Modal---}}
 <div class="modal fade mb-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content">
+        <div class="modal-content" id="modal">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Product</h1>
                 <button type="button" onclick="revertModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

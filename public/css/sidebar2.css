@@ -796,6 +796,17 @@ body.dark .breadcrumbs-all a {
     display: none;
 }
 
+#machines-table,
+#workforces-table,
+#products-table,
+#materials-table{
+    width: 100% !important;
+}
+
+#machines-table_wrapper{
+    width: 100%;
+}
+
 /* media queries */
 
 /* laptop */

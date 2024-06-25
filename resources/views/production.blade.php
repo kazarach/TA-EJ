@@ -28,7 +28,7 @@
     @csrf
       <div class="row g-3 mb-3">
           <div class="col-new">
-              <input id="ID" type="text" class="form-control" placeholder="New Order" aria-label="ID" readonly>
+              <input id="ID" type="text" class="form-control" placeholder="New Production" aria-label="ID" readonly>
           </div>
       </div>
         <div class="row g-3 mb-3">
@@ -81,9 +81,9 @@
   {{---Modal---}}
   <div class="modal fade mb-3" id="machineModal" tabindex="-1" aria-labelledby="machineModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
-          <div class="modal-content" id="modal-sell">
+          <div class="modal-content" id="modal">
               <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="machineModalLabel">Choose Machine</h1>
+                  <h1 class="modal-title fs-5" id="machineModalLabel">Choose Machine and Workforce</h1>
                   <button type="button" onclick="revertModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
