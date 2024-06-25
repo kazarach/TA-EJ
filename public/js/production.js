@@ -2,8 +2,9 @@ let selectedId;
 var selectedMachines = [];
 var selectedWorkforces = [];
 var productionTable = $("#production-table").DataTable();
-var productionDate;
+// var productionDate;
 var productionList = [];
+var counter=1;
 
 $(document).ready(function () {
     $("#saveChanges").on("click", function () {
@@ -89,6 +90,8 @@ function createItem() {
             project_id: parseInt(item.project_id, 10),
             quantity: parseInt(item.quantity, 10),
             production_date: item.production_date,
+            machines: item.machines,
+            workforces: item.workforces,
         }));
 
         console.log(requestBody);
@@ -134,8 +137,18 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { data: "machinestatus.name" },
-            { data: "machineuse.name" },
+            { 
+                data: "machinestatus",
+                render: function (data, type, row) {
+                    return data.name; // Display name
+                }
+            },
+            { 
+                data: "machineuse",
+                render: function (data, type, row) {
+                    return data.name; // Display name
+                }
+            },
             {
                 data: null,
                 render: function (data, type, row) {
@@ -156,8 +169,18 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { data: "workforcestatus.name" },
-            { data: "workforceposition.name" },
+            { 
+                data: "workforcestatus",
+                render: function (data, type, row) {
+                    return data.name; // Display name
+                }
+            },
+            { 
+                data: "workforceposition",
+                render: function (data, type, row) {
+                    return data.name; // Display name
+                }
+            },
             {
                 data: null,
                 render: function (data, type, row) {
@@ -174,6 +197,10 @@ $(document).ready(function () {
         var status = row.find("td:eq(2)").text();
         var position = row.find("td:eq(3)").text();
 
+        var rowData = workforceTable.row(row).data();
+        var statusId = rowData.workforcestatus.id;
+        var positionId = rowData.workforceposition.id;
+
         var exists = selectedWorkforces.some(function(workforce) {
             return workforce.id === id;
         });
@@ -182,8 +209,8 @@ $(document).ready(function () {
             selectedWorkforces.push({
                 id: id,
                 name: name,
-                status_id: status,
-                position_id: position,
+                status_id: statusId,
+                position_id: positionId,
             });
         } else if (!this.checked && exists) {
             selectedWorkforces = selectedWorkforces.filter(function(workforce) {
@@ -200,6 +227,10 @@ $(document).ready(function () {
         var status = row.find("td:eq(2)").text();
         var position = row.find("td:eq(3)").text();
 
+        var rowData = machineTable.row(row).data();
+        var statusId = rowData.machinestatus.id;
+        var useId = rowData.machineuse.id;
+
         var exists = selectedMachines.some(function(machine) {
             return machine.id === id;
         });
@@ -208,8 +239,8 @@ $(document).ready(function () {
             selectedMachines.push({
                 id: id,
                 name: name,
-                status_id: status,
-                position_id: position,
+                status_id: statusId,
+                use_id: useId,
             });
         } else if (!this.checked && exists) {
             selectedMachines = selectedMachines.filter(function(machine) {
@@ -244,7 +275,12 @@ $(document).ready(function () {
             status: selectedProject.data('status'),
         };
         var quantity = parseInt($("#quantity").val());
+        var productionDate = $("#productionDate").val();
 
+        if (!product_id || !project_id || isNaN(quantity) || !productionDate) {
+            alert("All fields must be filled out.");
+            return;
+        }
         var existingItem = productionList.find(item => item.product_id === product_id && item.project_id === project_id && item.production_date === productionDate
         );
 
@@ -256,7 +292,7 @@ $(document).ready(function () {
         } else {
             // If the item does not exist, create a new entry
             var data = {
-                id: productionList.length + 1,  // Assuming you want to increment the id
+                id: counter++,  // Assuming you want to increment the id
                 quantity: quantity,
                 product_id: product_id,
                 product_name: productInfo.name,
@@ -295,7 +331,7 @@ function updateTableRow(item) {
 function populateItems(items) {
     console.log(items);
     items.sort((a, b) => a.id - b.id);
-    productionTable.clear();
+    productionTable.clear().draw(); // Ensure the table is cleared and redrawn
 
     let counter = 1; 
 
@@ -303,11 +339,11 @@ function populateItems(items) {
         var machineList = formatMachines(item.machines);
         var workforceList = formatWorkforces(item.workforces);
         var newRow = [
-            counter++,
+            item.id,
             item.product_name,
             '<input type="number" class="form-control quantity" value="' +
                 item.quantity +
-                '" onchange="updateQuantity(this, ' + item.product_id + ', ' + item.project_id + ');">',
+                '" onchange="updateQuantity(this, ' + item.product_id + ', ' + item.project_id + ', ' + item.production_date + ');">',
             item.product_size,
             item.product_code,
             item.product_color,
@@ -322,6 +358,39 @@ function populateItems(items) {
         productionTable.row.add(newRow).draw();
 
     });
+}
+
+function removeFromCart(button) {
+    var row = button.closest("tr");
+    if (!row) {
+        return;
+    }
+
+    // var product_id = row.cells[1].innerText;
+    // var project_id = row.cells[6].innerText;
+    // var production_date = row.cells[8].innerText;
+    // console.log(product_id);
+    // console.log(project_id);
+    // console.log(production_date);
+    // // console.log(removeId)
+
+    // productionList = productionList.filter(item =>
+    //     (item.product_id !== String(product_id) &&
+    //     item.project_id !== String(project_id) &&
+    //     item.production_date !== String(production_date))
+    // );
+
+    var removeId = row.cells[0].innerText;
+    console.log(row);
+    productionList = productionList.filter(function (item) {
+        console.log(item.id);
+        console.log(removeId);
+
+        return item.id !== parseInt(removeId);
+    });
+    // row.remove();
+    console.log(productionList);
+    populateItems(productionList);
 }
 
 function formatMachines(machines) {
@@ -349,7 +418,7 @@ $(document).ready(function () {
     });
 
     function handleInputChange() {
-        productionDate = $("#productionDate").val();
+        var productionDate = $("#productionDate").val();
         console.log(productionDate);
     }
 
@@ -360,21 +429,28 @@ $(document).ready(function () {
 });
 
 
-function updateQuantity(element, productId, projectId) {
+function updateQuantity(element, productId, projectId, production_Date) {
     var newQuantity = parseInt(element.value);
     if (isNaN(newQuantity) || newQuantity < 0) {
         alert("Please enter a valid quantity.");
         return;
     }
 
-    // Find the item in your items array and update its quantity
-    var item = productionList.find(item => item.product_id === productId && item.project_id === projectId);
+    // Convert the production_Date to string if it's not already
+    production_Date = String(production_Date);
+
+    var item = productionList.find(item => 
+        item.product_id === String(productId) && 
+        item.project_id === String(projectId) &&
+        item.production_date === productionDate
+    );
+
     if (item) {
         console.log(item.quantity);
         item.quantity = newQuantity;
         var row = $(element).closest('tr');
     } else {
-        console.error("Item with productId " + productId + " and projectId " + projectId + " not found.");
+        console.error("Item with productId " + productId + ", projectId " + projectId + ", and production_Date " + productionDate + " not found.");
     }
 }
 

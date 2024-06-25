@@ -90,6 +90,14 @@ class ProductionController extends Controller
             '*.quantity' => 'required|integer',
             '*.production_date' => 'required|date',
             '*.project_id' => 'required|exists:projects,id',
+            '*.machines' => 'required|array',
+            '*.machines.*.id' => 'required|exists:machines,id',
+            '*.machines.*.status_id' => 'required|exists:machine_statuses,id',
+            '*.machines.*.use_id' => 'required|exists:machine_uses,id',
+            '*.workforces' => 'required|array',
+            '*.workforces.*.id' => 'required|exists:workforces,id',
+            '*.workforces.*.status_id' => 'required|exists:workforce_statuses,id',
+            '*.workforces.*.position_id' => 'required|exists:workforce_positions,id',
         ]);
 
         // Start a transaction
@@ -114,13 +122,22 @@ class ProductionController extends Controller
                     $material->save();
                 }
 
-                // Record the production
                 $production = Production::create([
                     'product_id' => $productionData['product_id'],
                     'quantity' => $quantity,
                     'production_date' => $productionData['production_date'],
                     'project_id' => $productionData['project_id'],
                 ]);
+
+                foreach ($productionData['machines'] as $machineData) {
+                    $production->machines()->attach($machineData['id']);
+                }
+        
+                // Attach workforces to the production
+                foreach ($productionData['workforces'] as $workforceData) {
+                    $production->workforces()->attach($workforceData['id']);
+                }
+        
 
                 $productionRecords[] = $production;
             }
@@ -151,8 +168,6 @@ class ProductionController extends Controller
             $production = new Production;
             $production->product_id = $productionData['product_id'];
             $production->project_id = $productionData['project_id'];
-            $production->quantity = $productionData['quantity'];
-            $production->production_date = $productionData['production_date'];
             $production->save();
             $productions[] = $production;
         }

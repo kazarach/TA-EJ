@@ -235,8 +235,6 @@ function populateItems2(items) {
             addedItemlIds.add(item.product_id);
         }
     });
-
-    // calculateTotalHTM();
 }
 
 function addToCart(button) {

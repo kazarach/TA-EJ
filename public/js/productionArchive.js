@@ -1,5 +1,4 @@
 let selectedId;
-var selectedItems = [];
 var selectedMachines = [];
 var selectedWorkforces = [];
 var tableMachine;
@@ -7,7 +6,6 @@ var tableWorkforce;
 
 
 $(document).ready(function () {
-    console.log(selectedItems);
     console.log("AHA");
     var productionTable = $("#production-table").DataTable({
         ajax: {
@@ -127,7 +125,6 @@ function clearForm() {
 
     selectedMachines = [];
     selectedWorkforce = [];
-    console.log(selectedItems);
     tableWorkforce.clear().draw();
     tableMachine.clear().draw();
 }
