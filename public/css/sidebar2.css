@@ -392,6 +392,38 @@ a.togglesubmenu {
     color: white;
 }
 
+/* Dashboard */
+.content-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card{
+    height: 20rem ;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--sidebar-color);
+    color: var(--text-dark);
+}
+
+#card2{
+    height: 41rem;
+}
+
+#row2{
+    position: relative;
+    top: -21rem;
+    padding: 1rem;
+}
+
+.calendar-db .fc-center h2{
+    padding-top: 1rem;
+}
+
+.calendar-db .fc-content{
+    height: 1rem;
+}
+
 /* Top Bar */
 
 .top-bar {
@@ -808,6 +840,27 @@ body.dark .breadcrumbs-all a {
 }
 
 /* media queries */
+
+@media (min-width: 1920px) {
+    #card2{
+        height: 49rem;
+    }
+    .card{
+        height: 24rem ;
+        border: none;
+        border-radius: 8px;
+        background-color: var(--sidebar-color);
+        color: var(--text-dark);
+    }
+    #row2{
+        position: relative;
+        top: -25rem;
+        padding: 1rem;
+    }
+    .calendar-db .fc-center h2{
+        padding-top: 3rem;
+    }
+}
 
 /* laptop */
 @media (max-width: 1920px) {
