@@ -15,7 +15,7 @@
 <body>
     {{-- navbar --}}
     <nav class="navbar">
-        <a href="/" class="navbar-logo">Mitra<span>Produksi</span></a>
+        <a href="/" class="navbar-logo">PROD<span>ACTION</span></a>
 
         <div class="navbar-nav">
             <a href="#home">Home</a>
@@ -44,7 +44,9 @@
     {{-- hero section --}}
     <section class="hero" id="home">
         <main class="content">
-            <h1>Manajemen Produksi Konveksi</h1>
+            {{-- <h1>Manajemen Produksi Konveksi</h1> --}}
+            <h1>Optimal Solutions for Enhancing Production</h1>
+            <p>Helping you achieve optimal, efficient, and high-quality production results.</p>
             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, impedit!</p> -->
             @guest
                 <a href="/login" class="cta">Join Now!</a>

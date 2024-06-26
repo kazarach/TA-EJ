@@ -5,7 +5,7 @@
               <img src="/Logo1.png" alt="logo">
           </span>
           <div class="text header-text">
-              <span class="name">Mitra Produksi</span>
+              <span class="name">PRODACTION</span>
               <span class="profession">Konveksi</span>
           </div>
       </div>
