@@ -1,10 +1,10 @@
-$(document).ready(function () {
+    $(document).ready(function () {
     $("#calendar").fullCalendar({
-        header: {
-            left: "prev,next today",
-            center: "title",
-            right: "month,agendaWeek,agendaDay",
-        },
+        // header: {
+        //     left: "prev,next today",
+        //     center: "title",
+        //     right: "month,agendaWeek,agendaDay",
+        // },
         initialDate: moment().format('YYYY-MM-DD'),
         editable: true,
         buttonText: {
@@ -51,45 +51,38 @@ $(document).ready(function () {
     });
 });
 
-// Change calendar month based on dropdown selection
-$("#monthSelect").change(function () {
-    var selectedMonth = $(this).val();
-    var currentYear = new Date().getFullYear();
-    var date = new Date(currentYear, selectedMonth, 1);
-
-    $("#calendar").fullCalendar("gotoDate", date);
-});
-
-// Initialize datepicker
-$(".datepicker").datepicker({
-    dateFormat: "yy-mm-dd",
-});
-
-// Show modal on button click
-$("#addNewButton").click(function () {
-    $("#addEventModal").modal("show");
-});
-
-// Save event
-// $('#saveEventButton').click(function() {
-//     var eventTitle = $('#eventTitle').val();
-//     var eventStart = $('#eventStart').val();
-//     var eventEnd = $('#eventEnd').val();
-//     var eventColor = $('#eventColor').val();
-//     var eventTextColor = $('#eventTextColor').val();
-
-// if(eventTitle && eventStart) {
-//     $('#calendar').fullCalendar('renderEvent', {
-//         title: eventTitle,
-//         start: eventStart,
-//         end: eventEnd,
-//         color: eventColor,
-//         textColor: eventTextColor
-//     }, true); // stick the event
-
-//     $('#addEventModal').modal('hide');
-//     $('#addEventForm')[0].reset();
-// } else {
-//         alert("Please enter the required details.");
-// }
-// });
+// circle progres
+const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Modeling', 'Cutting', 'Sewing', 'Finishing', 'Packing'],
+                datasets: [{
+                    label: 'Expenses',
+                    data: [300, 50, 100, 150],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'right'
+                    }
+                }
+            }
+        });

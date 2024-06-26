@@ -1,139 +1,109 @@
-@extends('layouts/main', ['pagetitle'=>'Dashboard'])
+@extends('layouts/main')
 
 @section('container')
+
 <div class="container-cs">
     <div class="top-bar">
         <div class="header-wrapper">
-            <div class="header-title">
-                <h2>Dashboard</h2>
-            </div>
-            <div class="user-info">
-                <img src="image2.jpg" alt="">
-            </div>
+        <div class="header-title">
+            <h2>Dashboard</h2>
+        </div>
+        {{-- <div class="dropdown-top">
+            <a href="/planning">Capacity Production</a>
+            <a href="">|</a>
+            <a href="/workforce">Workforce Availability</a>
+            <a href="">|</a>
+            <a href="/schedule">Schedule</a>
+        </div> --}}
+        <div class="user-info">
+            <img src="image2.jpg" alt="">
+        </div>
         </div>
     </div>  
 
-    <title>Dashboard Penjualan</title>
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
-    
-    <style>
-        .table-container {
-            width: 100%; /* Menyesuaikan lebar tabel */
-            border-radius: 10px;
-        }
-        .chart-container {
-            width: 100%; /* Menyesuaikan lebar grafik */
-            height: 300px;
-        }
-        .chart-container canvas {
-            width: 100% !important;
-            height: 300px !important;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-        }
-        .chart-container{
-            background-color: white;
-            border-radius: 10px;
-        }
-    </style>
-
-    <div class="row row-cols-3 row-cols-md-4 g-3">
-        <div class="col">
-            <div class="container">
-                    <table class="table table-responsive">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Produk</th>
-                                <th>Jumlah Pesanan</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="sales-table-body">
-                            <!-- Data dari database akan dimasukkan di sini -->
-                        </tbody>
-                    </table>             
+    <div class="content-section">
+        <div class="row justify-content-left">
+            <div class="col-md-2">
+                <a href="/order/book" style="text-decoration: none; color: inherit;">
+                <div class="card" id="card1">
+                    <div class="card-body">
+                        <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
+                        <i class='bx bxs-book icon' id="logo-db"></i>
+                        <h5 class="card-title">Order Book</h5>
+                        <h1>10</h1>
+                    </div>
                 </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="/project" style="text-decoration: none; color: inherit;">
+                <div class="card" id="card1">
+                    <div class="card-body">
+                        <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
+                        <i class='bx bxs-food-menu icon' id="logo-db"></i>
+                        <h5 class="card-title">Project</h5>
+                        <h1>145</h1>
+                    </div>
                 </div>
-                <div class="col">
-                <div class="container">
-                    <table class="table table-responsive">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Pesanan</th>
-                                <th>Jumlah Penjualan</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="order-table-body">
-                            <!-- Data dari database akan dimasukkan di sini -->
-                        </tbody>
-                    </table>
-                </div> 
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="/product" style="text-decoration: none; color: inherit;">
+                <div class="card" id="card1">
+                    <div class="card-body">
+                        <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
+                        <i class='bx bxs-cylinder icon' id="logo-db"></i>
+                        <h5 class="card-title">Product</h5>
+                        <h1>200</h1>
+                    </div>
                 </div>
-        <div class="col">
-            <div class="container">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Mesin</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="machine-table-body">
-                            <!-- Data dari database akan dimasukkan di sini -->
-                        </tbody>
-                    </table>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="/production/archive" style="text-decoration: none; color: inherit;">
+                <div class="card" id="card1">
+                    <div class="card-body">
+                        <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
+                        <i class='bx bxs-cog icon' id="logo-db"></i>
+                        <h5 class="card-title">Production</h5>
+                        <h1>12</h1>
+                    </div>
                 </div>
-        </div>
-        <div class="col">
-            <div class="container">
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Karyawan</th>
-                            <th>status</th>
-                        </tr>
-                    </thead>
-                </table>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <div class="card" id="card2">
+                    <div class="card-body">
+                        <h5 class="card-title">Schedule</h5>
+                        <div id="calendar" class="calendar-db"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-        <div class="row row-cols-md-3 g-3">
-            <div class="col">
-                <div class="chart-container">
-                    <canvas id="sales-chart"></canvas>
+        <div class="row justify-content-left" id="row2">
+            <div class="col-md-4">
+                <div class="card" id="card3">
+                    <div class="card-body">
+                        <h5 class="card-title">Container 4</h5>
+                        <p class="card-text">Content for the second container.</p>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="container">
-                    <div class="title">income</div>
+            <div class="col-md-4">
+                <div class="card" id="card3">
+                    <div class="card-body">
+                        <h5 class="card-title">Container 5</h5>
+                        <div class="chart-container">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="container">
-                    <div class="title">outcome</div>
 
-                </div>
-            </div>
-        </div>
-        <div class="row row-cols-3 row-cols-md-4 g-3">
-            <div class="col">
-                <div class="container">
-                    
-                </div>
-            </div>
-        </div>
-</div>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="/js/dashboard.js"></script>
-  
-</html>
+</div> 
+
+<script src="/js/schedule-dbScript.js"></script>
+{{-- <script src="/js/projectScript.js"></script> --}}
 @endsection
+

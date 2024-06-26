@@ -168,7 +168,7 @@ body.dark .sidebar header .toggle {
 }
 
 .sidebar .menu {
-    margin-top: 35px;
+    margin-top: 10px;
 }
 
 .sidebar li a:hover {
@@ -399,20 +399,64 @@ a.togglesubmenu {
 }
 
 .card{
-    height: 20rem ;
+    height: 15rem ;
     border: none;
     border-radius: 8px;
     background-color: var(--sidebar-color);
     color: var(--text-dark);
+    cursor: pointer;
+}
+
+.card:hover{
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
+}
+
+.card:hover #logo-db{
+    background-color: var(--sidebar-color);
+    color: var(--primary-color);
+}
+
+.card-body h1{
+    position: relative;
+    margin: 0.5rem;
+    font-size: 4em;
+    top: 1rem;
+    color: var(--primary-color);
+}
+
+.card-body:hover h1{
+    color: var(--sidebar-color);
+}
+
+.card-body h5{
+    position: relative;
+    margin: 0.5rem;
+    top: 0.5rem;
 }
 
 #card2{
-    height: 41rem;
+    height: 36rem;
+}
+
+#card2 h5{
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+#card3{
+    height: 20rem;
+    top: 5rem;
+}
+
+#card2:hover{
+    background-color: white;
+    color: black;
 }
 
 #row2{
     position: relative;
-    top: -21rem;
+    top: -26rem;
     padding: 1rem;
 }
 
@@ -422,6 +466,39 @@ a.togglesubmenu {
 
 .calendar-db .fc-content{
     height: 1rem;
+}
+
+#logo-db {
+    position: relative;
+    font-size: 25px; 
+    background-color: var(--primary-color-light); 
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color); 
+    margin: 0.5rem;
+}
+
+#logo-db:hover {
+    background-color: var(--primary-color-light); 
+    color: var(--sidebar-color); 
+}
+
+#logo-dot{
+    position: absolute;
+    left: 16rem;
+    font-size: 15px;
+}
+
+#myChart{
+    position: relative;
+    top: 1rem;
+    right: 7rem;
+    width: 10rem;
+    height: 12rem;
 }
 
 /* Top Bar */
@@ -842,8 +919,15 @@ body.dark .breadcrumbs-all a {
 /* media queries */
 
 @media (min-width: 1920px) {
+    #card1{
+        height: 15rem;
+    }
     #card2{
-        height: 49rem;
+        height: 44rem;
+    }
+    #card3{
+        top: -4rem;
+        height: 24rem;
     }
     .card{
         height: 24rem ;
@@ -860,12 +944,42 @@ body.dark .breadcrumbs-all a {
     .calendar-db .fc-center h2{
         padding-top: 3rem;
     }
+    #logo-dot{
+        left: 21rem;
+    }
+    #myChart{
+        position: relative;
+        top: 1rem;
+        right: 10rem;
+        width: 15rem;
+    }
 }
 
 /* laptop */
 @media (max-width: 1920px) {
     html {
         font-size: 75%;
+    }
+    .btn{
+        margin-bottom: 1rem;
+    }
+}
+
+/* laptop */
+@media (max-width: 1280px) {
+    html {
+        font-size: 70%;
+    }
+    #myChart{
+        position: relative;
+        top: 1rem;
+        right: 2rem;
+        width: 5rem;
+        height: 10rem;
+    }
+    #logo-dot{
+        position: absolute;
+        left: 14rem;
     }
 }
 

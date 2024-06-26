@@ -7,7 +7,7 @@
     <div class="top-bar">
         <div class="header-wrapper">
         <div class="header-title">
-            <h2>Transaction</h2>
+            <h2>Selling Transaction</h2>
         </div>
         <div class="dropdown-top">
             <a href="/selling">Selling</a>
@@ -27,7 +27,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="Transaction" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Selling Transaction" aria-label="ID" readonly>
         </div>
     </div>
 

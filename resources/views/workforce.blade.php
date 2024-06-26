@@ -32,7 +32,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="Workforce" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Workforce" aria-label="ID" readonly>
         </div>
     </div>
 

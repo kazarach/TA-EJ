@@ -7,7 +7,7 @@
     <div class="top-bar">
         <div class="header-wrapper">
         <div class="header-title">
-            <h2>Item</h2>
+            <h2>Purchase Item</h2>
         </div>
         <div class="dropdown-top">
             <a href="/product">Product</a>
