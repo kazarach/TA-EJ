@@ -22,6 +22,8 @@ use App\Http\Controllers\PurchaseItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\ReturnCustomerController;
+use App\Http\Controllers\ReturnProductionController;
 
 
 
@@ -137,7 +139,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/catalog', [CatalogController::class, 'index']);
     Route::get('/production', [ProductionController::class, 'index']);
     Route::get('/production/archive', [ProductionController::class, 'indexArchive']);
-
+    Route::get('/returncustomer', [ReturnCustomerController::class, 'index']);
+    Route::get('/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
+    Route::get('/returnproduction', [ReturnProductionController::class, 'index']);
+    Route::get('/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
 
     Route::get('/cash', function () {
         return view('cash', [

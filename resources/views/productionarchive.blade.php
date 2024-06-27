@@ -211,6 +211,7 @@
                   <th scope="col">Project Status</th>
                   <th scope="col">Machine</th>
                   <th scope="col">Workforce</th>
+                  <th scope="col">Production Date</th>
               </tr>
           </thead>
           <tbody>

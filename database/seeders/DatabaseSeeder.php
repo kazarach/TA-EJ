@@ -48,6 +48,10 @@ class DatabaseSeeder extends Seeder
             ProductionSeeder::class,
             ProductionMachineSeeder::class,
             ProductionWorkforceSeeder::class,
+            ReturnCustomerCategorySeeder::class,
+            ReturnCustomerSeeder::class,
+            ReturnProductionCategorySeeder::class,
+            ReturnProductionSeeder::class,
 
             CalculatePriceSeeder::class,
 

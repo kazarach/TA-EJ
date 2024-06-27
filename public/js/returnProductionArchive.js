@@ -9,36 +9,23 @@ $(document).ready(function () {
     console.log("AHA");
     var productionTable = $("#production-table").DataTable({
         ajax: {
-            url: "/api/productions/",
+            url: "/api/returnproduction/",
             type: "GET",
             dataSrc: function (json) {
                 console.log(json);
-                return json.productions;
+                return json.returns;
             },
         },
         columns: [
             { data: "id" },
-            { data: "products.name" },
+            { data: "materials.name" },
             { data: "quantity" },
-            { data: "products.size.name" },
-            { data: "products.color.name" },
-            { data: "products.code" },
-            { data: "projects.name" },
-            { data: "projects.projectstatus.name" },
-            {
-                data: "machines",
-                render: function (data, type, row) {
-                    return '<ul>' + data.map(machine => `<li>${machine.name}</li>`).join('') + '</ul>';
-                }
-            },
-            {
-                data: "workforces",
-                render: function (data, type, row) {
-                    return '<ul>' + data.map(workforce => `<li>${workforce.name}</li>`).join('') + '</ul>';
-                }
-            },
-            { data: "production_date" },
-
+            { data: "materials.materialunit.name" },
+            { data: "materials.materialcategory.name" },
+            { data: "materials.code" },
+            { data: "productioncategories.name" },
+            { data: "information" },
+            { data: "return_date" },
         ],
     });
 
@@ -92,43 +79,21 @@ function fetchData(Data) {
     console.log(Data);
     document.getElementById("ID").value = "ID: " + Data.id;
     $('#productName').val(Data.product_id).trigger('change');
-    $('#projectName').val(Data.project_id).trigger('change');
+    $('#categoryName').val(Data.category_id).trigger('change');
+    $('#information').val(Data.information).trigger('change');
     changeTextColor();
     selectedId = Data.id;
-    selectedModal();
-    selectedModal2();
-    selectedMachines=[];
-    Data.machines.forEach(machine => {
-        addToSelectedMachines(
-            machine.id,
-            machine.name,
-            machine.machinestatus.name,
-            machine.machineuse.name,
-        );
-    });
-    selectedWorkforces=[];
-    Data.workforces.forEach(workforce => {
-        addToSelectedWorkforces(
-            workforce.id,
-            workforce.name,
-            workforce.workforcestatus.name,
-            workforce.workforceposition.name,
-        );
-    });
 }
 
 function clearForm() {
     document.getElementById("ID").value = "";
     document.getElementById("productName").value = "";
-    document.getElementById("projectName").value = "";
+    document.getElementById("categoryName").value = "";
+    document.getElementById("information").value = "";
 
     $('#productName').val(0).trigger('change');
-    $('#projectName').val(0).trigger('change');
+    $('#categoryName').val(0).trigger('change');
 
-    selectedMachines = [];
-    selectedWorkforce = [];
-    tableWorkforce.clear().draw();
-    tableMachine.clear().draw();
 }
 
 function updateData() {
@@ -242,7 +207,7 @@ function deleteData() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
         if (selectedId) {
-            fetch(`/api/productions/${selectedId}`, {
+            fetch(`/api/returnproduction/${selectedId}`, {
                 method: "DELETE",
             })
                 .then((response) => {
@@ -295,37 +260,6 @@ $(document).ready(function () {
         populateMachine(selectedMachines);
     });
 });
-
-$(document).ready(function () {
-    console.log("AHA");
-    var workforceTable = $("#workforces-table").DataTable({
-        ajax: {
-            url: "/api/workforce/",
-            type: "GET",
-            dataSrc: function (json) {
-                console.log(json);
-                return json.workforces;
-            },
-        },
-        columns: [
-            { data: "id" },
-            { data: "name" },
-            { data: "workforcestatus.name" },
-            { data: "workforceposition.name" },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return `<button type="button" id="addItem" class="btn btn-primary" onclick="addToWorkforceCart(this)">Add</button>`;
-                },
-            },
-        ],
-    });
-
-    $("#pilih-workforce").on("click", function () {
-        populateMachine(selectedMachines);
-    });
-});
-
 
 $(document).ready(function () {
     tableMachine = $("#selectedItemsTable").DataTable({

@@ -19,13 +19,14 @@ $(document).ready(function() {
                 json.orders.forEach(function (order) {
                     var product = order.products;
                     var key = order.catalog_id + '-' + product.id;
+                    var quantity = parseInt(order.quantity, 10);
 
                     if (!productQuantities[key]) {
                         productQuantities[key] = {
                             order_id: order.id,
                             catalog_name: order.catalogs.name,
                             due_date: order.catalogs.due_date,
-                            quantity: order.quantity,
+                            quantity: quantity,
                             product_name: product.name,
                             code: product.code,
                             size: product.size.name,
@@ -33,14 +34,16 @@ $(document).ready(function() {
                             sign: product.sign.name
                         };
                     } else {
-                        productQuantities[key].quantity += order.quantity;
+                        productQuantities[key].quantity += quantity;
+                        console.log(productQuantities[key].quantity);
+                        console.log(quantity);
                     }
                 });
 
                 for (var key in productQuantities) {
                     transformedData.push(productQuantities[key]);
                 }
-
+                console.log(transformedData);
                 return transformedData;
             }
         },
@@ -56,6 +59,7 @@ $(document).ready(function() {
             { data: "sign", title: "Sign" }
         ]
     });
+
 
 
 

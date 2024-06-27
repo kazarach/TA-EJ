@@ -15,6 +15,9 @@ use App\Http\Controllers\PurchaseTransactionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\ReturnCustomerController;
+use App\Http\Controllers\ReturnProductionController;
+
 
 
 use Illuminate\Http\Request;
@@ -132,12 +135,17 @@ Route::get('productions/{id}', [ProductionController::class, 'show']);
 Route::put('productions/{id}', [ProductionController::class, 'update']);
 Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
 
-Route::get('productions/archive/', [ProductionController::class, 'index']);
-Route::post('productions/archive/', [ProductionController::class, 'store']);
-Route::get('productions/archive/{id}', [ProductionController::class, 'show']);
-Route::put('productions/archive/{id}', [ProductionController::class, 'update']);
-Route::delete('productions/archive/{id}', [ProductionController::class, 'destroy']);
+Route::get('returncustomer/', [ReturnCustomerController::class, 'index']);
+Route::post('returncustomer/', [ReturnCustomerController::class, 'store']);
+Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);
+Route::put('returncustomer/{id}', [ReturnCustomerController::class, 'update']);
+Route::delete('returncustomer/{id}', [ReturnCustomerController::class, 'destroy']);
 
+Route::get('returnproduction/', [ReturnProductionController::class, 'index']);
+Route::post('returnproduction/', [ReturnProductionController::class, 'store']);
+Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
+Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
+Route::delete('returnproduction/{id}', [ReturnProductionController::class, 'destroy']);
 
 
 

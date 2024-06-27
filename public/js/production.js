@@ -303,7 +303,7 @@ $(document).ready(function () {
                 project_id: project_id,
                 project_name: projectInfo.name,
                 project_status: projectInfo.status,
-                production_date: productionDate,  // Assuming this is the date you want to use
+                production_date: productionDate,
                 machines: selectedMachines,
                 workforces: selectedWorkforces
             };
