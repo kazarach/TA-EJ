@@ -66,7 +66,7 @@ class ReturnProductionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            '*.product_id' => 'required|exists:products,id',
+            '*.material_id' => 'required|exists:materials,id',
             '*.category_id' => 'required|exists:return_production_categories,id',
             '*.quantity' => 'required|integer',
             '*.information' => 'required|string',
@@ -79,14 +79,14 @@ class ReturnProductionController extends Controller
             $returnRecords = [];
 
             foreach ($request->all() as $returnData) {
-                $product = Product::findOrFail($returnData['product_id']);
+                $material = Material::findOrFail($returnData['material_id']);
                 $quantity = $returnData['quantity'];
 
-                $product->stock += $quantity;
-                $product->save();
+                $material->stock += $quantity;
+                $material->save();
 
                 $return = ReturnProduction::create([
-                    'product_id' => $returnData['product_id'],
+                    'material_id' => $returnData['material_id'],
                     'quantity' => $quantity,
                     'information' => $returnData['information'],
                     'category_id' => $returnData['category_id'],

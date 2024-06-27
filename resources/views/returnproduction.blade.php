@@ -76,7 +76,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="" class="form-label">Production Date</label>
-            <input id="production_date" type="text" class="form-control datepicker" placeholder="Production Date">
+            <input id="return_date" type="text" class="form-control datepicker" placeholder="Production Date">
         </div>
   
   
@@ -111,14 +111,14 @@
   </div>
   
   <div class="home-tbl">
-      <table id="production-table" class="table table-striped table-hover" style="width:100%">
+      <table id="return-table" class="table table-striped table-hover" style="width:100%">
           <thead>
               <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Quantity</th>
-                  <th scope="col">Size</th>
-                  <th scope="col">Color</th>
+                  <th scope="col">Unit</th>
+                  <th scope="col">Category</th>
                   <th scope="col">Code</th>
                   <th scope="col">Return Category</th>
                   <th scope="col">Information</th>
