@@ -245,11 +245,11 @@ $(document).ready(function () {
     });
 
     function handleInputChange() {
-        var returnDate = $("#returnDate").val();
-        console.log(returnDate);
+        var return_date = $("#return_date").val();
+        console.log(return_date);
     }
 
-    $("#returnDate").on(
+    $("#return_date").on(
         "change input",
         handleInputChange
     );

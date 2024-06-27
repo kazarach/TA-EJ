@@ -76,8 +76,8 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="" class="form-label">Production Date</label>
-            <input id="production_date" type="text" class="form-control datepicker" placeholder="Production Date">
+            <label for="" class="form-label">Return Date</label>
+            <input id="return_date" type="text" class="form-control datepicker" placeholder="Return Date">
         </div>
   
       <!-- <button type="button" id="pilih-machine" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#machineModal">Choose Machines and Workforce</button> -->
@@ -167,7 +167,7 @@
   </div>
   
   <div class="home-tbl">
-      <table id="production-table" class="table table-striped table-hover" style="width:100%">
+      <table id="return-table" class="table table-striped table-hover" style="width:100%">
           <thead>
               <tr>
                   <th scope="col">ID</th>
