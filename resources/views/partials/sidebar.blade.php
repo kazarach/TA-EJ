@@ -169,6 +169,38 @@
                     </li>
                 </ul>
               </li>
+              <li class="nav-link dropdown" id="planning-link">
+                <a href="/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                    <i class='bx bx-book-content icon'></i>
+                    <span class="text nav-text" id="dropdowntext2">Return ></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-link">
+                      <a href="/returncustomer">
+                        <i class='bx bx-book-content icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Return Customer</span>
+                      </a>
+                    </li>
+                    <li class="nav-link">
+                      <a href="/returncustomer/archive">
+                        <i class='bx bx-book-content icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Return Customer Archive</span>
+                      </a>
+                    </li>
+                    <li class="nav-link">
+                      <a href="/returnproduction">
+                        <i class='bx bx-book-content icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Return Production</span>
+                      </a>
+                    </li>
+                    <li class="nav-link">
+                      <a href="/returnproduction/archive">
+                        <i class='bx bx-book-content icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Return Production Archive</span>
+                      </a>
+                    </li>
+                </ul>
+              </li>
               <li class="nav-link dropdown" id="cash-link">
                 <a href="/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-alt icon'></i>
