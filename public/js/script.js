@@ -44,6 +44,7 @@ const links = [
     "production",
     "inventory",
     "selling",
+    "return",
     "cash",
     "purchase",
 ];
@@ -71,6 +72,10 @@ const pathToLinkMap = {
     "/customer": "order",
     "/production": "production",
     "/production/archive": "production",
+    "/returncustomer": "return",
+    "/returncustomer/archive": "return",
+    "/returnproduction": "return",
+    "/returnproduction/archive": "return",
 
 };
 

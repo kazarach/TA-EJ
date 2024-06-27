@@ -169,7 +169,7 @@
                     </li>
                 </ul>
               </li>
-              <li class="nav-link dropdown" id="planning-link">
+              <li class="nav-link dropdown" id="return-link">
                 <a href="/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-content icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Return ></span>
