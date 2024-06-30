@@ -24,6 +24,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ReturnCustomerController;
 use App\Http\Controllers\ReturnProductionController;
+use App\Http\Controllers\ReturnMaterialController;
 
 
 
@@ -143,6 +144,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
     Route::get('/returnproduction', [ReturnProductionController::class, 'index']);
     Route::get('/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
+    Route::get('/returnmaterial', [ReturnMaterialController::class, 'index']);
+    Route::get('/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
 
     Route::get('/cash', function () {
         return view('cash', [

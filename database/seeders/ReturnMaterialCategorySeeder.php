@@ -13,10 +13,10 @@ class ReturnMaterialCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['Buy Back', 'Size Change', 'Bad Product', 'Canceled'];
+        $categories = ['Broken Material', 'Damaged Color', 'Change Material', 'Changing Color'];
 
         foreach ($categories as $category) {
-            ReturnCustomerCategory::create(['name' => $category]);
+            ReturnMaterialCategory::create(['name' => $category]);
         }
     }
 }

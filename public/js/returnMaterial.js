@@ -2,7 +2,6 @@ let selectedId;
 var selectedMachines = [];
 var selectedWorkforces = [];
 var returnTable = $("#return-table").DataTable();
-// var return_date;
 var returnList = [];
 var counter=1;
 
@@ -29,14 +28,14 @@ $(document).ready(function () {
 
 function clearForm() {
     document.getElementById("ID").value = "";
-    document.getElementById("productName").value = "";
+    document.getElementById("materialName").value = "";
     document.getElementById("categoryName").value = "";
     document.getElementById("quantity").value = "";
     document.getElementById("information").value = "";
     document.getElementById("return_date").value = "";
 
 
-    $('#productName').val(0).trigger('change');
+    $('#materialName').val(0).trigger('change');
     $('#categoryName').val(0).trigger('change');
 
     // selectedMachines = [];
@@ -51,7 +50,7 @@ function createItem() {
         event.preventDefault();
 
         const requestBody = returnList.map(item => ({
-            product_id: parseInt(item.product_id, 10),
+            material_id: parseInt(item.material_id, 10),
             category_id: parseInt(item.category_id, 10),
             quantity: parseInt(item.quantity, 10),
             information: item.information,
@@ -59,7 +58,7 @@ function createItem() {
         }));
 
         console.log(requestBody);
-        fetch(`/api/returncustomer`, {
+        fetch(`/api/returnmaterial`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -90,16 +89,15 @@ $(document).ready(function () {
     $("#add-button").on("click", function(event) {
         event.preventDefault();
 
-        var product_id = $("#productName").val();
-        var selectedProduct = $("#productName option:selected");
+        var material_id = $("#materialName").val();
+        var selectedMaterial = $("#materialName option:selected");
 
-        var productInfo = {
-            id: product_id,
-            name: selectedProduct.data('name'),
-            size: selectedProduct.data('size'),
-            code: selectedProduct.data('code'),
-            color: selectedProduct.data('color'),
-            sign: selectedProduct.data('sign')
+        var materialInfo = {
+            id: material_id,
+            name: selectedMaterial.data('name'),
+            unit: selectedMaterial.data('unit'),
+            category: selectedMaterial.data('category'),
+            code: selectedMaterial.data('code'),
         };
 
         var category_id = $("#categoryName").val();
@@ -114,12 +112,16 @@ $(document).ready(function () {
         var return_date = $("#return_date").val();
 
 
+        console.log(material_id);
+        console.log(category_id);
+        console.log(quantity);
         console.log(information);
-        if (!product_id || !category_id || isNaN(quantity) || !information || !return_date) {
+        console.log(return_date);
+        if (!material_id || !category_id || isNaN(quantity) || !information || !return_date) {
             alert("All fields must be filled out.");
             return;
         }
-        var existingItem = returnList.find(item => item.product_id === product_id && item.information === information && item.category_id === category_id && item.return_date === return_date
+        var existingItem = returnList.find(item => item.material_id === material_id && item.information === information && item.category_id === category_id && item.return_date === return_date
         );
 
         if (existingItem) {
@@ -130,12 +132,11 @@ $(document).ready(function () {
             var data = {
                 id: counter++,
                 quantity: quantity,
-                product_id: product_id,
-                product_name: productInfo.name,
-                product_size: productInfo.size,
-                product_code: productInfo.code,
-                product_color: productInfo.color,
-                product_sign: productInfo.sign,
+                material_id: material_id,
+                material_name: materialInfo.name,
+                material_unit: materialInfo.unit,
+                material_category: materialInfo.category,
+                material_code: materialInfo.code,
                 category_id: category_id,
                 category_name: categoryInfo.name,
                 information: information,
@@ -151,7 +152,7 @@ $(document).ready(function () {
 
 function updateTableRow(item) {
     var row = returnTable.row(function(idx, data, node) {
-        return data[1] === item.product_name && 
+        return data[1] === item.material_name && 
                data[6] === item.category_name && 
                data[7] === item.information &&
                data[8] === item.return_date; 
@@ -169,17 +170,17 @@ function populateItems(items) {
     returnTable.clear().draw();
 
     let counter = 1; 
-    
+
     items.forEach(function (item) {
         var newRow = [
             item.id,
-            item.product_name,
+            item.material_name,
             '<input type="number" class="form-control quantity" value="' +
                 item.quantity +
-                '" onchange="updateQuantity(this, ' + item.product_id + ', ' + item.category_id + ', ' + item.information +', ' + item.return_date +');">',
-            item.product_size,
-            item.product_code,
-            item.product_color,
+                '" onchange="updateQuantity(this, ' + item.material_id + ', ' + item.category_id + ', ' + item.information +', ' + item.return_date +');">',
+            item.material_unit,
+            item.material_category,
+            item.material_code,
             item.category_name,
             item.information,
             item.return_date,
@@ -211,7 +212,7 @@ function removeFromCart(button) {
 }
 
 
-function updateQuantity(element, productId, categoryId, information, return_date) {
+function updateQuantity(element, materialId, categoryId, information, return_date) {
     var newQuantity = parseInt(element.value);
     if (isNaN(newQuantity) || newQuantity < 0) {
         alert("Please enter a valid quantity.");
@@ -221,7 +222,7 @@ function updateQuantity(element, productId, categoryId, information, return_date
     return_date = String(return_date);
 
     var item = returnList.find(item => 
-        item.product_id === String(productId) && 
+        item.material_id === String(materialId) && 
         item.category_id === String(categoryId) &&
         item.information === information &&
         item.return_date === return_date
@@ -232,7 +233,7 @@ function updateQuantity(element, productId, categoryId, information, return_date
         item.quantity = newQuantity;
         var row = $(element).closest('tr');
     } else {
-        console.error("Item with productId " + productId + ", categoryId " + categoryId + ", and information " + information + " not found.");
+        console.error("Item with materialId " + materialId + ", categoryId " + categoryId + ", and information " + information + " not found.");
     }
 }
 
@@ -245,11 +246,11 @@ $(document).ready(function () {
     });
 
     function handleInputChange() {
-        var return_date = $("#return_date").val();
-        console.log(return_date);
+        var returnDate = $("#returnDate").val();
+        console.log(returnDate);
     }
 
-    $("#return_date").on(
+    $("#returnDate").on(
         "change input",
         handleInputChange
     );
