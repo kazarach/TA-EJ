@@ -149,10 +149,10 @@ function fetchData(Id) {
         .then((Data) => {
             console.log(Data);
             document.getElementById("ID").value = "ID: " + Data.id;
-            document.getElementById("customerName").value = Data.customer_id;
+            $('#customerName').val(Data.customer_id).trigger('change');
             document.getElementById("totalPrice").value = Data.total;
             document.getElementById("paid").value = Data.paid;
-            document.getElementById("Payment").value = Data.payment_id;
+            $('#Payment').val(Data.payment_id).trigger('change');
             changeTextColor();
             discount = Data.customer.customerclass.discount;
             selectedTransaction = [];
@@ -222,14 +222,14 @@ function changeTextColor() {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("customerName").value = "";
     document.getElementById("totalPrice").value = "";
     document.getElementById("paid").value = "";
     document.getElementById("Payment").value = "";
 
-    document.getElementById("customerName").selectedIndex = 0;
-    document.getElementById("Payment").selectedIndex = 0;
+    $('#customerName').val(0).trigger('change');
+    $('#Payment').val(0).trigger('change');
 }
 
 function updateData() {
@@ -439,8 +439,12 @@ function revertModal() {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#customerName").select2({
+        placeholder: "Select a customer",
+        allowClear: true,
+    });
+    $("#Payment").select2({
+        placeholder: "Select Payment",
         allowClear: true,
     });
 });

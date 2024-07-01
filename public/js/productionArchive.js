@@ -532,9 +532,12 @@ function clearDefaultValue(input) {
 }
 
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#productName").select2({
+        placeholder: "Select a product",
+        allowClear: true,
+    });
+    $("#projectName").select2({
+        placeholder: "Select a project",
         allowClear: true,
     });
 });
-

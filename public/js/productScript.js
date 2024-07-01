@@ -169,7 +169,7 @@ function fetchProductData(productId) {
     console.log(productId);
     document.getElementById("ID").value = "ID: " + productId.id;
     document.getElementById("productName").value = productId.name;
-    $('#productType').val(productId.type_id).trigger('change');//INI
+    $('#productType').val(productId.type_id).trigger('change');
     $('#productCategory').val(productId.category_id).trigger('change');
     $('#productSize').val(productId.size_id).trigger('change');
     $('#productColor').val(productId.color_id).trigger('change');
@@ -206,11 +206,11 @@ function clearForm() {
     document.getElementById("productSellingPrice").value = "";
     document.getElementById("productStock").value = "";
 
-    document.getElementById("productType").selectedIndex = 0;
-    document.getElementById("productCategory").selectedIndex = 0;
-    document.getElementById("productSize").selectedIndex = 0;
-    document.getElementById("productColor").selectedIndex = 0;
-    document.getElementById("productSign").selectedIndex = 0;
+    $('#productType').val(0).trigger('change');
+    $('#productCategory').val(0).trigger('change');
+    $('#productSize').val(0).trigger('change');
+    $('#productColor').val(0).trigger('change');
+    $('#productSign').val(0).trigger('change');
     resetSelectedMaterials();
     selectedModal();
 }
@@ -723,8 +723,24 @@ type =
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#productType").select2({
+        placeholder: "Select Type",
+        allowClear: true,
+    });
+    $("#productCategory").select2({
+        placeholder: "Select a Category",
+        allowClear: true,
+    });
+    $("#productSize").select2({
+        placeholder: "Select Size",
+        allowClear: true,
+    });
+    $("#productColor").select2({
+        placeholder: "Select Color",
+        allowClear: true,
+    });
+    $("#productSign").select2({
+        placeholder: "Select Merk",
         allowClear: true,
     });
 });

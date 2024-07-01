@@ -85,7 +85,7 @@ function fetchMaterialData(materialId) {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("materialName").value = "";
     document.getElementById("materialStock").value = "";
     document.getElementById("materialUnit").value = "";
@@ -93,8 +93,8 @@ function clearForm() {
     document.getElementById("materialCode").value = "";
     document.getElementById("materialPurchasePrice").value = "";
 
-    document.getElementById("materialUnit").selectedIndex = 0;
-    document.getElementById("materialCategory").selectedIndex = 0;
+    $('#materialUnit').val(0).trigger('change');
+    $('#materialCategory').val(0).trigger('change');
 }
 
 function createMaterial() {
@@ -278,8 +278,12 @@ function deleteMaterial() {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#materialUnit").select2({
+        placeholder: "Select Unit",
+        allowClear: true,
+    });
+    $("#materialCategory").select2({
+        placeholder: "Select Category",
         allowClear: true,
     });
 });

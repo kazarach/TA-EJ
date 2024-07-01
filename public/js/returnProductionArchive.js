@@ -78,7 +78,7 @@ $(document).ready(function () {
 function fetchData(Data) {
     console.log(Data);
     document.getElementById("ID").value = "ID: " + Data.id;
-    $('#productName').val(Data.product_id).trigger('change');
+    $('#materialName').val(Data.material_id).trigger('change');
     $('#categoryName').val(Data.category_id).trigger('change');
     $('#information').val(Data.information).trigger('change');
     changeTextColor();
@@ -87,11 +87,11 @@ function fetchData(Data) {
 
 function clearForm() {
     document.getElementById("ID").value = "";
-    document.getElementById("productName").value = "";
+    document.getElementById("materialName").value = "";
     document.getElementById("categoryName").value = "";
     document.getElementById("information").value = "";
 
-    $('#productName').val(0).trigger('change');
+    $('#materialName').val(0).trigger('change');
     $('#categoryName').val(0).trigger('change');
 
 }
@@ -466,7 +466,11 @@ function clearDefaultValue(input) {
 }
 
 $(document).ready(function () {
-    $(".form-select").select2({
+    $("#materialName").select2({
+        placeholder: "Select a material",
+        allowClear: true,
+    });
+    $("#categoryName").select2({
         placeholder: "Select a category",
         allowClear: true,
     });

@@ -119,7 +119,7 @@ function changeTextColor() {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "Order Archive " + "";
     document.getElementById("catalogName").value = "";
     document.getElementById("customerName").value = "";
     document.getElementById("product").value = "";
@@ -220,8 +220,20 @@ function deleteData() {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#catalogName").select2({
+        placeholder: "Select a catalog",
+        allowClear: true,
+    });
+    $("#customerName").select2({
+        placeholder: "Select a customer",
+        allowClear: true,
+    });
+    $("#product").select2({
+        placeholder: "Select a product",
         allowClear: true,
     });
 });
+
+document.getElementById("catalogName").value = "";
+    document.getElementById("customerName").value = "";
+    document.getElementById("product").value = "";

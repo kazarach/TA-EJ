@@ -73,7 +73,7 @@
         </div>
         <div class="col">
             <label for="" class="form-label">Purchase Price</label>
-            <input name="purchase_price" id="materialPurchasePrice" type="text" class="form-control" placeholder="Purchase Price" aria-label="Harga Beli" readonly>
+            <input name="purchase_price" id="materialPurchasePrice" type="text" class="form-control" placeholder="Purchase Price" aria-label="Harga Beli">
         </div>
     </div>
 

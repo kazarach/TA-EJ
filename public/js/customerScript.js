@@ -93,12 +93,12 @@ function fetchData(Id) {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("Name").value = "";
     document.getElementById("Class").value = "";
     document.getElementById("Telp").value = "";
 
-    document.getElementById("Class").selectedIndex = 0;
+    $('#Class').val(0).trigger('change');
     document.getElementById("Telp").selectedIndex = 0;
 }
 
@@ -250,8 +250,8 @@ document.getElementById("Telp").addEventListener("input", function (e) {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#Class").select2({
+        placeholder: "Select Class",
         allowClear: true,
     });
 });

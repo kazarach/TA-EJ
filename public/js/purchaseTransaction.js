@@ -223,14 +223,14 @@ function changeTextColor() {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("supplierName").value = "";
     document.getElementById("totalPrice").value = "";
     document.getElementById("paid").value = "";
     document.getElementById("Payment").value = "";
 
-    document.getElementById("supplierName").selectedIndex = 0;
-    document.getElementById("Payment").selectedIndex = 0;
+    $('#supplierName').val(0).trigger('change');
+    $('#Payment').val(0).trigger('change');
 }
 
 function updateData() {
@@ -434,8 +434,12 @@ function revertModal() {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#supplierName").select2({
+        placeholder: "Select a supplier",
+        allowClear: true,
+    });
+    $("#Payment").select2({
+        placeholder: "Select Payment",
         allowClear: true,
     });
 });

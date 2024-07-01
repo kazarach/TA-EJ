@@ -89,13 +89,13 @@ function changeTextColor() {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("machineName").value = "";
     document.getElementById("machineUse").value = "";
     document.getElementById("machineStatus").value = "";
 
-    document.getElementById("machineUse").selectedIndex = 0;
-    document.getElementById("machineStatus").selectedIndex = 0;
+    $('#machineUse').val(0).trigger('change');
+    $('#machineStatus').val(0).trigger('change');
 }
 
 function createData() {
@@ -231,8 +231,12 @@ function deleteData() {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#machineUse").select2({
+        placeholder: "Select Use",
+        allowClear: true,
+    });
+    $("#machineStatus").select2({
+        placeholder: "Select Status",
         allowClear: true,
     });
 });

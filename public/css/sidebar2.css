@@ -817,14 +817,12 @@ body.dark .breadcrumbs-all a {
     margin-right: 10px;
 }
 
-#productPurchasePrice,
-#materialPurchasePrice {
+#productPurchasePrice {
     background-color: lightgrey;
     /* background-color: grey; */
 }
 
-#productPurchasePrice::placeholder,
-#materialPurchasePrice::placeholder {
+#productPurchasePrice::placeholder {
     color: white;
 }
 

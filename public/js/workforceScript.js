@@ -92,13 +92,13 @@ function changeTextColor() {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("workforceName").value = "";
     document.getElementById("workforcePosition").value = "";
     document.getElementById("workforceStatus").value = "";
 
-    document.getElementById("workforcePosition").selectedIndex = 0;
-    document.getElementById("workforceStatus").selectedIndex = 0;
+    $('#workforcePosition').val(0).trigger('change');
+    $('#workforceStatus').val(0).trigger('change');
 }
 
 function createWorkforce() {
@@ -236,8 +236,12 @@ function deleteWorkforce() {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#workforcePosition").select2({
+        placeholder: "Select Position",
+        allowClear: true,
+    });
+    $("#workforceStatus").select2({
+        placeholder: "Select Status",
         allowClear: true,
     });
 });

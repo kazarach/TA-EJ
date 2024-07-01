@@ -240,7 +240,7 @@ function clearForm() {
     document.getElementById("projectStartDate").value = "";
     document.getElementById("projectEndDate").value = "";
 
-    document.getElementById("projectStatus").selectedIndex = 0;
+    $('#projectStatus').val(0).trigger('change');
     resetSelectedProjects();
     selectedModal();
 }
@@ -646,8 +646,8 @@ function clearDefaultValue(input) {
 
 // searchbar
 $(document).ready(function () {
-    $(".form-select").select2({
-        placeholder: "Select a category",
+    $("#projectStatus").select2({
+        placeholder: "Select Status",
         allowClear: true,
     });
 });

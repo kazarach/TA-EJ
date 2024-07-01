@@ -46,7 +46,7 @@
         </div>
         <div class="row g-3 mb-3">
             <div class="col">
-                <label for="categoryName">Category</label>
+                <label for="categoryName">Return Category</label>
                 <select name="name" id="categoryName" class="form-select" aria-label="Category Name">
                     <option selected disabled hidden>Select a category</option>
                     @foreach($returnproductioncategories as $category)
