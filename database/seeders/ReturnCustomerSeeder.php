@@ -17,7 +17,8 @@ class ReturnCustomerSeeder extends Seeder
         DB::table('return_customers')->insert([
             [
                 'product_id' => 1,
-                'category_id' => 1,
+                'grade_id' => 1,
+                'category_id' => 2,
                 'quantity' => 10,
                 'information' => "Beli ulang pindah distributor",
                 'return_date' => Carbon::create(2024, 7, 14),
@@ -26,7 +27,8 @@ class ReturnCustomerSeeder extends Seeder
             ],
             [
                 'product_id' => 2,
-                'category_id' => 1,
+                'grade_id' => 1,
+                'category_id' => 2,
                 'quantity' => 5,
                 'information' => "Beli ulang pindah distributor",
                 'return_date' => Carbon::create(2024, 7, 14),
@@ -35,7 +37,8 @@ class ReturnCustomerSeeder extends Seeder
             ],
             [
                 'product_id' => 1,
-                'category_id' => 2,
+                'grade_id' => 1,
+                'category_id' => 3,
                 'quantity' => 10,
                 'information' => "Ganti size dari XL ke L",
                 'return_date' => Carbon::create(2024, 7, 14),
@@ -44,7 +47,8 @@ class ReturnCustomerSeeder extends Seeder
             ],
             [
                 'product_id' => 3,
-                'category_id' => 2,
+                'grade_id' => 1,
+                'category_id' => 3,
                 'quantity' => 3,
                 'information' => "Ganti size dari XL ke L",
                 'return_date' => Carbon::create(2024, 7, 15),
@@ -53,7 +57,8 @@ class ReturnCustomerSeeder extends Seeder
             ],
             [
                 'product_id' => 2,
-                'category_id' => 3,
+                'grade_id' => 2,
+                'category_id' => 1,
                 'quantity' => 3,
                 'information' => "Rusak bagian lengan, Kancing, Resleting (lihat label di packaging)",
                 'return_date' => Carbon::create(2024, 7, 15),
@@ -61,7 +66,18 @@ class ReturnCustomerSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'product_id' => 3,
+                'grade_id' => 2,
+                'category_id' => 1,
+                'quantity' => 5,
+                'information' => "Rusak bagian lengan, Kancing, Resleting (lihat label di packaging)",
+                'return_date' => Carbon::create(2024, 7, 15),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'product_id' => 1,
+                'grade_id' => 1,
                 'category_id' => 4,
                 'quantity' => 10,
                 'information' => "Batal gagal lunas",
@@ -71,6 +87,7 @@ class ReturnCustomerSeeder extends Seeder
             ],
             [
                 'product_id' => 3,
+                'grade_id' => 1,
                 'category_id' => 4,
                 'quantity' => 15,
                 'information' => "Salah kirim product",

@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\ReturnCustomer;
-use App\Models\ReturnCustomerCategory;
 use App\Models\Product;
 use App\Models\ItemGrade;
+use App\Models\RejectedProduct;
 
-
-class ReturnCustomerController extends Controller
+class RejectedProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +16,11 @@ class ReturnCustomerController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $returns = ReturnCustomer::with([
+            $returns = RejectedProduct::with([
                 'products' => function ($query) {
                     $query->with(['type', 'category', 'size', 'color', 'sign']);
                 },
-                'customercategories'
+                'itemgrades'
             ])->get();
 
             return response()->json([
@@ -30,28 +28,14 @@ class ReturnCustomerController extends Controller
             ]);
         }
         
-        $returncustomers = ReturnCustomer::all();
+        $rejectedproducts = RejectedProduct::all();
         $products = Product::all();
-        $returncustomercategories = ReturnCustomerCategory::all();
         $grades = ItemGrade::all();
-        return view('returncustomer', [
+        return view('rejectedproduct', [
             'title' => 'Production Page',
-            'returncustomers' => $returncustomers,
+            'rejectedproducts' => $rejectedproducts,
             'products' => $products,
-            'returncustomercategories' => $returncustomercategories,
             'grades' => $grades,
-        ]);
-    }
-    public function indexArchive(Request $request)
-    {
-        $returncustomers = ReturnCustomer::all();
-        $products = Product::all();
-        $returncustomercategories = ReturnCustomerCategory::all();
-        return view('returncustomerarchive', [
-            'title' => 'Production Page',
-            'returncustomers' => $returncustomers,
-            'products' => $products,
-            'returncustomercategories' => $returncustomercategories,
         ]);
     }
 
@@ -71,10 +55,7 @@ class ReturnCustomerController extends Controller
         $request->validate([
             '*.product_id' => 'required|exists:products,id',
             '*.grade_id' => 'required|exists:item_grades,id',
-            '*.category_id' => 'required|exists:return_customer_categories,id',
             '*.quantity' => 'required|integer',
-            '*.information' => 'required|string',
-            '*.return_date' => 'required|date',
         ]);
 
         DB::beginTransaction();
@@ -83,25 +64,16 @@ class ReturnCustomerController extends Controller
             $returnRecords = [];
 
             foreach ($request->all() as $returnData) {
-                $product = Product::findOrFail($returnData['product_id']);
-                $quantity = $returnData['quantity'];
 
-                $product->stock += $quantity;
-                $product->save();
-
-                $return = ReturnCustomer::create([
+                $return = RejectedProduct::create([
                     'product_id' => $returnData['product_id'],
                     'grade_id' => $returnData['grade_id'],
-                    'quantity' => $quantity,
-                    'information' => $returnData['information'],
-                    'category_id' => $returnData['category_id'],
-                    'return_date' => $returnData['return_date'],
+                    'quantity' => $returnData['quantity'],
                 ]);
 
                 $returnRecords[] = $return;
             }
 
-            // Commit the transaction
             DB::commit();
 
             return response()->json($returnRecords, 200);
@@ -141,12 +113,6 @@ class ReturnCustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $return = ReturnCustomer::find($id);
-        if ($return) {
-            $return->delete();
-            return response()->json(['message' => 'Product deleted successfully'], 200);
-        } else {
-            return response()->json(['error' => 'Product not found'], 404);
-        }
+        //
     }
 }

@@ -9,6 +9,8 @@ use App\Models\Customer;
 use App\Models\PaymentMethod;
 use App\Models\ArchiveSellingTransaction;
 use App\Models\ArchiveSellingItem;
+use Illuminate\Support\Facades\DB;
+
 
 
 class SellingController extends Controller
@@ -57,10 +59,11 @@ class SellingController extends Controller
 
         return response()->json([
             'message' => 'Selling created successfully',
-            'id' => $transaction->id,  // Return the new created ID
+            'id' => $transaction->id,
             'selling' => $transaction
         ], 201);
     }
+    
     public function storeItem(Request $request)
     {
         $validatedData = $request->validate([
@@ -70,16 +73,42 @@ class SellingController extends Controller
             'items.*.quantity' => 'required|integer', 
         ]);
 
-        $transactionId = $validatedData['transaction_id'];
-        
-        foreach ($validatedData['items'] as $item) {
-            \App\Models\ArchiveSellingItem::create([
-                'transaction_id' => $transactionId,
-                'product_id' => $item['id'],
-                'quantity' => $item['quantity'],
-            ]);
+        DB::beginTransaction();
+
+        try {
+            $transactionId = $request->input('transaction_id');
+            $items = $request->input('items');
+
+            foreach ($items as $item) {
+                $product = Product::findOrFail($item['id']);
+                $quantity = $item['quantity'];
+
+                $product->stock -= $quantity;
+                $product->save();
+
+                // foreach ($product->materials as $material) {
+                //     $requiredQuantity = $material->pivot->quantity * $quantity;
+
+                //     $material->stock += $requiredQuantity;
+                //     $material->save();
+                // }
+
+                ArchiveSellingItem::create([
+                    'transaction_id' => $transactionId,
+                    'product_id' => $item['id'],
+                    'quantity' => $quantity,
+                ]);
+            }
+
+            // Commit the transaction
+            DB::commit();
+
+            return response()->json(['message' => 'Selling items created successfully'], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json(['message' => $e->getMessage()], 400);
         }
-        return response()->json(['message' => 'Selling created successfully'], 201);
     }
 
     /**

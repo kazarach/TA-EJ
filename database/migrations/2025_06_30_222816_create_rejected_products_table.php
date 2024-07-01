@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('return_customers', function (Blueprint $table) {
+        Schema::create('rejected_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('grade_id');
-            $table->unsignedBigInteger('category_id');
             $table->integer('quantity');
-            $table->string('information')->nullable();
-            $table->date('return_date');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('grade_id')->references('id')->on('item_grades')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('return_customer_categories')->onDelete('cascade');
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('return_customers');
+        Schema::dropIfExists('rejected_products');
     }
 };

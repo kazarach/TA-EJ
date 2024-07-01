@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ReturnCustomerController;
 use App\Http\Controllers\ReturnProductionController;
 use App\Http\Controllers\ReturnMaterialController;
+use App\Http\Controllers\RejectedProductController;
 
 
 
@@ -154,6 +155,11 @@ Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
 Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
 Route::delete('returnmaterial/{id}', [ReturnMaterialController::class, 'destroy']);
 
+Route::get('rejectedproduct/', [RejectedProductController::class, 'index']);
+Route::post('rejectedproduct/', [RejectedProductController::class, 'store']);
+Route::get('rejectedproduct/{id}', [RejectedProductController::class, 'show']);
+Route::put('rejectedproduct/{id}', [RejectedProductController::class, 'update']);
+Route::delete('rejectedproduct/{id}', [RejectedProductController::class, 'destroy']);
 
 
 

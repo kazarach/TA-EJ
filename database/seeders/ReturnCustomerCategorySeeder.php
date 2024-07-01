@@ -14,7 +14,7 @@ class ReturnCustomerCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['Buy Back', 'Size Change', 'Bad Product', 'Canceled'];
+        $categories = ['Rejected','Buy Back', 'Size Change', 'Canceled'];
 
         foreach ($categories as $category) {
             ReturnCustomerCategory::create(['name' => $category]);

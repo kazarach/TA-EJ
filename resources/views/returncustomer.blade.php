@@ -51,13 +51,25 @@
         </div>
         <div class="row g-3 mb-3">
             <div class="col">
-                <label for="categoryName">Project</label>
+                <label for="categoryName">Category</label>
                 <select name="name" id="categoryName" class="form-select" aria-label="Category">
                     <option selected disabled hidden>Select a category</option>
                     @foreach($returncustomercategories as $category)
-                    <option value="{{ $category->id }}"
-                        data-name="{{ $category->name }}">
+                    <option value="{{ $category->id }}" data-name="{{ $category->name }}">
                         {{ $category->name }}
+                    </option>
+                    @endforeach 
+                </select>
+            </div>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col">
+                <label for="gradeName">Item Grade</label>
+                <select name="name" id="gradeName" class="form-select" aria-label="Grade" disabled>
+                    <option selected disabled hidden>Select a grade</option>
+                    @foreach($grades as $grade)
+                    <option value="{{ $grade->id }}" data-name="{{ $grade->name }}">
+                        {{ $grade->name }}
                     </option>
                     @endforeach 
                 </select>
@@ -172,6 +184,7 @@
               <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Product Name</th>
+                  <th scope="col">Quality</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Size</th>
                   <th scope="col">Color</th>

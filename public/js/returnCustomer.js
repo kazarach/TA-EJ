@@ -30,6 +30,7 @@ $(document).ready(function () {
 function clearForm() {
     document.getElementById("ID").value = "";
     document.getElementById("productName").value = "";
+    document.getElementById("gradeName").value = "";
     document.getElementById("categoryName").value = "";
     document.getElementById("quantity").value = "";
     document.getElementById("information").value = "";
@@ -37,6 +38,7 @@ function clearForm() {
 
 
     $('#productName').val(0).trigger('change');
+    $('#gradeName').val(0).trigger('change');
     $('#categoryName').val(0).trigger('change');
 
     // selectedMachines = [];
@@ -56,15 +58,31 @@ function createItem() {
             quantity: parseInt(item.quantity, 10),
             information: item.information,
             return_date: item.return_date,
+            grade_id: parseInt(item.grade_id, 10),
         }));
 
         console.log(requestBody);
+
+        let normalGradeProducts = [];
+        let otherGradeProducts = [];
+
+        requestBody.forEach(item => {
+            if (item.grade_id === 1) {
+                normalGradeProducts.push(item);
+            } else {
+                otherGradeProducts.push(item);
+            }
+        });
+
+        console.log(requestBody);
+        console.log(normalGradeProducts);
+        console.log(otherGradeProducts);
         fetch(`/api/returncustomer`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(requestBody),
+            body: JSON.stringify(normalGradeProducts),
         })
             .then((response) => {
                 if (!response.ok) {
@@ -73,14 +91,24 @@ function createItem() {
                 return response.json();
             })
             .then((data) => {
-                console.log(data.id);
-                resolve(data.id);
+                console.log("Normal Grade Products:", data);
+                return fetch(`/api/rejectedproduct`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(otherGradeProducts),
+                });
+            })
+            .then(data => {
+                console.log("Other Grade Products:", data);
+                resolve(data);
             })
             .catch((error) => {
                 console.error("Error:", error);
                 reject(error);
             });
-    });
+        });
 }
 
 
@@ -102,6 +130,15 @@ $(document).ready(function () {
             sign: selectedProduct.data('sign')
         };
 
+        var grade_id = $("#gradeName").val();
+        
+        var selectedGrade = $("#gradeName option:selected");
+
+        var gradeInfo = {
+            id: grade_id ? grade_id : 1,
+            name: selectedGrade.data('name') ? selectedGrade.data('name') : 'Normal Grade',
+        };
+        
         var category_id = $("#categoryName").val();
         var selectedCategory = $("#categoryName option:selected");
 
@@ -113,13 +150,16 @@ $(document).ready(function () {
         var information = $("#information").val();
         var return_date = $("#return_date").val();
 
-
         console.log(information);
         if (!product_id || !category_id || isNaN(quantity) || !information || !return_date) {
             alert("All fields must be filled out.");
             return;
         }
-        var existingItem = returnList.find(item => item.product_id === product_id && item.information === information && item.category_id === category_id && item.return_date === return_date
+        if (!grade_id && !$("#gradeName").prop('disabled')) {
+            alert("Grade must be selected.");
+            return;
+        }
+        var existingItem = returnList.find(item => item.product_id === product_id && item.information === information && item.category_id === category_id && item.return_date === return_date && item.grade_id === gradeInfo.id
         );
 
         if (existingItem) {
@@ -136,6 +176,8 @@ $(document).ready(function () {
                 product_code: productInfo.code,
                 product_color: productInfo.color,
                 product_sign: productInfo.sign,
+                grade_id: gradeInfo.id,
+                grade_name: gradeInfo.name,
                 category_id: category_id,
                 category_name: categoryInfo.name,
                 information: information,
@@ -152,9 +194,10 @@ $(document).ready(function () {
 function updateTableRow(item) {
     var row = returnTable.row(function(idx, data, node) {
         return data[1] === item.product_name && 
-               data[6] === item.category_name && 
-               data[7] === item.information &&
-               data[8] === item.return_date; 
+               data[2] === item.grade_name && 
+               data[7] === item.category_name && 
+               data[8] === item.information &&
+               data[9] === item.return_date; 
     }).node();
 
     if (row) {
@@ -174,9 +217,10 @@ function populateItems(items) {
         var newRow = [
             item.id,
             item.product_name,
+            item.grade_name,
             '<input type="number" class="form-control quantity" value="' +
                 item.quantity +
-                '" onchange="updateQuantity(this, ' + item.product_id + ', ' + item.category_id + ', ' + item.information +', ' + item.return_date +');">',
+                '" onchange="updateQuantity(this, ' + item.product_id + ', ' + item.category_id + ', ' + item.information +', ' + item.return_date +', ' + item.grade_id +');">',
             item.product_size,
             item.product_code,
             item.product_color,
@@ -190,6 +234,27 @@ function populateItems(items) {
 
     });
 }
+
+window.onload = function () {
+    const gradeSelect = document.getElementById('gradeName');
+    const categorySelect = $('#categoryName');
+    
+    categorySelect.select2();
+
+    categorySelect.on('change.select2', function () {
+        const selectedCategory = this.options[this.selectedIndex];
+        const selectedCategoryName = selectedCategory ? selectedCategory.getAttribute('data-name') : null;
+        
+        if (selectedCategoryName === 'Rejected') {
+            gradeSelect.disabled = false;
+        } else {
+            gradeSelect.disabled = true;
+            gradeSelect.selectedIndex = 0;
+        }
+    });
+
+    gradeSelect.disabled = true;
+};
 
 function removeFromCart(button) {
     var row = button.closest("tr");
