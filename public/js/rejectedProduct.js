@@ -78,6 +78,9 @@ function fetchData(Data) {
     document.getElementById("ID").value = "ID: " + Data.id;
     $('#productName').val(Data.product_id).trigger('change');
     $('#gradeName').val(Data.grade_id).trigger('change');
+    // document.getElementById("productName").value = Data.quantity;
+
+    $('#quantity').val(Data.quantity).trigger('change');
     changeTextColor();
     selectedId = Data.id;
 }
@@ -86,6 +89,7 @@ function clearForm() {
     document.getElementById("ID").value = "";
     document.getElementById("productName").value = "";
     document.getElementById("gradeName").value = "";
+    document.getElementById("quantity").value = "";
 
     $('#productName').val(0).trigger('change');
     $('#gradeName').val(0).trigger('change');
@@ -99,6 +103,7 @@ function updateData() {
             const productName = document.getElementById("productName").value;
             const gradeName = document.getElementById("gradeName").value;
             const quantity = document.getElementById("quantity").value;
+            console.log(quantity);
 
             if (productName === "Select a product") {
                 alert("Customer name cannot be blank");
@@ -108,10 +113,11 @@ function updateData() {
                 alert("Customer name cannot be blank");
                 return reject(new Error("Customer name cannot be blank"));
             }
-            if (quantity === 0||"0") {
-                alert("Quantity name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
+            if (quantity === "Quantity") {
+                alert("Quantity cannot be zero");
+                return reject(new Error("Quantity cannot be zero"));
             }
+
 
             const Data = {
                 product_id: productName,
@@ -119,7 +125,7 @@ function updateData() {
                 quantity: quantity,
             };
             console.log(Data,selectedId);
-            fetch(`/api/order/${selectedId}`, {
+            fetch(`/api/rejectedproduct/${selectedId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -150,26 +156,31 @@ function createItem() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
 
-        const catalogName = document.getElementById("catalogName").value;
-        const customerName = document.getElementById("customerName").value;
-        
-        if (catalogName === "Select a customer") {
+        const productName = document.getElementById("productName").value;
+        const gradeName = document.getElementById("gradeName").value;
+        const quantity = document.getElementById("quantity").value;
+
+        if (productName === "Select a product") {
             alert("Customer name cannot be blank");
             return reject(new Error("Customer name cannot be blank"));
         }
-        if (customerName === "Total") {
-            alert("Total price cannot be blank");
-            return reject(new Error("Total price cannot be blank"));
+        if (gradeName === "Select a grade") {
+            alert("Customer name cannot be blank");
+            return reject(new Error("Customer name cannot be blank"));
+        }
+        if (quantity === 0||"0") {
+            alert("Quantity name cannot be blank");
+            return reject(new Error("Customer name cannot be blank"));
         }
 
         const requestBody = {
-            catalog_id: catalogName,
-            customer_id: customerName,
-            items: selectedItems,
+            product_id: productName,
+            grade_id: gradeName,
+            quantity: quantity,
         };
 
         console.log(requestBody);
-        fetch(`/api/order`, {
+        fetch(`/api/rejectedproduct`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -219,234 +230,6 @@ function deleteData() {
             reject(new Error("No Machine selected for deletion"));
         }
     });
-}
-
-$(document).ready(function () {
-    console.log("AHA");
-    var machineTable = $("#machines-table").DataTable({
-        ajax: {
-            url: "/api/machine/",
-            type: "GET",
-            dataSrc: function (json) {
-                console.log(json);
-                return json.machines;
-            },
-        },
-        columns: [
-            { data: "id" },
-            { data: "name" },
-            { data: "machinestatus.name" },
-            { data: "machineuse.name" },
-            {
-                data: null,
-                render: function (data, type, row) {
-                    return `<button type="button" id="addItem" class="btn btn-primary" onclick="addToMachineCart(this)">Add</button>`;
-                },
-            },
-        ],
-    });
-
-    $("#pilih-machine").on("click", function () {
-        populateMachine(selectedMachines);
-    });
-});
-
-$(document).ready(function () {
-    tableMachine = $("#selectedItemsTable").DataTable({
-        columns: [
-            { title: "ID" },
-            { title: "Name" },
-            { title: "Status" },
-            { title: "Use" },
-            { title: "Action" },
-        ],
-    });
-});
-
-$(document).ready(function () {
-    tableWorkforce = $("#selectedWorkforceTable").DataTable({
-        columns: [
-            { title: "ID" },
-            { title: "Name" },
-            { title: "Status" },
-            { title: "Position" },
-            { title: "Action" },
-        ],
-    });
-});
-
-function populateMachine(items) {
-    console.log(items);
-    items.sort((a, b) => a.id - b.id);
-    tableMachine.clear();
-    const addedItemlIds = new Set();
-
-    items.forEach(function (item) {
-        if (!addedItemlIds.has(item.id)) {
-            var newRow = [
-                item.id,
-                item.name,
-                item.status_id,
-                item.use_id,
-                '<button type="button" class="btn btn-danger" onclick="removeFromCartMachine(this)">Remove</button>',
-            ];
-            tableMachine.row.add(newRow).draw();
-            addedItemlIds.add(item.id);
-        }
-    });
-}
-
-function populateWorkforce(items) {
-    console.log(items);
-    items.sort((a, b) => a.id - b.id);
-    tableWorkforce.clear();
-    const addedItemlIds = new Set();
-
-    items.forEach(function (item) {
-        if (!addedItemlIds.has(item.id)) {
-            var newRow = [
-                item.id,
-                item.name,
-                item.status_id,
-                item.position_id,
-                '<button type="button" class="btn btn-danger" onclick="removeFromCartWorkforce(this)">Remove</button>',
-            ];
-
-            tableWorkforce.row.add(newRow).draw();
-            addedItemlIds.add(item.id);
-        }
-    });
-}
-
-function addToMachineCart(button) {
-    var row = button.closest("tr");
-    var id = parseInt(row.cells[0].innerText, 10);
-    var name = row.cells[1].innerText;
-    var status = row.cells[2].innerText;
-    var use = row.cells[3].innerText;
-
-    var exists = selectedMachines.some(function(machine) {
-        return machine.id === id;
-    });
-
-    if (!exists) {
-        selectedMachines.push({
-            id: id,
-            name: name,
-            status_id: status,
-            use_id: use,
-        });
-    }
-    
-    console.log(selectedMachines);
-    populateMachine(selectedMachines);
-}
-
-function addToWorkforceCart(button) {
-    var row = button.closest("tr");
-    var id = parseInt(row.cells[0].innerText, 10);
-    var name = row.cells[1].innerText;
-    var status = row.cells[2].innerText;
-    var use = row.cells[3].innerText;
-
-    var exists = selectedWorkforces.some(function(workforce) {
-        return workforce.id === id;
-    });
-
-    if (!exists) {
-        selectedWorkforces.push({
-            id: id,
-            name: name,
-            status_id: status,
-            position_id: use,
-        });
-    }
-    
-    console.log(selectedWorkforces);
-    populateWorkforce(selectedWorkforces);
-}
-
-function removeFromCartMachine(button) {
-    var row = button.closest("tr");
-    if (!row) {
-        return;
-    }
-    var itemId = row.cells[0].innerText;
-
-    selectedMachines = selectedMachines.filter(function (item) {
-        return item.id !== itemId;
-    });
-
-    row.remove();
-    console.log(selectedMachines);
-}
-
-function removeFromCartWorkforce(button) {
-    var row = button.closest("tr");
-    if (!row) {
-        return;
-    }
-    var itemId = row.cells[0].innerText;
-    
-    selectedWorkforces = selectedWorkforces.filter(function (item) {
-        return item.id !== itemId;
-    });
-
-    row.remove();
-    console.log(selectedWorkforces);
-}
-
-
-function addToSelectedMachines(
-    id,
-    name,
-    status,
-    use,
-) {
-    selectedMachines.push({
-        id: id,
-        name: name,
-        status_id: status,
-        use_id: use,
-    });
-    console.log(selectedMachines);
-}
-
-function addToSelectedWorkforces(
-    id,
-    name,
-    status,
-    position,
-) {
-    selectedWorkforces.push({
-        id: id,
-        name: name,
-        status_id: status,
-        position_id: position,
-    });
-    console.log(selectedWorkforces);
-}
-
-function closeModal() {
-    $("#machineModal").modal("hide");
-}
-function closeModal2() {
-    $("#workforceModal").modal("hide");
-}
-
-function selectedModal() {
-    selectedMachinesTemp = JSON.parse(JSON.stringify(selectedMachines));
-}
-function selectedModal2() {
-    selectedWorkforcesTemp = JSON.parse(JSON.stringify(selectedWorkforces));
-}
-
-
-function revertModal() {
-    selectedMachines = JSON.parse(JSON.stringify(selectedMachinesTemp));
-}
-function revertModal2() {
-    selectedWorkforces = JSON.parse(JSON.stringify(selectedWorkforcesTemp));
 }
 
 function clearDefaultValue(input) {

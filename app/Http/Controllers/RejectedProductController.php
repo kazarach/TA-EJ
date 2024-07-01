@@ -105,7 +105,23 @@ class RejectedProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rejected = RejectedProduct::find($id);
+        if ($rejected) {
+            $request->validate([
+                'product_id' => 'required|exists:products,id',
+                'grade_id' => 'required|exists:item_grades,id',
+                'quantity' => 'required|integer',
+            ]);
+            $rejected->product_id = $request['product_id'];
+            $rejected->grade_id = $request['grade_id'];
+            $rejected->quantity = $request['quantity'];
+
+            $rejected->save();
+
+            return response()->json(['message' => 'Product updated successfully'], 200);
+        } else {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
 
     /**

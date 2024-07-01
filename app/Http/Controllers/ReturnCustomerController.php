@@ -133,7 +133,26 @@ class ReturnCustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rejected = RejectedProduct::find($id);
+        if ($product) {
+            $request->validate([
+                '*.product_id' => 'required|exists:products,id',
+                '*.grade_id' => 'required|exists:item_grades,id',
+                '*.category_id' => 'required|exists:return_customer_categories,id',
+                '*.quantity' => 'required|integer',
+                '*.information' => 'required|string',
+                '*.return_date' => 'required|date',
+            ]);
+            $rejected->product_id = $validatedData['product_id'];
+            $rejected->grade_id = $validatedData['grade_id'];
+            $rejected->quantity = $validatedData['quantity'];
+
+            $rejected->save();
+
+            return response()->json(['message' => 'Product updated successfully', 'product' => $product], 200);
+        } else {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
 
     /**
@@ -141,9 +160,9 @@ class ReturnCustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $return = ReturnCustomer::find($id);
-        if ($return) {
-            $return->delete();
+        $rejectedProduct = RejectedProduct::find($id);
+        if ($rejectedProduct) {
+            $rejectedProduct->delete();
             return response()->json(['message' => 'Product deleted successfully'], 200);
         } else {
             return response()->json(['error' => 'Product not found'], 404);
