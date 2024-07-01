@@ -129,6 +129,12 @@ class RejectedProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rejectedProduct = RejectedProduct::find($id);
+        if ($rejectedProduct) {
+            $rejectedProduct->delete();
+            return response()->json(['message' => 'Product deleted successfully'], 200);
+        } else {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
 }
