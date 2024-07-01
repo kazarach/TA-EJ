@@ -64,6 +64,7 @@ const pathToLinkMap = {
     "/selling/transaction": "selling",
     "/selling/item": "selling",
     "/purchase": "inventory",
+    "/rejectedproduct": "inventory",
     "/purchase/transaction": "inventory",
     "/purchase/item": "inventory",
     "/order": "order",

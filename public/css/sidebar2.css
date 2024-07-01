@@ -423,10 +423,12 @@ a.togglesubmenu {
     font-size: 4em;
     top: 1rem;
     color: var(--primary-color);
+    cursor: pointer;
 }
 
 .card-body:hover h1{
     color: var(--sidebar-color);
+    cursor: pointer;
 }
 
 .card-body h5{
