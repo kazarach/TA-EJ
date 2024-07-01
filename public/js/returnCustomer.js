@@ -38,7 +38,7 @@ function clearForm() {
 
 
     $('#productName').val(0).trigger('change');
-    $('#gradeName').val(0).trigger('change');
+    $('#gradeName').val(null).trigger('change');
     $('#categoryName').val(0).trigger('change');
 
     // selectedMachines = [];
@@ -82,7 +82,7 @@ function createItem() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(normalGradeProducts),
+            body: JSON.stringify(requestBody),
         })
             .then((response) => {
                 if (!response.ok) {
@@ -252,7 +252,7 @@ window.onload = function () {
             gradeSelect.selectedIndex = 0;
         }
     });
-
+    
     gradeSelect.disabled = true;
 };
 
