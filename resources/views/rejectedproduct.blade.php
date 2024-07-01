@@ -61,6 +61,12 @@
                 </select>
             </div>
         </div>
+        <div class="row g-3 mb-3">
+            <div class="col">
+                <label for="">Quantity</label>
+                <input id="quantity" type="text" class="form-control" placeholder="Quantity">
+            </div>
+        </div>
   
       <div>
         <button type="button" id="update-button" class="btn btn-success">Update</button>

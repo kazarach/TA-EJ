@@ -98,30 +98,24 @@ function updateData() {
         if (selectedId) {
             const productName = document.getElementById("productName").value;
             const gradeName = document.getElementById("gradeName").value;
-            const product = document.getElementById("product").value;
             const quantity = document.getElementById("quantity").value;
 
-            if (productName === "Select a customer") {
+            if (productName === "Select a product") {
                 alert("Customer name cannot be blank");
                 return reject(new Error("Customer name cannot be blank"));
             }
-            if (gradeName === "Select a customer") {
+            if (gradeName === "Select a grade") {
                 alert("Customer name cannot be blank");
                 return reject(new Error("Customer name cannot be blank"));
             }
-            if (product === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
-            if (quantity === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
+            if (quantity === 0||"0") {
+                alert("Quantity name cannot be blank");
+                return reject(new Error("Customer name cannot be blank"));
             }
 
             const Data = {
-                catalog_id: productName,
-                customer_id: gradeName,
-                product_id: product,
+                product_id: productName,
+                grade_id: gradeName,
                 quantity: quantity,
             };
             console.log(Data,selectedId);
