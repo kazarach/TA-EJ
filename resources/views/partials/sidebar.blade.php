@@ -118,6 +118,12 @@
                         </a>
                       </li>
                       <li class="nav-link">
+                        <a href="/rejectedproduct">
+                          <i class='bx bx-cylinder icon' id="submenutext"></i>
+                          <span class="text nav-text" id="submenutext">Rejected Product</span>
+                        </a>
+                      </li>
+                      <li class="nav-link">
                         <a href="/material">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Material</span>
@@ -171,8 +177,8 @@
               </li>
               <li class="nav-link dropdown" id="return-link">
                 <a href="/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
-                    <i class='bx bx-book-content icon'></i>
-                    <span class="text nav-text" id="dropdowntext2">Return ></span>
+                    <i class='bx bx-left-down-arrow-circle icon'></i>
+                    <span class="text nav-text" id="dropdowntext">Return ></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-link">

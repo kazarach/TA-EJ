@@ -6,16 +6,20 @@
     <div class="top-bar">
         <div class="header-wrapper">
             <div class="header-title">
-                <h2>Return Customer</h2>
+                <h2>Reject Product</h2>
             </div>
             <div class="dropdown-top">
-                <a href="/returncustomer">Return Customer</a>
+                <a href="/product">Product</a>
                 <a href="">|</a>
-                <a href="/returncustomer/archive" class="active">Return Customer Archive</a>
+                <a href="/rejectedproduct" class="active">Reject</a>
                 <a href="">|</a>
-                <a href="/returnproduction">Return Production</a>
+                <a href="/material">Material</a>
                 <a href="">|</a>
-                <a href="/returnproduction/archive">Return Production Archive</a>
+                <a href="/purchase">Purchase</a>
+                <a href="">|</a>
+                <a href="/purchase/transaction">Transaction</a>
+                <a href="">|</a>
+                <a href="/purchase/item">Item</a>
             </div>
             <div class="user-info">
                 <img src="../image2.jpg" alt="">
