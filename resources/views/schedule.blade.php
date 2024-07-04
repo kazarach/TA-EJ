@@ -46,43 +46,56 @@
 
 <!-- Modal -->
 <div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+                <h5 class="modal-title" id="addEventModalLabel">Today Project Detail</h5>
             </div>
             <div class="modal-body">
                 <form id="addEventForm">
-                    <div class="form-group mb-3">
-                        <label for="eventTitle">Event Title</label>
-                        <input type="text" class="form-control" id="eventTitle" required>
+                    <div class="row g-3 mb-3">
+                        <div class="col">
+                            <label for="eventTitle">Project Title</label>
+                            <h5 id="eventTitle" readonly></h5>
+                            {{-- <input type="text" class="form-control" id="eventTitle" readonly> --}}
+                        </div>
+                        <div class="col">
+                            <label for="eventTitle"></label>
+                        </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="eventStart">Start Date</label>
-                        <input type="text" class="form-control datepicker" id="eventStart" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="eventEnd">End Date</label>
-                        <input type="text" class="form-control datepicker" id="eventEnd">
+                        <label for="eventTitle">Project Detail</label>
+                        <table id="production-table" class="table table-striped table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Size</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Project Name</th>
+                                    <th scope="col">Project Status</th>
+                                    <th scope="col">Machine</th>
+                                    <th scope="col">Workforce</th>
+                                    <th scope="col">Production Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    
+                            </tbody>
+                        </table>
                     </div>
                     <div class="row g-3 mb-3">
-                        <div class="col production">
-                            <label for="" class="form-label">Machine</label>
-                            <input name="name" id="productName" type="text" class="form-control" placeholder="Machine" aria-label="Nama">
+                        <div class="col">
+                            <label for="eventColor">Event Color</label>
+                            <input type="color" class="form-control" id="eventColor" value="#ff9f89">
                         </div>
-                        <div class="col production">
-                            <label for="" class="form-label">Workforce</label>
-                            <input name="name" id="productName" type="text" class="form-control" placeholder="Workforce" aria-label="Nama">
+                        <div class="col">
+                            <label for="eventTextColor">Text Color</label>
+                            <input type="color" class="form-control" id="eventTextColor" value="#000000">
                         </div>
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="eventColor">Event Color</label>
-                        <input type="color" class="form-control" id="eventColor" value="#ff9f89">
-                    </div>
-                    <div class="form-group">
-                        <label for="eventTextColor">Text Color</label>
-                        <input type="color" class="form-control" id="eventTextColor" value="#000000">
-                    </div> --}}
                 </form>
             </div>
             <div class="modal-footer">

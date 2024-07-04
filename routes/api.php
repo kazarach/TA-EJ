@@ -116,7 +116,7 @@ Route::put('/archive/purchase/transaction/{id}', [PurchaseTransactionController:
 Route::delete('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'destroy']);
 Route::put('/archive/purchase/{id}/updateItem', [PurchaseTransactionController::class, 'updateItem']);
 
-Route::get('/archive/purchase/item', [PurchaseItemController::class, 'index']);
+// Route::get('/archive/purchase/item', [PurchaseItemController::class, 'index']);
 
 
 Route::get('order/', [OrderController::class, 'index']);
