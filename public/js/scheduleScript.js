@@ -47,7 +47,63 @@ $(document).ready(function () {
             $("#eventStart").val(date.format("YYYY-MM-DD"));
             $("#eventEnd").val(date.format("YYYY-MM-DD"));
             $("#addEventModal").modal("show");
+
+            // Filter the DataTable based on the clicked date
+            var selectedDate = date.format("YYYY-MM-DD");
+            productionTable.column(10).search(selectedDate).draw();
+
+            // Get the filtered data and populate the project name in the form
+            var filteredData = productionTable.rows({ filter: 'applied' }).data();
+            if (filteredData.length > 0) {
+                var projectName = filteredData[0].projects.name;
+                $("#eventTitle").text(projectName);
+            } else {
+                $("#eventTitle").text("");
+            }
         },
+    });
+});
+
+var productionTable;
+
+$(document).ready(function () {
+    productionTable = $("#production-table").DataTable({
+        ajax: {
+            url: "/api/productions/",
+            type: "GET",
+            dataSrc: function (json) {
+                console.log(json);
+                return json.productions
+            },
+        },
+        columns: [
+            { data: "id" },
+            { data: "products.name" },
+            { data: "quantity" },
+            { data: "products.size.name" },
+            { data: "products.color.name" },
+            { data: "products.code" },
+            { data: "projects.name" },
+            { data: "projects.projectstatus.name" },
+            {
+                data: "machines",
+                render: function (data, type, row) {
+                    return '<ul>' + data.map(machine => `<li>${machine.name}</li>`).join('') + '</ul>';
+                }
+            },
+            {
+                data: "workforces",
+                render: function (data, type, row) {
+                    return '<ul>' + data.map(workforce => `<li>${workforce.name}</li>`).join('') + '</ul>';
+                }
+            },
+            { data: "production_date" },
+        ],
+        initComplete: function(settings, json) {
+            // Remove the header row
+            $('#production-table_length').remove();
+            $('#production-table_filter').remove();
+        }
     });
 });
 
@@ -61,35 +117,30 @@ $("#monthSelect").change(function () {
 });
 
 // Initialize datepicker
-$(".datepicker").datepicker({
-    dateFormat: "yy-mm-dd",
-});
-
-// Show modal on button click
-$("#addNewButton").click(function () {
-    $("#addEventModal").modal("show");
-});
+// $(".datepicker").datepicker({
+//     dateFormat: "yy-mm-dd",
+// });
 
 // Save event
-// $('#saveEventButton').click(function() {
-//     var eventTitle = $('#eventTitle').val();
-//     var eventStart = $('#eventStart').val();
-//     var eventEnd = $('#eventEnd').val();
-//     var eventColor = $('#eventColor').val();
-//     var eventTextColor = $('#eventTextColor').val();
+$('#saveEventButton').click(function() {
+    // var eventTitle = $('#eventTitle').val();
+    // var eventStart = $('#eventStart').val();
+    // var eventEnd = $('#eventEnd').val();
+    var eventColor = $('#eventColor').val();
+    var eventTextColor = $('#eventTextColor').val();
 
-// if(eventTitle && eventStart) {
-//     $('#calendar').fullCalendar('renderEvent', {
-//         title: eventTitle,
-//         start: eventStart,
-//         end: eventEnd,
-//         color: eventColor,
-//         textColor: eventTextColor
-//     }, true); // stick the event
+if(eventTitle && eventStart) {
+    $('#calendar').fullCalendar('renderEvent', {
+        // title: eventTitle,
+        // start: eventStart,
+        // end: eventEnd,
+        color: eventColor,
+        textColor: eventTextColor
+    }, true); // stick the event
 
-//     $('#addEventModal').modal('hide');
-//     $('#addEventForm')[0].reset();
-// } else {
-//         alert("Please enter the required details.");
-// }
-// });
+    $('#addEventModal').modal('hide');
+    $('#addEventForm')[0].reset();
+} else {
+        alert("Please enter the required details.");
+}
+});
