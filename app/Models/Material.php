@@ -10,7 +10,7 @@ class Material extends Model
     use HasFactory;
     public function products()
     {
-        return $this->belongsToMany(Product::class,'product_materials');
+        return $this->belongsToMany(Product::class,'product_materials')->withPivot('quantity');
     }
     public function materialunit()
     {

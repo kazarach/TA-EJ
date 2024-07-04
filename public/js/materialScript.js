@@ -14,6 +14,7 @@ $(document).ready(function () {
             { data: "id" },
             { data: "name" },
             { data: "stock" },
+            { data: "reserved" },
             { data: "materialunit.name" },
             { data: "materialcategory.name" },
             { data: "code" },

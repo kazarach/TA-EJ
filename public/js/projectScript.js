@@ -51,6 +51,9 @@ $(document).ready(function () {
                             "<li>" +
                             product.name +
                             " (" +
+                            product.size.name +
+                            ")"+
+                            " (" +
                             product.pivot.quantity +
                             ")</li>"; // List item for each product
                     });
@@ -58,6 +61,26 @@ $(document).ready(function () {
                     return productsHtml;
                 },
             },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    var productsHtml = "<ul>"; // Start unordered list
+                    data.products.forEach(function (product) {
+                        productsHtml +=
+                            "<li>" +
+                            product.name + 
+                            " (" +
+                            product.size.name +
+                            ")"+
+                            " (" +
+                            product.pivot.producted +
+                            ")</li>"; // List item for each product
+                    });
+                    productsHtml += "</ul>"; // End unordered list
+                    return productsHtml;
+                },
+            },
+            
         ],
     });
     $("#projects-table tbody").on("click", "tr", function () {

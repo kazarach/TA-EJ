@@ -10,11 +10,11 @@ class Product extends Model
     use HasFactory;
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_products');
+        return $this->belongsToMany(Project::class, 'project_products')->withPivot('quantity');
     }
     public function materials()
     {
-        return $this->belongsToMany(Material::class, 'product_materials')->withPivot('id','quantity');
+        return $this->belongsToMany(Material::class, 'product_materials')->withPivot('quantity');
     }  
     public function type()
     {

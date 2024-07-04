@@ -22,7 +22,7 @@ class ProjectController extends Controller
             $projects = Project::with([
                 'products' => function ($query) {
                     $query->with(['size', 'color'])
-                          ->withPivot('quantity'); // Assuming 'quantity' is the quantity field in your pivot table
+                          ->withPivot('quantity','producted'); // Assuming 'quantity' is the quantity field in your pivot table
                 },'projectstatus'
             ])->get();
         

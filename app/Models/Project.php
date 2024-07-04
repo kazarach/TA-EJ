@@ -10,7 +10,7 @@ class Project extends Model
     use HasFactory;
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'project_products')->withPivot('id','quantity');
+        return $this->belongsToMany(Product::class, 'project_products')->withPivot('quantity');
     }
     public function productsize()
     {

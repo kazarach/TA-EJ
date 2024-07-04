@@ -152,6 +152,7 @@
                     <th scope="col">End Date</th>
                     <th scope="col">Status</th>
                     <th scope="col">Products</th>
+                    <th scope="col">Producted</th>
                 </tr>
             </thead>
             <tbody>

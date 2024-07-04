@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity')->default(0);
+            $table->integer('producted')->default(0);
             // Define foreign key constraints with onDelete('cascade')
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

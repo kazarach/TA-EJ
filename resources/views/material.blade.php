@@ -93,6 +93,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Material Name</th>
                 <th scope="col">Stock</th>
+                <th scope="col">Reserved</th>
                 <th scope="col">Unit</th>
                 <th scope="col">Category</th>
                 <th scope="col">Code</th>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\Product;
 use App\Models\Material;
 use App\Models\MaterialUnit;
 use App\Models\MaterialCategory;
@@ -16,15 +18,42 @@ class MaterialController extends Controller
     {
         if ($request->ajax()) {
             $materials = Material::with(['materialunit', 'materialcategory'])->get();
+            $projects = Project::with('products.materials')->get();
 
+            // Initialize reserved quantities for each material
+            foreach ($materials as $material) {
+                $material->reserved = 0;
+            }
+    
+            foreach ($projects as $project) {
+                foreach ($project->products as $product) {
+                    foreach ($product->materials as $material) {
+                        if (isset($product->pivot) && isset($material->pivot)) {
+                            $reservedQuantity = $product->pivot->quantity * $material->pivot->quantity;
+                            // Find the material in the materials collection and update the reserved value
+                            $materialToUpdate = $materials->firstWhere('id', $material->id);
+                            if ($materialToUpdate) {
+                                $materialToUpdate->reserved += $reservedQuantity;
+                            }
+                        } else {
+                            \Log::warning('Pivot not found for product_id: ' . $product->id . ' or material_id: ' . $material->id);
+                        }
+                    }
+                }
+            }
+    
             return response()->json([
                 'materials' => $materials,
             ]);
         }
 
         $materials = Material::with(['materialunit', 'materialcategory'])->get();
+        // foreach ($materials as $material) {
+        //     $material->reserved = $this->calculateReserved($material);
+        // }
         $materialunits = MaterialUnit::all();
         $materialcategories = MaterialCategory::all();
+
 
         return view('material',[
             'materials' => $materials,
@@ -32,6 +61,26 @@ class MaterialController extends Controller
             'materialcategories' => $materialcategories,
         ]);
 
+    }
+
+    private function calculateReserved($material)
+    {
+        $projects = Project::with('products')->get();
+        $reserved = 0;
+
+        foreach ($projects as $project) {
+            foreach ($project->products as $product) {
+                foreach ($product->materials as $material) {
+                    if (isset($product->pivot) && isset($material->pivot)) {
+                        $reserved += $product->pivot->quantity * $material->pivot->quantity;
+                    } else {
+                        \Log::warning('Pivot not found for product_id: ' . $product->id . ' or material_id: ' . $material->id);
+                    }
+                }
+            }
+        }
+    
+        return $reserved;
     }
 
     /**

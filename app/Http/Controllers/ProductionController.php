@@ -109,6 +109,8 @@ class ProductionController extends Controller
             foreach ($request->all() as $productionData) {
                 $product = Product::findOrFail($productionData['product_id']);
                 $quantity = $productionData['quantity'];
+                $projectId = $productionData['project_id'];
+
 
                 // Update product quantity
                 $product->stock += $quantity;
@@ -120,6 +122,20 @@ class ProductionController extends Controller
 
                     $material->stock -= $requiredQuantity;
                     $material->save();
+                }
+
+                $projectProduct = DB::table('project_products')
+                    ->where('project_id', $projectId)
+                    ->where('product_id', $product->id)
+                    ->first();
+            
+                if ($projectProduct) {
+                    $newQuantity = $projectProduct->producted + $quantity;
+            
+                    DB::table('project_products')
+                        ->where('project_id', $projectId)
+                        ->where('product_id', $product->id)
+                        ->update(['producted' => $newQuantity]);
                 }
 
                 $production = Production::create([
