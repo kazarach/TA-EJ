@@ -6,16 +6,16 @@
     <div class="top-bar">
         <div class="header-wrapper">
             <div class="header-title">
-                <h2>Production</h2>
+                <h2>Return Material</h2>
             </div>
             <div class="dropdown-top">
-                <a href="/production" class="active">Production</a>
+                <a href="/returncustomer">Return Customer</a>
                 <a href="">|</a>
-                <a href="/production/archive">Production Archive</a>
+                <a href="/returnproduction">Return Production</a>
                 <a href="">|</a>
-                <a href="/machine">Machine</a>
+                <a href="/returnmaterial" class="active">Return Material</a>
                 <a href="">|</a>
-                <a href="/workforce">Workforce</a>
+                <a href="/returnmaterial/archive">Return Material Archive</a>
             </div>
             <div class="user-info">
                 <img src="image2.jpg" alt="">
@@ -28,7 +28,7 @@
     @csrf
       <div class="row g-3 mb-3">
           <div class="col-new">
-              <input id="ID" type="text" class="form-control" placeholder="New Production" aria-label="ID" readonly>
+              <input id="ID" type="text" class="form-control" placeholder="New Return Material" aria-label="ID" readonly>
           </div>
       </div>
         <div class="row g-3 mb-3">

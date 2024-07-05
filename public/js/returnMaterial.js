@@ -263,7 +263,11 @@ function clearDefaultValue(input) {
 }
 
 $(document).ready(function () {
-    $(".form-select").select2({
+    $("#materialName").select2({
+        placeholder: "Select a material",
+        allowClear: true,
+    });
+    $("#categoryName").select2({
         placeholder: "Select a category",
         allowClear: true,
     });
