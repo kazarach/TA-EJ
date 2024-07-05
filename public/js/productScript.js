@@ -728,7 +728,7 @@ $(document).ready(function () {
         allowClear: true,
     });
     $("#productCategory").select2({
-        placeholder: "Select a Category",
+        placeholder: "Select Category",
         allowClear: true,
     });
     $("#productSize").select2({

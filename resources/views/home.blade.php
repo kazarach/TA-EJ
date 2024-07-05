@@ -81,25 +81,25 @@
             <div class="features-card">
                 <img src="inventory.jpg" alt="" class="features-card-img">
                 <h3 class="features-card-title">Inventory</h3>
-                <!-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> -->
+                {{-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> --}}
 
             </div>
             <div class="features-card">
                 <img src="fitur.jpg" alt="" class="features-card-img">
                 <h3 class="features-card-title">Planning</h3>
-                <!-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> -->
+                {{-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p>  --}}
 
             </div>
             <div class="features-card">
                 <img src="production.jpg" alt="" class="features-card-img">
                 <h3 class="features-card-title">Production</h3>
-                <!-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> -->
+                {{-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> --}}
 
             </div>
             <div class="features-card">
                 <img src="cash.jpg" alt="" class="features-card-img">
-                <h3 class="features-card-title">Cash Book</h3>
-                <!-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> -->
+                <h3 class="features-card-title">Order</h3>
+                {{-- <p class="features-card-text">Lorem ipsum, dolor sit amet consectetur </p> --}}
 
             </div>
         </div>

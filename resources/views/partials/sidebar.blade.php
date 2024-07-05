@@ -144,7 +144,7 @@
                       <li class="nav-link">
                         <a href="/purchase/item">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Purchasing Material Item</span>
+                          <span class="text nav-text" id="submenutext">Purchased Material</span>
                         </a>
                       </li>
                   </ul>
