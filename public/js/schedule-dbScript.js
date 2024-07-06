@@ -233,3 +233,166 @@ const ctx = document.getElementById('myChart').getContext('2d');
                 }
             }
         });
+
+// selling chart
+$(document).ready(function () {
+    fetchChartDataAndPopulateTable();
+});
+
+function fetchChartDataAndPopulateTable() {
+    $.ajax({
+        url: "/api/archive/selling/transaction",
+        type: "GET",
+        success: function (data) {
+            // Initialize the months array with all months from January to December
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var monthlySales = {};
+
+            // Initialize monthlySales object with all months
+            months.forEach(function (month) {
+                monthlySales[month] = {};
+            });
+
+            // Process the data to extract total sales per product per month
+            data.transactions.forEach(function (transaction) {
+                var date = new Date(transaction.created_at);
+                var month = date.toLocaleString('default', { month: 'long' });
+
+                transaction.products.forEach(function (product) {
+                    if (!monthlySales[month][product.name]) {
+                        monthlySales[month][product.name] = 0;
+                    }
+                    monthlySales[month][product.name] += product.pivot.quantity;
+                });
+            });
+
+            // Prepare the product names set
+            var productNames = new Set();
+            months.forEach(month => {
+                Object.keys(monthlySales[month]).forEach(productName => {
+                    productNames.add(productName);
+                });
+            });
+            productNames = Array.from(productNames);
+
+            var datasets = productNames.map(productName => {
+                return {
+                    label: productName,
+                    data: months.map(month => monthlySales[month][productName] || 0),
+                    backgroundColor: getRandomColor(),
+                    borderWidth: 1
+                };
+            });
+
+            // Update the chart with the fetched data
+            updateChart(months, datasets);
+
+            // Prepare transformed data for the table
+            var transformedData = [];
+            data.transactions.forEach(function (transaction) {
+                transaction.products.forEach(function (product) {
+                    transformedData.push({
+                        transaction_id: transaction.id,
+                        customer_name: transaction.customer.name,
+                        discount: transaction.customer.customerclass ? transaction.customer.customerclass.discount : "N/A",
+                        total: transaction.total,
+                        paid: transaction.paid,
+                        payment_method: transaction.paymentmethod.name,
+                        product_name: product.name,
+                        product_quantity: product.pivot.quantity,
+                        created_at: transaction.created_at
+                    });
+                });
+            });
+
+            // Initialize the DataTable with the transformed data
+            initializeDataTable(transformedData);
+        },
+        error: function (error) {
+            console.error("Error fetching data", error);
+        }
+    });
+}
+
+function updateChart(labels, datasets) {
+    var abc = document.getElementById('sellChart').getContext('2d');
+    var sellChart = new Chart(abc, {
+        type: 'bar', // Vertical bar chart
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false // Hide the legend above the chart
+                },
+                tooltip: {
+                    enabled: true
+                },
+                datalabels: {
+                    display: false // Ensure data labels are not displayed
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    stacked: true
+                },
+                y: {
+                    stacked: true
+                }
+            }
+        }
+    });
+}
+
+
+function initializeDataTable(data) {
+    $('#transaction-table').DataTable({
+        data: data,
+        columns: [
+            { data: "transaction_id", title: "ID" },
+            { data: "customer_name", title: "Customer Name" },
+            { data: "discount", title: "Discount (%)" },
+            {
+                data: "total",
+                title: "Total",
+                render: function (data, type, row) {
+                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                },
+            },
+            {
+                data: "paid",
+                title: "Paid",
+                render: function (data, type, row) {
+                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                },
+            },
+            { data: "payment_method", title: "Payment Method" },
+            { data: "product_name", title: "Product Name" },
+            { data: "product_quantity", title: "Product Quantity" },
+            {
+                data: "created_at",
+                title: "Created At",
+                render: function (data, type, row) {
+                    var date = new Date(data);
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    return date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString();
+                },
+            }
+        ]
+    });
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+

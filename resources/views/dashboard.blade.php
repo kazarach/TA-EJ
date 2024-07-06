@@ -82,18 +82,30 @@
         </div>
     </div>
         <div class="row justify-content-left" id="row2">
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <a href="/selling/item">
                 <div class="card" id="card3">
                     <div class="card-body">
-                        <h5 class="card-title">Container 4</h5>
-                        <p class="card-text">Content for the second container.</p>
+                        <h5 class="card-title">Product Sold</h5>
+                        <canvas id="sellChart"></canvas>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <div class="card" id="card3">
+                    <div class="card-body">
+                        <h5 class="card-title">Container 5</h5>
+                        <div class="chart-container">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card" id="card3">
+                <div class="card" id="card4">
                     <div class="card-body">
-                        <h5 class="card-title">Container 5</h5>
+                        <h5 class="card-title">Container 6</h5>
                         <div class="chart-container">
                             <canvas id="myChart"></canvas>
                         </div>
@@ -222,6 +234,7 @@
 </div>
 
 </div> 
+
 
 <script src="/js/schedule-dbScript.js"></script>
 {{-- <script src="/js/projectScript.js"></script> --}}
