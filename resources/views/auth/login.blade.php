@@ -15,8 +15,6 @@
                 @csrf
                 <h1>Create Account</h1>
                 <div class="social-icons">
-                    <a href="{{ route('auth.google') }}" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
                 <input type="text" name="name" placeholder="Name" required>
@@ -30,11 +28,9 @@
                 @csrf
                 <h1>Sign In</h1>
                 <div class="social-icons">
-                    <a href="{{ route('auth.google') }}" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your email and password</span>
-                <input type="email" name="email" placeholder="Email" required>
+                <span>Use your username and password</span>
+                <input type="username" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
                 <button type="submit">Sign In</button>

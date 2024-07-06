@@ -49,80 +49,45 @@ use App\Http\Controllers\Auth\GoogleController;
 All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('');
-});
+// Route::middleware(['auth', 'user-access:user'])->group(function () {
+//     Route::get('/dashboard', [HomeController::class, 'index'])->name('');
+// });
 
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard');
-});
+// Route::middleware(['auth', 'user-access:admin'])->group(function () {
+//     Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard');
+// });
 
 /*------------------------------------------
 --------------------------------------------
 All Manager Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:manager'])->group(function () {
-    Route::get('/manager/dashboard', [HomeController::class, 'managerHome'])->name('manager.dashboard');
-});
+// Route::middleware(['auth', 'user-access:manager'])->group(function () {
+//     Route::get('/manager/dashboard', [HomeController::class, 'managerHome'])->name('manager.dashboard');
+// });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
+// Route::middleware(['auth', 'permission:manage permissions'])->group(function () {
+//     Route::get('/admin/manage-permissions', [AdminController::class, 'managePermissions'])->name('admin.manage-permissions');
+//     Route::post('/admin/update-permissions', [AdminController::class, 'updatePermissions'])->name('admin.update-permissions');
+// });
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin/dashboard', function () {
+        \Log::info('Admin accessing dashboard');
         return view('dashboard', [
             'title' => 'Dashboard'
         ]);
-    })->name('dashboard');
-
-    Route::get('/inventory', function () {
-        return view('inventory', [
-            'title' => 'Inventory Page'
-        ]);
-    });
-
-    Route::get('/input-output', function () {
-        return view('input', [
-            'title' => 'Input-Output Item'
-        ]);
-    });
-
-    Route::get('/distribution', function () {
-        return view('distribution', [
-            'title' => 'Distribution Page'
-        ]);
-    });
-
-    Route::get('/planning', [PlanningController::class, 'index']);
-
-    Route::get('/workforce', function () {
-        return view('workforce', [
-            'title' => 'Workforce Availability'
-        ]);
-    });
+    })->name('admin.dashboard');
 
     Route::get('/schedule', function () {
-        return view('schedule', [
-            'title' => 'Schedule Page'
-        ]);
+        return view('schedule', ['title' => 'Schedule Page']);
     });
-
-    Route::get('/machine', function () {
-        return view('machine', [
-            'title' => 'Machine Page'
-        ]);
-    });
-
-    Route::get('/wintest', function () {
-        return view('wintest', [
-            'title' => 'Win Test'
-        ]);
-    });
-
-
 
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::get('/material', [MaterialController::class, 'index']);
@@ -150,24 +115,67 @@ Route::middleware('auth')->group(function () {
     Route::get('/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
     Route::get('/rejectedproduct', [RejectedProductController::class, 'index']);
 
-    Route::get('/cash', function () {
-        return view('cash', [
-            'title' => 'Cash Page'
-        ]);
-    });
-
-    Route::get('/report', function () {
-        return view('report', [
-            'title' => 'Report Page'
-        ]);
-    });
-
     Route::post('/logout', function () {
         auth()->logout();
-
+        
         return redirect('/login');
     });
 });
+
+Route::middleware(['role:user'])->group(function () {
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/user/dashboard', function () {
+        return view('dashboard', [
+            'title' => 'Dashboard'
+        ]);
+    })->name('user.dashboard');
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+
+});
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard', [
+//             'title' => 'Dashboard'
+//         ]);
+//     })->name('dashboard');
+
+//     Route::get('/schedule', function () {
+//         return view('schedule', ['title' => 'Schedule Page']);
+//     });
+
+//     Route::get('/product', [ProductController::class, 'index'])->name('product');
+//     Route::get('/material', [MaterialController::class, 'index']);
+//     Route::get('/machine', [MachineController::class, 'index']);
+//     Route::get('/workforce', [WorkforceController::class, 'index']);
+//     Route::get('/project', [ProjectController::class, 'index']);
+//     Route::get('/customer', [CustomerController::class, 'index']);
+//     Route::get('/selling', [SellingController::class, 'index']);
+//     Route::get('/selling/transaction', [SellingTransactionController::class, 'index']);
+//     Route::get('/selling/item', [SellingItemController::class, 'index']);
+//     Route::get('/purchase', [PurchaseController::class, 'index']);
+//     Route::get('/purchase/transaction', [PurchaseTransactionController::class, 'index']);
+//     Route::get('/purchase/item', [PurchaseItemController::class, 'index']);
+//     Route::get('/order', [OrderController::class, 'index']);
+//     Route::get('/order/book', [OrderController::class, 'indexbook']);
+//     Route::get('/order/archive', [OrderController::class, 'indexarchive']);
+//     Route::get('/catalog', [CatalogController::class, 'index']);
+//     Route::get('/production', [ProductionController::class, 'index']);
+//     Route::get('/production/archive', [ProductionController::class, 'indexArchive']);
+//     Route::get('/returncustomer', [ReturnCustomerController::class, 'index']);
+//     Route::get('/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
+//     Route::get('/returnproduction', [ReturnProductionController::class, 'index']);
+//     Route::get('/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
+//     Route::get('/returnmaterial', [ReturnMaterialController::class, 'index']);
+//     Route::get('/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
+//     Route::get('/rejectedproduct', [RejectedProductController::class, 'index']);
+
+//     Route::post('/logout', function () {
+//         auth()->logout();
+        
+//         return redirect('/login');
+//     });
+// });
 
 Route::get('/', function () {
     return view('home', [
@@ -181,12 +189,6 @@ Route::get('/boot', function () {
     ]);
 });
 
-Route::get('/edit', function () {
-    return view('insertproduction', [
-        'title' => 'Edit Page'
-    ]);
-});
-
 Route::get('/juan', function () {
     return view('juan', [
         'title' => 'Schedule'
@@ -194,11 +196,7 @@ Route::get('/juan', function () {
 });
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-// Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-// Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 
 Auth::routes();
-
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

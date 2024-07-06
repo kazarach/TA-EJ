@@ -7,12 +7,14 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     public function __construct()
     {
@@ -24,21 +26,28 @@ class LoginController extends Controller
         $input = $request->all();
 
         $this->validate($request, [
-            'email' => 'required|email',
+            'username' => 'required|string',
             'password' => 'required',
         ]);
 
-        if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
-            if (auth()->user()->type == 'admin') {
+        if (auth()->attempt(['username' => $input['username'], 'password' => $input['password']])) {
+                        /** @var \App\Models\User $user */
+            $user = Auth::user();
+
+            // Redirect based on user role
+            if ($user->hasAnyRole('admin')) {
                 return redirect()->route('admin.dashboard');
-            } else if (auth()->user()->type == 'manager') {
+            } elseif ($user->hasAnyRole('manager')) {
                 return redirect()->route('manager.dashboard');
+            } elseif ($user->hasAnyRole('user')) {
+                return redirect()->route('user.dashboard');
             } else {
-                return redirect()->route('product'); // Changed to 'production'
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Unauthorized access.');
             }
         } else {
             return redirect()->route('login')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+                ->with('error', 'Username And Password Are Wrong.');
         }
     }
 }

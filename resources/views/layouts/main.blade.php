@@ -53,8 +53,18 @@
 
 <body>
 
-  @include('partials/sidebar')
 
+  @if(Auth::user()->hasAnyRole(['admin']))
+      @include('partials.sidebar-admin')
+  @elseif(Auth::user()->hasAnyRole(['user']))
+      @include('partials.sidebar-user')
+  @elseif(Auth::user()->hasAnyRole(['production']))
+      @include('partials.sidebar-production')
+  @elseif(Auth::user()->hasAnyRole(['inventory']))
+      @include('partials.sidebar-inventory')
+  @elseif(Auth::user()->hasAnyRole(['marketing']))
+      @include('partials.sidebar-marketing')
+  @endif
 
   @yield('container')
   <script src="/js/script.js"></script>
