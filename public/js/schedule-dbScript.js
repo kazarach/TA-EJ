@@ -31,6 +31,7 @@ $(document).ready(function () {
 
                         // Push event data to the events array
                         events.push({
+                            id: project.id,
                             title: project.name,
                             start: project.start_date,
                             end: project.end_date,
@@ -44,8 +45,6 @@ $(document).ready(function () {
             });
         },
         dayClick: function (date) {
-            $("#eventStart").val(date.format("YYYY-MM-DD"));
-            $("#eventEnd").val(date.format("YYYY-MM-DD"));
             $("#addEventModal").modal("show");
 
             // Filter the DataTable based on the clicked date
@@ -58,12 +57,32 @@ $(document).ready(function () {
                 var projectName = filteredData[0].projects.name;
                 $("#eventTitle").text(projectName);
             } else {
-                $("#eventTitle").text("");
+                $("#eventTitle").text("No data");
             }
+        },
+        eventClick: function (calEvent) {
+            // Get the event's ID
+            var projectId = calEvent.id;
+
+            projectTable.columns().search(''); // Clear any existing filters
+            projectTable.column(0).search(projectId).draw(); // Assuming column 0 is the project ID
+
+            // Get the filtered data and populate the project name in the form
+            var filteredData = projectTable.rows({ filter: 'applied' }).data();
+            if (filteredData.length > 0) {
+                var projectName = filteredData[0].name;
+                $("#projectTitle").text(projectName);
+            } else {
+                $("#projectTitle").text("");
+            }
+
+            // Show the modal
+            $("#projectModal").modal("show");
         },
     });
 });
 
+// populate production
 var productionTable;
 
 $(document).ready(function () {
@@ -107,6 +126,67 @@ $(document).ready(function () {
     });
 });
 
+// populate project
+$(document).ready(function () {
+    // Initialize the DataTable
+    projectTable = $("#projects-table").DataTable({
+        ajax: {
+            url: "/api/project/", // Change this to your actual endpoint
+            type: "GET",
+            dataSrc: function (json) {
+                console.log(json.projects);
+                // Assuming your JSON structure, you may need to adjust the dataSrc function
+                return json.projects;
+            },
+        },
+        columns: [
+            { data: "id" },
+            { data: "name" },
+            { data: "start_date" },
+            { data: "end_date" },
+            { data: "projectstatus.name" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    var productsHtml = "<ul>"; // Start unordered list
+                    data.products.forEach(function (product) {
+                        productsHtml +=
+                            "<li>" +
+                            product.name +
+                            " (" +
+                            product.size.name +
+                            ")"+
+                            " (" +
+                            product.pivot.quantity +
+                            ")</li>"; // List item for each product
+                    });
+                    productsHtml += "</ul>"; // End unordered list
+                    return productsHtml;
+                },
+            },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    var productsHtml = "<ul>"; // Start unordered list
+                    data.products.forEach(function (product) {
+                        productsHtml +=
+                            "<li>" +
+                            product.name + 
+                            " (" +
+                            product.size.name +
+                            ")"+
+                            " (" +
+                            product.pivot.producted +
+                            ")</li>"; // List item for each product
+                    });
+                    productsHtml += "</ul>"; // End unordered list
+                    return productsHtml;
+                },
+            },
+        ],
+    });
+});
+
 // Change calendar month based on dropdown selection
 $("#monthSelect").change(function () {
     var selectedMonth = $(this).val();
@@ -116,39 +196,6 @@ $("#monthSelect").change(function () {
     $("#calendar").fullCalendar("gotoDate", date);
 });
 
-// Initialize datepicker
-$(".datepicker").datepicker({
-    dateFormat: "yy-mm-dd",
-});
-
-// Show modal on button click
-// $("#addNewButton").click(function () {
-//     $("#addEventModal").modal("show");
-// });
-
-// Save event
-$('#saveEventButton').click(function() {
-    var eventTitle = $('#eventTitle').val();
-    var eventStart = $('#eventStart').val();
-    var eventEnd = $('#eventEnd').val();
-    var eventColor = $('#eventColor').val();
-    var eventTextColor = $('#eventTextColor').val();
-
-if(eventTitle && eventStart) {
-    $('#calendar').fullCalendar('renderEvent', {
-        title: eventTitle,
-        start: eventStart,
-        end: eventEnd,
-        color: eventColor,
-        textColor: eventTextColor
-    }, true); // stick the event
-
-    $('#addEventModal').modal('hide');
-    $('#addEventForm')[0].reset();
-} else {
-        alert("Please enter the required details.");
-}
-});
 
 
 // circle progres

@@ -12,13 +12,9 @@
             <div class="dropdown-top">
                 <a href="/product">Product</a>
                 <a href="">|</a>
+                <a href="/rejectedproduct">Rejected Product</a>
+                <a href="">|</a>
                 <a href="/material" class="active">Material</a>
-                <a href="">|</a>
-                <a href="/purchase">Purchasing Material</a>
-                <a href="">|</a>
-                <a href="/purchase/transaction">Purchase Transaction</a>
-                <a href="">|</a>
-                <a href="/purchase/item">Purchased Material</a>
             </div>
             <div class="user-info">
                 <img src="image2.jpg" alt="">

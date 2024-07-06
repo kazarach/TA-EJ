@@ -55,7 +55,7 @@
 
 
   @if(Auth::user()->hasAnyRole(['admin']))
-      @include('partials.sidebar-admin')
+      @include('partials/sidebar-admin')
   @elseif(Auth::user()->hasAnyRole(['user']))
       @include('partials.sidebar-user')
   @elseif(Auth::user()->hasAnyRole(['production']))
