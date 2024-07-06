@@ -20,18 +20,12 @@ class CheckRole
         }
     
         $user = Auth::user();
-    
-        \Log::info('User ID: ' . $user->id);
-        \Log::info('User Roles: ' . $user->roles()->pluck('name')->toJson());
-        \Log::info('Roles being checked: ' . implode(', ', $roles));
-    
+
         if ($user->hasAnyRole($roles)) {
-            \Log::info('User has role, proceeding to next middleware/route.');
             return $next($request);
         }
     
-        \Log::info('User does not have role, redirecting to production.');
-        return redirect('production')->with('error', 'You do not have access to this page.');
+        return redirect('dashboard')->with('error', 'You do not have access to this page.');
     }
     
     

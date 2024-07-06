@@ -177,6 +177,12 @@ Route::middleware(['role:user'])->group(function () {
 //     });
 // });
 
+Route::get('/dashboard', function () {
+    return view('dashboard', [
+        'title' => 'Dashboard'
+    ]);
+})->name('dashboard');
+
 Route::get('/', function () {
     return view('home', [
         'title' => 'Home Page'
