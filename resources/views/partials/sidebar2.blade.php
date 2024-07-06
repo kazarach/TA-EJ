@@ -132,19 +132,19 @@
                       <li class="nav-link">
                         <a href="/purchase">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Purchase</span>
+                          <span class="text nav-text" id="submenutext">Purchasing Material</span>
                         </a>
                       </li>
                       <li class="nav-link">
                         <a href="/purchase/transaction">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Purchase Transaction</span>
+                          <span class="text nav-text" id="submenutext">Purchasing Material Transaction</span>
                         </a>
                       </li>
                       <li class="nav-link">
                         <a href="/purchase/item">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Purchase Item</span>
+                          <span class="text nav-text" id="submenutext">Purchased Material</span>
                         </a>
                       </li>
                   </ul>
@@ -205,9 +205,21 @@
                         <span class="text nav-text" id="submenutext">Return Production Archive</span>
                       </a>
                     </li>
+                    <li class="nav-link">
+                      <a href="/returnmaterial">
+                        <i class='bx bx-book-content icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Return Material</span>
+                      </a>
+                    </li>
+                    <li class="nav-link">
+                      <a href="/returnmaterial/archive">
+                        <i class='bx bx-book-content icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Return Material Archive</span>
+                      </a>
+                    </li>
                 </ul>
               </li>
-              <li class="nav-link dropdown" id="cash-link">
+              {{-- <li class="nav-link dropdown" id="cash-link">
                 <a href="/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-alt icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Cash Book ></span>
@@ -226,7 +238,7 @@
                       </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
           </ul>
       </div>
       <div class="bottom-content">

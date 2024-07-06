@@ -143,7 +143,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="row g-3 mb-3">
+                    {{-- <div class="row g-3 mb-3">
                         <div class="col">
                             <label for="eventColor">Event Color</label>
                             <input type="color" class="form-control" id="eventColor" value="#ff9f89">
@@ -152,7 +152,7 @@
                             <label for="eventTextColor">Text Color</label>
                             <input type="color" class="form-control" id="eventTextColor" value="#000000">
                         </div>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
             <div class="modal-footer">

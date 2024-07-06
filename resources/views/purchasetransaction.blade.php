@@ -14,11 +14,11 @@
             <a href="">|</a>
             <a href="/material">Material</a>
             <a href="">|</a>
-            <a href="/purchase">Purchase</a>
+            <a href="/purchase">Purchasing Material</a>
             <a href="">|</a>
-            <a href="/purchase/transaction" class="active">Transaction</a>
+            <a href="/purchase/transaction" class="active">Purchase Transaction</a>
             <a href="">|</a>
-            <a href="/purchase/item">Item</a>
+            <a href="/purchase/item">Purchased Material</a>
         </div>
         <div class="user-info">
             <img src="../image2.jpg" alt="">

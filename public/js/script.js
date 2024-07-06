@@ -77,6 +77,8 @@ const pathToLinkMap = {
     "/returncustomer/archive": "return",
     "/returnproduction": "return",
     "/returnproduction/archive": "return",
+    "/returnmaterial": "return",
+    "/returnmaterial/archive": "return",
 
 };
 

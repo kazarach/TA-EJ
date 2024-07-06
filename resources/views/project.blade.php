@@ -143,7 +143,7 @@
 
 {{-- Tables --}}
 <div class="home-tbl">
-        <table id="projects-table" class="table table-striped table-hover" style="width:100%">
+        <table id="projects-table" class="table table-striped table-hover table-grid" style="width:100%">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -162,93 +162,6 @@
     </div>
 
 </div>
-
-<style>
-
-.dropdown-button {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    background-color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-    outline: none;
-}
-
-.dropdown-menu {
-    position: absolute;
-    width: 300px; /* Adjust as needed */
-    border: 1px solid #ccc;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 10px;
-    border-radius: 5px;
-    display: none; /* Initially hidden */
-    z-index: 1000;
-}
-
-.search-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-.contact-list label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border-radius: 4px;
-    border: none;
-    background-color: #f1f1f1;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ddd;
-}
-
-</style>
-
-<script>
-    function toggleDropdown() {
-    var dropdown = document.querySelector('.dropdown-menu');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-function closeDropdown() {
-    document.querySelector('.dropdown-menu').style.display = 'none';
-}
-
-function clearSearch() {
-    document.getElementById('searchInput').value = '';
-    filterContacts();
-    document.getElementById('dropdownButton').innerHTML = 'Contacts: All'; // Reset button label
-}
-
-function filterContacts() {
-    var input = document.getElementById('searchInput');
-    var filter = input.value.toUpperCase();
-    var labels = document.querySelectorAll('.contact-list label');
-
-    labels.forEach(label => {
-        var txtValue = label.textContent || label.innerText;
-        label.style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-    });
-}
-
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    var value = this.value;
-    document.getElementById('dropdownButton').innerHTML = value ? `Contacts: ${value}` : 'Contacts: All';
-});
-
-
-</script>
 
 <script src="/js/projectScript.js"></script>
 

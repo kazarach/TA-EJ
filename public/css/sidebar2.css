@@ -605,6 +605,14 @@ body.dark .breadcrumbs-all a {
     font-size: 12px;
 }
 
+.table td, .table th{
+    border-right: 1px solid #ddd;
+}
+
+.table td:last-child, .table th:last-child{
+    border-right: none;
+}
+
 .table tr {
     cursor: pointer;
 }
@@ -813,6 +821,11 @@ body.dark .breadcrumbs-all a {
     background-color: var(--primary-color);
 }
 
+.fc-content:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
 .form-group-start {
     margin-right: 10px;
 }
@@ -954,6 +967,8 @@ body.dark .breadcrumbs-all a {
         width: 15rem;
     }
 }
+
+
 
 /* laptop */
 @media (max-width: 1920px) {
