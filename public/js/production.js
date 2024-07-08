@@ -33,7 +33,11 @@ $(document).ready(function () {
             'Authorization': 'Bearer ' + token
         }
     });
-    
+    $("#production-table tbody").on("click", "tr", function () {
+        var data = productionTable.row(this).data();
+        console.log(data);
+        fetchData(data);
+    });
     $("#saveChanges").on("click", function () {
         closeModal();
         selectedModal();
@@ -55,7 +59,7 @@ $(document).ready(function () {
 
 function fetchData(Data) {
     console.log(Data);
-    document.getElementById("ID").value = "ID: " + Data.id;
+    // document.getElementById("ID").value = "ID: " + Data.id;
     document.getElementById("productName").value = Data.name;
     $('#productType').val(Data.type_id).trigger('change');
     $('#productCategory').val(Data.category_id).trigger('change');
@@ -89,6 +93,20 @@ function fetchData(Data) {
             workforce.pivot.quantity
         );
     });
+    $("#machines-table .machine-checkbox").each(function() {
+        var machineId = parseInt($(this).val(), 10);
+        var isChecked = selectedMachines.some(machine => machine.id === machineId);
+        $(this).prop('checked', isChecked);
+    });
+
+    // Pre-check checkboxes in the workforce modal
+    $("#workforces-table .workforce-checkbox").each(function() {
+        var workforceId = parseInt($(this).val(), 10);
+        var isChecked = selectedWorkforces.some(workforce => workforce.id === workforceId);
+        $(this).prop('checked', isChecked);
+    });
+
+    console.log()
 }
 
 function clearForm() {
@@ -126,6 +144,7 @@ function createItem() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })
@@ -149,9 +168,6 @@ function createItem() {
 
 $(document).ready(function () {
     console.log("AHA");
-    var selectedMachines = [];
-    var selectedWorkforces = [];
-
     var machineTable = $("#machines-table").DataTable({
         ajax: {
             url: "/api/machine/",
@@ -164,18 +180,8 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { 
-                data: "machinestatus",
-                render: function (data, type, row) {
-                    return data.name; // Display name
-                }
-            },
-            { 
-                data: "machineuse",
-                render: function (data, type, row) {
-                    return data.name; // Display name
-                }
-            },
+            { data: "machinestatus.name" },
+            { data: "machineuse.name" },
             {
                 data: null,
                 render: function (data, type, row) {
@@ -184,6 +190,7 @@ $(document).ready(function () {
             },
         ],
     });
+
     var workforceTable = $("#workforces-table").DataTable({
         ajax: {
             url: "/api/workforce/",
@@ -196,18 +203,8 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { 
-                data: "workforcestatus",
-                render: function (data, type, row) {
-                    return data.name; // Display name
-                }
-            },
-            { 
-                data: "workforceposition",
-                render: function (data, type, row) {
-                    return data.name; // Display name
-                }
-            },
+            { data: "workforcestatus.name" },
+            { data: "workforceposition.name" },
             {
                 data: null,
                 render: function (data, type, row) {
@@ -247,6 +244,7 @@ $(document).ready(function () {
         
         console.log(selectedWorkforces);
     });
+
     $(document).on("change", ".machine-checkbox", function () {
         var row = $(this).closest("tr");
         var id = parseInt(row.find("td:eq(0)").text(), 10);
@@ -280,10 +278,11 @@ $(document).ready(function () {
 
     $("#add-button").on("click", function(event) {
         event.preventDefault();
-
+        console.log(productionList);
+    
         var product_id = $("#productName").val();
         var selectedProduct = $("#productName option:selected");
-
+    
         var productInfo = {
             id: product_id,
             name: selectedProduct.data('name'),
@@ -292,10 +291,10 @@ $(document).ready(function () {
             color: selectedProduct.data('color'),
             sign: selectedProduct.data('sign')
         };
-
+    
         var project_id = $("#projectName").val();
         var selectedProject = $("#projectName option:selected");
-
+    
         var projectInfo = {
             id: project_id,
             name: selectedProject.data('name'),
@@ -303,21 +302,36 @@ $(document).ready(function () {
         };
         var quantity = parseInt($("#quantity").val());
         var productionDate = $("#productionDate").val();
-
+    
         if (!product_id || !project_id || isNaN(quantity) || !productionDate) {
             alert("All fields must be filled out.");
             return;
         }
-        var existingItem = productionList.find(item => item.product_id === product_id && item.project_id === project_id && item.production_date === productionDate
-        );
-
+        
+        var existingItem = productionList.find(item => item.product_id === product_id && item.project_id === project_id && item.production_date === productionDate);
+    
         if (existingItem) {
-            // If the item exists, update the quantity
+            // If the item exists, update the quantity and merge machines and workforces
             existingItem.quantity += quantity;
-            console.log(existingItem)
+            
+            // Merge machines without duplicating
+            selectedMachines.forEach(machine => {
+                if (!existingItem.machines.some(existingMachine => existingMachine.id === machine.id)) {
+                    existingItem.machines.push(machine);
+                }
+            });
+    
+            // Merge workforces without duplicating
+            selectedWorkforces.forEach(workforce => {
+                if (!existingItem.workforces.some(existingWorkforce => existingWorkforce.id === workforce.id)) {
+                    existingItem.workforces.push(workforce);
+                }
+            });
+    
             updateTableRow(existingItem);
         } else {
             // If the item does not exist, create a new entry
+            console.log(productionList);
             var data = {
                 id: counter++,  // Assuming you want to increment the id
                 quantity: quantity,
@@ -331,14 +345,17 @@ $(document).ready(function () {
                 project_name: projectInfo.name,
                 project_status: projectInfo.status,
                 production_date: productionDate,
-                machines: selectedMachines,
-                workforces: selectedWorkforces
+                machines: [...selectedMachines],
+                workforces: [...selectedWorkforces]
             };
+            console.log(data);
+    
             productionList.push(data);
             populateItems(productionList);
             console.log(productionList);
         }
     });
+    
     
 });
 

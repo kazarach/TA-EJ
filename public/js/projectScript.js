@@ -343,6 +343,7 @@ function createProject() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(projectData),
         })
@@ -417,6 +418,7 @@ function updateProject() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(updatedProjectData),
             })
@@ -466,6 +468,7 @@ function updateProjectProduct(id) {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })
@@ -494,6 +497,10 @@ function deleteProject() {
             console.log(selectedProjectId);
             fetch(`/api/project/${selectedProjectId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
                 .then((response) => {
                     if (!response.ok) {
@@ -628,14 +635,12 @@ function removeFromCart(button) {
         return; // Exit the function if the row is not found
     }
 
-    var materialId = row.cells[0].innerText;
-
+    var materialId = parseInt(row.cells[0].innerText);
     // Remove the material from selectedProjects array
     selectedProjects = selectedProjects.filter(function (item) {
         return item.id !== materialId;
     });
-
-    // Remove the row from the selected materials table
+    console.log(selectedProjects);
     row.remove();
 }
 
@@ -645,11 +650,13 @@ function updateQuantity(input) {
         return;
     }
     console.log(row);
-    var materialId = row.cells[0].innerText;
+    var materialId = parseInt(row.cells[0].innerText);
     var newQuantity = parseInt(input.value);
     console.log(newQuantity);
     // Find the material in selectedProjects array and update its quantity
     var existingMaterial = selectedProjects.find(function (item) {
+        console.log(materialId);
+        console.log(item.id);
         return item.id === materialId;
     });
 

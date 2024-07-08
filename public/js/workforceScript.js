@@ -164,6 +164,7 @@ function createWorkforce() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(workforceData),
         })
@@ -216,6 +217,7 @@ function updateWorkforce() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(workforceData),
             })
@@ -245,6 +247,10 @@ function deleteWorkforce() {
         if (selectedWorkforceId) {
             fetch(`/api/workforce/${selectedWorkforceId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
             .then((response) => {
                 if (!response.ok) {

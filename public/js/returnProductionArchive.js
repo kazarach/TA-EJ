@@ -160,6 +160,7 @@ function updateData() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(Data),
             })
@@ -210,6 +211,7 @@ function createItem() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })
@@ -236,6 +238,10 @@ function deleteData() {
         if (selectedId) {
             fetch(`/api/returnproduction/${selectedId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
                 .then((response) => {
                     if (!response.ok) {

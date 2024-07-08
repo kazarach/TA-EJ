@@ -325,6 +325,7 @@ function createProduct() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(productData),
         })
@@ -435,6 +436,7 @@ function updateProduct() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(updatedProductData),
             })
@@ -482,6 +484,7 @@ function updateProductMaterial(id) {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })
@@ -509,6 +512,10 @@ function deleteProduct() {
         if (selectedProductId) {
             fetch(`/api/products/${selectedProductId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
                 .then((response) => {
                     if (!response.ok) {

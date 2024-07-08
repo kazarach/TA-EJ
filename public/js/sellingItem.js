@@ -290,6 +290,7 @@ function updateData() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(Data),
             })
@@ -319,6 +320,10 @@ function deleteData() {
         if (selectedId) {
             fetch(`/api/archive/selling/transaction/${selectedId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
             .then((response) => {
                 if (!response.ok) {
@@ -354,6 +359,7 @@ function updateItem(id) {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })

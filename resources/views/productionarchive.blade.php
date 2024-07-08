@@ -64,33 +64,16 @@
   {{---Modal---}}
   <div class="modal fade mb-3" id="machineModal" tabindex="-1" aria-labelledby="machineModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
-          <div class="modal-content" id="modal-sell">
+          <div class="modal-content" id="modal">
               <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="machineModalLabel">Choose Machine</h1>
+                  <h1 class="modal-title fs-5" id="machineModalLabel">Choose Machine and Workforce</h1>
                   <button type="button" onclick="revertModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                   <div class="d-flex">
                       <!-- Selected Materials Section -->
                       <div class="flex-fill me-3">
-                          <h3>Selected Machines</h3>
-                          <table id="selectedItemsTable" class="table">
-                              <thead>
-                                  <tr>
-                                  <th scope="col">No</th>
-                                  <th scope="col">Name</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Use</th>
-                                  <th scope="col">Action</th>
-                                  </tr>
-                              </thead>
-                              <tbody id="selectedItemsBody">
-                              </tbody>
-                          </table>
-                      </div>
-                      <!-- Materials Table Section -->
-                      <div class="flex-fill">
-                          <h3>Available Machines</h3>
+                          <h3>Select Machines</h3>
                           <table id="machines-table" class="table">
                               <thead>
                                   <tr>
@@ -106,11 +89,28 @@
                               </tbody>
                           </table>
                       </div>
+                      <div class="flex-fill">
+                          <h3>Select Workforce</h3>
+                          <table id="workforces-table" class="table">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">ID</th>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col">Position</th>
+                                      <th scope="col">Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+  
+                              </tbody>
+                          </table>
+                      </div>
                   </div>
               </div>
               <div class="modal-footer">
                   <button type="button" onclick="revertModal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" id="saveChangesMachine" class="btn btn-primary">Save changes</button>
+                  <button type="button" id="saveChanges" class="btn btn-primary">Save changes</button>
               </div>
           </div>
       </div>

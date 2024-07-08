@@ -184,6 +184,7 @@ function createMaterial() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(materialData),
         })
@@ -259,6 +260,7 @@ function updateMaterial() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(materialData),
             })
@@ -288,6 +290,10 @@ function deleteMaterial() {
         if (selectedMaterialId) {
             fetch(`/api/materials/${selectedMaterialId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
                 .then((response) => {
                     if (!response.ok) {

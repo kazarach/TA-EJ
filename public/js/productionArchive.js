@@ -6,9 +6,8 @@ var tableWorkforce;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
 
-
 $(document).ready(function () {
-    
+
     if (!token) {
         window.location.href = '/login';
         return;
@@ -32,7 +31,7 @@ $(document).ready(function () {
             'Authorization': 'Bearer ' + token
         }
     });
-    
+
     console.log("AHA");
     var productionTable = $("#production-table").DataTable({
         ajax: {
@@ -65,7 +64,6 @@ $(document).ready(function () {
                 }
             },
             { data: "production_date" },
-
         ],
     });
 
@@ -142,6 +140,18 @@ function fetchData(Data) {
             workforce.workforceposition.name,
         );
     });
+    $("#machines-table .machine-checkbox").each(function() {
+        var machineId = parseInt($(this).val(), 10);
+        var isChecked = selectedMachines.some(machine => machine.id === machineId);
+        $(this).prop('checked', isChecked);
+    });
+
+    // Pre-check checkboxes in the workforce modal
+    $("#workforces-table .workforce-checkbox").each(function() {
+        var workforceId = parseInt($(this).val(), 10);
+        var isChecked = selectedWorkforces.some(workforce => workforce.id === workforceId);
+        $(this).prop('checked', isChecked);
+    });
 }
 
 function clearForm() {
@@ -195,6 +205,7 @@ function updateData() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(Data),
             })
@@ -245,6 +256,7 @@ function createItem() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })
@@ -271,6 +283,10 @@ function deleteData() {
         if (selectedId) {
             fetch(`/api/productions/${selectedId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
             })
                 .then((response) => {
                     if (!response.ok) {
@@ -312,19 +328,12 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return `<button type="button" id="addItem" class="btn btn-primary" onclick="addToMachineCart(this)">Add</button>`;
+                    return `<input type="checkbox" class="machine-checkbox" value="${row.id}" />`;
                 },
             },
         ],
     });
 
-    $("#pilih-machine").on("click", function () {
-        populateMachine(selectedMachines);
-    });
-});
-
-$(document).ready(function () {
-    console.log("AHA");
     var workforceTable = $("#workforces-table").DataTable({
         ajax: {
             url: "/api/workforce/",
@@ -342,14 +351,77 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return `<button type="button" id="addItem" class="btn btn-primary" onclick="addToWorkforceCart(this)">Add</button>`;
+                    return `<input type="checkbox" class="workforce-checkbox" value="${row.id}" />`;
                 },
             },
         ],
     });
 
-    $("#pilih-workforce").on("click", function () {
+    $("#pilih-machine").on("click", function () {
         populateMachine(selectedMachines);
+        populateWorkforce(selectedWorkforces);
+    });
+
+    $(document).on("change", ".workforce-checkbox", function () {
+        var row = $(this).closest("tr");
+        var id = parseInt(row.find("td:eq(0)").text(), 10);
+        var name = row.find("td:eq(1)").text();
+        var status = row.find("td:eq(2)").text();
+        var position = row.find("td:eq(3)").text();
+
+        var rowData = workforceTable.row(row).data();
+        var statusId = rowData.workforcestatus.id;
+        var positionId = rowData.workforceposition.id;
+
+        var exists = selectedWorkforces.some(function(workforce) {
+            return workforce.id === id;
+        });
+
+        if (this.checked && !exists) {
+            selectedWorkforces.push({
+                id: id,
+                name: name,
+                status_id: statusId,
+                position_id: positionId,
+            });
+        } else if (!this.checked && exists) {
+            selectedWorkforces = selectedWorkforces.filter(function(workforce) {
+                return workforce.id !== id;
+            });
+        }
+        
+        console.log(selectedWorkforces);
+    });
+
+    $(document).on("change", ".machine-checkbox", function () {
+        var row = $(this).closest("tr");
+        var id = parseInt(row.find("td:eq(0)").text(), 10);
+        var name = row.find("td:eq(1)").text();
+        var status = row.find("td:eq(2)").text();
+        var position = row.find("td:eq(3)").text();
+
+        var rowData = machineTable.row(row).data();
+        var statusId = rowData.machinestatus.id;
+        var useId = rowData.machineuse.id;
+
+        var exists = selectedMachines.some(function(machine) {
+            return machine.id === id;
+        });
+
+        if (this.checked && !exists) {
+            selectedMachines.push({
+                id: id,
+                name: name,
+                status_id: statusId,
+                use_id: useId,
+            });
+        } else if (!this.checked && exists) {
+            selectedMachines = selectedMachines.filter(function(machine) {
+                return machine.id !== id;
+            });
+        }
+        
+        console.log(selectedMachines);
     });
 });
 
@@ -474,7 +546,7 @@ function removeFromCartMachine(button) {
     if (!row) {
         return;
     }
-    var itemId = row.cells[0].innerText;
+    var itemId = parseInt(row.cells[0].innerText);
 
     selectedMachines = selectedMachines.filter(function (item) {
         return item.id !== itemId;
@@ -498,7 +570,6 @@ function removeFromCartWorkforce(button) {
     row.remove();
     console.log(selectedWorkforces);
 }
-
 
 function addToSelectedMachines(
     id,
