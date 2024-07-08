@@ -24,14 +24,9 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     var events = [];
-                    console.log(response);
-
                     var projects = response.projects;
 
                     $.each(projects, function (index, project) {
-                        console.log(project);
-                        console.log(project.name);
-
                         events.push({
                             id: project.id,
                             title: project.name,
@@ -61,13 +56,11 @@ $(document).ready(function () {
             }
         },
         eventClick: function (calEvent) {
-            // Get the event's ID
             var projectId = calEvent.id;
 
             projectTable.columns().search(''); // Clear any existing filters
             projectTable.column(0).search(projectId).draw(); // Assuming column 0 is the project ID
 
-            // Get the filtered data and populate the project name in the form
             var filteredData = projectTable.rows({ filter: 'applied' }).data();
             if (filteredData.length > 0) {
                 var projectName = filteredData[0].name;
@@ -76,23 +69,20 @@ $(document).ready(function () {
                 $("#projectTitle").text("");
             }
 
-            // Show the modal
             $("#projectModal").modal("show");
         },
     });
-});
 
-// populate production
-var productionTable;
-
-$(document).ready(function () {
+    // Populate production table
     productionTable = $("#production-table").DataTable({
         ajax: {
             url: "/api/productions/",
             type: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             dataSrc: function (json) {
-                console.log(json);
-                return json.productions
+                return json.productions;
             },
         },
         columns: [
@@ -118,24 +108,21 @@ $(document).ready(function () {
             },
             { data: "production_date" },
         ],
-        initComplete: function(settings, json) {
-            // Remove the header row
+        initComplete: function (settings, json) {
             $('#production-table_length').remove();
             $('#production-table_filter').remove();
         }
     });
-});
 
-// populate project
-$(document).ready(function () {
-    // Initialize the DataTable
+    // Populate project table
     projectTable = $("#projects-table").DataTable({
         ajax: {
-            url: "/api/project/", // Change this to your actual endpoint
+            url: "/api/project/",
             type: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             dataSrc: function (json) {
-                console.log(json.projects);
-                // Assuming your JSON structure, you may need to adjust the dataSrc function
                 return json.projects;
             },
         },
@@ -148,7 +135,7 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    var productsHtml = "<ul>"; // Start unordered list
+                    var productsHtml = "<ul>";
                     data.products.forEach(function (product) {
                         productsHtml +=
                             "<li>" +
@@ -158,16 +145,16 @@ $(document).ready(function () {
                             ")"+
                             " (" +
                             product.pivot.quantity +
-                            ")</li>"; // List item for each product
+                            ")</li>";
                     });
-                    productsHtml += "</ul>"; // End unordered list
+                    productsHtml += "</ul>";
                     return productsHtml;
                 },
             },
             {
                 data: null,
                 render: function (data, type, row) {
-                    var productsHtml = "<ul>"; // Start unordered list
+                    var productsHtml = "<ul>";
                     data.products.forEach(function (product) {
                         productsHtml +=
                             "<li>" +
@@ -177,83 +164,81 @@ $(document).ready(function () {
                             ")"+
                             " (" +
                             product.pivot.producted +
-                            ")</li>"; // List item for each product
+                            ")</li>";
                     });
-                    productsHtml += "</ul>"; // End unordered list
+                    productsHtml += "</ul>";
                     return productsHtml;
                 },
             },
         ],
     });
-});
 
-// Change calendar month based on dropdown selection
-$("#monthSelect").change(function () {
-    var selectedMonth = $(this).val();
-    var currentYear = new Date().getFullYear();
-    var date = new Date(currentYear, selectedMonth, 1);
+    // Change calendar month based on dropdown selection
+    $("#monthSelect").change(function () {
+        var selectedMonth = $(this).val();
+        var currentYear = new Date().getFullYear();
+        var date = new Date(currentYear, selectedMonth, 1);
 
-    $("#calendar").fullCalendar("gotoDate", date);
-});
+        $("#calendar").fullCalendar("gotoDate", date);
+    });
 
-
-
-// circle progres
-const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Modeling', 'Cutting', 'Sewing', 'Finishing', 'Packing'],
-                datasets: [{
-                    label: 'Expenses',
-                    data: [300, 50, 100, 150],
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)'
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right'
-                    }
+    // Circle progress
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Modeling', 'Cutting', 'Sewing', 'Finishing', 'Packing'],
+            datasets: [{
+                label: 'Expenses',
+                data: [300, 50, 100, 150],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'right'
                 }
             }
-        });
+        }
+    });
 
-// selling chart
-$(document).ready(function () {
+    // Selling chart
     fetchChartDataAndPopulateTable();
 });
 
 function fetchChartDataAndPopulateTable() {
+    const token = localStorage.getItem('access_token');
+
     $.ajax({
         url: "/api/archive/selling/transaction",
         type: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
-            // Initialize the months array with all months from January to December
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var monthlySales = {};
 
-            // Initialize monthlySales object with all months
             months.forEach(function (month) {
                 monthlySales[month] = {};
             });
 
-            // Process the data to extract total sales per product per month
             data.transactions.forEach(function (transaction) {
                 var date = new Date(transaction.created_at);
                 var month = date.toLocaleString('default', { month: 'long' });
@@ -266,7 +251,6 @@ function fetchChartDataAndPopulateTable() {
                 });
             });
 
-            // Prepare the product names set
             var productNames = new Set();
             months.forEach(month => {
                 Object.keys(monthlySales[month]).forEach(productName => {
@@ -284,10 +268,8 @@ function fetchChartDataAndPopulateTable() {
                 };
             });
 
-            // Update the chart with the fetched data
             updateChart(months, datasets);
 
-            // Prepare transformed data for the table
             var transformedData = [];
             data.transactions.forEach(function (transaction) {
                 transaction.products.forEach(function (product) {
@@ -305,7 +287,6 @@ function fetchChartDataAndPopulateTable() {
                 });
             });
 
-            // Initialize the DataTable with the transformed data
             initializeDataTable(transformedData);
         },
         error: function (error) {
@@ -317,7 +298,7 @@ function fetchChartDataAndPopulateTable() {
 function updateChart(labels, datasets) {
     var abc = document.getElementById('sellChart').getContext('2d');
     var sellChart = new Chart(abc, {
-        type: 'bar', // Vertical bar chart
+        type: 'bar',
         data: {
             labels: labels,
             datasets: datasets
@@ -325,13 +306,13 @@ function updateChart(labels, datasets) {
         options: {
             plugins: {
                 legend: {
-                    display: false // Hide the legend above the chart
+                    display: false
                 },
                 tooltip: {
                     enabled: true
                 },
                 datalabels: {
-                    display: false // Ensure data labels are not displayed
+                    display: false
                 }
             },
             scales: {
@@ -348,7 +329,6 @@ function updateChart(labels, datasets) {
         }
     });
 }
-
 
 function initializeDataTable(data) {
     $('#transaction-table').DataTable({
@@ -395,4 +375,3 @@ function getRandomColor() {
     }
     return color;
 }
-

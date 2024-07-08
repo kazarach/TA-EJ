@@ -1,57 +1,71 @@
-// active window
-var path = window.location.pathname;
-
-const links = [
-    "dashboard",
-    // "order",
-    "planning",
-    "production",
-    "inventory",
-    "selling",
-    "return",
-    "cash",
-    "purchase",
-];
-const pathToLinkMap = {
-    "/admin/dashboard": "dashboard",
-    "/user/dashboard": "dashboard",
-    "/inventory": "inventory",
-    "/planning": "planning",
-    "/product": "inventory",
-    "/workforce": "production",
-    "/schedule": "planning",
-    "/cash": "cash",
-    "/report": "cash",
-    "/material": "inventory",
-    "/project": "planning",
-    "/machine": "production",
-    "/selling": "selling",
-    "/selling/transaction": "selling",
-    "/selling/item": "selling",
-    "/purchase": "inventory",
-    "/rejectedproduct": "inventory",
-    "/purchase/transaction": "inventory",
-    "/purchase/item": "inventory",
-    "/order": "order",
-    "/order/book": "order",
-    "/order/archive": "order",
-    "/customer": "order",
-    "/production": "production",
-    "/production/archive": "production",
-    "/returncustomer": "return",
-    "/returncustomer/archive": "return",
-    "/returnproduction": "return",
-    "/returnproduction/archive": "return",
-    "/returnmaterial": "return",
-    "/returnmaterial/archive": "return",
-
-};
-
-links.forEach((link) => {
-    const element = document.getElementById(`${link}-link`);
-    if (pathToLinkMap[path] === link) {
-        element.classList.add("active");
-    } else {
-        element.classList.remove("active");
+$(document).ready(function () {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        window.location.href = '/login';
+        return;
     }
+
+    // Append token to all sidebar links
+    $(".nav-link a").each(function() {
+        const targetUrl = $(this).attr('href');
+        $(this).attr('href', targetUrl + "?token=" + token);
+    });
+
+    // Handle the active state of sidebar links
+    var path = window.location.pathname;
+
+    const links = [
+        "dashboard",
+        "order",
+        "planning",
+        "production",
+        "inventory",
+        "selling",
+        "return",
+        // "cash",
+        // "purchase",
+    ];
+
+    const pathToLinkMap = {
+        "/admin/dashboard": "dashboard",
+        // "/user/dashboard": "dashboard",
+        "/admin/inventory": "inventory",
+        "/admin/planning": "planning",
+        "/admin/product": "inventory",
+        "/admin/workforce": "production",
+        "/admin/schedule": "planning",
+        // "/admin/cash": "cash",
+        // "/admin/report": "cash",
+        "/admin/material": "inventory",
+        "/admin/project": "planning",
+        "/admin/machine": "production",
+        "/admin/selling": "selling",
+        "/admin/selling/transaction": "selling",
+        "/admin/selling/item": "selling",
+        "/admin/purchase": "inventory",
+        "/admin/rejectedproduct": "inventory",
+        "/admin/purchase/transaction": "inventory",
+        "/admin/purchase/item": "inventory",
+        "/admin/order": "order",
+        "/admin/order/book": "order",
+        "/admin/order/archive": "order",
+        "/admin/customer": "order",
+        "/admin/production": "production",
+        "/admin/production/archive": "production",
+        "/admin/returncustomer": "return",
+        "/admin/returncustomer/archive": "return",
+        "/admin/returnproduction": "return",
+        "/admin/returnproduction/archive": "return",
+        "/admin/returnmaterial": "return",
+        "/admin/returnmaterial/archive": "return",
+    };
+
+    links.forEach((link) => {
+        const element = document.getElementById(`${link}-link`);
+        if (pathToLinkMap[path] === link) {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+    });
 });

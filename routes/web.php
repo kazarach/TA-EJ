@@ -106,35 +106,35 @@ Route::middleware(['auth:api','role:admin'])->group(function () {
         ]);
     })->name('admin.dashboard');
 
-    Route::get('/schedule', function () {
+    Route::get('/admin/schedule', function () {
         return view('schedule', ['title' => 'Schedule Page']);
     });
 
-    Route::get('/product', [ProductController::class, 'index'])->name('product');
-    Route::get('/material', [MaterialController::class, 'index']);
-    Route::get('/machine', [MachineController::class, 'index']);
-    Route::get('/workforce', [WorkforceController::class, 'index']);
-    Route::get('/project', [ProjectController::class, 'index']);
-    Route::get('/customer', [CustomerController::class, 'index']);
-    Route::get('/selling', [SellingController::class, 'index']);
-    Route::get('/selling/transaction', [SellingTransactionController::class, 'index']);
-    Route::get('/selling/item', [SellingItemController::class, 'index']);
-    Route::get('/purchase', [PurchaseController::class, 'index']);
-    Route::get('/purchase/transaction', [PurchaseTransactionController::class, 'index']);
-    Route::get('/purchase/item', [PurchaseItemController::class, 'index']);
-    Route::get('/order', [OrderController::class, 'index']);
-    Route::get('/order/book', [OrderController::class, 'indexbook']);
-    Route::get('/order/archive', [OrderController::class, 'indexarchive']);
-    Route::get('/catalog', [CatalogController::class, 'index']);
-    Route::get('/production', [ProductionController::class, 'index']);
-    Route::get('/production/archive', [ProductionController::class, 'indexArchive']);
-    Route::get('/returncustomer', [ReturnCustomerController::class, 'index']);
-    Route::get('/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
-    Route::get('/returnproduction', [ReturnProductionController::class, 'index']);
-    Route::get('/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
-    Route::get('/returnmaterial', [ReturnMaterialController::class, 'index']);
-    Route::get('/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
-    Route::get('/rejectedproduct', [RejectedProductController::class, 'index']);
+    Route::get('/admin/product', [ProductController::class, 'index']);
+    Route::get('/admin/material', [MaterialController::class, 'index']);
+    Route::get('/admin/machine', [MachineController::class, 'index']);
+    Route::get('/admin/workforce', [WorkforceController::class, 'index']);
+    Route::get('/admin/project', [ProjectController::class, 'index']);
+    Route::get('/admin/customer', [CustomerController::class, 'index']);
+    Route::get('/admin/selling', [SellingController::class, 'index']);
+    Route::get('/admin/selling/transaction', [SellingTransactionController::class, 'index']);
+    Route::get('/admin/selling/item', [SellingItemController::class, 'index']);
+    Route::get('/admin/purchase', [PurchaseController::class, 'index']);
+    Route::get('/admin/purchase/transaction', [PurchaseTransactionController::class, 'index']);
+    Route::get('/admin/purchase/item', [PurchaseItemController::class, 'index']);
+    Route::get('/admin/order', [OrderController::class, 'index']);
+    Route::get('/admin/order/book', [OrderController::class, 'indexbook']);
+    Route::get('/admin/order/archive', [OrderController::class, 'indexarchive']);
+    Route::get('/admin/catalog', [CatalogController::class, 'index']);
+    Route::get('/admin/production', [ProductionController::class, 'index']);
+    Route::get('/admin/production/archive', [ProductionController::class, 'indexArchive']);
+    Route::get('/admin/returncustomer', [ReturnCustomerController::class, 'index']);
+    Route::get('/admin/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
+    Route::get('/admin/returnproduction', [ReturnProductionController::class, 'index']);
+    Route::get('/admin/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
+    Route::get('/admin/returnmaterial', [ReturnMaterialController::class, 'index']);
+    Route::get('/admin/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
+    Route::get('/admin/rejectedproduct', [RejectedProductController::class, 'index']);
 
     // Route::post('/logout', function () {
     //     auth()->logout();
