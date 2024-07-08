@@ -4,8 +4,35 @@ var totalHTM = 0;
 var selectedItems = [];
 let tableSell = $("#selling-table").DataTable();
 var tableItem;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     console.log(selectedItems);
 
     $("#saveChanges").on("click", function () {

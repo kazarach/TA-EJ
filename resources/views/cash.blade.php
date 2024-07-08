@@ -14,7 +14,7 @@
             <a href="/report">Report</a>
         </div>
         <div class="user-info">
-            <img src="image2.jpg" alt="">
+            <!-- <img src="image2.jpg" alt=""> -->
         </div>
         </div>
     </div>  

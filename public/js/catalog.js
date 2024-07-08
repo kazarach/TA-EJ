@@ -1,9 +1,35 @@
 let selectedWorkforceId=0;
 var selectedRows = [];
 let dueDate;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
+$(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
 
-$(document).ready(function() {
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     var workforceTable = $('#workforce-table').DataTable({
         ajax: {
             url: '/api/catalog/', 
@@ -85,7 +111,13 @@ $(document).ready(function () {
 
 function fetchData(WorkforceId) {
     console.log('FETCH');
-    fetch(`/api/catalog/${WorkforceId}`)
+    fetch(`/api/catalog/${WorkforceId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
         .then((response) => response.json())
         .then((workforceData) => {
             console.log(workforceData);

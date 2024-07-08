@@ -2,10 +2,37 @@ let selectedId;
 let selectedTransaction = [];
 let tableItem;
 var discount = 0;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     var transactionTable = $('#transaction-table').DataTable({
         ajax: {
             url: '/api/archive/purchase/transaction',
@@ -145,7 +172,13 @@ $(document).ready(function() {
 function fetchData(Id) {
     console.log('FETCH');
     selectedId = Id;
-    fetch(`/api/archive/selling/transaction/${Id}`)
+    fetch(`/api/archive/selling/transaction/${Id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
         .then((response) => response.json())
         .then((Data) => {
             console.log(Data);

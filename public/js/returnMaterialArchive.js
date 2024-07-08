@@ -3,9 +3,36 @@ var selectedMachines = [];
 var selectedWorkforces = [];
 var tableMachine;
 var tableWorkforce;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     console.log("AHA");
     var materialTable = $("#return-table").DataTable({
         ajax: {

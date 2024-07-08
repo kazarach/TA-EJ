@@ -1,9 +1,32 @@
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
+
 $(document).ready(function () {
-    const token = localStorage.getItem('access_token');
+    
     if (!token) {
         window.location.href = '/login';
         return;
     }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
 
     $("#calendar").fullCalendar({
         initialDate: moment().format('YYYY-MM-DD'),

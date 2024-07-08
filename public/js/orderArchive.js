@@ -2,8 +2,36 @@ let selectedId;
 let selectedTransaction = [];
 let tableItem;
 var discount = 0;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
-$(document).ready(function() {
+$(document).ready(function () {
+
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     var transactionTable = $('#transaction-table').DataTable({
         ajax: {
             url: '/api/order',
@@ -90,8 +118,16 @@ $(document).ready(function() {
 
 function fetchData(Id) {
     console.log("FETCH");
+
     selectedId = Id;
-    fetch(`/api/order/${Id}`)
+    // const token = localStorage.getItem('access_token');
+    fetch(`/api/order/${Id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
         .then((response) => response.json())
         .then((Data) => {
             console.log(Data);
@@ -106,20 +142,20 @@ function fetchData(Id) {
         .catch((error) => console.error("Error fetching Machine data:", error));
 }
 
-function changeTextColor() {
-    var inputControl = document.querySelectorAll(".form-control");
-    var inputSelect = document.querySelectorAll(".form-select");
+// function changeTextColor() {
+//     var inputControl = document.querySelectorAll(".form-control");
+//     var inputSelect = document.querySelectorAll(".form-select");
 
-    inputControl.forEach(function (field) {
-        field.style.color = "black";
-    });
-    inputSelect.forEach(function (field) {
-        field.style.color = "black";
-    });
-}
+//     inputControl.forEach(function (field) {
+//         field.style.color = "black";
+//     });
+//     inputSelect.forEach(function (field) {
+//         field.style.color = "black";
+//     });
+// }
 
 function clearForm() {
-    document.getElementById("ID").value = "Order Archive " + "";
+    document.getElementById("ID").value ="";
     document.getElementById("catalogName").value = "";
     document.getElementById("customerName").value = "";
     document.getElementById("product").value = "";
@@ -128,6 +164,7 @@ function clearForm() {
     $('#product').val(0).trigger('change');
     $('#catalogName').val(0).trigger('change');
     $('#customerName').val(0).trigger('change');
+    // changeTextColor();
 }
 
 function updateData() {

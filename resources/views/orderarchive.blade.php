@@ -6,7 +6,7 @@
     <div class="top-bar">
         <div class="header-wrapper">
             <div class="header-title">
-                <h2>Order</h2>
+                <h2>Order Archive</h2>
             </div>
             <div class="dropdown-top">
                 <a href="/order">Order</a>
@@ -18,7 +18,7 @@
                 <a href="/customer">Customer</a>
             </div>
             <div class="user-info">
-                <img src="../image2.jpg" alt="">
+                <!-- <img src="../image2.jpg" alt=""> -->
             </div>
         </div>
     </div>  

@@ -9,19 +9,20 @@
                 <h2>Product</h2>
             </div>
             <div class="dropdown-top">
-                <a href="/product" class="active">Product</a>
-                <a href="">|</a>
-                <a href="/rejectedproduct">Rejected Product</a>
-                <a href="">|</a>
-                <a href="/material">Material</a>
-                {{-- <a href="/purchase">Purchasing Material</a>
-                <a href="">|</a>
-                <a href="/purchase/transaction">Purchase Transaction</a>
-                <a href="">|</a>
-                <a href="/purchase/item">Purchased Material</a> --}}
+            <a href="/product" class="active">Product</a>
+            <a href="">|</a>
+            <a href="/rejectedproduct">Rejected Product</a>
+            <a href="">|</a>
+            <a href="/material">Material</a>
+            <!-- <a href="">|</a>
+            <a href="/purchase">Request Material</a>
+            <a href="">|</a>
+            <a href="/purchase/transaction">Request Transaction</a>
+            <a href="">|</a>
+            <a href="/purchase/item">Requested Material</a> -->
             </div>
             <div class="user-info">
-                <img src="image2.jpg" alt="">
+                <!-- <img src="image2.jpg" alt=""> -->
             </div>
         </div>
     </div>

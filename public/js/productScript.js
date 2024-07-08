@@ -2,6 +2,8 @@ let selectedProductId;
 let selectedMaterials = [];
 let totalHTM = 0;
 let selectedMaterialsTemp = [];
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 function myFunction() {
     var input, filter, ul, li, a, i, txtValue;
@@ -26,8 +28,32 @@ $(".datepicker").datepicker({
     dateFormat: "yy-mm-dd",
 });
 
-//PRODUCT
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     var productTable = $("#products-table").DataTable({
         ajax: {
             url: "/api/products/",

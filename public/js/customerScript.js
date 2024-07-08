@@ -1,6 +1,33 @@
 let selectedId;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     var customerTable = $("#customer-table").DataTable({
         ajax: {
             url: "/api/customer/",
@@ -78,7 +105,13 @@ $(document).ready(function () {
 function fetchData(Id) {
     console.log("FETCH");
     selectedId = Id;
-    fetch(`/api/customer/${Id}`)
+    fetch(`/api/customer/${Id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
         .then((response) => response.json())
         .then((Data) => {
             console.log(Data);

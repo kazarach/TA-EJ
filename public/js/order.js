@@ -4,8 +4,35 @@ var totalHTM = 0;
 var selectedItems = [];
 let tableSell = $("#selling-table").DataTable();
 var tableItem;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+
     console.log(selectedItems);
 
     $("#saveChanges").on("click", function () {
@@ -98,6 +125,7 @@ function createItem() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('access_token')
             },
             body: JSON.stringify(requestBody),
         })
@@ -375,24 +403,14 @@ function clearDefaultValue(input) {
     }
 }
 
-
-// 3 digit separator
-// document.getElementById("paid").addEventListener("input", function (e) {
-//     let value = e.target.value.replace(/\./g, "");
-//     if (value === "") {
-//         e.target.value = "";
-//         return;
-//     }
-//     if (!isNaN(value.replace(",", ".")) && value.includes(",")) {
-//         let parts = value.split(",");
-//         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-//         parts[1] = parts[1].substring(0, 3);
-//         e.target.value = parts.join(",");
-//     } else if (!isNaN(value.replace(",", "."))) {
-//         value = parseFloat(value.replace(",", ".")).toLocaleString("de-DE", {
-//             minimumFractionDigits: 0,
-//             maximumFractionDigits: 3,
-//         });
-//         e.target.value = value.replace(",", ".");
-//     }
-// });
+// searchbar
+$(document).ready(function () {
+    $("#catalogName").select2({
+        placeholder: "Select a catalog",
+        allowClear: true,
+    });
+    $("#customerName").select2({
+        placeholder: "Select a customer",
+        allowClear: true,
+    });
+});

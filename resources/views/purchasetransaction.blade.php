@@ -7,21 +7,23 @@
     <div class="top-bar">
         <div class="header-wrapper">
         <div class="header-title">
-            <h2>Purchase Transaction</h2>
+            <h2>Transaction</h2>
         </div>
         <div class="dropdown-top">
             <a href="/product">Product</a>
             <a href="">|</a>
+            <a href="/rejectedproduct">Rejected Product</a>
+            <a href="">|</a>
             <a href="/material">Material</a>
             <a href="">|</a>
-            <a href="/purchase">Purchasing Material</a>
+            <a href="/purchase">Request Material</a>
             <a href="">|</a>
-            <a href="/purchase/transaction" class="active">Purchase Transaction</a>
+            <a href="/purchase/transaction" class="active">Request Transaction</a>
             <a href="">|</a>
-            <a href="/purchase/item">Purchased Material</a>
+            <a href="/purchase/item">Requested Material</a>
         </div>
         <div class="user-info">
-            <img src="../image2.jpg" alt="">
+            <!-- <img src="/public/image2.jpg" alt=""> -->
         </div>
         </div>
     </div>   
@@ -33,7 +35,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="New Purchase Transaction" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Request Transaction" aria-label="ID" readonly>
         </div>
     </div>
 

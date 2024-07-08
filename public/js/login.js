@@ -23,9 +23,12 @@ loginForm.addEventListener("submit", function(event) {
     })
     .then(function (response) {
         const token = response.data.access_token;
+        const role = response.data.role;
         localStorage.setItem('access_token', token);
+        localStorage.setItem('role', role); // Save role in localStorage
         window.location.href = '/dashboard';
     })
+    
     .catch(function (error) {
         console.error('There was an error logging in:', error);
         alert('Login failed: ' + error.response.data.error);

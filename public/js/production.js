@@ -5,8 +5,35 @@ var productionTable = $("#production-table").DataTable();
 // var productionDate;
 var productionList = [];
 var counter=1;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     $("#saveChanges").on("click", function () {
         closeModal();
         selectedModal();

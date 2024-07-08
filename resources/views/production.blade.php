@@ -18,7 +18,7 @@
                 <a href="/workforce">Workforce</a>
             </div>
             <div class="user-info">
-                <img src="image2.jpg" alt="">
+                <!-- <img src="image2.jpg" alt=""> -->
             </div>
         </div>
     </div>  

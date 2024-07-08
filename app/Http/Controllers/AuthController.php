@@ -32,12 +32,16 @@ class AuthController extends Controller
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthenticated'], 401);
         }
+
+        $user = auth()->user();
+        $role = $user->role; // Assuming there's a `role` attribute on the User model
     
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'user' => $user,
+            'role' => $role, // Include role in the response
         ]);
     }
     

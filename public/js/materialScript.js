@@ -1,6 +1,33 @@
 let selectedMaterialId;
+const token = localStorage.getItem('access_token');
+const role = localStorage.getItem('role');
 
 $(document).ready(function () {
+    
+    if (!token) {
+        window.location.href = '/login';
+        return;
+    }
+
+    // Append token and role to all sidebar links
+    $(".dropdown-top a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
+
+    // Set default AJAX headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+    
     // Initialize the DataTable
     var materialTable = $("#materials-table").DataTable({
         ajax: {
@@ -67,7 +94,13 @@ $(document).ready(function () {
 });
 
 function fetchMaterialData(materialId) {
-    fetch(`/api/materials/${materialId}`)
+    fetch(`/api/materials/${materialId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
         .then((response) => response.json())
         .then((materialData) => {
             document.getElementById("ID").value = "ID: " + materialData.id;

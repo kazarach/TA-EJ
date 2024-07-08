@@ -8,7 +8,7 @@
                 <h2>Dashboard</h2>
             </div>
             <div class="user-info">
-                <img src="image2.jpg" alt="">
+                <!-- <img src="image2.jpg" alt=""> -->
             </div>
         </div>
     </div>  

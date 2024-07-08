@@ -6,7 +6,7 @@
     <div class="top-bar">
         <div class="header-wrapper">
             <div class="header-title">
-                <h2>Reject Product</h2>
+                <h2>Rejected Product</h2>
             </div>
             <div class="dropdown-top">
                 <a href="/product">Product</a>
@@ -16,7 +16,7 @@
                 <a href="/material">Material</a>
             </div>
             <div class="user-info">
-                <img src="../image2.jpg" alt="">
+                <!-- <img src="../image2.jpg" alt=""> -->
             </div>
         </div>
     </div>  
