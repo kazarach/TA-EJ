@@ -7,6 +7,11 @@ var productionList = [];
 var counter=1;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 
 $(document).ready(function () {
     
@@ -26,13 +31,7 @@ $(document).ready(function () {
             $(this).attr('href', newUrl);
         }
     });
-
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
+    
     $("#production-table tbody").on("click", "tr", function () {
         var data = productionTable.row(this).data();
         console.log(data);
