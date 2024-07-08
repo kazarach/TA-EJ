@@ -16,7 +16,7 @@
             <a href="/schedule">Schedule</a>
         </div> --}}
         <div class="user-info">
-            <img src="image2.jpg" alt="">
+            <img src="../image2.jpg" alt="">
         </div>
         </div>
     </div>  
@@ -82,18 +82,30 @@
         </div>
     </div>
         <div class="row justify-content-left" id="row2">
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <a href="/selling/item">
                 <div class="card" id="card3">
                     <div class="card-body">
-                        <h5 class="card-title">Container 4</h5>
-                        <p class="card-text">Content for the second container.</p>
+                        <h5 class="card-title">Product Sold</h5>
+                        <canvas id="sellChart"></canvas>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <div class="card" id="card3">
+                    <div class="card-body">
+                        <h5 class="card-title">Container 5</h5>
+                        <div class="chart-container">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card" id="card3">
+                <div class="card" id="card4">
                     <div class="card-body">
-                        <h5 class="card-title">Container 5</h5>
+                        <h5 class="card-title">Container 6</h5>
                         <div class="chart-container">
                             <canvas id="myChart"></canvas>
                         </div>
@@ -163,7 +175,66 @@
     </div>
 </div>
 
+<!-- Modal event -->
+<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEventModalLabel">Project Detail</h5>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="row g-3 mb-3">
+                        <div class="col">
+                            <label for="eventTitle">Project Title</label>
+                            <h5 id="projectTitle" readonly></h5>
+                            {{-- <input type="text" class="form-control" id="eventTitle" readonly> --}}
+                        </div>
+                        <div class="col">
+                            <label for="eventTitle"></label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="eventTitle">Project Detail</label>
+                        <table id="projects-table" class="table table-striped table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Project Name</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Products</th>
+                                    <th scope="col">Producted</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                
+                            </tbody>
+                        </table>
+                    </div>
+                    {{-- <div class="row g-3 mb-3">
+                        <div class="col">
+                            <label for="eventColor">Event Color</label>
+                            <input type="color" class="form-control" id="eventColor" value="#ff9f89">
+                        </div>
+                        <div class="col">
+                            <label for="eventTextColor">Text Color</label>
+                            <input type="color" class="form-control" id="eventTextColor" value="#000000">
+                        </div>
+                    </div> --}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="revertModal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveEventButton">Save Event</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div> 
+
 
 <script src="/js/schedule-dbScript.js"></script>
 {{-- <script src="/js/projectScript.js"></script> --}}

@@ -11,15 +11,9 @@
             <div class="dropdown-top">
                 <a href="/product">Product</a>
                 <a href="">|</a>
-                <a href="/rejectedproduct" class="active">Reject</a>
+                <a href="/rejectedproduct" class="active">Rejected Product</a>
                 <a href="">|</a>
                 <a href="/material">Material</a>
-                <a href="">|</a>
-                <a href="/purchase">Purchase</a>
-                <a href="">|</a>
-                <a href="/purchase/transaction">Transaction</a>
-                <a href="">|</a>
-                <a href="/purchase/item">Item</a>
             </div>
             <div class="user-info">
                 <img src="../image2.jpg" alt="">

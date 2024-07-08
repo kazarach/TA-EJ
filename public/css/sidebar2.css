@@ -426,8 +426,8 @@ a.togglesubmenu {
     cursor: pointer;
 }
 
-.card-body:hover h1{
-    color: var(--sidebar-color);
+#card1:hover h1{
+    color: white;
     cursor: pointer;
 }
 
@@ -441,25 +441,39 @@ a.togglesubmenu {
     height: 36rem;
 }
 
+#card2:hover{
+    background-color: white;
+    color: black;
+}
+
 #card2 h5{
     margin-left: 1rem;
     margin-bottom: 2rem;
 }
 
 #card3{
-    height: 20rem;
+    height: 32rem;
     top: 5rem;
 }
 
-#card2:hover{
+#card3:hover{
     background-color: white;
     color: black;
+}
+
+#card4{
+    height: 11rem;
+    top: 26rem;
 }
 
 #row2{
     position: relative;
     top: -26rem;
     padding: 1rem;
+}
+
+#row2 a{
+    text-decoration: none;
 }
 
 .calendar-db .fc-center h2{
@@ -497,10 +511,10 @@ a.togglesubmenu {
 
 #myChart{
     position: relative;
-    top: 1rem;
-    right: 7rem;
-    width: 10rem;
-    height: 12rem;
+    /* top: 1rem; */
+    /* right: 7rem; */
+    width: 20%;
+    height: 20%;
 }
 
 /* Top Bar */
@@ -933,14 +947,29 @@ body.dark .breadcrumbs-all a {
 
 @media (min-width: 1920px) {
     #card1{
-        height: 15rem;
+        height: 19rem;
+    }
+    #card1 h1{
+        position: relative;
+        top: 4rem;
+        color: var(--primary-color);
+        cursor: pointer;
+    }
+    #card1 h5{
+        position: relative;
+        margin: 0.5rem;
+        top: 1.5rem;
     }
     #card2{
         height: 44rem;
     }
     #card3{
-        top: -4rem;
-        height: 24rem;
+        top: 0;
+        height: 42rem;
+    }
+    #card4{
+        top: 25rem;
+        height: 17rem;
     }
     .card{
         height: 24rem ;
@@ -957,15 +986,28 @@ body.dark .breadcrumbs-all a {
     .calendar-db .fc-center h2{
         padding-top: 3rem;
     }
+    #logo-db {
+        position: relative;
+        font-size: 25px; 
+        background-color: var(--primary-color-light); 
+        border-radius: 50%; 
+        width: 60px; 
+        height: 60px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-color); 
+        margin: 0.5rem;
+    }
     #logo-dot{
         left: 21rem;
     }
-    #myChart{
+    /* #myChart{
         position: relative;
         top: 1rem;
         right: 10rem;
         width: 15rem;
-    }
+    } */
 }
 
 

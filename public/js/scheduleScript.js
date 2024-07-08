@@ -57,7 +57,7 @@ $(document).ready(function () {
                 var projectName = filteredData[0].projects.name;
                 $("#eventTitle").text(projectName);
             } else {
-                $("#eventTitle").text("");
+                $("#eventTitle").text("No data");
             }
         },
         eventClick: function (calEvent) {

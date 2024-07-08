@@ -6,7 +6,7 @@
           </span>
           <div class="text header-text">
               <span class="name">PRODACTION</span>
-              <span class="profession">Konveksi</span>
+              <span class="profession" style="color: #255d83">--USER--</span>
           </div>
       </div>
       {{-- <i class='bx bx-chevron-right toggle'></i> --}}
@@ -15,13 +15,13 @@
   <div class="menu-bar">
       <div class="menu">
           <ul class="menu-links">
-              <li class="nav-link" id="dashboard-link">
+              <li class="nav-link mt-4" id="dashboard-link">
                   <a href="/user/dashboard">
                       <i class='bx bx-home-alt icon'></i>
                       <span class="text nav-text">Dashboard</span>
                   </a>
               </li>
-              <li class="nav-link dropdown" id="order-link">
+              {{-- <li class="nav-link dropdown" id="order-link">
                 <a href="/order" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-cart icon'></i>
                     <span class="text nav-text" id="dropdowntext">Order ></span>
@@ -52,8 +52,8 @@
                       </a>
                     </li>
                 </ul>
-            </li>
-            <li class="nav-link dropdown" id="planning-link">
+            </li> --}}
+            {{-- <li class="nav-link dropdown" id="planning-link">
               <a href="/project" onclick="toggleSubMenu(event)" class="togglesubmenu">
                   <i class='bx bx-book-content icon'></i>
                   <span class="text nav-text" id="dropdowntext2">Planning ></span>
@@ -72,8 +72,8 @@
                     </a>
                   </li>
               </ul>
-            </li>
-            <li class="nav-link dropdown" id="production-link">
+            </li> --}}
+            {{-- <li class="nav-link dropdown" id="production-link">
               <a href="/project" onclick="toggleSubMenu(event)" class="togglesubmenu">
                   <i class='bx bx-sitemap icon'></i>
                   <span class="text nav-text" id="dropdowntext2">Production ></span>
@@ -104,7 +104,7 @@
                     </a>
                   </li>
               </ul>
-            </li>
+            </li> --}}
               <li class="nav-link dropdown" id="inventory-link">
                   <a href="/inventory" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-cylinder icon'></i>
@@ -117,7 +117,7 @@
                           <span class="text nav-text" id="submenutext">Product</span>
                         </a>
                       </li>
-                      <li class="nav-link">
+                      {{-- <li class="nav-link">
                         <a href="/rejectedproduct">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Rejected Product</span>
@@ -128,8 +128,8 @@
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Material</span>
                         </a>
-                      </li>
-                      <li class="nav-link">
+                      </li> --}}
+                      {{-- <li class="nav-link">
                         <a href="/purchase">
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Purchase</span>
@@ -146,10 +146,10 @@
                           <i class='bx bx-cylinder icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Purchase Item</span>
                         </a>
-                      </li>
+                      </li> --}}
                   </ul>
               </li>
-              <li class="nav-link dropdown" id="selling-link">
+              {{-- <li class="nav-link dropdown" id="selling-link">
                 <a href="/selling" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-shopping-bag icon'></i>
                     <span class="text nav-text" id="dropdowntext">Selling ></span>
@@ -174,8 +174,8 @@
                       </a>
                     </li>
                 </ul>
-              </li>
-              <li class="nav-link dropdown" id="return-link">
+              </li> --}}
+              {{-- <li class="nav-link dropdown" id="return-link">
                 <a href="/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-left-down-arrow-circle icon'></i>
                     <span class="text nav-text" id="dropdowntext">Return ></span>
@@ -206,8 +206,8 @@
                       </a>
                     </li>
                 </ul>
-              </li>
-              <li class="nav-link dropdown" id="cash-link">
+              </li> --}}
+              {{-- <li class="nav-link dropdown" id="cash-link">
                 <a href="/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-alt icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Cash Book ></span>
@@ -226,7 +226,7 @@
                       </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
           </ul>
       </div>
       <div class="bottom-content">
@@ -253,3 +253,5 @@
       </div>
   </div>
 </nav>
+
+<script src="/js/sidebar-user.js"></script>
