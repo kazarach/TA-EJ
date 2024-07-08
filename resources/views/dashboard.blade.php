@@ -82,17 +82,17 @@
         </div>
     </div>
         <div class="row justify-content-left" id="row2">
-            <div class="col-md-6">
-                <a href="/selling/item">
+            <div class="col-md-8">
+                <a href="/production/archive">
                 <div class="card" id="card3">
                     <div class="card-body">
-                        <h5 class="card-title">Product Sold</h5>
-                        <canvas id="sellChart"></canvas>
+                        <h5 class="card-title">Producted Items</h5>
+                        <canvas id="productionChart" height="110"></canvas>
                     </div>
                 </div>
                 </a>
             </div>
-            <div class="col-md-2">
+            {{-- <div class="col-md-2">
                 <div class="card" id="card3">
                     <div class="card-body">
                         <h5 class="card-title">Container 5</h5>
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-4">
                 <div class="card" id="card4">
                     <div class="card-body">

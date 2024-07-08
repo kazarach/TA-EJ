@@ -9,7 +9,7 @@ $(document).ready(function () {
     }
 
     // Append token and role to all sidebar links
-    $(".dropdown-top a").each(function() {
+    $(".row a").each(function() {
         const targetUrl = $(this).attr('href');
         if (role) {
             const newUrl = `/${role}${targetUrl}?token=${token}`;
@@ -241,39 +241,72 @@ $(document).ready(function () {
         }
     });
 
-    // Selling chart
+    // Production chart
     fetchChartDataAndPopulateTable();
 });
 
-function fetchChartDataAndPopulateTable() {
-    const token = localStorage.getItem('access_token');
+$(document).ready(function () {
+    fetchProductionDataAndPopulateTable();
+});
 
+function fetchProductionDataAndPopulateTable() {
     $.ajax({
-        url: "/api/archive/selling/transaction",
+        url: "/api/productions/",
         type: "GET",
-        headers: {
-            'Authorization': 'Bearer ' + token
-        },
-        success: function (data) {
-            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            var monthlySales = {};
+        success: function (json) {
+            console.log(json);
+            var productions = json.productions;
 
+            // Populate the DataTable
+            var productionTable = $("#production-table").DataTable({
+                data: productions,
+                columns: [
+                    { data: "id" },
+                    { data: "products.name" },
+                    { data: "quantity" },
+                    { data: "products.size.name" },
+                    { data: "products.color.name" },
+                    { data: "products.code" },
+                    { data: "projects.name" },
+                    { data: "projects.projectstatus.name" },
+                    {
+                        data: "machines",
+                        render: function (data, type, row) {
+                            return '<ul>' + data.map(machine => `<li>${machine.name}</li>`).join('') + '</ul>';
+                        }
+                    },
+                    {
+                        data: "workforces",
+                        render: function (data, type, row) {
+                            return '<ul>' + data.map(workforce => `<li>${workforce.name}</li>`).join('') + '</ul>';
+                        }
+                    },
+                    { data: "production_date" },
+                ],
+                destroy: true // Ensure the DataTable is reinitialized if it already exists
+            });
+
+            // Prepare data for the chart
+            var monthlySales = {};
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            // Initialize monthlySales object with all months
             months.forEach(function (month) {
                 monthlySales[month] = {};
             });
 
-            data.transactions.forEach(function (transaction) {
-                var date = new Date(transaction.created_at);
+            // Process the data to extract total production per product per month
+            productions.forEach(function (production) {
+                var date = new Date(production.production_date);
                 var month = date.toLocaleString('default', { month: 'long' });
 
-                transaction.products.forEach(function (product) {
-                    if (!monthlySales[month][product.name]) {
-                        monthlySales[month][product.name] = 0;
-                    }
-                    monthlySales[month][product.name] += product.pivot.quantity;
-                });
+                if (!monthlySales[month][production.products.name]) {
+                    monthlySales[month][production.products.name] = 0;
+                }
+                monthlySales[month][production.products.name] += production.quantity;
             });
 
+            // Prepare the product names set
             var productNames = new Set();
             months.forEach(month => {
                 Object.keys(monthlySales[month]).forEach(productName => {
@@ -287,30 +320,13 @@ function fetchChartDataAndPopulateTable() {
                     label: productName,
                     data: months.map(month => monthlySales[month][productName] || 0),
                     backgroundColor: getRandomColor(),
+                    // borderColor: getRandomColor(),
                     borderWidth: 1
                 };
             });
 
+            // Update the chart with the fetched data
             updateChart(months, datasets);
-
-            var transformedData = [];
-            data.transactions.forEach(function (transaction) {
-                transaction.products.forEach(function (product) {
-                    transformedData.push({
-                        transaction_id: transaction.id,
-                        customer_name: transaction.customer.name,
-                        discount: transaction.customer.customerclass ? transaction.customer.customerclass.discount : "N/A",
-                        total: transaction.total,
-                        paid: transaction.paid,
-                        payment_method: transaction.paymentmethod.name,
-                        product_name: product.name,
-                        product_quantity: product.pivot.quantity,
-                        created_at: transaction.created_at
-                    });
-                });
-            });
-
-            initializeDataTable(transformedData);
         },
         error: function (error) {
             console.error("Error fetching data", error);
@@ -319,9 +335,9 @@ function fetchChartDataAndPopulateTable() {
 }
 
 function updateChart(labels, datasets) {
-    var abc = document.getElementById('sellChart').getContext('2d');
-    var sellChart = new Chart(abc, {
-        type: 'bar',
+    var abc = document.getElementById('productionChart').getContext('2d');
+    var productionChart = new Chart(abc, {
+        type: 'bar', // Vertical bar chart
         data: {
             labels: labels,
             datasets: datasets
@@ -329,13 +345,13 @@ function updateChart(labels, datasets) {
         options: {
             plugins: {
                 legend: {
-                    display: false
+                    display: false // Hide the legend above the chart
                 },
                 tooltip: {
                     enabled: true
                 },
                 datalabels: {
-                    display: false
+                    display: false // Ensure data labels are not displayed
                 }
             },
             scales: {
@@ -353,43 +369,6 @@ function updateChart(labels, datasets) {
     });
 }
 
-function initializeDataTable(data) {
-    $('#transaction-table').DataTable({
-        data: data,
-        columns: [
-            { data: "transaction_id", title: "ID" },
-            { data: "customer_name", title: "Customer Name" },
-            { data: "discount", title: "Discount (%)" },
-            {
-                data: "total",
-                title: "Total",
-                render: function (data, type, row) {
-                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                },
-            },
-            {
-                data: "paid",
-                title: "Paid",
-                render: function (data, type, row) {
-                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                },
-            },
-            { data: "payment_method", title: "Payment Method" },
-            { data: "product_name", title: "Product Name" },
-            { data: "product_quantity", title: "Product Quantity" },
-            {
-                data: "created_at",
-                title: "Created At",
-                render: function (data, type, row) {
-                    var date = new Date(data);
-                    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    return date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString();
-                },
-            }
-        ]
-    });
-}
-
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -398,3 +377,4 @@ function getRandomColor() {
     }
     return color;
 }
+
