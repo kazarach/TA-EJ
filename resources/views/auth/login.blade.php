@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Login Page</title>
 </head>
 <body>
@@ -24,14 +25,14 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form method="POST" action="{{ route('login') }}">
+            <form id="login-form">
                 @csrf
                 <h1>Sign In</h1>
                 <div class="social-icons">
                 </div>
                 <span>Use your username and password</span>
-                <input type="username" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="username" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
                 <button type="submit">Sign In</button>
             </form>

@@ -1,5 +1,8 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
@@ -19,11 +22,7 @@ use App\Http\Controllers\ReturnCustomerController;
 use App\Http\Controllers\ReturnProductionController;
 use App\Http\Controllers\ReturnMaterialController;
 use App\Http\Controllers\RejectedProductController;
-
-
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,138 +30,142 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::post('/login', [LoginController::class, 'login'])->name('login');
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::post('/refresh', [LoginController::class, 'refresh'])->name('refresh');
+// routes/api.php
+Route::post('/test-login', function (Request $request) {
+    Log::info('Test login route hit');
+    return response()->json(['message' => 'Route hit']);
 });
 
-Route::get("user/{id}",[UserController::class,"index"]);
+// Check if the route is being registered
+Route::get('/debug', function () {
+    return response()->json(['message' => 'Debug route hit']);
+});
 
-Route::put('products/{id}', [ProductController::class, 'update'])->name('products.update');
-Route::get('products/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
-Route::post('products', [ProductController::class, 'store'])->name('products.store');
-Route::get('products', [ProductController::class, 'index'])->name('products.index');
+Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('api.logout');
+Route::post('/refresh', [AuthController::class, 'refresh'])->name('api.refresh');
 
-Route::put('products/{id}/updateMaterials', [ProductController::class, 'updateProductMaterials']);
-Route::post('products/createProductMaterials', [ProductController::class, 'createProductMaterials']);
-
- 
-Route::post('materials/', [MaterialController::class, 'store']);
-Route::get('materials/', [MaterialController::class, 'index']);
-Route::get('materials/{id}', [MaterialController::class, 'show']);
-Route::delete('materials/{id}', [MaterialController::class, 'destroy']);
-Route::put('materials/{id}', [MaterialController::class, 'update']);
-
-Route::post('machine/', [MachineController::class, 'store']);
-Route::get('machine/', [MachineController::class, 'index']);
-Route::get('machine/{id}', [MachineController::class, 'show']);
-Route::delete('machine/{id}', [MachineController::class, 'destroy']);
-Route::put('machine/{id}', [MachineController::class, 'update']);
-
-Route::post('workforce/', [WorkforceController::class, 'store']);
-Route::get('workforce/', [WorkforceController::class, 'index']);
-Route::get('workforce/{id}', [WorkforceController::class, 'show']);
-Route::delete('workforce/{id}', [WorkforceController::class, 'destroy']);
-Route::put('workforce/{id}', [WorkforceController::class, 'update']);
-
-Route::post('project/', [ProjectController::class, 'store']);
-Route::get('project/', [ProjectController::class, 'index']);
-Route::get('project/{id}', [ProjectController::class, 'show']);
-Route::delete('project/{id}', [ProjectController::class, 'destroy']);
-Route::put('project/{id}', [ProjectController::class, 'update']);
-
-Route::put('project/{id}/updateProducts', [ProjectController::class, 'updateProjectProducts']);
-Route::post('project/createProjectProducts', [ProjectController::class, 'createProjectProducts']);
-
-// Route::post('schedule/', [ScheduleController::class, 'store']);
-// Route::get('schedule/', [ScheduleController::class, 'index']);
-// Route::get('schedule/{id}', [ScheduleController::class, 'show']);
-// Route::delete('schedule/{id}', [ScheduleController::class, 'destroy']);
-// Route::put('schedule/{id}', [ScheduleController::class, 'update']);
-
-Route::get('customer/', [CustomerController::class, 'index']);
-Route::post('customer/', [CustomerController::class, 'store']);
-Route::get('customer/{id}', [CustomerController::class, 'show']);
-Route::put('customer/{id}', [CustomerController::class, 'update']);
-Route::delete('customer/{id}', [CustomerController::class, 'destroy']);
-
-//SELLING
-Route::get('selling/', [SellingController::class, 'index']);
-Route::post('selling/transaction/', [SellingController::class, 'storeTransaction']);
-Route::post('selling/item/', [SellingController::class, 'storeItem']);
-
-Route::get('/archive/selling/transaction', [SellingTransactionController::class, 'index']);
-Route::post('/archive/selling/transaction/', [SellingTransactionController::class, 'store']);
-Route::get('/archive/selling/transaction/{id}', [SellingTransactionController::class, 'show']);
-Route::put('/archive/selling/transaction/{id}', [SellingTransactionController::class, 'update']);
-Route::delete('/archive/selling/transaction/{id}', [SellingTransactionController::class, 'destroy']);
-Route::put('/archive/selling/{id}/updateItem', [SellingTransactionController::class, 'updateItem']);
+// Public routes
+Route::middleware(['auth:api'])->group(function () {
 
 
-//PURCHASING
-Route::get('purchase/', [PurchaseController::class, 'index']);
-Route::post('purchase/transaction/', [PurchaseController::class, 'storeTransaction']);
-Route::post('purchase/item/', [PurchaseController::class, 'storeItem']);
+    Route::get('user/{id}', [UserController::class, 'index']);
+    Route::get('/user', [UserController::class, 'show']);
+    
+    Route::put('products/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::get('products/{id}', [ProductController::class, 'show'])->name('products.show');
+    Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::put('products/{id}/updateMaterials', [ProductController::class, 'updateProductMaterials']);
+    Route::post('products/createProductMaterials', [ProductController::class, 'createProductMaterials']);
 
-Route::get('/archive/purchase/transaction', [PurchaseTransactionController::class, 'index']);
-Route::post('/archive/purchase/transaction/', [PurchaseTransactionController::class, 'store']);
-Route::get('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'show']);
-Route::put('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'update']);
-Route::delete('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'destroy']);
-Route::put('/archive/purchase/{id}/updateItem', [PurchaseTransactionController::class, 'updateItem']);
+    Route::post('materials/', [MaterialController::class, 'store']);
+    Route::get('materials/', [MaterialController::class, 'index']);
+    Route::get('materials/{id}', [MaterialController::class, 'show']);
+    Route::delete('materials/{id}', [MaterialController::class, 'destroy']);
+    Route::put('materials/{id}', [MaterialController::class, 'update']);
 
-// Route::get('/archive/purchase/item', [PurchaseItemController::class, 'index']);
+    Route::post('machine/', [MachineController::class, 'store']);
+    Route::get('machine/', [MachineController::class, 'index']);
+    Route::get('machine/{id}', [MachineController::class, 'show']);
+    Route::delete('machine/{id}', [MachineController::class, 'destroy']);
+    Route::put('machine/{id}', [MachineController::class, 'update']);
 
+    Route::post('workforce/', [WorkforceController::class, 'store']);
+    Route::get('workforce/', [WorkforceController::class, 'index']);
+    Route::get('workforce/{id}', [WorkforceController::class, 'show']);
+    Route::delete('workforce/{id}', [WorkforceController::class, 'destroy']);
+    Route::put('workforce/{id}', [WorkforceController::class, 'update']);
 
-Route::get('order/', [OrderController::class, 'index']);
-Route::post('order/', [OrderController::class, 'store']);
-Route::get('order/{id}', [OrderController::class, 'show']);
-Route::put('order/{id}', [OrderController::class, 'update']);
-Route::delete('order/{id}', [OrderController::class, 'destroy']);
+    Route::post('project/', [ProjectController::class, 'store']);
+    Route::get('project/', [ProjectController::class, 'index']);
+    Route::get('project/{id}', [ProjectController::class, 'show']);
+    Route::delete('project/{id}', [ProjectController::class, 'destroy']);
+    Route::put('project/{id}', [ProjectController::class, 'update']);
+    Route::put('project/{id}/updateProducts', [ProjectController::class, 'updateProjectProducts']);
+    Route::post('project/createProjectProducts', [ProjectController::class, 'createProjectProducts']);
 
-Route::get('catalog/', [CatalogController::class, 'index']);
-Route::post('catalog/', [CatalogController::class, 'store']);
-Route::get('catalog/{id}', [CatalogController::class, 'show']);
-Route::put('catalog/{id}', [CatalogController::class, 'update']);
-Route::delete('catalog/{id}', [CatalogController::class, 'destroy']);
+    Route::get('customer/', [CustomerController::class, 'index']);
+    Route::post('customer/', [CustomerController::class, 'store']);
+    Route::get('customer/{id}', [CustomerController::class, 'show']);
+    Route::put('customer/{id}', [CustomerController::class, 'update']);
+    Route::delete('customer/{id}', [CustomerController::class, 'destroy']);
 
-Route::get('productions/', [ProductionController::class, 'index']);
-Route::post('productions/', [ProductionController::class, 'store']);
-Route::get('productions/{id}', [ProductionController::class, 'show']);
-Route::put('productions/{id}', [ProductionController::class, 'update']);
-Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
+    // SELLING
+    Route::get('selling/', [SellingController::class, 'index']);
+    Route::post('selling/transaction/', [SellingController::class, 'storeTransaction']);
+    Route::post('selling/item/', [SellingController::class, 'storeItem']);
 
-Route::get('returncustomer/', [ReturnCustomerController::class, 'index']);
-Route::post('returncustomer/', [ReturnCustomerController::class, 'store']);
-Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);
-Route::put('returncustomer/{id}', [ReturnCustomerController::class, 'update']);
-Route::delete('returncustomer/{id}', [ReturnCustomerController::class, 'destroy']);
+    Route::get('/archive/selling/transaction', [SellingTransactionController::class, 'index']);
+    Route::post('/archive/selling/transaction/', [SellingTransactionController::class, 'store']);
+    Route::get('/archive/selling/transaction/{id}', [SellingTransactionController::class, 'show']);
+    Route::put('/archive/selling/transaction/{id}', [SellingTransactionController::class, 'update']);
+    Route::delete('/archive/selling/transaction/{id}', [SellingTransactionController::class, 'destroy']);
+    Route::put('/archive/selling/{id}/updateItem', [SellingTransactionController::class, 'updateItem']);
 
-Route::get('returnproduction/', [ReturnProductionController::class, 'index']);
-Route::post('returnproduction/', [ReturnProductionController::class, 'store']);
-Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
-Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
-Route::delete('returnproduction/{id}', [ReturnProductionController::class, 'destroy']);
+    // PURCHASING
+    Route::get('purchase/', [PurchaseController::class, 'index']);
+    Route::post('purchase/transaction/', [PurchaseController::class, 'storeTransaction']);
+    Route::post('purchase/item/', [PurchaseController::class, 'storeItem']);
 
-Route::get('returnmaterial/', [ReturnMaterialController::class, 'index']);
-Route::post('returnmaterial/', [ReturnMaterialController::class, 'store']);
-Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
-Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
-Route::delete('returnmaterial/{id}', [ReturnMaterialController::class, 'destroy']);
+    Route::get('/archive/purchase/transaction', [PurchaseTransactionController::class, 'index']);
+    Route::post('/archive/purchase/transaction/', [PurchaseTransactionController::class, 'store']);
+    Route::get('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'show']);
+    Route::put('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'update']);
+    Route::delete('/archive/purchase/transaction/{id}', [PurchaseTransactionController::class, 'destroy']);
+    Route::put('/archive/purchase/{id}/updateItem', [PurchaseTransactionController::class, 'updateItem']);
 
-Route::get('rejectedproduct/', [RejectedProductController::class, 'index']);
-Route::post('rejectedproduct/', [RejectedProductController::class, 'store']);
-Route::get('rejectedproduct/{id}', [RejectedProductController::class, 'show']);
-Route::put('rejectedproduct/{id}', [RejectedProductController::class, 'update']);
-Route::delete('rejectedproduct/{id}', [RejectedProductController::class, 'destroy']);
+    Route::get('order/', [OrderController::class, 'index']);
+    Route::post('order/', [OrderController::class, 'store']);
+    Route::get('order/{id}', [OrderController::class, 'show']);
+    Route::put('order/{id}', [OrderController::class, 'update']);
+    Route::delete('order/{id}', [OrderController::class, 'destroy']);
 
+    Route::get('catalog/', [CatalogController::class, 'index']);
+    Route::post('catalog/', [CatalogController::class, 'store']);
+    Route::get('catalog/{id}', [CatalogController::class, 'show']);
+    Route::put('catalog/{id}', [CatalogController::class, 'update']);
+    Route::delete('catalog/{id}', [CatalogController::class, 'destroy']);
 
+    Route::get('productions/', [ProductionController::class, 'index']);
+    Route::post('productions/', [ProductionController::class, 'store']);
+    Route::get('productions/{id}', [ProductionController::class, 'show']);
+    Route::put('productions/{id}', [ProductionController::class, 'update']);
+    Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
 
+    Route::get('returncustomer/', [ReturnCustomerController::class, 'index']);
+    Route::post('returncustomer/', [ReturnCustomerController::class, 'store']);
+    Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);
+    Route::put('returncustomer/{id}', [ReturnCustomerController::class, 'update']);
+    Route::delete('returncustomer/{id}', [ReturnCustomerController::class, 'destroy']);
 
-//BETWEEN DATABASE
-Route::post('/productions/{productId}/{quantity}', [ProductionController::class, 'produce']);
+    Route::get('returnproduction/', [ReturnProductionController::class, 'index']);
+    Route::post('returnproduction/', [ReturnProductionController::class, 'store']);
+    Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
+    Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
+    Route::delete('returnproduction/{id}', [ReturnProductionController::class, 'destroy']);
+
+    Route::get('returnmaterial/', [ReturnMaterialController::class, 'index']);
+    Route::post('returnmaterial/', [ReturnMaterialController::class, 'store']);
+    Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
+    Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
+    Route::delete('returnmaterial/{id}', [ReturnMaterialController::class, 'destroy']);
+
+    Route::get('rejectedproduct/', [RejectedProductController::class, 'index']);
+    Route::post('rejectedproduct/', [RejectedProductController::class, 'store']);
+    Route::get('rejectedproduct/{id}', [RejectedProductController::class, 'show']);
+    Route::put('rejectedproduct/{id}', [RejectedProductController::class, 'update']);
+    Route::delete('rejectedproduct/{id}', [RejectedProductController::class, 'destroy']);
+
+    // BETWEEN DATABASE
+    Route::post('/productions/{productId}/{quantity}', [ProductionController::class, 'produce']);
+});

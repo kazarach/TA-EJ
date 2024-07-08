@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Validator;
@@ -16,6 +17,14 @@ class UserController extends Controller
             'users' => $users,
             'title' => 'User Page'
         ]);
+    }
+
+    public function show(Request $request)
+    {
+        $user = Auth::user();
+        $user->load('roles'); // Ensure roles are loaded
+
+        return response()->json($user);
     }
 
     function listUser($id=null){

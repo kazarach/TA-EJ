@@ -31,7 +31,7 @@ use App\Http\Controllers\RejectedProductController;
 
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\GoogleController;
+// use App\Http\Controllers\Auth\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,8 +76,29 @@ All Manager Routes List
 //     Route::post('/admin/update-permissions', [AdminController::class, 'updatePermissions'])->name('admin.update-permissions');
 // });
 
-Route::middleware(['role:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/partials/sidebar-admin', function () {
+    return view('partials.sidebar-admin');
+});
+
+Route::get('/partials/sidebar-user', function () {
+    return view('partials.sidebar-user');
+});
+
+Route::get('/partials/sidebar-production', function () {
+    return view('partials.sidebar-production');
+});
+
+Route::get('/partials/sidebar-inventory', function () {
+    return view('partials.sidebar-inventory');
+});
+
+Route::get('/partials/sidebar-marketing', function () {
+    return view('partials.sidebar-marketing');
+});
+
+
+Route::middleware(['auth:api','role:admin'])->group(function () {
+    // Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/dashboard', function () {
         \Log::info('Admin accessing dashboard');
         return view('dashboard', [
@@ -115,15 +136,15 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
     Route::get('/rejectedproduct', [RejectedProductController::class, 'index']);
 
-    Route::post('/logout', function () {
-        auth()->logout();
+    // Route::post('/logout', function () {
+    //     auth()->logout();
         
-        return redirect('/login');
-    });
+    //     return redirect('/login');
+    // });
 });
 
 Route::middleware(['role:user'])->group(function () {
-    Route::get('/user', [UserController::class, 'index']);
+    // Route::get('/user', [UserController::class, 'index']);
     Route::get('/user/dashboard', function () {
         return view('dashboard', [
             'title' => 'Dashboard'
@@ -200,9 +221,8 @@ Route::get('/juan', function () {
         'title' => 'Schedule'
     ]);
 });
-
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
+// Route::post('/login', [LoginController::class, 'login'])->name('web.login');
+// Route::post('/logout', [LoginController::class, 'logout'])->name('web.logout');
+// Route::post('/refresh', [LoginController::class, 'refresh'])->name('web.refresh');
 
 Auth::routes();
