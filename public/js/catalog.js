@@ -3,6 +3,12 @@ var selectedRows = [];
 let dueDate;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
+// Set default AJAX headers
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 
 $(document).ready(function () {
     
@@ -22,12 +28,7 @@ $(document).ready(function () {
         }
     });
 
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
+
     
     var workforceTable = $('#workforce-table').DataTable({
         ajax: {

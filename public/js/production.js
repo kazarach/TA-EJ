@@ -7,6 +7,7 @@ var productionList = [];
 var counter=1;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
+
 $.ajaxSetup({
     headers: {
         'Authorization': 'Bearer ' + token

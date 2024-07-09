@@ -6,6 +6,12 @@ let startDate;
 let endDate;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
+// Set default AJAX headers
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 
 function myFunction() {
     var input, filter, ul, li, a, i, txtValue;
@@ -45,12 +51,7 @@ $(document).ready(function () {
         }
     });
 
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
+
     
     // Initialize the DataTable
     var projectTable = $("#projects-table").DataTable({

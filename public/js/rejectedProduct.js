@@ -5,7 +5,12 @@ var tableMachine;
 var tableWorkforce;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
-
+// Set default AJAX headers
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 
 $(document).ready(function () {
     
@@ -26,12 +31,6 @@ $(document).ready(function () {
         }
     });
 
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
     
     console.log("AHA");
     var productionTable = $("#production-table").DataTable({

@@ -4,7 +4,11 @@ let totalHTM = 0;
 let selectedMaterialsTemp = [];
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
-
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 function myFunction() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("myInput");
@@ -44,13 +48,6 @@ $(document).ready(function () {
         } else {
             const newUrl = `${targetUrl}?token=${token}`;
             $(this).attr('href', newUrl);
-        }
-    });
-
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
         }
     });
     

@@ -6,7 +6,11 @@ let tableSell = $("#selling-table").DataTable();
 var tableItem;
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
-
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 $(document).ready(function () {
     
     if (!token) {
@@ -26,12 +30,7 @@ $(document).ready(function () {
         }
     });
 
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
+
 
     console.log(selectedItems);
 
