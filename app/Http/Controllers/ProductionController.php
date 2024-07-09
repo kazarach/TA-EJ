@@ -229,61 +229,61 @@ class ProductionController extends Controller
         }
     }
 
-    public function produce(Request $request)
-    {
-        $request->validate([
-            '*.product_id' => 'required|exists:products,id',
-            '*.quantity' => 'required|integer',
-            '*.production_date' => 'required|date',
-            '*.project_id' => 'required|exists:projects,id',
-        ]);
+    // public function produce(Request $request)
+    // {
+    //     $request->validate([
+    //         '*.product_id' => 'required|exists:products,id',
+    //         '*.quantity' => 'required|integer',
+    //         '*.production_date' => 'required|date',
+    //         '*.project_id' => 'required|exists:projects,id',
+    //     ]);
 
-        // Start a transaction
-        DB::beginTransaction();
+    //     // Start a transaction
+    //     DB::beginTransaction();
 
-        try {
-            $productionRecords = [];
+    //     try {
+    //         $productionRecords = [];
 
-            foreach ($request->all() as $productionData) {
-                $product = Product::findOrFail($productionData['product_id']);
-                $quantity = $productionData['quantity'];
+    //         foreach ($request->all() as $productionData) {
+    //             $product = Product::findOrFail($productionData['product_id']);
+    //             $quantity = $productionData['quantity'];
 
-                // Update product quantity
-                $product->stock += $quantity;
-                $product->save();
+    //             // Update product quantity
+    //             $product->stock += $quantity;
+    //             $product->save();
 
-                // Deduct materials
-                foreach ($product->materials as $material) {
-                    $requiredQuantity = $material->pivot->quantity * $quantity;
+    //             // Deduct materials
+    //             foreach ($product->materials as $material) {
+    //                 $requiredQuantity = $material->pivot->quantity * $quantity;
 
-                    if ($material->stock < $requiredQuantity) {
-                        throw new \Exception("Not enough material: {$material->name}");
-                    }
+    //                 if ($material->stock < $requiredQuantity) {
+    //                     throw new \Exception("Not enough material: {$material->name}");
+    //                 }
 
-                    $material->stock -= $requiredQuantity;
-                    $material->save();
-                }
+    //                 $material->stock -= $requiredQuantity;
+    //                 $material->save();
+    //             }
 
-                // Record the production
-                $production = Production::create([
-                    'product_id' => $productionData['product_id'],
-                    'quantity' => $quantity,
-                    'production_date' => $productionData['production_date'],
-                    'project_id' => $productionData['project_id'],
-                ]);
+    //             // Record the production
+    //             $production = Production::create([
+    //                 'product_id' => $productionData['product_id'],
+    //                 'quantity' => $quantity,
+    //                 'production_date' => $productionData['production_date'],
+    //                 'project_id' => $productionData['project_id'],
+    //             ]);
 
-                $productionRecords[] = $production;
-            }
+    //             $productionRecords[] = $production;
+    //         }
 
-            // Commit the transaction
-            DB::commit();
+    //         // Commit the transaction
+    //         DB::commit();
 
-            return response()->json($productionRecords, 200);
-        } catch (\Exception $e) {
-            // Rollback the transaction
-            DB::rollBack();
+    //         return response()->json($productionRecords, 200);
+    //     } catch (\Exception $e) {
+    //         // Rollback the transaction
+    //         DB::rollBack();
 
-            return response()->json(['message' => $e->getMessage()], 400);
-        }
-    }
+    //         return response()->json(['message' => $e->getMessage()], 400);
+    //     }
+    // }
 }

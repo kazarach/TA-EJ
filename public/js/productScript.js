@@ -205,7 +205,7 @@ function fetchProductData(productId) {
     document.getElementById("productSellingPrice").value = productId.selling_price;
     document.getElementById("productStock").value = productId.stock;
     changeTextColor();
-    selectedProductId = productId;
+    selectedProductId = productId.id;
     selectedModal();
     resetSelectedMaterials();
     productId.materials.forEach(material => {
@@ -509,6 +509,7 @@ function updateProductMaterial(id) {
 function deleteProduct() {
     return new Promise((resolve, reject) => {
         event.preventDefault();
+        console.log(selectedProductId)
         if (selectedProductId) {
             fetch(`/api/products/${selectedProductId}`, {
                 method: "DELETE",

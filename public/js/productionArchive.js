@@ -90,10 +90,9 @@ $(document).ready(function () {
                 console.error("Deletion failed:", error);
             });
     });
-    $("#saveChangesMachine").on("click", function () {
+    $("#saveChanges").on("click", function () {
         closeModal();
         selectedModal();
-        populateMachine(selectedMachines);
     });
     $("#saveChangesWorkforce").on("click", function () {
         closeModal2();
@@ -174,8 +173,8 @@ function updateData() {
         if (selectedId) {
             const productName = document.getElementById("productName").value;
             const projectName = document.getElementById("projectName").value;
-            const product = document.getElementById("product").value;
-            const quantity = document.getElementById("quantity").value;
+            // const product = document.getElementById("product").value;
+            // const quantity = document.getElementById("quantity").value;
 
             if (productName === "Select a customer") {
                 alert("Customer name cannot be blank");
@@ -185,20 +184,20 @@ function updateData() {
                 alert("Customer name cannot be blank");
                 return reject(new Error("Customer name cannot be blank"));
             }
-            if (product === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
-            if (quantity === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
+            // if (product === "Total") {
+            //     alert("Total cannot be blank");
+            //     return reject(new Error("Total cannot be blank"));
+            // }
+            // if (quantity === "Total") {
+            //     alert("Total cannot be blank");
+            //     return reject(new Error("Total cannot be blank"));
+            // }
 
             const Data = {
                 catalog_id: productName,
                 customer_id: projectName,
-                product_id: product,
-                quantity: quantity,
+                // product_id: product,
+                // quantity: quantity,
             };
             console.log(Data,selectedId);
             fetch(`/api/order/${selectedId}`, {

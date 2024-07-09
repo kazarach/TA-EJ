@@ -35,27 +35,12 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::post('/login', [LoginController::class, 'login'])->name('login');
-// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-// Route::post('/refresh', [LoginController::class, 'refresh'])->name('refresh');
-// routes/api.php
-Route::post('/test-login', function (Request $request) {
-    Log::info('Test login route hit');
-    return response()->json(['message' => 'Route hit']);
-});
-
-// Check if the route is being registered
-Route::get('/debug', function () {
-    return response()->json(['message' => 'Debug route hit']);
-});
-
 Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('api.logout');
 Route::post('/refresh', [AuthController::class, 'refresh'])->name('api.refresh');
 
 // Public routes
 Route::middleware(['auth:api'])->group(function () {
-
 
     Route::get('user/{id}', [UserController::class, 'index']);
     Route::get('/user', [UserController::class, 'show']);
@@ -66,7 +51,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('products', [ProductController::class, 'store'])->name('products.store');
     Route::get('products', [ProductController::class, 'index'])->name('products.index');
     Route::put('products/{id}/updateMaterials', [ProductController::class, 'updateProductMaterials']);
-    Route::post('products/createProductMaterials', [ProductController::class, 'createProductMaterials']);
 
     Route::post('materials/', [MaterialController::class, 'store']);
     Route::get('materials/', [MaterialController::class, 'index']);
@@ -138,34 +122,34 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('productions/', [ProductionController::class, 'index']);
     Route::post('productions/', [ProductionController::class, 'store']);
-    Route::get('productions/{id}', [ProductionController::class, 'show']);
-    Route::put('productions/{id}', [ProductionController::class, 'update']);
+    // Route::get('productions/{id}', [ProductionController::class, 'show']);
+    // Route::put('productions/{id}', [ProductionController::class, 'update']);
     Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
 
     Route::get('returncustomer/', [ReturnCustomerController::class, 'index']);
     Route::post('returncustomer/', [ReturnCustomerController::class, 'store']);
-    Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);
+    // Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);s
     Route::put('returncustomer/{id}', [ReturnCustomerController::class, 'update']);
     Route::delete('returncustomer/{id}', [ReturnCustomerController::class, 'destroy']);
 
     Route::get('returnproduction/', [ReturnProductionController::class, 'index']);
     Route::post('returnproduction/', [ReturnProductionController::class, 'store']);
-    Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
-    Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
+    // Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
+    // Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
     Route::delete('returnproduction/{id}', [ReturnProductionController::class, 'destroy']);
 
     Route::get('returnmaterial/', [ReturnMaterialController::class, 'index']);
     Route::post('returnmaterial/', [ReturnMaterialController::class, 'store']);
-    Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
-    Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
+    // Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
+    // Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
     Route::delete('returnmaterial/{id}', [ReturnMaterialController::class, 'destroy']);
 
     Route::get('rejectedproduct/', [RejectedProductController::class, 'index']);
     Route::post('rejectedproduct/', [RejectedProductController::class, 'store']);
-    Route::get('rejectedproduct/{id}', [RejectedProductController::class, 'show']);
+    // Route::get('rejectedproduct/{id}', [RejectedProductController::class, 'show']);
     Route::put('rejectedproduct/{id}', [RejectedProductController::class, 'update']);
     Route::delete('rejectedproduct/{id}', [RejectedProductController::class, 'destroy']);
 
     // BETWEEN DATABASE
-    Route::post('/productions/{productId}/{quantity}', [ProductionController::class, 'produce']);
+    // Route::post('/productions/{productId}/{quantity}', [ProductionController::class, 'produce']);
 });
