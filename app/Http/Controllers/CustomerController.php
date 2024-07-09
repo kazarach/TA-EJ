@@ -97,7 +97,7 @@ class CustomerController extends Controller
                 'telp' => 'required|string|max:255',
             ]);
     
-            $data = new Customer;
+            // $data = new Customer;
             $data->name = $validatedData['name'];
             $data->class_id = $validatedData['class_id'];
             $data->telp = $validatedData['telp'];

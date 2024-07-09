@@ -47,6 +47,7 @@ $(document).ready(function () {
             { data: "id" },
             { data: "products.name" },
             { data: "quantity" },
+            { data: "itemgrades.name" },
             { data: "products.size.name" },
             { data: "products.color.name" },
             { data: "products.code" },
@@ -106,8 +107,17 @@ function fetchData(Data) {
     console.log(Data);
     document.getElementById("ID").value = "ID: " + Data.id;
     $('#productName').val(Data.product_id).trigger('change');
+    $('#gradeName').val(Data.grade_id).trigger('change');
     $('#categoryName').val(Data.category_id).trigger('change');
+    $('#quantity').val(Data.quantity).trigger('change');
     $('#information').val(Data.information).trigger('change');
+    $('#return_date').val(Data.return_date).trigger('change');
+    const gradeSelect = $('#gradeName');
+
+    gradeSelect.select2({
+        placeholder: "Select a grade",
+        allowClear: true
+    });
     changeTextColor();
     selectedId = Data.id;
 }
@@ -115,11 +125,16 @@ function fetchData(Data) {
 function clearForm() {
     document.getElementById("ID").value = "";
     document.getElementById("productName").value = "";
+    document.getElementById("gradeName").value = "";
     document.getElementById("categoryName").value = "";
+    document.getElementById("quantity").value = "";
     document.getElementById("information").value = "";
+    document.getElementById("return_date").value = "";
+
 
     $('#productName').val(0).trigger('change');
-    $('#categoryName').val(0).trigger('change');
+    $('#gradeName').val(0).trigger('change');
+    $('#categoryName').val(null).trigger('change');
 
 }
 
@@ -128,35 +143,22 @@ function updateData() {
         event.preventDefault();
         if (selectedId) {
             const productName = document.getElementById("productName").value;
-            const projectName = document.getElementById("projectName").value;
-            const product = document.getElementById("product").value;
+            const categoryName = document.getElementById("categoryName").value;
+            const gradeName = document.getElementById("gradeName").value;
             const quantity = document.getElementById("quantity").value;
-
-            if (productName === "Select a customer") {
-                alert("Customer name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
-            }
-            if (projectName === "Select a customer") {
-                alert("Customer name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
-            }
-            if (product === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
-            if (quantity === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
+            const information = document.getElementById("information").value;
+            const return_date = document.getElementById("return_date").value;
 
             const Data = {
-                catalog_id: productName,
-                customer_id: projectName,
-                product_id: product,
+                product_id: productName,
+                category_id: categoryName,
+                grade_id: gradeName,
                 quantity: quantity,
+                information: information,
+                return_date: return_date,
             };
             console.log(Data,selectedId);
-            fetch(`/api/order/${selectedId}`, {
+            fetch(`/api/returncustomer/${selectedId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -207,7 +209,7 @@ function createItem() {
         };
 
         console.log(requestBody);
-        fetch(`/api/order`, {
+        fetch(`/api/returncustomer`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -507,5 +509,23 @@ $(document).ready(function () {
         placeholder: "Select a category",
         allowClear: true,
     });
+});
+$(document).ready(function () {
+    $(".datepicker").datepicker({
+        dateFormat: "yy-mm-dd",
+        onSelect: function () {
+            $(this).trigger("change");
+        },
+    });
+
+    function handleInputChange() {
+        var return_date = $("#return_date").val();
+        console.log(return_date);
+    }
+
+    $("#return_date").on(
+        "change input",
+        handleInputChange
+    );
 });
 

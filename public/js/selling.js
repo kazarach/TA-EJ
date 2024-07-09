@@ -265,6 +265,7 @@ function populateItems(items) {
 
     items.forEach(function (item) {
         if (!addedItemlIds.has(item.id)) {
+            console.log(discount);
             var quantity = parseInt(item.quantity);
             var total = item.price * quantity;
             var afterDiscount = total * ((100 - discount) / 100);
@@ -465,10 +466,13 @@ function clearDefaultValue(input) {
     }
 }
 
-document.getElementById("customerName").addEventListener("change", function () {
-    var selectedOption = this.options[this.selectedIndex];
-    discount = selectedOption.getAttribute("data-discount");
-    console.log("Selected Discount:", discount);
+$(document).ready(function () {
+    $("#customerName").on("change", function () {
+        var selectedOption = this.options[this.selectedIndex];
+        discount = selectedOption.getAttribute("data-discount");
+        calculateTotalHTM();
+        console.log("Selected Discount:", discount);
+    });
 });
 
 // searchbar

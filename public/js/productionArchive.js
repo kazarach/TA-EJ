@@ -173,108 +173,105 @@ function updateData() {
         if (selectedId) {
             const productName = document.getElementById("productName").value;
             const projectName = document.getElementById("projectName").value;
-            // const product = document.getElementById("product").value;
-            // const quantity = document.getElementById("quantity").value;
 
-            if (productName === "Select a customer") {
-                alert("Customer name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
+            if (!productName || !projectName) {
+                alert("All fields must be filled out.");
+                return reject(new Error("All fields must be filled out."));
             }
-            if (projectName === "Select a customer") {
-                alert("Customer name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
-            }
-            // if (product === "Total") {
-            //     alert("Total cannot be blank");
-            //     return reject(new Error("Total cannot be blank"));
-            // }
-            // if (quantity === "Total") {
-            //     alert("Total cannot be blank");
-            //     return reject(new Error("Total cannot be blank"));
-            // }
 
-            const Data = {
-                catalog_id: productName,
-                customer_id: projectName,
-                // product_id: product,
-                // quantity: quantity,
+            const data = {
+                product_id: productName,
+                project_id: projectName,
+                machines: selectedMachines.map(machine => ({
+                    id: machine.id,
+                    name: machine.name,
+                    status_id: machine.status_id,
+                    use_id: machine.use_id
+                })),
+                workforces: selectedWorkforces.map(workforce => ({
+                    id: workforce.id,
+                    name: workforce.name,
+                    status_id: workforce.status_id,
+                    position_id: workforce.position_id
+                }))
             };
-            console.log(Data,selectedId);
-            fetch(`/api/order/${selectedId}`, {
+            console.log(data, selectedId);
+
+            fetch(`/api/productions/${selectedId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(Data),
+                body: JSON.stringify(data),
             })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Failed to update Machine");
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    resolve(data);
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    reject(error);
-                });
-        } else {
-            console.error("No Machine selected for update");
-            reject(new Error("No Machine selected for update"));
-        }
-    });
-}
-
-function createItem() {
-    return new Promise((resolve, reject) => {
-        event.preventDefault();
-
-        const catalogName = document.getElementById("catalogName").value;
-        const customerName = document.getElementById("customerName").value;
-        
-        if (catalogName === "Select a customer") {
-            alert("Customer name cannot be blank");
-            return reject(new Error("Customer name cannot be blank"));
-        }
-        if (customerName === "Total") {
-            alert("Total price cannot be blank");
-            return reject(new Error("Total price cannot be blank"));
-        }
-
-        const requestBody = {
-            catalog_id: catalogName,
-            customer_id: customerName,
-            items: selectedItems,
-        };
-
-        console.log(requestBody);
-        fetch(`/api/order`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(requestBody),
-        })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error("Failed to create Transaction Archive");
+                    throw new Error("Failed to update production item");
                 }
                 return response.json();
             })
             .then((data) => {
-                console.log(data.id);
-                resolve(data.id);
+                resolve(data);
             })
             .catch((error) => {
                 console.error("Error:", error);
                 reject(error);
             });
+        } else {
+            console.error("No item selected for update");
+            reject(new Error("No item selected for update"));
+        }
     });
 }
+
+// function createItem() {
+//     return new Promise((resolve, reject) => {
+//         event.preventDefault();
+
+//         const catalogName = document.getElementById("catalogName").value;
+//         const customerName = document.getElementById("customerName").value;
+        
+//         if (catalogName === "Select a customer") {
+//             alert("Customer name cannot be blank");
+//             return reject(new Error("Customer name cannot be blank"));
+//         }
+//         if (customerName === "Total") {
+//             alert("Total price cannot be blank");
+//             return reject(new Error("Total price cannot be blank"));
+//         }
+
+//         const requestBody = {
+//             catalog_id: catalogName,
+//             customer_id: customerName,
+//             items: selectedItems,
+//         };
+
+//         console.log(requestBody);
+//         fetch(`/api/order`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 'Authorization': `Bearer ${token}`
+//             },
+//             body: JSON.stringify(requestBody),
+//         })
+//             .then((response) => {
+//                 if (!response.ok) {
+//                     throw new Error("Failed to create Transaction Archive");
+//                 }
+//                 return response.json();
+//             })
+//             .then((data) => {
+//                 console.log(data.id);
+//                 resolve(data.id);
+//             })
+//             .catch((error) => {
+//                 console.error("Error:", error);
+//                 reject(error);
+//             });
+//     });
+// }
 
 function deleteData() {
     return new Promise((resolve, reject) => {

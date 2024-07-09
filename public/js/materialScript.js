@@ -89,6 +89,7 @@ $(document).ready(function () {
 
     $("#materials-table tbody").on("click", "tr", function () {
         var data = materialTable.row(this).data();
+        selectedMaterialId=data.id;
         fetchMaterialData(data.id);
     });
 });

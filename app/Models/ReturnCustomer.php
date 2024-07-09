@@ -19,5 +19,9 @@ class ReturnCustomer extends Model
     {
         return $this->belongsTo(ReturnCustomerCategory::class,'category_id');
     }
+    public function itemgrades()
+    {
+        return $this->belongsTo(ItemGrade::class,'grade_id');
+    }
 
 }

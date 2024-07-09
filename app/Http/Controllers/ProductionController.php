@@ -210,9 +210,22 @@ class ProductionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $production = Production::findOrFail($id);
+
+        $production->product_id = $request->input('product_id');
+        $production->project_id = $request->input('project_id');
+
+        // Update machines
+        $production->machines()->sync(collect($request->input('machines'))->pluck('id')->toArray());
+
+        // Update workforces
+        $production->workforces()->sync(collect($request->input('workforces'))->pluck('id')->toArray());
+
+        $production->save();
+
+        return response()->json(['message' => 'Production item updated successfully', 'data' => $production]);
     }
 
     /**

@@ -107,7 +107,9 @@ function fetchData(Data) {
     document.getElementById("ID").value = "ID: " + Data.id;
     $('#materialName').val(Data.material_id).trigger('change');
     $('#categoryName').val(Data.category_id).trigger('change');
+    $('#quantity').val(Data.quantity).trigger('change');
     $('#information').val(Data.information).trigger('change');
+    $('#return_date').val(Data.return_date).trigger('change');
     changeTextColor();
     selectedId = Data.id;
 }
@@ -116,7 +118,9 @@ function clearForm() {
     document.getElementById("ID").value = "";
     document.getElementById("materialName").value = "";
     document.getElementById("categoryName").value = "";
+    document.getElementById("quantity").value = "";
     document.getElementById("information").value = "";
+    document.getElementById("return_date").value = "";
 
     $('#materialName').val(0).trigger('change');
     $('#categoryName').val(0).trigger('change');
@@ -128,35 +132,20 @@ function updateData() {
         event.preventDefault();
         if (selectedId) {
             const materialName = document.getElementById("materialName").value;
-            const projectName = document.getElementById("projectName").value;
-            const material = document.getElementById("material").value;
+            const categoryName = document.getElementById("categoryName").value;
             const quantity = document.getElementById("quantity").value;
-
-            if (materialName === "Select a customer") {
-                alert("Customer name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
-            }
-            if (projectName === "Select a customer") {
-                alert("Customer name cannot be blank");
-                return reject(new Error("Customer name cannot be blank"));
-            }
-            if (material === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
-            if (quantity === "Total") {
-                alert("Total cannot be blank");
-                return reject(new Error("Total cannot be blank"));
-            }
+            const information = document.getElementById("information").value;
+            const return_date = document.getElementById("return_date").value;
 
             const Data = {
-                catalog_id: materialName,
-                customer_id: projectName,
-                material_id: material,
+                material_id: materialName,
+                category_id: categoryName,
                 quantity: quantity,
+                information: information,
+                return_date: return_date,
             };
             console.log(Data,selectedId);
-            fetch(`/api/order/${selectedId}`, {
+            fetch(`/api/returnmaterial/${selectedId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -507,4 +496,23 @@ $(document).ready(function () {
         placeholder: "Select a category",
         allowClear: true,
     });
+});
+
+$(document).ready(function () {
+    $(".datepicker").datepicker({
+        dateFormat: "yy-mm-dd",
+        onSelect: function () {
+            $(this).trigger("change");
+        },
+    });
+
+    function handleInputChange() {
+        var returnDate = $("#returnDate").val();
+        console.log(returnDate);
+    }
+
+    $("#returnDate").on(
+        "change input",
+        handleInputChange
+    );
 });

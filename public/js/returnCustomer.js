@@ -65,14 +65,14 @@ function clearForm() {
 
 
     $('#productName').val(0).trigger('change');
-    $('#gradeName').val(null).trigger('change');
-    $('#categoryName').val(0).trigger('change');
+    $('#gradeName').val(0).trigger('change');
+    $('#categoryName').val(null).trigger('change');
 
     // selectedMachines = [];
     // selectedWorkforce = [];
-    returnList = [];
+    // returnList = [];
     console.log(returnList);
-    returnTable.clear().draw();
+    // returnTable.clear().draw();
 }
 
 function createItem() {
@@ -267,8 +267,11 @@ function populateItems(items) {
 window.onload = function () {
     const gradeSelect = document.getElementById('gradeName');
     const categorySelect = $('#categoryName');
-    
-    categorySelect.select2();
+
+    categorySelect.select2({
+        placeholder: "Select a category",
+        allowClear: true
+    });
 
     categorySelect.on('change.select2', function () {
         const selectedCategory = this.options[this.selectedIndex];
@@ -281,7 +284,7 @@ window.onload = function () {
             gradeSelect.selectedIndex = 0;
         }
     });
-    
+
     gradeSelect.disabled = true;
 };
 

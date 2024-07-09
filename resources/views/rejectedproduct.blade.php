@@ -36,7 +36,7 @@
                     <option selected disabled hidden>Select a product</option>
                     @foreach($products as $product)
                     <option value="{{ $product->id }}">
-                        {{ $product->name }}
+                        {{ $product->name }} ({{ $product->size->name }})
                     </option>
                     @endforeach 
                 </select>

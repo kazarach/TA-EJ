@@ -123,25 +123,25 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('productions/', [ProductionController::class, 'index']);
     Route::post('productions/', [ProductionController::class, 'store']);
     // Route::get('productions/{id}', [ProductionController::class, 'show']);
-    // Route::put('productions/{id}', [ProductionController::class, 'update']);
+    Route::put('productions/{id}', [ProductionController::class, 'update']);
     Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
 
     Route::get('returncustomer/', [ReturnCustomerController::class, 'index']);
     Route::post('returncustomer/', [ReturnCustomerController::class, 'store']);
-    // Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);s
+    // Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);
     Route::put('returncustomer/{id}', [ReturnCustomerController::class, 'update']);
     Route::delete('returncustomer/{id}', [ReturnCustomerController::class, 'destroy']);
 
     Route::get('returnproduction/', [ReturnProductionController::class, 'index']);
     Route::post('returnproduction/', [ReturnProductionController::class, 'store']);
     // Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
-    // Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
+    Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
     Route::delete('returnproduction/{id}', [ReturnProductionController::class, 'destroy']);
 
     Route::get('returnmaterial/', [ReturnMaterialController::class, 'index']);
     Route::post('returnmaterial/', [ReturnMaterialController::class, 'store']);
     // Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
-    // Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
+    Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
     Route::delete('returnmaterial/{id}', [ReturnMaterialController::class, 'destroy']);
 
     Route::get('rejectedproduct/', [RejectedProductController::class, 'index']);

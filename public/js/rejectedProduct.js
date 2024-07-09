@@ -156,7 +156,6 @@ function updateData() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(Data),
             })
@@ -212,7 +211,6 @@ function createItem() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })

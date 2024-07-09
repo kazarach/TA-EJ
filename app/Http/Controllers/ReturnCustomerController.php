@@ -22,7 +22,7 @@ class ReturnCustomerController extends Controller
                 'products' => function ($query) {
                     $query->with(['type', 'category', 'size', 'color', 'sign']);
                 },
-                'customercategories'
+                'customercategories','itemgrades'
             ])->get();
 
             return response()->json([
@@ -47,11 +47,13 @@ class ReturnCustomerController extends Controller
         $returncustomers = ReturnCustomer::all();
         $products = Product::all();
         $returncustomercategories = ReturnCustomerCategory::all();
+        $grades = ItemGrade::all();
         return view('returncustomerarchive', [
             'title' => 'Production Page',
             'returncustomers' => $returncustomers,
             'products' => $products,
             'returncustomercategories' => $returncustomercategories,
+            'grades' => $grades,
         ]);
     }
 
@@ -133,23 +135,26 @@ class ReturnCustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $rejected = RejectedProduct::find($id);
-        if ($product) {
+        $return = ReturnCustomer::find($id);
+        if ($return) {
             $request->validate([
-                '*.product_id' => 'required|exists:products,id',
-                '*.grade_id' => 'required|exists:item_grades,id',
-                '*.category_id' => 'required|exists:return_customer_categories,id',
-                '*.quantity' => 'required|integer',
-                '*.information' => 'required|string',
-                '*.return_date' => 'required|date',
+                'product_id' => 'required|exists:products,id',
+                'grade_id' => 'required|exists:item_grades,id',
+                'category_id' => 'required|exists:return_customer_categories,id',
+                'quantity' => 'required|integer',
+                'information' => 'required|string',
+                'return_date' => 'required|date',
             ]);
-            $rejected->product_id = $validatedData['product_id'];
-            $rejected->grade_id = $validatedData['grade_id'];
-            $rejected->quantity = $validatedData['quantity'];
+            $return->product_id = $request['product_id'];
+            $return->grade_id = $request['grade_id'];
+            $return->category_id = $request['category_id'];
+            $return->quantity = $request['quantity'];
+            $return->information = $request['information'];
+            $return->return_date = $request['return_date'];
 
-            $rejected->save();
+            $return->save();
 
-            return response()->json(['message' => 'Product updated successfully', 'product' => $product], 200);
+            return response()->json(['message' => 'Product updated successfully'], 200);
         } else {
             return response()->json(['error' => 'Product not found'], 404);
         }
@@ -160,9 +165,9 @@ class ReturnCustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $rejectedProduct = RejectedProduct::find($id);
-        if ($rejectedProduct) {
-            $rejectedProduct->delete();
+        $returnCustomer = ReturnCustomer::find($id);
+        if ($returnCustomer) {
+            $returnCustomer->delete();
             return response()->json(['message' => 'Product deleted successfully'], 200);
         } else {
             return response()->json(['error' => 'Product not found'], 404);

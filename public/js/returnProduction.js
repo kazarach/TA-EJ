@@ -67,9 +67,9 @@ function clearForm() {
 
     // selectedMachines = [];
     // selectedWorkforce = [];
-    returnList = [];
+    // returnList = [];
     console.log(returnList);
-    returnTable.clear().draw();
+    // returnTable.clear().draw();
 }
 
 function createItem() {

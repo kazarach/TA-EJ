@@ -31,7 +31,7 @@ $(document).ready(function () {
             $(this).attr('href', newUrl);
         }
     });
-    
+
     $("#production-table tbody").on("click", "tr", function () {
         var data = productionTable.row(this).data();
         console.log(data);
@@ -119,8 +119,17 @@ function clearForm() {
     $('#projectName').val(0).trigger('change');
 
     selectedMachines = [];
-    selectedWorkforce = [];
+    selectedWorkforces = [];
+
+    // Uncheck all machine checkboxes
+    $(".machine-checkbox").prop('checked', false);
+
+    // Uncheck all workforce checkboxes
+    $(".workforce-checkbox").prop('checked', false);
+
     productionList = [];
+    console.log(selectedMachines);
+    console.log(selectedWorkforces);
     console.log(productionList);
     productionTable.clear().draw();
 }

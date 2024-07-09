@@ -128,7 +128,27 @@ class ReturnProductionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $return = ReturnProduction::find($id);
+        if ($return) {
+            $request->validate([
+                'material_id' => 'required|exists:materials,id',
+                'category_id' => 'required|exists:return_production_categories,id',
+                'quantity' => 'required|integer',
+                'information' => 'required|string',
+                'return_date' => 'required|date',
+            ]);
+            $return->material_id = $request['material_id'];
+            $return->category_id = $request['category_id'];
+            $return->quantity = $request['quantity'];
+            $return->information = $request['information'];
+            $return->return_date = $request['return_date'];
+
+            $return->save();
+
+            return response()->json(['message' => 'Product updated successfully'], 200);
+        } else {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
 
     /**
