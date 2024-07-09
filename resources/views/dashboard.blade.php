@@ -24,7 +24,7 @@
     <div class="content-section">
         <div class="row justify-content-left">
             <div class="col-md-2">
-                <a href="/order/book" style="text-decoration: none; color: inherit;">
+                <a href="/material" style="text-decoration: none; color: inherit;">
                 <div class="card" id="card1">
                     <div class="card-body">
                         <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="eventTitle">Project Detail</label>
+                        <label for="eventTitle">Production Detail</label>
                         <table id="production-table" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>

@@ -88,8 +88,8 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="" class="form-label">Return Date</label>
-            <input id="return_date" type="text" class="form-control datepicker" placeholder="Return Date">
+            <label for="" class="form-label">Return Customer Date</label>
+            <input id="return_date" type="text" class="form-control datepicker" placeholder="Return Customer Date">
         </div>
   
       <!-- <button type="button" id="pilih-machine" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#machineModal">Choose Machines and Workforce</button> -->

@@ -75,8 +75,8 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="" class="form-label">Production Date</label>
-            <input id="return_date" type="text" class="form-control datepicker" placeholder="Production Date">
+            <label for="" class="form-label">Return Production Date</label>
+            <input id="return_date" type="text" class="form-control datepicker" placeholder="Return Production Date">
         </div>
   
   

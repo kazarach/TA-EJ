@@ -75,8 +75,8 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="" class="form-label">Production Date</label>
-            <input id="return_date" type="text" class="form-control datepicker" placeholder="Production Date">
+            <label for="" class="form-label">Return Material Date</label>
+            <input id="return_date" type="text" class="form-control datepicker" placeholder="Return Material Date">
         </div>
   
   
@@ -85,7 +85,7 @@
         <button type="button" id="add-button" class="btn btn-primary">Add</button>
         <!-- <button type="button" id="delete-button" class="btn btn-danger">Delete</button> -->
         <button type="button" onclick="clearForm()" class="btn btn-secondary">Clear Form</button>
-        <button type="button" id="return-button" class="btn btn-success">Return Product</button>
+        <button type="button" id="return-button" class="btn btn-success">Return Material</button>
 
       </div>
   </div>

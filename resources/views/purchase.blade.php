@@ -62,12 +62,12 @@
             <input id="paid" type="text" class="form-control" placeholder="Paid">
         </div>
     </div>
-    <div class="row g-3 mb-3">
+    <div class="row g-3">
         <div class="col-md-8">
             <label for="discount" class="form-label">Discount</label>
             <input id="discount" type="text" class="form-control" placeholder="Discount">
         </div>
-        <div class="col-md-4 align-self-end">
+        <div class="col-md-4 mt-5">
             <button type="button" id="change-discount" class="btn btn-primary" onclick="calculateTotalHTM()">Change</button>
         </div>
     </div>
@@ -155,7 +155,7 @@
 </div>
 
     <div>
-        <button type="button" id="create-button" class="btn btn-primary">Buy</button>
+        <button type="button" id="create-button" class="btn btn-success">Request</button>
         <button type="button" id="saveChangesOut" class="btn btn-primary">Save changes</button>
     </div>
 </div>

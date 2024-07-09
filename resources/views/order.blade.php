@@ -125,7 +125,7 @@
   </div>
   
       <div>
-          <button type="button" id="create-button" class="btn btn-success">Sell</button>
+          <button type="button" id="create-button" class="btn btn-success">Order</button>
           <button type="button" id="saveChangesOut" class="btn btn-primary">Save changes</button>
       </div>
   </div>

@@ -58,8 +58,8 @@
             </div>
         </div>
   
-      <button type="button" id="pilih-machine" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#machineModal">Choose Machines</button>
-      <button type="button" id="pilih-workforce" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#workforceModal">Choose workforces</button>
+      <button type="button" id="pilih-machine" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#machineModal">Choose Machines and Workforce</button>
+      {{-- <button type="button" id="pilih-workforce" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#workforceModal">Choose workforces</button> --}}
     
   {{---Modal---}}
   <div class="modal fade mb-3" id="machineModal" tabindex="-1" aria-labelledby="machineModalLabel" aria-hidden="true">
