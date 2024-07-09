@@ -70,7 +70,7 @@
 
 </div>
 
-<div class="filter-container">
+{{-- <div class="filter-container">
     <label for="">Use:
         <select id="status-filter">
             <option value="">All</option>
@@ -88,7 +88,7 @@
             <option value="">Bolos</option>
         </select>
     </label>
-</div>
+</div> --}}
 
 <div class="home-tbl">
     <table id="machine-table" class="table table-striped table-hover" style="width:100%">

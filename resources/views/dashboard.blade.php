@@ -29,8 +29,8 @@
                     <div class="card-body">
                         <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
                         <i class='bx bxs-book icon' id="logo-db"></i>
-                        <h5 class="card-title">Order Book</h5>
-                        <h1>10</h1>
+                        <h5 class="card-title">Material</h5>
+                        <h1 id="total-material">0</h1>
                     </div>
                 </div>
                 </a>
@@ -42,7 +42,7 @@
                         <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
                         <i class='bx bxs-food-menu icon' id="logo-db"></i>
                         <h5 class="card-title">Project</h5>
-                        <h1>145</h1>
+                        <h1 id="total-project">0</h1>
                     </div>
                 </div>
                 </a>
@@ -54,7 +54,7 @@
                         <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
                         <i class='bx bxs-cylinder icon' id="logo-db"></i>
                         <h5 class="card-title">Product</h5>
-                        <h1>200</h1>
+                        <h1 id="total-product">0</h1>
                     </div>
                 </div>
                 </a>
@@ -66,7 +66,7 @@
                         <i class='bx bx-dots-vertical-rounded icon' id="logo-dot"></i>
                         <i class='bx bxs-cog icon' id="logo-db"></i>
                         <h5 class="card-title">Production</h5>
-                        <h1>12</h1>
+                        <h1 id="total-production">0</h1>
                     </div>
                 </div>
                 </a>
@@ -87,27 +87,28 @@
                 <div class="card" id="card3">
                     <div class="card-body">
                         <h5 class="card-title">Producted Items</h5>
-                        <canvas id="productionChart" height="110"></canvas>
+                        <canvas id="productionChart" height="140"></canvas>
                     </div>
                 </div>
                 </a>
             </div>
-            {{-- <div class="col-md-2">
-                <div class="card" id="card3">
-                    <div class="card-body">
-                        <h5 class="card-title">Container 5</h5>
-                        <div class="chart-container">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="col-md-4">
                 <div class="card" id="card4">
                     <div class="card-body">
-                        <h5 class="card-title">Container 6</h5>
+                        <h5 class="card-title">Machine</h5>
                         <div class="chart-container">
-                            <canvas id="myChart"></canvas>
+                            <table id="machine-table-db" class="table table-striped table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Use</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

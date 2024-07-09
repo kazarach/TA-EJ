@@ -452,7 +452,7 @@ a.togglesubmenu {
 }
 
 #card3{
-    height: 32rem;
+    height: 39rem;
     top: 5rem;
 }
 
@@ -462,8 +462,13 @@ a.togglesubmenu {
 }
 
 #card4{
-    height: 11rem;
+    height: 18rem;
     top: 26rem;
+}
+
+#card4:hover{
+    background-color: white;
+    color: black;
 }
 
 #row2{
@@ -474,14 +479,6 @@ a.togglesubmenu {
 
 #row2 a{
     text-decoration: none;
-}
-
-.calendar-db .fc-center h2{
-    padding-top: 1rem;
-}
-
-.calendar-db .fc-content{
-    height: 1rem;
 }
 
 #logo-db {
@@ -943,6 +940,10 @@ body.dark .breadcrumbs-all a {
     width: 100%;
 }
 
+#machine-table-db_length, #machine-table-db_filter{
+    display: none;
+}
+
 /* media queries */
 
 @media (min-width: 1920px) {
@@ -965,11 +966,11 @@ body.dark .breadcrumbs-all a {
     }
     #card3{
         top: 0;
-        height: 42rem;
+        height: 45rem;
     }
     #card4{
         top: 25rem;
-        height: 17rem;
+        height: 20rem;
     }
     .card{
         height: 24rem ;
@@ -1001,6 +1002,9 @@ body.dark .breadcrumbs-all a {
     }
     #logo-dot{
         left: 21rem;
+    }
+    #productionChart{
+        height: 160px;
     }
     /* #myChart{
         position: relative;

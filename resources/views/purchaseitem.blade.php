@@ -28,7 +28,7 @@
         </div>
     </div>  
 
-<div class="filter-container-item">
+{{-- <div class="filter-container-item">
     <label for="">Position:
     <select id="position-filter">
         <option value="">All</option>
@@ -46,7 +46,7 @@
         <option value="">Bolos</option>
     </select>
     </label>
-</div>
+</div> --}}
 
 <section class="home">
     <table id="transaction-table" class="table table-striped table-hover" style="width:100%">

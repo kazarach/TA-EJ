@@ -1,5 +1,10 @@
 const token = localStorage.getItem('access_token');
 const role = localStorage.getItem('role');
+$.ajaxSetup({
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+});
 
 $(document).ready(function () {
     
@@ -18,15 +23,7 @@ $(document).ready(function () {
             const newUrl = `${targetUrl}?token=${token}`;
             $(this).attr('href', newUrl);
         }
-    });
-
-    // Set default AJAX headers
-    $.ajaxSetup({
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }
-    });
-    
+    });    
 
     $("#calendar").fullCalendar({
         initialDate: moment().format('YYYY-MM-DD'),
@@ -60,7 +57,8 @@ $(document).ready(function () {
                     callback(events);
                 },
                 error: function (xhr, status, error) {
-                    console.error("Error fetching data from API: ", error);
+                    console.error("Error fetching data: ", error);
+                    console.log("Response: ", xhr.responseText);
                 },
             });
         },
@@ -94,7 +92,7 @@ $(document).ready(function () {
 
             $("#projectModal").modal("show");
         },
-    });
+    });   
 
     // Populate production table
     productionTable = $("#production-table").DataTable({
@@ -105,7 +103,14 @@ $(document).ready(function () {
                 'Authorization': 'Bearer ' + token
             },
             dataSrc: function (json) {
-                return json.productions;
+                var productions = json.productions;
+            if (productions.length > 0) {
+                var lastProductionId = productions[productions.length - 1].id;
+                $("#total-production").text(lastProductionId);
+            } else {
+                $("#total-production").text('0');
+            }
+            return productions;
             },
         },
         columns: [
@@ -137,6 +142,95 @@ $(document).ready(function () {
         }
     });
 
+    // populate product table
+    $.ajax({
+        url: "/api/products/",
+        type: "GET",
+        success: function (json) {
+            console.log(json);
+            var products = json.products;
+            if (products.length > 0) {
+                var lastProductsId = products[products.length - 1].id;
+                $("#total-product").text(lastProductsId);
+            } else {
+                $("#total-product").text('0');
+            }
+    
+            var tableBody = $("#products-table tbody");
+            tableBody.empty(); // Clear any existing rows
+    
+            products.forEach(function (product) {
+                var materialsHtml = "<ul>";
+                product.materials.forEach(function (material) {
+                    materialsHtml += "<li>" + material.name + " (" + material.pivot.quantity + ")</li>";
+                });
+                materialsHtml += "</ul>";
+    
+                var row = `
+                    <tr>
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.type.name}</td>
+                        <td>${product.category.name}</td>
+                        <td>${product.size.name}</td>
+                        <td>${product.color.name}</td>
+                        <td>${product.sign.name}</td>
+                        <td>${product.code}</td>
+                        <td>${product.purchase_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
+                        <td>${product.selling_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
+                        <td>${product.stock}</td>
+                        <td>${materialsHtml}</td>
+                    </tr>
+                `;
+    
+                tableBody.append(row);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching data:", error);
+            $("#total-product").text('0');
+        }
+    });
+    
+    // populate materials table
+        $.ajax({
+            url: "/api/materials/", // Change this to your actual endpoint
+            type: "GET",
+            success: function (json) {
+                var materials = json.materials;
+            if (materials.length > 0) {
+                var lastMaterialsId = materials[materials.length - 1].id;
+                $("#total-material").text(lastMaterialsId);
+            } else {
+                $("#total-material").text('0');
+            }
+
+                var tableBody = $("#materials-table tbody");
+                tableBody.empty(); // Clear any existing rows
+
+                materials.forEach(function (material) {
+                    var row = `
+                        <tr>
+                            <td>${material.id}</td>
+                            <td>${material.name}</td>
+                            <td>${material.stock}</td>
+                            <td>${material.reserved}</td>
+                            <td>${material.materialunit.name}</td>
+                            <td>${material.materialcategory.name}</td>
+                            <td>${material.code}</td>
+                            <td>${material.purchase_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
+                        </tr>
+                    `;
+
+                    tableBody.append(row);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+            }
+        });
+        
+
     // Populate project table
     projectTable = $("#projects-table").DataTable({
         ajax: {
@@ -146,7 +240,14 @@ $(document).ready(function () {
                 'Authorization': 'Bearer ' + token
             },
             dataSrc: function (json) {
-                return json.projects;
+                var projects = json.projects;
+            if (projects.length > 0) {
+                var lastProjectsId = projects[projects.length - 1].id;
+                $("#total-project").text(lastProjectsId);
+            } else {
+                $("#total-project").text('0');
+            }
+            return projects;
             },
         },
         columns: [
@@ -240,11 +341,9 @@ $(document).ready(function () {
             }
         }
     });
-
-    // Production chart
-    fetchChartDataAndPopulateTable();
 });
 
+    // Production chart
 $(document).ready(function () {
     fetchProductionDataAndPopulateTable();
 });
@@ -258,7 +357,7 @@ function fetchProductionDataAndPopulateTable() {
             var productions = json.productions;
 
             // Populate the DataTable
-            var productionTable = $("#production-table").DataTable({
+            productionTable = $("#production-table").DataTable({
                 data: productions,
                 columns: [
                     { data: "id" },
@@ -303,7 +402,7 @@ function fetchProductionDataAndPopulateTable() {
                 if (!monthlySales[month][production.products.name]) {
                     monthlySales[month][production.products.name] = 0;
                 }
-                monthlySales[month][production.products.name] += production.quantity;
+                monthlySales[month][production.products.name] += parseInt(production.quantity);
             });
 
             // Prepare the product names set
@@ -328,15 +427,16 @@ function fetchProductionDataAndPopulateTable() {
             // Update the chart with the fetched data
             updateChart(months, datasets);
         },
-        error: function (error) {
-            console.error("Error fetching data", error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error fetching data: ", error);
+            console.log("Response: ", xhr.responseText);
+        },
     });
 }
 
 function updateChart(labels, datasets) {
-    var abc = document.getElementById('productionChart').getContext('2d');
-    var productionChart = new Chart(abc, {
+    var ctx = document.getElementById('productionChart').getContext('2d');
+    var productionChart = new Chart(ctx, {
         type: 'bar', // Vertical bar chart
         data: {
             labels: labels,
@@ -378,3 +478,21 @@ function getRandomColor() {
     return color;
 }
 
+// populate machine table
+var machineTable = $('#machine-table-db').DataTable({
+    "pageLength": 3,
+    ajax: {
+        url: '/api/machine/', 
+        type: 'GET',
+        dataSrc: function (json) {
+            console.log(json.machines);
+            return json.machines;
+        }
+    },
+    columns: [
+        { data: 'name' },
+        { data: 'machineuse.name' },
+        { data: 'machinestatus.name' },
+
+    ]
+});

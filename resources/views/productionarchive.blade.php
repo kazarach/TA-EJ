@@ -177,7 +177,7 @@
       </div>
   </div>
   
-  <div class="filter-container">
+  {{-- <div class="filter-container">
       <label for="">Position:
       <select id="position-filter">
           <option value="">All</option>
@@ -195,7 +195,7 @@
           <option value="">Bolos</option>
       </select>
       </label>
-  </div>
+  </div> --}}
   
   <div class="home-tbl">
       <table id="production-table" class="table table-striped table-hover" style="width:100%">

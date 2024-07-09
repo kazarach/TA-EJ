@@ -123,7 +123,7 @@
 </div>
 
 {{-- filter --}}
-<div class="filter-container">
+{{-- <div class="filter-container">
     <label for="">Start Date:
         <input type="text" id="date-filter-start">
     </label>
@@ -139,7 +139,7 @@
             <option value="">Cutting</option>
         </select>
     </label>    
-</div>
+</div> --}}
 
 {{-- Tables --}}
 <div class="home-tbl">

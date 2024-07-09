@@ -73,7 +73,7 @@
 
 </section>
 
-<div class="filter-container">
+{{-- <div class="filter-container">
     <label for="">Position:
     <select id="position-filter">
         <option value="">All</option>
@@ -91,7 +91,7 @@
         <option value="">Bolos</option>
     </select>
     </label>
-</div>
+</div> --}}
 
 <style>
     .selected {
