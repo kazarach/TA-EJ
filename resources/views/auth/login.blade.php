@@ -33,6 +33,7 @@
                 <span>Use your username and password</span>
                 <input type="username" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
+                <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 {{-- <a href="#">Forget Your Password?</a> --}}
                 <button type="submit">Sign In</button>
             </form>

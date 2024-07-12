@@ -53,7 +53,7 @@
 
     <div class="row g-3 mb-3">
         <div class="col">
-            <label for="">No. Telp</label>
+            <label for="">Phone</label>
             <input id="Telp" type="text" class="form-control" placeholder="08xx-xxxx-xxxx" aria-label="Telp">
         </div>
     </div>
@@ -72,9 +72,9 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Golongan</th>
-                <th scope="col">No. Telp</th>
+                <th scope="col">Name</th>
+                <th scope="col">Class</th>
+                <th scope="col">Phone</th>
                 {{-- <th scope="col">Action</th> --}}
             </tr>
         </thead>

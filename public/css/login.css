@@ -210,3 +210,21 @@ body {
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+
+.password-container {
+    position: relative;
+    width: fit-content;
+}
+
+#password {
+    padding-right: 30px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 58%;
+    right: 50px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: grey;
+}

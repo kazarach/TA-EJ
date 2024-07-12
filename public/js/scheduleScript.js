@@ -26,6 +26,16 @@ $(document).ready(function () {
             $(this).attr('href', newUrl);
         }
     });
+    $(".month a").each(function() {
+        const targetUrl = $(this).attr('href');
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
+    });
 
     
     $("#calendar").fullCalendar({

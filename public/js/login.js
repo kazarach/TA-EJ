@@ -7,6 +7,18 @@ const loginForm = document.getElementById("login-form");
 //     container.classList.add("active");
 // });
 
+// toggle password
+const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function (e) {
+            // Toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // Toggle the eye icon
+            this.classList.toggle('fa-eye-slash');
+        });
+
 loginBtn.addEventListener("click", () => {
     container.classList.remove("active");
 });

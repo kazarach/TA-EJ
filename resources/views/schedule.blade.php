@@ -22,7 +22,7 @@
 <section class="timeline-container">
     <div class="timeline-header">
         <h2>Timeline</h2>
-        <div>
+        <div class="month">
             <a href="/project"><button class="btn btn-primary">Project View</button></a>
             <select class="btn btn-light" id="monthSelect">
                 <option value="0">January</option>
@@ -38,7 +38,7 @@
                 <option value="10">November</option>
                 <option value="11">December</option>
             </select>
-            <button class="btn btn-success" id="addNewButton" onclick="location.href='project'">Add New</button>
+            {{-- <button class="btn btn-success" id="addNewButton">Add New</button> --}}
         </div>
     </div>
         <div id="calendar"></div>
