@@ -12,9 +12,9 @@
         <div class="dropdown-top">
             <a href="/selling">Selling</a>
             <a href="">|</a>
-            <a href="/selling/transaction" class="active">Transaction</a>
+            <a href="/selling/transaction" class="active">Selling Transaction</a>
             <a href="">|</a>
-            <a href="/selling/item">Item</a>
+            <a href="/selling/item">Selling Item</a>
         </div>
         <div class="user-info">
             <!-- <img src="../image2.jpg" alt=""> -->

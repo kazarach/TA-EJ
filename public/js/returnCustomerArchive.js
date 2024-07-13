@@ -529,3 +529,17 @@ $(document).ready(function () {
     );
 });
 
+$(document).ready(function () {
+    $("#productName").select2({
+        placeholder: "Select a product",
+        allowClear: true,
+    });
+    $("#gradeName").select2({
+        placeholder: "Select a grade",
+        allowClear: true,
+    });
+    $("#categoryName").select2({
+        placeholder: "Select a category",
+        allowClear: true,
+    });
+});

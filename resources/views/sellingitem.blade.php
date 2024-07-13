@@ -7,14 +7,14 @@
     <div class="top-bar">
         <div class="header-wrapper">
         <div class="header-title">
-            <h2>Item</h2>
+            <h2>Selling Item</h2>
         </div>
         <div class="dropdown-top">
             <a href="/selling">Selling</a>
             <a href="">|</a>
-            <a href="/selling/transaction">Transaction</a>
+            <a href="/selling/transaction">Selling Transaction</a>
             <a href="">|</a>
-            <a href="/selling/item" class="active">Item</a>
+            <a href="/selling/item" class="active">Selling Item</a>
         </div>
         <div class="user-info">
             <!-- <img src="../image2.jpg" alt=""> -->
