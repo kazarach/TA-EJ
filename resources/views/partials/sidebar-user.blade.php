@@ -230,16 +230,12 @@
           </ul>
       </div>
       <div class="bottom-content">
-          <!-- Logout Form -->
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-          </form>
-          <li class="">
-              <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  <i class='bx bx-log-out icon'></i>
-                  <span class="text nav-text">Logout</span>
-              </a>
-          </li>
+            <li class="">
+                <a href="#" id="logout-button">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
           <li class="mode">
               <div class="moon-sun">
                   <i class='bx bx-moon icon moon'></i>
@@ -254,4 +250,5 @@
   </div>
 </nav>
 
+  <script src="/js/logout.js"></script>
 <script src="/js/sidebar-user.js"></script>
