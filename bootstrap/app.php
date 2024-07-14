@@ -15,6 +15,10 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
+// Load the environment file specified by the ENV_FILE variable
+$envFile = $_SERVER['ENV_FILE'] ?? '.env';
+$app->loadEnvironmentFrom($envFile);
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

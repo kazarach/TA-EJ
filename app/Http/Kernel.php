@@ -36,6 +36,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\NoCache::class,
+
         ],
 
         'api' => [
@@ -44,6 +46,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             'throttle:api',
+            \App\Http\Middleware\NoCache::class,
             // \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         ],
     ];

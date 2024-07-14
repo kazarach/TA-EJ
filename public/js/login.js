@@ -38,8 +38,8 @@ loginForm.addEventListener("submit", function(event) {
         const role = response.data.role;
         localStorage.setItem('access_token', token);
         localStorage.setItem('role', role); // Save role in localStorage
-        window.location.href = '/dashboard';
-    })
+        window.location.href = `/${role}/dashboard?token=${token}`;
+        })
     
     .catch(function (error) {
         console.error('There was an error logging in:', error);

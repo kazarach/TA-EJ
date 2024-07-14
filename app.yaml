@@ -1,0 +1,26 @@
+# Use the PHP 8.0 runtime
+runtime: php82
+
+# Serve your app through the public/index.php front controller
+runtime_config:
+  document_root: .
+
+handlers:
+# Serve images and static resources
+- url: /(.+\.(gif|png|jpg|css|js|map|PNG))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg|css|js|map|PNG)$
+
+- url: /.*
+  script: auto
+
+env_variables:
+  # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
+  # values obtained when configuring your Cloud SQL instance.
+  CLOUDSQL_USER: root
+  CLOUDSQL_DB: ta_mantap
+  CLOUDSQL_PASSWORD: # Add your database password here
+  CLOUDSQL_DSN: /cloudsql/smiling-memory-428403-m3:asia-southeast2:kazacemil
+  ENV_FILE: .env.production
+
+# [END gae_cloudsql_mysql_env]

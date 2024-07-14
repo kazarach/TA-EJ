@@ -5,6 +5,8 @@ use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
@@ -205,22 +207,57 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/', function () {
+    $viewPaths = config('view.paths');
+    \Log::info('View paths:', $viewPaths);
+
+    // Log available files in each path
+    foreach ($viewPaths as $path) {
+        \Log::info('Files in ' . $path . ':', File::allFiles($path));
+    }
+
+    \Log::info('Home route accessed');
     return view('home', [
         'title' => 'Home Page'
     ]);
 })->name('home');
 
-Route::get('/boot', function () {
-    return view('bootstrap', [
-        'title' => 'Production Page'
+
+Route::get('/home', function () {
+    \Log::info('Home 2 route accessed');
+    return view('home', [
+        'title' => 'Home Page'
     ]);
 });
 
-Route::get('/juan', function () {
-    return view('juan', [
-        'title' => 'Schedule'
+
+Route::get('/debug-views', function () {
+    $viewPaths = config('view.paths');
+    Log::info('View paths:', $viewPaths);
+
+    $viewFiles = [];
+    foreach ($viewPaths as $path) {
+        $files = File::allFiles($path);
+        foreach ($files as $file) {
+            $viewFiles[] = $file->getPathname();
+        }
+    }
+
+    return response()->json([
+        'view_paths' => $viewPaths,
+        'view_files' => $viewFiles
     ]);
 });
+// Route::get('/boot', function () {
+//     return view('bootstrap', [
+//         'title' => 'Production Page'
+//     ]);
+// });
+
+// Route::get('/juan', function () {
+//     return view('juan', [
+//         'title' => 'Schedule'
+//     ]);
+// });
 // Route::post('/login', [LoginController::class, 'login'])->name('web.login');
 // Route::post('/logout', [LoginController::class, 'logout'])->name('web.logout');
 // Route::post('/refresh', [LoginController::class, 'refresh'])->name('web.refresh');
