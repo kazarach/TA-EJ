@@ -219,6 +219,13 @@
                     </li>
                 </ul>
               </li>
+              <li class="nav-link mt-4" id="partial-link">
+                  <a href="/admin/partialdropdown">
+                      <i class='bx bx-home-alt icon'></i>
+                      <span class="text nav-text">Partial</span>
+                  </a>
+              </li>
+              
               <!-- <li class="nav-link dropdown" id="cash-link">
                 <a href="/admin/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-alt icon'></i>

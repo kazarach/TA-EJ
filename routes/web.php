@@ -28,55 +28,8 @@ use App\Http\Controllers\ReturnCustomerController;
 use App\Http\Controllers\ReturnProductionController;
 use App\Http\Controllers\ReturnMaterialController;
 use App\Http\Controllers\RejectedProductController;
+use App\Http\Controllers\PartialController;
 
-
-
-
-use App\Http\Controllers\Auth\LoginController;
-// use App\Http\Controllers\Auth\GoogleController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-/*------------------------------------------
---------------------------------------------
-All Normal Users Routes List
---------------------------------------------
---------------------------------------------*/
-// Route::middleware(['auth', 'user-access:user'])->group(function () {
-//     Route::get('/dashboard', [HomeController::class, 'index'])->name('');
-// });
-
-/*------------------------------------------
---------------------------------------------
-All Admin Routes List
---------------------------------------------
---------------------------------------------*/
-// Route::middleware(['auth', 'user-access:admin'])->group(function () {
-//     Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard');
-// });
-
-/*------------------------------------------
---------------------------------------------
-All Manager Routes List
---------------------------------------------
---------------------------------------------*/
-// Route::middleware(['auth', 'user-access:manager'])->group(function () {
-//     Route::get('/manager/dashboard', [HomeController::class, 'managerHome'])->name('manager.dashboard');
-// });
-
-// Route::middleware(['auth', 'permission:manage permissions'])->group(function () {
-//     Route::get('/admin/manage-permissions', [AdminController::class, 'managePermissions'])->name('admin.manage-permissions');
-//     Route::post('/admin/update-permissions', [AdminController::class, 'updatePermissions'])->name('admin.update-permissions');
-// });
 
 Route::get('/partials/sidebar-admin', function () {
     return view('partials.sidebar-admin');
@@ -100,7 +53,6 @@ Route::get('/partials/sidebar-marketing', function () {
 
 
 Route::middleware(['auth:api','role:admin'])->group(function () {
-    // Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/dashboard', function () {
         \Log::info('Admin accessing dashboard');
         return view('dashboard', [
@@ -118,6 +70,7 @@ Route::middleware(['auth:api','role:admin'])->group(function () {
     Route::get('/admin/workforce', [WorkforceController::class, 'index']);
     Route::get('/admin/project', [ProjectController::class, 'index']);
     Route::get('/admin/customer', [CustomerController::class, 'index']);
+    Route::get('/admin/catalog', [CatalogController::class, 'index']);
     Route::get('/admin/selling', [SellingController::class, 'index']);
     Route::get('/admin/selling/transaction', [SellingTransactionController::class, 'index']);
     Route::get('/admin/selling/item', [SellingItemController::class, 'index']);
@@ -127,7 +80,6 @@ Route::middleware(['auth:api','role:admin'])->group(function () {
     Route::get('/admin/order', [OrderController::class, 'index']);
     Route::get('/admin/order/book', [OrderController::class, 'indexbook']);
     Route::get('/admin/order/archive', [OrderController::class, 'indexarchive']);
-    Route::get('/admin/catalog', [CatalogController::class, 'index']);
     Route::get('/admin/production', [ProductionController::class, 'index']);
     Route::get('/admin/production/archive', [ProductionController::class, 'indexArchive']);
     Route::get('/admin/returncustomer', [ReturnCustomerController::class, 'index']);
@@ -137,16 +89,12 @@ Route::middleware(['auth:api','role:admin'])->group(function () {
     Route::get('/admin/returnmaterial', [ReturnMaterialController::class, 'index']);
     Route::get('/admin/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
     Route::get('/admin/rejectedproduct', [RejectedProductController::class, 'index']);
-
-    // Route::post('/logout', function () {
-    //     auth()->logout();
-        
-    //     return redirect('/login');
-    // });
+    Route::get('/admin/partialdropdown', function () {
+        return view('partialdropdown', ['title' => 'Partial Page']);
+    });
 });
 
 Route::middleware(['role:user'])->group(function () {
-    // Route::get('/user', [UserController::class, 'index']);
     Route::get('/user/dashboard', function () {
         return view('dashboard', [
             'title' => 'Dashboard'

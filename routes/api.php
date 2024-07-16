@@ -22,6 +22,8 @@ use App\Http\Controllers\ReturnCustomerController;
 use App\Http\Controllers\ReturnProductionController;
 use App\Http\Controllers\ReturnMaterialController;
 use App\Http\Controllers\RejectedProductController;
+use App\Http\Controllers\PartialController;
+
 use Illuminate\Http\Request;
 
 /*
@@ -122,34 +124,32 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('productions/', [ProductionController::class, 'index']);
     Route::post('productions/', [ProductionController::class, 'store']);
-    // Route::get('productions/{id}', [ProductionController::class, 'show']);
     Route::put('productions/{id}', [ProductionController::class, 'update']);
     Route::delete('productions/{id}', [ProductionController::class, 'destroy']);
 
     Route::get('returncustomer/', [ReturnCustomerController::class, 'index']);
     Route::post('returncustomer/', [ReturnCustomerController::class, 'store']);
-    // Route::get('returncustomer/{id}', [ReturnCustomerController::class, 'show']);
     Route::put('returncustomer/{id}', [ReturnCustomerController::class, 'update']);
     Route::delete('returncustomer/{id}', [ReturnCustomerController::class, 'destroy']);
 
     Route::get('returnproduction/', [ReturnProductionController::class, 'index']);
     Route::post('returnproduction/', [ReturnProductionController::class, 'store']);
-    // Route::get('returnproduction/{id}', [ReturnProductionController::class, 'show']);
     Route::put('returnproduction/{id}', [ReturnProductionController::class, 'update']);
     Route::delete('returnproduction/{id}', [ReturnProductionController::class, 'destroy']);
 
     Route::get('returnmaterial/', [ReturnMaterialController::class, 'index']);
     Route::post('returnmaterial/', [ReturnMaterialController::class, 'store']);
-    // Route::get('returnmaterial/{id}', [ReturnMaterialController::class, 'show']);
     Route::put('returnmaterial/{id}', [ReturnMaterialController::class, 'update']);
     Route::delete('returnmaterial/{id}', [ReturnMaterialController::class, 'destroy']);
 
     Route::get('rejectedproduct/', [RejectedProductController::class, 'index']);
     Route::post('rejectedproduct/', [RejectedProductController::class, 'store']);
-    // Route::get('rejectedproduct/{id}', [RejectedProductController::class, 'show']);
     Route::put('rejectedproduct/{id}', [RejectedProductController::class, 'update']);
     Route::delete('rejectedproduct/{id}', [RejectedProductController::class, 'destroy']);
 
-    // BETWEEN DATABASE
-    // Route::post('/productions/{productId}/{quantity}', [ProductionController::class, 'produce']);
+    Route::get('partial/{type}', [PartialController::class, 'index']);
+    Route::post('partial/{type}', [PartialController::class, 'store']);
+    Route::put('partial/{type}/{id}', [PartialController::class, 'update']);
+    Route::delete('partial/{type}/{id}', [PartialController::class, 'destroy']);
+
 });

@@ -16,8 +16,6 @@
                 <a href="/order/archive">Order Archive</a>
                 <a href="">|</a>
                 <a href="/customer" class="active">Customer</a>
-                <a href="">|</a>
-                <a href="/catalog">Catalog</a>
             </div>
             <div class="user-info">
                 <!-- <img src="image2.jpg" alt=""> -->
@@ -33,30 +31,36 @@
             <input id="ID" type="text" class="form-control" placeholder="New Customer" aria-label="ID" readonly>
         </div>
     </div>
-
     <div class="row g-3 mb-3">
         <div class="col">
-            <label for="">Customer Name</label>
-            <input id="Name" type="text" class="form-control" placeholder="Customer Name" aria-label="Nama">
+            <label for="" class="form-label">Class</label>
+            <select id="Change" class="form-select mb-3">
+                <option selected disabled hidden>Change Partial</option>
+                <option value="1">Product Type</option>
+                <option value="2">Product Category</option>
+                <option value="3">Product Size</option>
+                <option value="4">Product Color</option>
+                <option value="5">Product Sign</option>
+                <option value="6">Product Grade</option>
+                <option value="7">Material Unit</option>
+                <option value="8">Material Category</option>
+                <option value="9">Project Status</option>
+                <option value="10">Machine Use</option>
+                <option value="11">Machine Status</option>
+                <option value="12">Workforce Position</option>
+                <option value="13">Workforce Status</option>
+                <option value="14">Payment</option>
+                <option value="15">Customer Class</option>
+                <option value="16">Return Customer Category</option>
+                <option value="17">Return Production Category</option>
+                <option value="18">Return Material Category</option>
+            </select>
         </div>
     </div>
-
     <div class="row g-3 mb-3">
         <div class="col">
-            <label for="">Class</label>
-        <select id="Class" class="form-select mb-3" aria-label="Default select example">
-            <option selected disabled hidden>Select Class</option>
-            @foreach($customerclasses as $class)
-                <option value="{{ $class->id }}">{{ $class->name }}</option>
-            @endforeach
-        </select>
-        </div>
-    </div>
-
-    <div class="row g-3 mb-3">
-        <div class="col">
-            <label for="">Phone</label>
-            <input id="Telp" type="text" class="form-control" placeholder="08xx-xxxx-xxxx" aria-label="Telp">
+            <label for="">Name</label>
+            <input id="Name" type="text" class="form-control" placeholder="Name" aria-label="Nama">
         </div>
     </div>
 
@@ -70,14 +74,11 @@
 </section>
 
 <section class="home-tbl">
-    <table id="customer-table" class="table table-striped table-hover" style="width:100%">
+    <table id="partial-table" class="table table-striped table-hover" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Class</th>
-                <th scope="col">Phone</th>
-                {{-- <th scope="col">Action</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -86,6 +87,6 @@
     </table>
 </section>
 
-<script src="/js/customerScript.js"></script>
+<script src="/js/partial.js"></script>
 
 @endsection

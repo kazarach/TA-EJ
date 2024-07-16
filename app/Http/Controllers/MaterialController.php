@@ -59,6 +59,7 @@ class MaterialController extends Controller
             'materials' => $materials,
             'materialunits' => $materialunits,
             'materialcategories' => $materialcategories,
+            'title' => 'Material Page'
         ]);
 
     }
