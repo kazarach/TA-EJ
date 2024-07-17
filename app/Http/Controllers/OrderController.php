@@ -52,7 +52,7 @@ class OrderController extends Controller
 
 
         return view('orderbook',[
-            'title' => 'Order Page',
+            'title' => 'Order Book Page',
             'catalogs' => $data,
             'products' => $data1,
             'customers' => $data2,
@@ -67,7 +67,7 @@ class OrderController extends Controller
 
 
         return view('orderarchive',[
-            'title' => 'Order Page',
+            'title' => 'Order Archive Page',
             'catalogs' => $data,
             'products' => $data1,
             'customers' => $data2,

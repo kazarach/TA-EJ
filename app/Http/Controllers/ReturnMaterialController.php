@@ -33,7 +33,7 @@ class ReturnMaterialController extends Controller
         $materials = Material::all();
         $returnmaterialcategories = ReturnMaterialCategory::all();
         return view('returnmaterial', [
-            'title' => 'Material Page',
+            'title' => 'Return Material Page',
             'returnmaterials' => $returnmaterials,
             'materials' => $materials,
             'returnmaterialcategories' => $returnmaterialcategories,
@@ -45,7 +45,7 @@ class ReturnMaterialController extends Controller
         $materials = Material::all();
         $returnmaterialcategories = ReturnMaterialCategory::all();
         return view('returnmaterialarchive', [
-            'title' => 'Material Page',
+            'title' => 'Return Material Archive Page',
             'returnmaterials' => $returnmaterials,
             'materials' => $materials,
             'returnmaterialcategories' => $returnmaterialcategories,

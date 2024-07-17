@@ -45,7 +45,7 @@ class PurchaseItemController extends Controller
 
 
         return view('purchaseitem',[
-            'title' => 'Purchase Transaction Page',
+            'title' => 'Requested Material Page',
             'materials' => $data,
             'transactions' => $data1,
         ]);

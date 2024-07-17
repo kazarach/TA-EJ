@@ -46,7 +46,7 @@ class PurchaseTransactionController extends Controller
 
 
         return view('purchasetransaction',[
-            'title' => 'Purchase Transaction Page',
+            'title' => 'Request Transaction Page',
             'purchases' => $data,
             'suppliers' => $data1,
             'payments' => $data2,

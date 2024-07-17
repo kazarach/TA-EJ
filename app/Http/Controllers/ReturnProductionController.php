@@ -33,7 +33,7 @@ class ReturnProductionController extends Controller
         $materials = Material::all();
         $returnproductioncategories = ReturnProductionCategory::all();
         return view('returnproduction', [
-            'title' => 'Production Page',
+            'title' => 'Return Production Page',
             'returnproductions' => $returnproductions,
             'materials' => $materials,
             'returnproductioncategories' => $returnproductioncategories,
@@ -45,7 +45,7 @@ class ReturnProductionController extends Controller
         $materials = Material::all();
         $returnproductioncategories = ReturnProductionCategory::all();
         return view('returnproductionarchive', [
-            'title' => 'Production Page',
+            'title' => 'Return Production Archive Page',
             'returnproductions' => $returnproductions,
             'materials' => $materials,
             'returnproductioncategories' => $returnproductioncategories,

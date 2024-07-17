@@ -47,7 +47,7 @@ class SellingItemController extends Controller
 
 
         return view('sellingitem',[
-            'title' => 'Selling Transaction Page',
+            'title' => 'Selling Item Page',
             'products' => $data,
             'transactions' => $data1,
         ]);

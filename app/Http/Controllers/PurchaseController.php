@@ -27,7 +27,7 @@ class PurchaseController extends Controller
 
 
         return view('purchase',[
-            'title' => 'Purchase Page',
+            'title' => 'Request Material Page',
             'purchases' => $data,
             'suppliers' => $data1,
             'payments' => $data2,

@@ -27,7 +27,7 @@
     </div>
     <div class="row g-3 mb-3">
         <div class="col">
-            <label for="" class="form-label">Class</label>
+            <label for="" class="form-label">Partial</label>
             <select id="Change" class="form-select mb-3">
                 <option selected disabled hidden>Change Partial</option>
                 <option value="1">Product Type</option>

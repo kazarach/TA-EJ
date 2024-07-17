@@ -32,7 +32,7 @@ class RejectedProductController extends Controller
         $products = Product::all();
         $grades = ItemGrade::all();
         return view('rejectedproduct', [
-            'title' => 'Production Page',
+            'title' => 'Rejected Product Page',
             'rejectedproducts' => $rejectedproducts,
             'products' => $products,
             'grades' => $grades,

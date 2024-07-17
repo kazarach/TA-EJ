@@ -35,7 +35,7 @@ class ReturnCustomerController extends Controller
         $returncustomercategories = ReturnCustomerCategory::all();
         $grades = ItemGrade::all();
         return view('returncustomer', [
-            'title' => 'Production Page',
+            'title' => 'Return Customer Page',
             'returncustomers' => $returncustomers,
             'products' => $products,
             'returncustomercategories' => $returncustomercategories,
@@ -49,7 +49,7 @@ class ReturnCustomerController extends Controller
         $returncustomercategories = ReturnCustomerCategory::all();
         $grades = ItemGrade::all();
         return view('returncustomerarchive', [
-            'title' => 'Production Page',
+            'title' => 'Return Customer Archive Page',
             'returncustomers' => $returncustomers,
             'products' => $products,
             'returncustomercategories' => $returncustomercategories,
