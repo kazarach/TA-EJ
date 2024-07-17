@@ -21,7 +21,7 @@
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-link dropdown" id="order-link">
+                {{-- <li class="nav-link dropdown" id="order-link">
                   <a href="/admin/order" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-cart icon'></i>
                       <span class="text nav-text" id="dropdowntext">Order ></span>
@@ -52,7 +52,7 @@
                         </a>
                       </li>
                   </ul>
-              </li>
+              </li> --}}
               {{-- <li class="nav-link dropdown" id="planning-link">
                 <a href="/admin/project" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-content icon'></i>
@@ -149,7 +149,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-link dropdown" id="selling-link">
+                {{-- <li class="nav-link dropdown" id="selling-link">
                   <a href="/admin/selling" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-shopping-bag icon'></i>
                       <span class="text nav-text" id="dropdowntext">Selling ></span>
@@ -174,7 +174,7 @@
                         </a>
                       </li>
                   </ul>
-                </li>
+                </li> --}}
                 <li class="nav-link dropdown" id="return-link">
                   <a href="/admin/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-left-down-arrow-circle icon'></i>
@@ -193,7 +193,7 @@
                           <span class="text nav-text" id="submenutext">Return Customer Archive</span>
                         </a>
                       </li>
-                      <li class="nav-link">
+                      {{-- <li class="nav-link">
                         <a href="/admin/returnproduction">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Production</span>
@@ -216,29 +216,9 @@
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Material Archive</span>
                         </a>
-                      </li>
+                      </li> --}}
                   </ul>
                 </li>
-                <!-- <li class="nav-link dropdown" id="cash-link">
-                  <a href="/admin/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
-                      <i class='bx bx-book-alt icon'></i>
-                      <span class="text nav-text" id="dropdowntext2">Cash Book ></span>
-                  </a>
-                  <ul class="sub-menu">
-                      <li class="nav-link">
-                        <a href="/admin/cash">
-                          <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Cash Book</span>
-                        </a>
-                      </li>
-                      <li class="nav-link">
-                        <a href="/admin/report">
-                          <i class='bx bx-cylinder icon' id="submenutext"></i>
-                          <span class="text nav-text" id="submenutext">Report</span>
-                        </a>
-                      </li>
-                  </ul>
-              </li> -->
             </ul>
         </div>
         <div class="bottom-content">

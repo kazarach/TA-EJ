@@ -21,18 +21,24 @@
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
+                {{-- <li class="nav-link" id="partial-link">
+                  <a href="/admin/partialdropdown">
+                    <i class='bx bx-shape-circle icon'></i>
+                      <span class="text nav-text" id="dropdowntext">Partial</span>
+                  </a>
+                </li> --}}
                 <li class="nav-link dropdown" id="order-link">
                   <a href="/admin/order" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-cart icon'></i>
                       <span class="text nav-text" id="dropdowntext">Order ></span>
                   </a>
                   <ul class="sub-menu">
-                      {{-- <li class="nav-link">
+                      <li class="nav-link">
                         <a href="/admin/order">
                           <i class='bx bx-cart icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Order</span>
                         </a>
-                      </li> --}}
+                      </li>
                       <li class="nav-link">
                         <a href="/admin/order/book">
                           <i class='bx bx-cart icon' id="submenutext"></i>
@@ -45,15 +51,21 @@
                           <span class="text nav-text" id="submenutext">Order Archive</span>
                         </a>
                       </li>
-                      {{-- <li class="nav-link">
+                      <li class="nav-link">
                         <a href="/admin/customer">
                           <i class='bx bx-cart icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Customer</span>
                         </a>
-                      </li> --}}
+                      </li>
+                      <li class="nav-link">
+                        <a href="/admin/catalog">
+                          <i class='bx bx-cart icon' id="submenutext"></i>
+                          <span class="text nav-text" id="submenutext">Catalog</span>
+                        </a>
+                      </li>
                   </ul>
               </li>
-              <li class="nav-link dropdown" id="planning-link">
+              {{-- <li class="nav-link dropdown" id="planning-link">
                 <a href="/admin/project" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-content icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Planning ></span>
@@ -72,8 +84,8 @@
                       </a>
                     </li>
                 </ul>
-              </li>
-              <li class="nav-link dropdown" id="production-link">
+              </li> --}}
+              {{-- <li class="nav-link dropdown" id="production-link">
                 <a href="/admin/production" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-sitemap icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Production ></span>
@@ -104,8 +116,8 @@
                       </a>
                     </li>
                 </ul>
-              </li>
-                <li class="nav-link dropdown" id="inventory-link">
+              </li> --}}
+                {{-- <li class="nav-link dropdown" id="inventory-link">
                     <a href="/admin/inventory" onclick="toggleSubMenu(event)" class="togglesubmenu">
                         <i class='bx bx-cylinder icon'></i>
                         <span class="text nav-text" id="dropdowntext2">Inventory ></span>
@@ -117,19 +129,19 @@
                             <span class="text nav-text" id="submenutext">Product</span>
                           </a>
                         </li>
-                        {{-- <li class="nav-link">
+                        <li class="nav-link">
                           <a href="/admin/rejectedproduct">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Rejected Product</span>
                           </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-link">
                           <a href="/admin/material">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Material</span>
                           </a>
                         </li>
-                        {{-- <li class="nav-link">
+                        <li class="nav-link">
                           <a href="/admin/purchase">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Request Material</span>
@@ -146,10 +158,10 @@
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Requested Item</span>
                           </a>
-                        </li> --}}
+                        </li>
                     </ul>
-                </li>
-                {{-- <li class="nav-link dropdown" id="selling-link">
+                </li> --}}
+                <li class="nav-link dropdown" id="selling-link">
                   <a href="/admin/selling" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-shopping-bag icon'></i>
                       <span class="text nav-text" id="dropdowntext">Selling ></span>
@@ -174,8 +186,8 @@
                         </a>
                       </li>
                   </ul>
-                </li> --}}
-                {{-- <li class="nav-link dropdown" id="return-link">
+                </li>
+                <li class="nav-link dropdown" id="return-link">
                   <a href="/admin/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-left-down-arrow-circle icon'></i>
                       <span class="text nav-text" id="dropdowntext">Return ></span>
@@ -218,30 +230,51 @@
                         </a>
                       </li>
                   </ul>
-                </li> --}}
+                </li>
+                
+                <!-- <li class="nav-link dropdown" id="cash-link">
+                  <a href="/admin/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                      <i class='bx bx-book-alt icon'></i>
+                      <span class="text nav-text" id="dropdowntext2">Cash Book ></span>
+                  </a>
+                  <ul class="sub-menu">
+                      <li class="nav-link">
+                        <a href="/admin/cash">
+                          <i class='bx bx-cylinder icon' id="submenutext"></i>
+                          <span class="text nav-text" id="submenutext">Cash Book</span>
+                        </a>
+                      </li>
+                      <li class="nav-link">
+                        <a href="/admin/report">
+                          <i class='bx bx-cylinder icon' id="submenutext"></i>
+                          <span class="text nav-text" id="submenutext">Report</span>
+                        </a>
+                      </li>
+                  </ul>
+              </li> -->
             </ul>
         </div>
         <div class="bottom-content">
-            <li class="">
-                <a href="#" id="logout-button">
-                    <i class='bx bx-log-out icon'></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
-            </li>
-          {{-- <li class="mode">
-              <div class="moon-sun">
-                  <i class='bx bx-moon icon moon'></i>
-                  <i class='bx bx-sun icon sun'></i>
-              </div>
-              <span class="mode-text text">Dark Mode</span>
-              <div class="toggle-switch">
-                  <span class="switch"></span>
-              </div>
-          </li> --}}
-      </div>
-  </div>
-</nav>
-
-  <script src="/js/logout.js"></script>
-  <script src="/js/sidebar-production.js"></script>
+              <li class="">
+                  <a href="#" id="logout-button">
+                      <i class='bx bx-log-out icon'></i>
+                      <span class="text nav-text">Logout</span>
+                  </a>
+              </li>
+            {{-- <li class="mode">
+                <div class="moon-sun">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li> --}}
+        </div>
+    </div>
+  </nav>
+  
+  <script src="/js/sidebar-marketing.js"></script>
   <script src="/js/script.js"></script>
+  <script src="/js/logout.js"></script>

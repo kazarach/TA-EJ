@@ -81,11 +81,20 @@ function fetchData(Data) {
     document.getElementById("Name").value = Data[1];
 }
 
-document.getElementById("Change").addEventListener("change", function() {
-    selectedValue = this.value;
-    console.log(selectedValue);
-    populateData(selectedValue);
-});
+window.onload = function () {
+    const categorySelect = $('#Change');
+
+    categorySelect.select2({
+        placeholder: "Select a partial",
+        allowClear: true
+    });
+
+    categorySelect.on('change.select2', function () {
+        selectedValue = this.value;
+        console.log(selectedValue);
+        populateData(selectedValue);
+    });
+};
 
 function populateData(type) {
     fetch(`/api/partial/${type}`, {
@@ -230,9 +239,9 @@ function deleteData() {
     });
 }
 
-// searchbar
+// // searchbar
 $(document).ready(function () {
-    $("#Class").select2({
+    $("#Change").select2({
         placeholder: "Select Class",
         allowClear: true,
     });
