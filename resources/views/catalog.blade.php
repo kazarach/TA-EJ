@@ -6,12 +6,18 @@
     <div class="top-bar">
         <div class="header-wrapper">
         <div class="header-title">
-            <h2>Workforce Availability</h2>
+            <h2>Catalog</h2>
         </div>
         <div class="dropdown-top">
-            <a href="/machine">Machine</a>
+            <a href="/order">Order</a>
             <a href="">|</a>
-            <a href="/workforce" class="active">Workforce</a>
+            <a href="/order/book">Order Book</a>
+            <a href="">|</a>
+            <a href="/order/archive">Order Archive</a>
+            <a href="">|</a>
+            <a href="/customer">Customer</a>
+            <a href="">|</a>
+            <a href="/catalog" class="active">Catalog</a>
         </div>
         <div class="user-info">
             <!-- <img src="image2.jpg" alt=""> -->
@@ -27,7 +33,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="Workforce" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Catalog" aria-label="ID" readonly>
         </div>
     </div>
 

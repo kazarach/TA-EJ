@@ -5,15 +5,15 @@ const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text");
 
-modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
+// modeSwitch.addEventListener("click", () => {
+//     body.classList.toggle("dark");
 
-    if (body.classList.contains("dark")) {
-        modeText.innerText = "Light Mode";
-    } else {
-        modeText.innerText = "Dark Mode";
-    }
-});
+//     if (body.classList.contains("dark")) {
+//         modeText.innerText = "Light Mode";
+//     } else {
+//         modeText.innerText = "Dark Mode";
+//     }
+// });
 
 // sidebar mouse pointer
 document.querySelector(".sidebar").addEventListener("mouseenter", function () {

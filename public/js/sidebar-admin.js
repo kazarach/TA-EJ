@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     const links = [
         "dashboard",
+        "partial",
         "order",
         "planning",
         "production",
@@ -28,6 +29,7 @@ $(document).ready(function () {
 
     const pathToLinkMap = {
         "/admin/dashboard": "dashboard",
+        "/admin/partialdropdown": "partial",
         // "/user/dashboard": "dashboard",
         "/admin/inventory": "inventory",
         "/admin/planning": "planning",
@@ -50,6 +52,7 @@ $(document).ready(function () {
         "/admin/order/book": "order",
         "/admin/order/archive": "order",
         "/admin/customer": "order",
+        "/admin/catalog": "order",
         "/admin/production": "production",
         "/admin/production/archive": "production",
         "/admin/returncustomer": "return",

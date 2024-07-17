@@ -16,6 +16,8 @@
                 <a href="/order/archive">Order Archive</a>
                 <a href="">|</a>
                 <a href="/customer">Customer</a>
+                <a href="">|</a>
+                <a href="/catalog">Catalog</a>
             </div>
             <div class="user-info">
                 <!-- <img src="../image2.jpg" alt=""> -->

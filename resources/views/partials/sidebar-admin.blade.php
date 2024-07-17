@@ -21,6 +21,12 @@
                       <span class="text nav-text">Dashboard</span>
                   </a>
               </li>
+              <li class="nav-link" id="partial-link">
+                <a href="/admin/partialdropdown">
+                  <i class='bx bx-shape-circle icon'></i>
+                    <span class="text nav-text" id="dropdowntext">Partial</span>
+                </a>
+              </li>
               <li class="nav-link dropdown" id="order-link">
                 <a href="/admin/order" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-cart icon'></i>
@@ -49,6 +55,12 @@
                       <a href="/admin/customer">
                         <i class='bx bx-cart icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Customer</span>
+                      </a>
+                    </li>
+                    <li class="nav-link">
+                      <a href="/admin/catalog">
+                        <i class='bx bx-cart icon' id="submenutext"></i>
+                        <span class="text nav-text" id="submenutext">Catalog</span>
                       </a>
                     </li>
                 </ul>
@@ -219,12 +231,6 @@
                     </li>
                 </ul>
               </li>
-              <li class="nav-link mt-4" id="partial-link">
-                  <a href="/admin/partialdropdown">
-                      <i class='bx bx-home-alt icon'></i>
-                      <span class="text nav-text">Partial</span>
-                  </a>
-              </li>
               
               <!-- <li class="nav-link dropdown" id="cash-link">
                 <a href="/admin/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
@@ -255,7 +261,7 @@
                     <span class="text nav-text">Logout</span>
                 </a>
             </li>
-          <li class="mode">
+          {{-- <li class="mode">
               <div class="moon-sun">
                   <i class='bx bx-moon icon moon'></i>
                   <i class='bx bx-sun icon sun'></i>
@@ -264,7 +270,7 @@
               <div class="toggle-switch">
                   <span class="switch"></span>
               </div>
-          </li>
+          </li> --}}
       </div>
   </div>
 </nav>

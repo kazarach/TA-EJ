@@ -248,7 +248,7 @@
                     <span class="text nav-text">Logout</span>
                 </a>
             </li>
-          <li class="mode">
+          {{-- <li class="mode">
               <div class="moon-sun">
                   <i class='bx bx-moon icon moon'></i>
                   <i class='bx bx-sun icon sun'></i>
@@ -257,7 +257,7 @@
               <div class="toggle-switch">
                   <span class="switch"></span>
               </div>
-          </li>
+          </li> --}}
       </div>
   </div>
 </nav>
