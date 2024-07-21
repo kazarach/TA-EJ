@@ -1,0 +1,10 @@
+title Memilih Data Produk
+
+participant Staf Produksi
+participant Product Management System
+participant Database
+
+Staf Produksi->Product Management System: SelectProduct(productID)
+Product Management System->Database: GetProductData(productID)
+Database-->Product Management System: ProductData()
+Product Management System->Staf Produksi: ShowProductData()

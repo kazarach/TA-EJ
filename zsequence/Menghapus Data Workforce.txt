@@ -1,0 +1,10 @@
+title Menghapus Data Workforce
+
+participant Staf Produksi
+participant Workforce Management System
+participant Database
+
+Staf Produksi->Workforce Management System: DeleteWorkforce(workforceID)
+Workforce Management System->Database: RemoveWorkforceData(workforceID)
+Database-->Workforce Management System: WorkforceDeleted(success/failure)
+Workforce Management System->Staf Produksi: DeleteWorkforceResult(success)

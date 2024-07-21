@@ -1,0 +1,11 @@
+title Menambah Data Machine
+
+participant Staf Produksi
+participant Machine Management System
+participant Database
+
+Staf Produksi->Machine Management System: AddMachine(details)
+Machine Management System->Machine Management System: FillNewMachineForm(details)
+Machine Management System->Database: SaveMachineData()
+Database-->Machine Management System: MachineSaved(success/failure)
+Machine Management System->Staf Produksi: AddMachineResult(success)

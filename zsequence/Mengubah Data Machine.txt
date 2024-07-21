@@ -1,0 +1,11 @@
+title Mengubah Data Machine
+
+participant Staf Produksi
+participant Machine Management System
+participant Database
+
+Staf Produksi->Machine Management System: EditMachine(machineID, newDetails)
+Machine Management System->Machine Management System: UpdateMachineForm(newDetails)
+Machine Management System->Database: SaveUpdatedMachineData(machineID, newDetails)
+Database-->Machine Management System: MachineUpdateSaved(success/failure)
+Machine Management System->Staf Produksi: EditMachineResult(success)

@@ -1,0 +1,12 @@
+title Input Order yang Masuk
+
+participant Staf Marketing
+participant Order System
+participant Database
+
+Staf Marketing->Order System: EnterOrderDetails()
+Order System->Order System: EnterCatalogAndCustomerDetails()
+Order System->Order System: EnterProductDetails()
+Order System->Database: SaveOrderData()
+Database-->Order System: OrderSaved(success/failure)
+Order System->Staf Marketing: ShowOrderResult(success)

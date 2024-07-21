@@ -1,0 +1,12 @@
+title Membuat Project Plan
+
+participant Staf Produksi
+participant Project Planning System
+participant Database
+
+Staf Produksi->Project Planning System: CreateProjectPlan(projectDetails)
+Project Planning System->Project Planning System: FillNewProjectForm(details)
+Project Planning System->Project Planning System: FillProductList(productDetails)
+Project Planning System->Database: SaveProjectData()
+Database-->Project Planning System: ProjectSaved(success/failure)
+Project Planning System->Staf Produksi: ShowProjectPlanResult(success)

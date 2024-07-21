@@ -1,0 +1,17 @@
+title Login Process
+
+participant Staf
+participant Login System
+participant Authentication System
+participant Role Management System
+participant Token Management System
+
+Staf->Login System: EnterUsername(username)
+Staf->Login System: EnterPassword(password)
+Login System->Authentication System: VerifyAccount(username, password)
+Authentication System-->Login System: VerificationResult(success/failure)
+Login System->Role Management System: CheckRole(username)
+Role Management System-->Login System: RoleResult(role)
+Login System->Token Management System: SaveLoginToken(token)
+Token Management System-->Login System: TokenSaved(success/failure)
+Login System->Staf: LoginResult(success)

@@ -1,0 +1,10 @@
+title Memilih Data Workforce
+
+participant Staf Produksi
+participant Workforce Management System
+participant Database
+
+Staf Produksi->Workforce Management System: SelectWorkforce(workforceID)
+Workforce Management System->Database: GetWorkforceData(workforceID)
+Database-->Workforce Management System: WorkforceData()
+Workforce Management System->Staf Produksi: ShowWorkforceData()

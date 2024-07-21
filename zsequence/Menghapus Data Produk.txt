@@ -1,0 +1,10 @@
+title Menghapus Data Produk
+
+participant Staf Produksi
+participant Product Management System
+participant Database
+
+Staf Produksi->Product Management System: DeleteProduct(productID)
+Product Management System->Database: RemoveProductData(productID)
+Database-->Product Management System: ProductDeleted(success/failure)
+Product Management System->Staf Produksi: DeleteProductResult(success)

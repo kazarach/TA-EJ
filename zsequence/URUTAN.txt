@@ -1,0 +1,28 @@
+1. Login
+2. Logout
+3. Order masuk
+4. Kelompok Order
+5. Semua Order
+6. Membuat Project Plan
+7. Melihat Proyek yang Sudah Dijadwalkan
+8. Melihat Jumlah produk
+9. Membuat Hasil Produksi
+10. Melihat Arsip Produksi
+11. Mengubah Data Arsip
+12. Menambah Data Machine
+13. Memilih Data Machine
+14. Mengubah Data Machine
+15. Menghapus Data Machine
+16. Menambah Data Workforce
+17. Memilih Data Workforce
+18. Mengubah Data Workforce
+19. Menghapus Data Workforce
+20. Menambah Data Produk
+21. Memilih Data Produk
+22. Mengubah Data Produk
+23. Menghapus Data Produk
+24. Mengubah Data Pengembalian Produk
+25. Memilih Data Pengembalian Produk
+26. Menghapus Data Pengembalian Produk
+27. 
+28. 

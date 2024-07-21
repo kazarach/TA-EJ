@@ -1,0 +1,10 @@
+title Logout Process
+
+participant Staf
+participant Login System
+participant Token Management System
+
+Staf->Login System: Logout()
+Login System->Token Management System: DeleteLoginToken(token)
+Token Management System-->Login System: TokenDeleted(success/failure)
+Login System->Staf: LogoutResult(success)

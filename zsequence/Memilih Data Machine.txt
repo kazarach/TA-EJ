@@ -1,0 +1,10 @@
+title Memilih Data Machine
+
+participant Staf Produksi
+participant Machine Management System
+participant Database
+
+Staf Produksi->Machine Management System: SelectMachine(machineID)
+Machine Management System->Database: GetMachineData(machineID)
+Database-->Machine Management System: MachineData()
+Machine Management System->Staf Produksi: ShowMachineData()

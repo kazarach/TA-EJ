@@ -1,0 +1,10 @@
+title Melihat Proyek yang Sudah Dijadwalkan
+
+participant Staf Produksi
+participant Project Planning System
+participant Database
+
+Staf Produksi->Project Planning System: ViewScheduledProjects()
+Project Planning System->Database: GetScheduledProjects()
+Database-->Project Planning System: ScheduledProjectsData()
+Project Planning System->Staf Produksi: ShowScheduledProjects()

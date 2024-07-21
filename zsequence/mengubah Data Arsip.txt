@@ -1,0 +1,12 @@
+title Mengubah Data Arsip Produksi
+
+participant Staf Produksi
+participant Production System
+participant Database
+
+Staf Produksi->Production System: EditProductionArchive(archiveID, newDetails)
+Production System->Production System: UpdateProductionForm(newDetails)
+Production System->Production System: SelectWorkforceAndMachine(newDetails)
+Production System->Database: UpdateArchive(archiveID, newDetails)
+Database-->Production System: ArchiveUpdated(success/failure)
+Production System->Staf Produksi: ArchiveUpdateResult(success)

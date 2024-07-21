@@ -1,0 +1,10 @@
+title Menghapus Data Pengembalian Produk
+
+participant Staf Inventaris
+participant Product Management System
+participant Database
+
+Staf Inventaris->Product Management System: DeleteRejectedProduct(productID)
+Product Management System->Database: RemoveRejectedProductData(productID)
+Database-->Product Management System: RejectedProductDeleted(success/failure)
+Product Management System->Staf Inventaris: DeleteRejectedProductResult(success)

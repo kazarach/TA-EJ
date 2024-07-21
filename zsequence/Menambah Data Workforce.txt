@@ -1,0 +1,11 @@
+title Menambah Data Workforce
+
+participant Staf Produksi
+participant Workforce Management System
+participant Database
+
+Staf Produksi->Workforce Management System: AddWorkforce(details)
+Workforce Management System->Workforce Management System: FillNewWorkforceForm(details)
+Workforce Management System->Database: SaveWorkforceData()
+Database-->Workforce Management System: WorkforceSaved(success/failure)
+Workforce Management System->Staf Produksi: AddWorkforceResult(success)

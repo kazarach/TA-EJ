@@ -1,0 +1,11 @@
+title Mengubah Data Pengembalian Produk
+
+participant Staf Inventaris
+participant Product Management System
+participant Database
+
+Staf Inventaris->Product Management System: EditRejectedProduct(productID, newDetails)
+Product Management System->Product Management System: UpdateRejectedProductForm(newDetails)
+Product Management System->Database: SaveUpdatedRejectedProductData(productID, newDetails)
+Database-->Product Management System: RejectedProductUpdateSaved(success/failure)
+Product Management System->Staf Inventaris: EditRejectedProductResult(success)

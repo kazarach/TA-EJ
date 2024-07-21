@@ -1,0 +1,12 @@
+title Menambah Data Produk
+
+participant Staf Produksi
+participant Product Management System
+participant Database
+
+Staf Produksi->Product Management System: AddProduct(details)
+Product Management System->Product Management System: FillNewProductForm(details)
+Product Management System->Product Management System: FillMaterialList(materialDetails)
+Product Management System->Database: SaveProductData()
+Database-->Product Management System: ProductSaved(success/failure)
+Product Management System->Staf Produksi: AddProductResult(success)

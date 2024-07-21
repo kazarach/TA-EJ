@@ -1,0 +1,10 @@
+title Melihat Arsip Produksi yang Telah Selesai
+
+participant Staf Produksi
+participant Production System
+participant Database
+
+Staf Produksi->Production System: ViewCompletedProductionArchives()
+Production System->Database: GetCompletedProductionArchives()
+Database-->Production System: CompletedProductionArchivesData()
+Production System->Staf Produksi: ShowCompletedProductionArchives()

@@ -1,0 +1,10 @@
+title Memilih Data Pengembalian Produk
+
+participant Staf Inventaris
+participant Product Management System
+participant Database
+
+Staf Inventaris->Product Management System: SelectRejectedProduct(productID)
+Product Management System->Database: GetRejectedProductData(productID)
+Database-->Product Management System: RejectedProductData()
+Product Management System->Staf Inventaris: ShowRejectedProductData()

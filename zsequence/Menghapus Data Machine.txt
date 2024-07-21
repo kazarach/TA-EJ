@@ -1,0 +1,10 @@
+title Menghapus Data Machine
+
+participant Staf Produksi
+participant Machine Management System
+participant Database
+
+Staf Produksi->Machine Management System: DeleteMachine(machineID)
+Machine Management System->Database: RemoveMachineData(machineID)
+Database-->Machine Management System: MachineDeleted(success/failure)
+Machine Management System->Staf Produksi: DeleteMachineResult(success)

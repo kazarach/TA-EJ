@@ -1,0 +1,10 @@
+title Melihat Jumlah Produk yang Telah Diproduksi dari Proyek Tertentu
+
+participant Staf Produksi
+participant Project Planning System
+participant Database
+
+Staf Produksi->Project Planning System: ViewProducedProducts(projectID)
+Project Planning System->Database: GetProducedProducts(projectID)
+Database-->Project Planning System: ProducedProductsData()
+Project Planning System->Staf Produksi: ShowProducedProducts()

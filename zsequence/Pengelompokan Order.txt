@@ -1,0 +1,10 @@
+title Menampilkan Pengelompokan Order Masuk
+
+participant Staf Marketing
+participant Order System
+participant Database
+
+Staf Marketing->Order System: ShowOrderGrouping()
+Order System->Database: GetOrderGroupingData()
+Database-->Order System: OrderGroupingData()
+Order System->Staf Marketing: ShowOrderGroupingResult()

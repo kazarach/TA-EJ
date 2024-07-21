@@ -1,0 +1,12 @@
+title Mengubah Data Produk
+
+participant Staf Produksi
+participant Product Management System
+participant Database
+
+Staf Produksi->Product Management System: EditProduct(productID, newDetails)
+Product Management System->Product Management System: UpdateProductForm(newDetails)
+Product Management System->Product Management System: FillMaterialList(materialDetails)
+Product Management System->Database: SaveUpdatedProductData(productID, newDetails)
+Database-->Product Management System: ProductUpdateSaved(success/failure)
+Product Management System->Staf Produksi: EditProductResult(success)
