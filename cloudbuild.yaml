@@ -1,0 +1,16 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/smiling-memory-428403-m3/laravel-app', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/smiling-memory-428403-m3/laravel-app']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/laravel-deployment'
+  - 'laravel=gcr.io/smiling-memory-428403-m3/laravel-app:$COMMIT_SHA'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast2'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=kaza-cluster'
+images:
+- 'gcr.io/smiling-memory-428403-m3/laravel-app'
