@@ -1,4 +1,15 @@
+# Use the official PHP image with FPM
 FROM php:7.4-fpm
+
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Remove the default server definition
+RUN rm /etc/nginx/sites-enabled/default
+
+# Copy custom server definition
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 # Set working directory
 WORKDIR /var/www
@@ -15,18 +26,15 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    libonig-dev \
+    libzip-dev \
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl \
+    && docker-php-ext-install pdo mbstring zip exif pcntl gd
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install gd
-
-# Install composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install Composer
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 # Copy existing application directory contents
 COPY . /var/www
@@ -36,7 +44,9 @@ COPY --chown=www-data:www-data . /var/www
 
 # Change current user to www
 USER www-data
+ENV HOST 0.0.0.0
+# Expose port 8080
+EXPOSE 8080
 
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-CMD ["php-fpm"]
+# Start Nginx and PHP-FPM
+CMD service nginx start && php-fpm

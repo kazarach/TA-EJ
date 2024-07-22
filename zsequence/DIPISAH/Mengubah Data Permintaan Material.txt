@@ -1,0 +1,12 @@
+title Mengubah Data Permintaan Material
+
+participant Staf Inventaris
+participant Material Request System
+participant Database
+
+Staf Inventaris->Material Request System: EditMaterialRequest(requestID, newDetails)
+Material Request System->Material Request System: UpdateRequestForm(newDetails)
+Material Request System->Material Request System: FillMaterialList(materialDetails)
+Material Request System->Database: SaveUpdatedRequestData(requestID, newDetails)
+Database-->Material Request System: RequestUpdateSaved(success/failure)
+Material Request System->Staf Inventaris: EditRequestResult(success)

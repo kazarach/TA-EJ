@@ -1,0 +1,10 @@
+title Menghapus Data Permintaan Material
+
+participant Staf Inventaris
+participant Material Request System
+participant Database
+
+Staf Inventaris->Material Request System: DeleteMaterialRequest(requestID)
+Material Request System->Database: RemoveRequestData(requestID)
+Database-->Material Request System: RequestDeleted(success/failure)
+Material Request System->Staf Inventaris: DeleteRequestResult(success)

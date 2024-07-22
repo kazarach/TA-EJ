@@ -1,0 +1,10 @@
+title Memilih Data Material
+
+participant Staf Produksi
+participant Material Management System
+participant Database
+
+Staf Produksi->Material Management System: SelectMaterial(materialID)
+Material Management System->Database: GetMaterialData(materialID)
+Database-->Material Management System: MaterialData()
+Material Management System->Staf Produksi: ShowMaterialData()

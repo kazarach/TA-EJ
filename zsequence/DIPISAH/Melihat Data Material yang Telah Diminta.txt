@@ -1,0 +1,10 @@
+title Melihat Data Material yang Telah Diminta
+
+participant Staf Inventaris
+participant Material Request System
+participant Database
+
+Staf Inventaris->Material Request System: ViewRequestedMaterial()
+Material Request System->Database: GetRequestedMaterial()
+Database-->Material Request System: RequestedMaterialData()
+Material Request System->Staf Inventaris: ShowRequestedMaterial()

@@ -1,0 +1,25 @@
+title Mengurus Produksi
+
+participant Staf Produksi
+participant Production System
+participant Database
+
+Staf Produksi->Production System: ManageProductionActivities()
+Production System->Production System: CreateProductionReport(details)
+Production System->Production System: FillNewProductionForm(details)
+Production System->Production System: SelectWorkforceAndMachine(details)
+Production System->Database: SaveToArchive(details)
+Database-->Production System: ArchiveSaved(success/failure)
+Production System->Staf Produksi: ReportCreationResult(success)
+
+Staf Produksi->Production System: ViewCompletedProductionArchives()
+Production System->Database: GetCompletedProductionArchives()
+Database-->Production System: CompletedProductionArchivesData()
+Production System->Staf Produksi: ShowCompletedProductionArchives()
+
+Staf Produksi->Production System: EditProductionArchive(archiveID, newDetails)
+Production System->Production System: UpdateProductionForm(newDetails)
+Production System->Production System: SelectWorkforceAndMachine(newDetails)
+Production System->Database: UpdateArchive(archiveID, newDetails)
+Database-->Production System: ArchiveUpdated(success/failure)
+Production System->Staf Produksi: ArchiveUpdateResult(success)

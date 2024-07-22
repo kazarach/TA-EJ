@@ -1,0 +1,12 @@
+title Menambah Data Permintaan Material
+
+participant Staf Inventaris
+participant Material Request System
+participant Database
+
+Staf Inventaris->Material Request System: AddMaterialRequest(details)
+Material Request System->Material Request System: FillNewRequestForm(details)
+Material Request System->Material Request System: FillMaterialList(materialDetails)
+Material Request System->Database: SaveRequestData()
+Database-->Material Request System: RequestSaved(success/failure)
+Material Request System->Staf Inventaris: AddRequestResult(success)

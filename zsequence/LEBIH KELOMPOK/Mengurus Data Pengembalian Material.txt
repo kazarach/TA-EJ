@@ -1,0 +1,30 @@
+title Mengurus Data Pengembalian Material
+
+participant Staf Inventaris
+participant Return Management System
+participant Database
+
+Staf Inventaris->Return Management System: ManageMaterialReturnData()
+Return Management System->Return Management System: AddMaterialReturn(details)
+Return Management System->Return Management System: FillNewReturnMaterialForm(details)
+Return Management System->Database: SaveMaterialReturnData()
+Return Management System->Database :DecreaseMaterialStock(materialID, quantity)
+Database-->Return Management System: MaterialReturnSaved(success/failure)
+Database-->Return Management System:MaterialStockDecreased(success/failure)
+Return Management System->Staf Inventaris: AddMaterialReturnResult(success)
+
+Staf Inventaris->Return Management System: SelectMaterialReturn(returnID)
+Return Management System->Database: GetMaterialReturnData(returnID)
+Database-->Return Management System: MaterialReturnData()
+Return Management System->Staf Inventaris: ShowMaterialReturnData()
+
+Staf Inventaris->Return Management System: EditMaterialReturn(returnID, newDetails)
+Return Management System->Return Management System: UpdateReturnMaterialForm(newDetails)
+Return Management System->Database: SaveUpdatedMaterialReturnData(returnID, newDetails)
+Database-->Return Management System: MaterialReturnUpdateSaved(success/failure)
+Return Management System->Staf Inventaris: EditMaterialReturnResult(success)
+
+Staf Inventaris->Return Management System: DeleteMaterialReturn(returnID)
+Return Management System->Database: RemoveMaterialReturnData(returnID)
+Database-->Return Management System: MaterialReturnDeleted(success/failure)
+Return Management System->Staf Inventaris: DeleteMaterialReturnResult(success)

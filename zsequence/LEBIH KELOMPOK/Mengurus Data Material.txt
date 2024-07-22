@@ -1,0 +1,28 @@
+title Mengurus Data Material
+
+participant Staf Produksi
+participant Material Management System
+participant Database
+
+Staf Produksi->Material Management System: ManageMaterialData()
+Material Management System->Material Management System: AddMaterial(details)
+Material Management System->Material Management System: FillNewMaterialForm(details)
+Material Management System->Database: SaveMaterialData()
+Database-->Material Management System: MaterialSaved(success/failure)
+Material Management System->Staf Produksi: AddMaterialResult(success)
+
+Staf Produksi->Material Management System: SelectMaterial(materialID)
+Material Management System->Database: GetMaterialData(materialID)
+Database-->Material Management System: MaterialData()
+Material Management System->Staf Produksi: ShowMaterialData()
+
+Staf Produksi->Material Management System: EditMaterial(materialID, newDetails)
+Material Management System->Material Management System: UpdateMaterialForm(newDetails)
+Material Management System->Database: SaveUpdatedMaterialData(materialID, newDetails)
+Database-->Material Management System: MaterialUpdateSaved(success/failure)
+Material Management System->Staf Produksi: EditMaterialResult(success)
+
+Staf Produksi->Material Management System: DeleteMaterial(materialID)
+Material Management System->Database: RemoveMaterialData(materialID)
+Database-->Material Management System: MaterialDeleted(success/failure)
+Material Management System->Staf Produksi: DeleteMaterialResult(success)

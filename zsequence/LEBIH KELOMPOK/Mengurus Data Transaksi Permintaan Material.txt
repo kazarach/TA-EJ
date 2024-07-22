@@ -1,0 +1,29 @@
+title Mengurus Data Transaksi Permintaan Material
+
+participant Staf Inventaris
+participant Material Request System
+participant Database
+
+Staf Inventaris->Material Request System: ManageMaterialRequestTransaction()
+Material Request System->Material Request System: AddRequestTransaction(details)
+Material Request System->Material Request System: FillNewTransactionForm(details)
+Material Request System->Material Request System: FillMaterialList(materialDetails)
+Material Request System->Database: SaveTransactionData()
+Database-->Material Request System: TransactionSaved(success/failure)
+Material Request System->Staf Inventaris: AddTransactionResult(success)
+
+Staf Inventaris->Material Request System: SelectRequestTransaction(transactionID)
+Material Request System->Database: GetRequestTransactionData(transactionID)
+Database-->Material Request System: RequestTransactionData()
+Material Request System->Staf Inventaris: ShowRequestTransactionData()
+
+Staf Inventaris->Material Request System: EditRequestTransaction(transactionID, newDetails)
+Material Request System->Material Request System: UpdateTransactionForm(newDetails)
+Material Request System->Database: SaveUpdatedTransactionData(transactionID, newDetails)
+Database-->Material Request System: TransactionUpdateSaved(success/failure)
+Material Request System->Staf Inventaris: EditTransactionResult(success)
+
+Staf Inventaris->Material Request System: DeleteRequestTransaction(transactionID)
+Material Request System->Database: RemoveTransactionData(transactionID)
+Database-->Material Request System: TransactionDeleted(success/failure)
+Material Request System->Staf Inventaris: DeleteTransactionResult(success)

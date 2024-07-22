@@ -1,0 +1,11 @@
+title Menambah Data Material
+
+participant Staf Produksi
+participant Material Management System
+participant Database
+
+Staf Produksi->Material Management System: AddMaterial(details)
+Material Management System->Material Management System: FillNewMaterialForm(details)
+Material Management System->Database: SaveMaterialData()
+Database-->Material Management System: MaterialSaved(success/failure)
+Material Management System->Staf Produksi: AddMaterialResult(success)

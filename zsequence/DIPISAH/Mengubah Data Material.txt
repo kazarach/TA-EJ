@@ -1,0 +1,11 @@
+title Mengubah Data Material
+
+participant Staf Produksi
+participant Material Management System
+participant Database
+
+Staf Produksi->Material Management System: EditMaterial(materialID, newDetails)
+Material Management System->Material Management System: UpdateMaterialForm(newDetails)
+Material Management System->Database: SaveUpdatedMaterialData(materialID, newDetails)
+Database-->Material Management System: MaterialUpdateSaved(success/failure)
+Material Management System->Staf Produksi: EditMaterialResult(success)

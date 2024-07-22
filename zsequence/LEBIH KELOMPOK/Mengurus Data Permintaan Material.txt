@@ -1,0 +1,18 @@
+title Mengurus Data Permintaan Material
+
+participant Staf Inventaris
+participant Material Request System
+participant Database
+
+Staf Inventaris->Material Request System: ManageMaterialRequestData()
+Material Request System->Material Request System: AddMaterialRequest(details)
+Material Request System->Material Request System: FillNewRequestForm(details)
+Material Request System->Material Request System: FillMaterialList(materialDetails)
+Material Request System->Database: SaveRequestData()
+Database-->Material Request System: RequestSaved(success/failure)
+Material Request System->Staf Inventaris: AddRequestResult(success)
+
+Staf Inventaris->Material Request System: ViewRequestedMaterial()
+Material Request System->Database: GetRequestedMaterial()
+Database-->Material Request System: RequestedMaterialData()
+Material Request System->Staf Inventaris: ShowRequestedMaterial()
