@@ -1,8 +1,8 @@
 # Use the official PHP image with FPM
-FROM php:7.4-fpm
+FROM php:8.3-fpm
 
-# Install Nginx
-RUN apt-get update && apt-get install -y nginx
+# Install Nginx and procps
+RUN apt-get update && apt-get install -y nginx procps
 
 # Remove the default server definition
 RUN rm /etc/nginx/sites-enabled/default
@@ -10,6 +10,10 @@ RUN rm /etc/nginx/sites-enabled/default
 # Copy custom server definition
 COPY nginx.conf /etc/nginx/sites-available/default
 RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
+# Create necessary directories for Nginx
+RUN mkdir -p /var/lib/nginx/body /var/run/nginx && \
+    chown -R www-data:www-data /var/lib/nginx /var/run/nginx
 
 # Set working directory
 WORKDIR /var/www
@@ -42,11 +46,8 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . /var/www
 
-# Change current user to www
-USER www-data
-ENV HOST 0.0.0.0
 # Expose port 8080
 EXPOSE 8080
 
 # Start Nginx and PHP-FPM
-CMD service nginx start && php-fpm
+CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
