@@ -8,11 +8,7 @@
             <div class="header-title">
                 <h2>Partial</h2>
             </div>
-            {{-- <div class="dropdown-top">
-                <a href="/partial" class="active">Partial</a>
-            </div> --}}
             <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
             </div>
         </div>
     </div>  
@@ -22,7 +18,7 @@
   @csrf
     <div class="row g-3 mb-3">
         <div class="col-new">
-            <input id="ID" type="text" class="form-control" placeholder="New Customer" aria-label="ID" readonly>
+            <input id="ID" type="text" class="form-control" placeholder="New Partial" aria-label="ID" readonly>
         </div>
     </div>
     <div class="row g-3 mb-3">

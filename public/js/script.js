@@ -91,9 +91,6 @@ function w3RemoveClass(element, name) {
     element.className = arr1.join(" ");
 }
 
-
-
-
 function changeTextColor() {
     // Select all input fields
     var inputControl = document.querySelectorAll(".form-control");

@@ -19,9 +19,7 @@
                 <a href="">|</a>
                 <a href="/catalog">Catalog</a>
             </div>
-            <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
-            </div>
+            <div></div>
         </div>
     </div>  
 
@@ -132,26 +130,6 @@
       </div>
   </div>
   
-  {{-- <div class="filter-container">
-      <label for="">Position:
-      <select id="position-filter">
-          <option value="">All</option>
-          <option value="">Potong</option>
-          <option value="">Setrika</option>
-          <option value="">Jahit</option>
-      </select>
-      </label>
-      <label for="">Status:
-      <select id="status-filter">
-          <option value="">All</option>
-          <option value="">Masuk</option>
-          <option value="">Izin</option>
-          <option value="">Sakit</option>
-          <option value="">Bolos</option>
-      </select>
-      </label>
-  </div> --}}
-  
   <div class="home-tbl">
       <table id="selling-table" class="table table-striped table-hover" style="width:100%">
           <thead>
@@ -170,7 +148,7 @@
   
           </tbody>
       </table>
-  </section>
+    </div>
   
   
   <script src="/js/order.js"></script>

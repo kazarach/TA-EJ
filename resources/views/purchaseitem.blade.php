@@ -4,49 +4,28 @@
 
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-        <div class="header-title">
-            <h2>Requested</h2>
-        </div>
-        <div class="dropdown-top">
-            <a href="/product">Product</a>
-            <a href="">|</a>
-            <a href="/rejectedproduct">Rejected Product</a>
-            <a href="">|</a>
-            <a href="/material">Material</a>
-            <a href="">|</a>
-            <a href="/purchase">Request Material</a>
-            <a href="">|</a>
-            <a href="/purchase/transaction">Request Transaction</a>
-            <a href="">|</a>
-            <a href="/purchase/item" class="active">Requested Material</a>
-        </div>
-        <div class="user-info">
-            <!-- <img src="../image2.jpg" alt=""> -->
-        </div>
-        </div>
-    </div>  
-
-{{-- <div class="filter-container-item">
-    <label for="">Position:
-    <select id="position-filter">
-        <option value="">All</option>
-        <option value="">Potong</option>
-        <option value="">Setrika</option>
-        <option value="">Jahit</option>
-    </select>
-    </label>
-    <label for="">Status:
-    <select id="status-filter">
-        <option value="">All</option>
-        <option value="">Masuk</option>
-        <option value="">Izin</option>
-        <option value="">Sakit</option>
-        <option value="">Bolos</option>
-    </select>
-    </label>
-</div> --}}
+<div class="top-bar">
+    <div class="header-wrapper">
+    <div class="header-title">
+        <h2>Requested</h2>
+    </div>
+    <div class="dropdown-top">
+        <a href="/product">Product</a>
+        <a href="">|</a>
+        <a href="/rejectedproduct">Rejected Product</a>
+        <a href="">|</a>
+        <a href="/material">Material</a>
+        <a href="">|</a>
+        <a href="/purchase">Request Material</a>
+        <a href="">|</a>
+        <a href="/purchase/transaction">Request Transaction</a>
+        <a href="">|</a>
+        <a href="/purchase/item" class="active">Requested Material</a>
+    </div>
+    <div>
+    </div>
+    </div>
+</div>  
 
 <section class="home">
     <table id="transaction-table" class="table table-striped table-hover" style="width:100%">

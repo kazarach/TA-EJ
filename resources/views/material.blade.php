@@ -4,29 +4,28 @@
 
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <h2>Material</h2>
-            </div>
-            <div class="dropdown-top">
-                <a href="/product">Product</a>
-                <a href="">|</a>
-                <a href="/rejectedproduct">Rejected Product</a>
-                <a href="">|</a>
-                <a href="/material" class="active">Material</a>
-                <a href="">|</a>
-                <a href="/purchase">Request Material</a>
-                <a href="">|</a>
-                <a href="/purchase/transaction">Request Transaction</a>
-                <a href="">|</a>
-                <a href="/purchase/item">Requested Material</a>
-            </div>
-            <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
-            </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <h2>Material</h2>
+        </div>
+        <div class="dropdown-top">
+            <a href="/product">Product</a>
+            <a href="">|</a>
+            <a href="/rejectedproduct">Rejected Product</a>
+            <a href="">|</a>
+            <a href="/material" class="active">Material</a>
+            <a href="">|</a>
+            <a href="/purchase">Request Material</a>
+            <a href="">|</a>
+            <a href="/purchase/transaction">Request Transaction</a>
+            <a href="">|</a>
+            <a href="/purchase/item">Requested Material</a>
+        </div>
+        <div>
         </div>
     </div>
+</div>
 
 {{-- form --}}
 <div class="form">

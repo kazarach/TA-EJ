@@ -4,28 +4,24 @@
 
 <script src="/js/workforceScript.js"></script>
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-        <div class="header-title">
-            <h2>Workforce Availability</h2>
-        </div>
-        <div class="dropdown-top">
-            <a href="/production">Production</a>
-            <a href="">|</a>
-            <a href="/production/archive">Production Archive</a>
-            <a href="">|</a>
-            <a href="/machine">Machine</a>
-            <a href="">|</a>
-            <a href="/workforce" class="active">Workforce</a>
-        </div>
-        <div class="user-info">
-            <!-- <img src="image2.jpg" alt=""> -->
-        </div>
-        </div>
-    </div>  
-
-
-
+<div class="top-bar">
+    <div class="header-wrapper">
+    <div class="header-title">
+        <h2>Workforce Availability</h2>
+    </div>
+    <div class="dropdown-top">
+        <a href="/production">Production</a>
+        <a href="">|</a>
+        <a href="/production/archive">Production Archive</a>
+        <a href="">|</a>
+        <a href="/machine">Machine</a>
+        <a href="">|</a>
+        <a href="/workforce" class="active">Workforce</a>
+    </div>
+    <div>
+    </div>
+    </div>
+</div>  
 
 {{-- form --}}
 <section class="form">
@@ -72,32 +68,6 @@
 </div>
 
 </section>
-
-{{-- <div class="filter-container">
-    <label for="">Position:
-    <select id="position-filter">
-        <option value="">All</option>
-        <option value="">Potong</option>
-        <option value="">Setrika</option>
-        <option value="">Jahit</option>
-    </select>
-    </label>
-    <label for="">Status:
-    <select id="status-filter">
-        <option value="">All</option>
-        <option value="">Masuk</option>
-        <option value="">Izin</option>
-        <option value="">Sakit</option>
-        <option value="">Bolos</option>
-    </select>
-    </label>
-</div> --}}
-
-<style>
-    .selected {
-        background-color: #d1e7dd !important; /* Highlight color */
-    }
-</style>
 
 <section class="home-tbl">
     <table id="workforce-table" class="table table-striped table-hover" style="width:100%">

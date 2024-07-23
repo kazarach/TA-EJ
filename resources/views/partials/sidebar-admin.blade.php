@@ -9,7 +9,6 @@
               <span class="profession" style="color: #255d83">--ADMIN--</span>
           </div>
       </div>
-      {{-- <i class='bx bx-chevron-right toggle'></i> --}}
   </header>
   
   <div class="menu-bar">
@@ -231,47 +230,16 @@
                     </li>
                 </ul>
               </li>
-              
-              <!-- <li class="nav-link dropdown" id="cash-link">
-                <a href="/admin/cash" onclick="toggleSubMenu(event)" class="togglesubmenu">
-                    <i class='bx bx-book-alt icon'></i>
-                    <span class="text nav-text" id="dropdowntext2">Cash Book ></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-link">
-                      <a href="/admin/cash">
-                        <i class='bx bx-cylinder icon' id="submenutext"></i>
-                        <span class="text nav-text" id="submenutext">Cash Book</span>
-                      </a>
-                    </li>
-                    <li class="nav-link">
-                      <a href="/admin/report">
-                        <i class='bx bx-cylinder icon' id="submenutext"></i>
-                        <span class="text nav-text" id="submenutext">Report</span>
-                      </a>
-                    </li>
-                </ul>
-            </li> -->
           </ul>
       </div>
-      <div class="bottom-content">
-            <li class="">
-                <a href="#" id="logout-button">
-                    <i class='bx bx-log-out icon'></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
-            </li>
-          {{-- <li class="mode">
-              <div class="moon-sun">
-                  <i class='bx bx-moon icon moon'></i>
-                  <i class='bx bx-sun icon sun'></i>
-              </div>
-              <span class="mode-text text">Dark Mode</span>
-              <div class="toggle-switch">
-                  <span class="switch"></span>
-              </div>
-          </li> --}}
-      </div>
+<div class="bottom-content">
+      <li class="">
+          <a href="#" id="logout-button">
+              <i class='bx bx-log-out icon'></i>
+              <span class="text nav-text">Logout</span>
+          </a>
+      </li>
+</div>
   </div>
 </nav>
 

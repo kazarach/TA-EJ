@@ -13,8 +13,7 @@
                 <a href="">|</a>
                 <a href="/schedule">Schedule</a>
             </div>
-            <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
+            <div>
             </div>
         </div>
     </div>   
@@ -122,44 +121,25 @@
 </div>
 </div>
 
-{{-- filter --}}
-{{-- <div class="filter-container">
-    <label for="">Start Date:
-        <input type="text" id="date-filter-start">
-    </label>
-    <label for="">End Date:
-        <input type="text" id="date-filter-end">
-    </label>
-    <label for="">Status:
-        <select id="status-filter">
-            <option value="">All</option>
-            <option value="">Scheduled</option>
-            <option value="">Modeling</option>
-            <option value="">Packing</option>
-            <option value="">Cutting</option>
-        </select>
-    </label>    
-</div> --}}
-
 {{-- Tables --}}
 <div class="home-tbl">
-        <table id="projects-table" class="table table-striped table-hover table-grid" style="width:100%">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Project Name</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Products</th>
-                    <th scope="col">Producted</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table id="projects-table" class="table table-striped table-hover table-grid" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Project Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Products</th>
+                <th scope="col">Producted</th>
+            </tr>
+        </thead>
+        <tbody>
 
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 
 </div>
 

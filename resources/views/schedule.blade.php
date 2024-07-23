@@ -13,8 +13,7 @@
             <a href="">|</a>
             <a href="/schedule" class="active">Schedule</a>
         </div>
-        <div class="user-info">
-            <!-- <img src="image2.jpg" alt=""> -->
+        <div>
         </div>
         </div>
     </div>  
@@ -86,21 +85,10 @@
                             </tbody>
                         </table>
                     </div>
-                    {{-- <div class="row g-3 mb-3">
-                        <div class="col">
-                            <label for="eventColor">Event Color</label>
-                            <input type="color" class="form-control" id="eventColor" value="#ff9f89">
-                        </div>
-                        <div class="col">
-                            <label for="eventTextColor">Text Color</label>
-                            <input type="color" class="form-control" id="eventTextColor" value="#000000">
-                        </div>
-                    </div> --}}
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="revertModal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveEventButton">Save Event</button>
             </div>
         </div>
     </div>
@@ -144,21 +132,10 @@
                             </tbody>
                         </table>
                     </div>
-                    {{-- <div class="row g-3 mb-3">
-                        <div class="col">
-                            <label for="eventColor">Event Color</label>
-                            <input type="color" class="form-control" id="eventColor" value="#ff9f89">
-                        </div>
-                        <div class="col">
-                            <label for="eventTextColor">Text Color</label>
-                            <input type="color" class="form-control" id="eventTextColor" value="#000000">
-                        </div>
-                    </div> --}}
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="revertModal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveEventButton">Save Event</button>
             </div>
         </div>
     </div>

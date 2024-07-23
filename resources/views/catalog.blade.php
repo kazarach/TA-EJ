@@ -19,8 +19,7 @@
             <a href="">|</a>
             <a href="/catalog" class="active">Catalog</a>
         </div>
-        <div class="user-info">
-            <!-- <img src="image2.jpg" alt=""> -->
+        <div>
         </div>
         </div>
     </div>  
@@ -45,7 +44,7 @@
     </div>
 
     <div class="form-group mb-3">
-        <label for="" class="form-label">Due Date</label>
+        <label for="">Due Date</label>
         <input id="dueDate" type="text" class="form-control datepicker" placeholder="Due Date">
     </div>
 
@@ -57,32 +56,6 @@
 </div>
 
 </section>
-
-<div class="filter-container">
-    <label for="">Position:
-    <select id="position-filter">
-        <option value="">All</option>
-        <option value="">Potong</option>
-        <option value="">Setrika</option>
-        <option value="">Jahit</option>
-    </select>
-    </label>
-    <label for="">Status:
-    <select id="status-filter">
-        <option value="">All</option>
-        <option value="">Masuk</option>
-        <option value="">Izin</option>
-        <option value="">Sakit</option>
-        <option value="">Bolos</option>
-    </select>
-    </label>
-</div>
-
-<style>
-    .selected {
-        background-color: #d1e7dd !important; /* Highlight color */
-    }
-</style>
 
 <section class="home-tbl">
     <table id="workforce-table" class="table table-striped table-hover" style="width:100%">

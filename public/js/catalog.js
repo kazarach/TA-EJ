@@ -145,9 +145,10 @@ function changeTextColor() {
 }
 
 function clearForm() {
-    document.getElementById("ID").value = "ID: " + "";
+    document.getElementById("ID").value = "";
     document.getElementById("workforceName").value = "";
     document.getElementById("dueDate").value = "";
+    changeTextColor();
 }
 
 function createWorkforce() {

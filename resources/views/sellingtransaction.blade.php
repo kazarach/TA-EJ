@@ -4,23 +4,22 @@
 
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-        <div class="header-title">
-            <h2>Selling Transaction</h2>
-        </div>
-        <div class="dropdown-top">
-            <a href="/selling">Selling</a>
-            <a href="">|</a>
-            <a href="/selling/transaction" class="active">Selling Transaction</a>
-            <a href="">|</a>
-            <a href="/selling/item">Selling Item</a>
-        </div>
-        <div class="user-info">
-            <!-- <img src="../image2.jpg" alt=""> -->
-        </div>
-        </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+    <div class="header-title">
+        <h2>Selling Transaction</h2>
     </div>
+    <div class="dropdown-top">
+        <a href="/selling">Selling</a>
+        <a href="">|</a>
+        <a href="/selling/transaction" class="active">Selling Transaction</a>
+        <a href="">|</a>
+        <a href="/selling/item">Selling Item</a>
+    </div>
+    <div>
+    </div>
+    </div>
+</div>
 
 {{-- form --}}
 <section class="form">

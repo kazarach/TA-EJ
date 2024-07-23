@@ -3,25 +3,24 @@
 @section('container')
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <h2>Return Material Archive</h2>
-            </div>
-            <div class="dropdown-top">
-                <a href="/returncustomer">Return Customer</a>
-                <a href="">|</a>
-                <a href="/returnproduction">Return Production</a>
-                <a href="">|</a>
-                <a href="/returnmaterial">Return Material</a>
-                <a href="">|</a>
-                <a href="/returnmaterial/archive" class="active">Return Material Archive</a>
-            </div>
-            <div class="user-info">
-                <!-- <img src="../image2.jpg" alt=""> -->
-            </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <h2>Return Material Archive</h2>
         </div>
-    </div>  
+        <div class="dropdown-top">
+            <a href="/returncustomer">Return Customer</a>
+            <a href="">|</a>
+            <a href="/returnproduction">Return Production</a>
+            <a href="">|</a>
+            <a href="/returnmaterial">Return Material</a>
+            <a href="">|</a>
+            <a href="/returnmaterial/archive" class="active">Return Material Archive</a>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>  
 
 {{-- form --}}
 <div class="form">
@@ -87,46 +86,26 @@
       </div>
   </div>
   
-  {{-- <div class="filter-container">
-      <label for="">Position:
-      <select id="position-filter">
-          <option value="">All</option>
-          <option value="">Potong</option>
-          <option value="">Setrika</option>
-          <option value="">Jahit</option>
-      </select>
-      </label>
-      <label for="">Status:
-      <select id="status-filter">
-          <option value="">All</option>
-          <option value="">Masuk</option>
-          <option value="">Izin</option>
-          <option value="">Sakit</option>
-          <option value="">Bolos</option>
-      </select>
-      </label>
-  </div> --}}
-  
-  <div class="home-tbl">
-      <table id="return-table" class="table table-striped table-hover" style="width:100%">
-          <thead>
-              <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Material Name</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Unit</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Code</th>
-                  <th scope="col">Return Category</th>
-                  <th scope="col">Information</th>
-                  <th scope="col">Return Date</th>
-              </tr>
-          </thead>
-          <tbody>
-  
-          </tbody>
-      </table>
-  </section>
+<div class="home-tbl">
+    <table id="return-table" class="table table-striped table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Material Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Category</th>
+                <th scope="col">Code</th>
+                <th scope="col">Return Category</th>
+                <th scope="col">Information</th>
+                <th scope="col">Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
   
   
   <script src="/js/returnMaterialArchive.js"></script>

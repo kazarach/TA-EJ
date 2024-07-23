@@ -3,25 +3,24 @@
 @section('container')
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <h2>Return Material</h2>
-            </div>
-            <div class="dropdown-top">
-                <a href="/returncustomer">Return Customer</a>
-                <a href="">|</a>
-                <a href="/returnproduction">Return Production</a>
-                <a href="">|</a>
-                <a href="/returnmaterial" class="active">Return Material</a>
-                <a href="">|</a>
-                <a href="/returnmaterial/archive">Return Material Archive</a>
-            </div>
-            <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
-            </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <h2>Return Material</h2>
         </div>
-    </div>  
+        <div class="dropdown-top">
+            <a href="/returncustomer">Return Customer</a>
+            <a href="">|</a>
+            <a href="/returnproduction">Return Production</a>
+            <a href="">|</a>
+            <a href="/returnmaterial" class="active">Return Material</a>
+            <a href="">|</a>
+            <a href="/returnmaterial/archive">Return Material Archive</a>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>  
 
 {{-- form --}}
 <div class="form">
@@ -81,56 +80,33 @@
   
   
       <div>
-        <!-- <button type="button" id="create-button" class="btn btn-primary"></button> -->
         <button type="button" id="add-button" class="btn btn-primary">Add</button>
-        <!-- <button type="button" id="delete-button" class="btn btn-danger">Delete</button> -->
         <button type="button" onclick="clearForm()" class="btn btn-secondary">Clear Form</button>
         <button type="button" id="return-button" class="btn btn-success">Return Material</button>
-
       </div>
   </div>
   
-  {{-- <div class="filter-container">
-      <label for="">Position:
-      <select id="position-filter">
-          <option value="">All</option>
-          <option value="">Potong</option>
-          <option value="">Setrika</option>
-          <option value="">Jahit</option>
-      </select>
-      </label>
-      <label for="">Status:
-      <select id="status-filter">
-          <option value="">All</option>
-          <option value="">Masuk</option>
-          <option value="">Izin</option>
-          <option value="">Sakit</option>
-          <option value="">Bolos</option>
-      </select>
-      </label>
-  </div> --}}
-  
-  <div class="home-tbl">
-      <table id="return-table" class="table table-striped table-hover" style="width:100%">
-          <thead>
-              <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Unit</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Code</th>
-                  <th scope="col">Return Category</th>
-                  <th scope="col">Information</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-  
-          </tbody>
-      </table>
-  </section>
+<div class="home-tbl">
+    <table id="return-table" class="table table-striped table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Category</th>
+                <th scope="col">Code</th>
+                <th scope="col">Return Category</th>
+                <th scope="col">Information</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
   
   
   <script src="/js/returnMaterial.js"></script>

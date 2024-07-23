@@ -4,25 +4,24 @@
 
 <script src="/js/machineScript.js"></script>
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <h2>Machine</h2>
-            </div>
-            <div class="dropdown-top">
-                <a href="/production">Production</a>
-                <a href="">|</a>
-                <a href="/production/archive">Production Archive</a>
-                <a href="">|</a>
-                <a href="/machine" class="active">Machine</a>
-                <a href="">|</a>
-                <a href="/workforce">Workforce</a>
-            </div>
-            <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
-            </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <h2>Machine</h2>
         </div>
-    </div>  
+        <div class="dropdown-top">
+            <a href="/production">Production</a>
+            <a href="">|</a>
+            <a href="/production/archive">Production Archive</a>
+            <a href="">|</a>
+            <a href="/machine" class="active">Machine</a>
+            <a href="">|</a>
+            <a href="/workforce">Workforce</a>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>  
 
 {{-- form --}}
 <div class="form">
@@ -69,26 +68,6 @@
 </div>
 
 </div>
-
-{{-- <div class="filter-container">
-    <label for="">Use:
-        <select id="status-filter">
-            <option value="">All</option>
-                @foreach($machineuses as $use)
-                    <option value="{{ $use->id }}">{{ $use->name }}</option>
-                @endforeach
-        </select>
-    </label>
-    <label for="">Status:
-        <select id="status-filter">
-            <option value="">All</option>
-            <option value="">Masuk</option>
-            <option value="">Izin</option>
-            <option value="">Sakit</option>
-            <option value="">Bolos</option>
-        </select>
-    </label>
-</div> --}}
 
 <div class="home-tbl">
     <table id="machine-table" class="table table-striped table-hover" style="width:100%">

@@ -3,32 +3,28 @@
 @section('container')
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-        <div class="header-title">
-            <h2>Request</h2>
-        </div>
-        <div class="dropdown-top">
-            <a href="/product">Product</a>
-            <a href="">|</a>
-            <a href="/rejectedproduct">Rejected Product</a>
-            <a href="">|</a>
-            <a href="/material">Material</a>
-            <a href="">|</a>
-            <a href="/purchase" class="active">Request Material</a>
-            <a href="">|</a>
-            <a href="/purchase/transaction">Request Transaction</a>
-            <a href="">|</a>
-            <a href="/purchase/item">Requested Material</a>
-        </div>
-        <div class="user-info">
-            <!-- <img src="image2.jpg" alt=""> -->
-        </div>
-        </div>
-    </div> 
-
-
-
+<div class="top-bar">
+    <div class="header-wrapper">
+    <div class="header-title">
+        <h2>Request</h2>
+    </div>
+    <div class="dropdown-top">
+        <a href="/product">Product</a>
+        <a href="">|</a>
+        <a href="/rejectedproduct">Rejected Product</a>
+        <a href="">|</a>
+        <a href="/material">Material</a>
+        <a href="">|</a>
+        <a href="/purchase" class="active">Request Material</a>
+        <a href="">|</a>
+        <a href="/purchase/transaction">Request Transaction</a>
+        <a href="">|</a>
+        <a href="/purchase/item">Requested Material</a>
+    </div>
+    <div>
+    </div>
+    </div>
+</div> 
 
 {{-- form --}}
 <div class="form">
@@ -83,21 +79,21 @@
         </div>
     </div>
 
-    <button type="button" id="pilih-material" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Choose Products</button>
+    <button type="button" id="pilih-material" class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Choose Materials</button>
   
 {{---Modal---}}
 <div class="modal fade mb-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content" id="modal-sell">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Product</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Material</h1>
                 <button type="button" onclick="revertModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="d-flex">
                     <!-- Selected Materials Section -->
                     <div class="flex-fill me-3">
-                        <h3>Selected Products</h3>
+                        <h3>Selected Materials</h3>
                         <table id="selectedItemsTable" class="table">
                             <thead>
                                 <tr>
@@ -123,7 +119,7 @@
                     </div>
                     <!-- Materials Table Section -->
                     <div class="flex-fill">
-                        <h3>Available Products</h3>
+                        <h3>Available Materials</h3>
                         <table id="materials-table" class="table">
                             <thead>
                                 <tr>
@@ -160,26 +156,6 @@
     </div>
 </div>
 
-{{-- <div class="filter-container">
-    <label for="">Position:
-    <select id="position-filter">
-        <option disabled value="">All</option>
-        <option value="">Potong</option>
-        <option value="">Setrika</option>
-        <option value="">Jahit</option>
-    </select>
-    </label>
-    <label for="">Status:
-    <select id="status-filter">
-        <option value="">All</option>
-        <option value="">Masuk</option>
-        <option value="">Izin</option>
-        <option value="">Sakit</option>
-        <option value="">Bolos</option>
-    </select>
-    </label>
-</div> --}}
-
 <div class="home-tbl">
     <table id="purchase-table" class="table table-striped table-hover" style="width:100%">
         <thead>
@@ -200,7 +176,7 @@
 
         </tbody>
     </table>
-</section>
+</div>
 
 
 <script src="/js/purchase.js"></script>

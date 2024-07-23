@@ -4,44 +4,22 @@
 
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-        <div class="header-title">
-            <h2>Selling Item</h2>
-        </div>
-        <div class="dropdown-top">
-            <a href="/selling">Selling</a>
-            <a href="">|</a>
-            <a href="/selling/transaction">Selling Transaction</a>
-            <a href="">|</a>
-            <a href="/selling/item" class="active">Selling Item</a>
-        </div>
-        <div class="user-info">
-            <!-- <img src="../image2.jpg" alt=""> -->
-        </div>
-        </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+    <div class="header-title">
+        <h2>Selling Item</h2>
     </div>
-
-    
-{{-- <div class="filter-container-item">
-    <label for="">Position:
-    <select id="position-filter">
-        <option value="">All</option>
-        <option value="">Potong</option>
-        <option value="">Setrika</option>
-        <option value="">Jahit</option>
-    </select>
-    </label>
-    <label for="">Status:
-    <select id="status-filter">
-        <option value="">All</option>
-        <option value="">Masuk</option>
-        <option value="">Izin</option>
-        <option value="">Sakit</option>
-        <option value="">Bolos</option>
-    </select>
-    </label>
-</div> --}}
+    <div class="dropdown-top">
+        <a href="/selling">Selling</a>
+        <a href="">|</a>
+        <a href="/selling/transaction">Selling Transaction</a>
+        <a href="">|</a>
+        <a href="/selling/item" class="active">Selling Item</a>
+    </div>
+    <div>
+    </div>
+    </div>
+</div>
 
 <section class="home">
     <table id="transaction-table" class="table table-striped table-hover" style="width:100%">

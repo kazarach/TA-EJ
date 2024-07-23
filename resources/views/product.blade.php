@@ -3,29 +3,22 @@
 @section('container')
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <h2>Product</h2>
-            </div>
-            <div class="dropdown-top">
-            <a href="/product" class="active">Product</a>
-            <a href="">|</a>
-            <a href="/rejectedproduct">Rejected Product</a>
-            <a href="">|</a>
-            <a href="/material">Material</a>
-            <!-- <a href="">|</a>
-            <a href="/purchase">Request Material</a>
-            <a href="">|</a>
-            <a href="/purchase/transaction">Request Transaction</a>
-            <a href="">|</a>
-            <a href="/purchase/item">Requested Material</a> -->
-            </div>
-            <div class="user-info">
-                <!-- <img src="image2.jpg" alt=""> -->
-            </div>
+<div class="top-bar">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <h2>Product</h2>
+        </div>
+        <div class="dropdown-top">
+        <a href="/product" class="active">Product</a>
+        <a href="">|</a>
+        <a href="/rejectedproduct">Rejected Product</a>
+        <a href="">|</a>
+        <a href="/material">Material</a>
+        </div>
+        <div>
         </div>
     </div>
+</div>
 
 {{-- form --}}
 <div class="form">
@@ -188,28 +181,28 @@
 
 {{-- Tables --}}
 <div class="home-tbl">
-        <table id="products-table" class="table table-striped table-hover" style="width:100%">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Material Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Size</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Merk</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Purchase Price</th>
-                    <th scope="col">Selling Price</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Materials</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table id="products-table" class="table table-striped table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Material Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Category</th>
+                <th scope="col">Size</th>
+                <th scope="col">Color</th>
+                <th scope="col">Merk</th>
+                <th scope="col">Code</th>
+                <th scope="col">Purchase Price</th>
+                <th scope="col">Selling Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Materials</th>
+            </tr>
+        </thead>
+        <tbody>
 
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 
 </div>
 

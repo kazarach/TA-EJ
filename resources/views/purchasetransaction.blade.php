@@ -4,31 +4,28 @@
 
 
 <div class="container-cs">
-    <div class="top-bar">
-        <div class="header-wrapper">
-        <div class="header-title">
-            <h2>Transaction</h2>
-        </div>
-        <div class="dropdown-top">
-            <a href="/product">Product</a>
-            <a href="">|</a>
-            <a href="/rejectedproduct">Rejected Product</a>
-            <a href="">|</a>
-            <a href="/material">Material</a>
-            <a href="">|</a>
-            <a href="/purchase">Request Material</a>
-            <a href="">|</a>
-            <a href="/purchase/transaction" class="active">Request Transaction</a>
-            <a href="">|</a>
-            <a href="/purchase/item">Requested Material</a>
-        </div>
-        <div class="user-info">
-            <!-- <img src="/public/image2.jpg" alt=""> -->
-        </div>
-        </div>
-    </div>   
-
-
+<div class="top-bar">
+    <div class="header-wrapper">
+    <div class="header-title">
+        <h2>Transaction</h2>
+    </div>
+    <div class="dropdown-top">
+        <a href="/product">Product</a>
+        <a href="">|</a>
+        <a href="/rejectedproduct">Rejected Product</a>
+        <a href="">|</a>
+        <a href="/material">Material</a>
+        <a href="">|</a>
+        <a href="/purchase">Request Material</a>
+        <a href="">|</a>
+        <a href="/purchase/transaction" class="active">Request Transaction</a>
+        <a href="">|</a>
+        <a href="/purchase/item">Requested Material</a>
+    </div>
+    <div>
+    </div>
+    </div>
+</div>   
 
 {{-- form --}}
 <section class="form">
@@ -74,14 +71,14 @@
         </div>
     </div>
 
-<button type="button" id="detail-product" class="btn btn-info mb-3">Detail Product</button>
+<button type="button" id="detail-product" class="btn btn-info mb-3">Detail Transaction</button>
 
 {{---Modal---}}
 <div class="modal fade mb-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Choose Product</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Transaction</h1>
                 <button type="button" onclick="revertModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -128,26 +125,6 @@
 </div>
 
 </section>
-
-{{-- <div class="filter-container">
-    <label for="">Position:
-    <select id="position-filter">
-        <option value="">All</option>
-        <option value="">Potong</option>
-        <option value="">Setrika</option>
-        <option value="">Jahit</option>
-    </select>
-    </label>
-    <label for="">Status:
-    <select id="status-filter">
-        <option value="">All</option>
-        <option value="">Masuk</option>
-        <option value="">Izin</option>
-        <option value="">Sakit</option>
-        <option value="">Bolos</option>
-    </select>
-    </label>
-</div> --}}
 
 <section class="home-tbl">
     <table id="transaction-table" class="table table-striped table-hover" style="width:100%">
