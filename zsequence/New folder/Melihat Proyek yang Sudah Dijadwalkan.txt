@@ -1,0 +1,20 @@
+title Melihat Proyek yang Sudah Dijadwalkan
+
+participant Staf Produksi
+participant Project Planning System
+participant Database
+
+Staf Produksi->Project Planning System: Login(credentials)
+Project Planning System->Database: VerifyLogin(credentials)
+Database-->Project Planning System: LoginStatus(success/failure)
+Project Planning System->Staf Produksi: LoginResult(success/failure)
+
+Staf Produksi->Project Planning System: ViewScheduledProjects()
+Project Planning System->Database: GetScheduledProjects()
+Database-->Project Planning System: ScheduledProjectsData()
+Project Planning System->Staf Produksi: ShowScheduledProjects()
+
+Staf Produksi->Project Planning System: ViewProducedProducts(projectID)
+Project Planning System->Database: GetProducedProductsData(projectID)
+Database-->Project Planning System: ProducedProductsData()
+Project Planning System->Staf Produksi: ShowProducedProducts()

@@ -1,0 +1,45 @@
+title Mengurus Data Pengembalian Customer
+
+participant Staf Inventaris
+participant Return Management System
+participant Database
+participant Inventory System
+
+Staf Inventaris->Return Management System: Login(credentials)
+Return Management System->Database: VerifyLogin(credentials)
+Database-->Return Management System: LoginStatus(success/failure)
+Return Management System->Staf Inventaris: LoginResult(success/failure)
+
+
+
+Staf Inventaris->Return Management System: ManageCustomerReturnData()
+Return Management System->Return Management System: AddCustomerReturn(details)
+Return Management System->Return Management System: FillNewReturnCustomerForm(details)
+Return Management System->Database: SaveCustomerReturnData()
+Database->Inventory System: CheckProductGrade(returnID)
+
+alt Grade is Normal
+    Inventory System->Inventory System: IncreaseProductQuantity(productID, quantity)
+else Grade is Downgraded
+    Inventory System->Inventory System: IncreaseRejectedProductQuantity(productID, quantity)
+end
+
+Inventory System-->Database: ProductGrade(grade)
+Database-->Return Management System: CustomerReturnSaved(success/failure)
+Return Management System->Staf Inventaris: AddCustomerReturnResult(success)
+
+Staf Inventaris->Return Management System: SelectCustomerReturn(returnID)
+Return Management System->Database: GetCustomerReturnData(returnID)
+Database-->Return Management System: CustomerReturnData()
+Return Management System->Staf Inventaris: ShowCustomerReturnData()
+
+Staf Inventaris->Return Management System: EditCustomerReturn(returnID, newDetails)
+Return Management System->Return Management System: UpdateReturnCustomerForm(newDetails)
+Return Management System->Database: SaveUpdatedCustomerReturnData(returnID, newDetails)
+Database-->Return Management System: CustomerReturnUpdateSaved(success/failure)
+Return Management System->Staf Inventaris: EditCustomerReturnResult(success)
+
+Staf Inventaris->Return Management System: DeleteCustomerReturn(returnID)
+Return Management System->Database: RemoveCustomerReturnData(returnID)
+Database-->Return Management System: CustomerReturnDeleted(success/failure)
+Return Management System->Staf Inventaris: DeleteCustomerReturnResult(success)

@@ -1,0 +1,30 @@
+title Mengurus Project Planning
+
+participant Staf Produksi
+participant Project Planning System
+participant Database
+
+Staf Produksi->Project Planning System: Login(credentials)
+Project Planning System->Database: VerifyLogin(credentials)
+Database-->Project Planning System: LoginStatus(success/failure)
+Project Planning System->Staf Produksi: LoginResult(success/failure)
+
+Staf Produksi->Project Planning System: ManageProjectPlanning()
+Project Planning System->Project Planning System: CreateProjectPlan(details)
+Project Planning System->Project Planning System: FillNewProjectForm(details)
+Project Planning System->Project Planning System: FillProductList(productDetails)
+Project Planning System->Database: SaveProjectData()
+Database-->Project Planning System: ProjectSaved(success/failure)
+Project Planning System->Staf Produksi: CreateProjectResult(success)
+
+Staf Produksi->Project Planning System: EditProjectPlan(projectID, newDetails)
+Project Planning System->Project Planning System: UpdateProjectForm(newDetails)
+Project Planning System->Project Planning System: UpdateProductList(productDetails)
+Project Planning System->Database: SaveUpdatedProjectData(projectID, newDetails)
+Database-->Project Planning System: ProjectUpdateSaved(success/failure)
+Project Planning System->Staf Produksi: EditProjectResult(success)
+
+Staf Produksi->Project Planning System: DeleteProjectPlan(projectID)
+Project Planning System->Database: RemoveProjectData(projectID)
+Database-->Project Planning System: ProjectDeleted(success/failure)
+Project Planning System->Staf Produksi: DeleteProjectResult(success)

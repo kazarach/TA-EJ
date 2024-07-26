@@ -1,0 +1,35 @@
+title Mengurus Data Produk
+
+participant Staf Produksi
+participant Product Management System
+participant Database
+
+Staf Produksi->Product Management System: Login(credentials)
+Product Management System->Database: VerifyLogin(credentials)
+Database-->Product Management System: LoginStatus(success/failure)
+Product Management System->Staf Produksi: LoginResult(success/failure)
+
+Staf Produksi->Product Management System: ManageProductData()
+Product Management System->Product Management System: AddProduct(details)
+Product Management System->Product Management System: FillNewProductForm(details)
+Product Management System->Product Management System: FillMaterialList(materialDetails)
+Product Management System->Database: SaveProductData()
+Database-->Product Management System: ProductSaved(success/failure)
+Product Management System->Staf Produksi: AddProductResult(success)
+
+Staf Produksi->Product Management System: SelectProduct(productID)
+Product Management System->Database: GetProductData(productID)
+Database-->Product Management System: ProductData()
+Product Management System->Staf Produksi: ShowProductData()
+
+Staf Produksi->Product Management System: EditProduct(productID, newDetails)
+Product Management System->Product Management System: UpdateProductForm(newDetails)
+Product Management System->Product Management System: UpdateMaterialList(materialDetails)
+Product Management System->Database: SaveUpdatedProductData(productID, newDetails)
+Database-->Product Management System: ProductUpdateSaved(success/failure)
+Product Management System->Staf Produksi: EditProductResult(success)
+
+Staf Produksi->Product Management System: DeleteProduct(productID)
+Product Management System->Database: RemoveProductData(productID)
+Database-->Product Management System: ProductDeleted(success/failure)
+Product Management System->Staf Produksi: DeleteProductResult(success)

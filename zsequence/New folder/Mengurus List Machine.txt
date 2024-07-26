@@ -1,0 +1,33 @@
+title Mengurus List Machine
+
+participant Staf Produksi
+participant Machine Management System
+participant Database
+
+Staf Produksi->Machine Management System: Login(credentials)
+Machine Management System->Database: VerifyLogin(credentials)
+Database-->Machine Management System: LoginStatus(success/failure)
+Machine Management System->Staf Produksi: LoginResult(success/failure)
+
+Staf Produksi->Machine Management System: ManageMachineList()
+Machine Management System->Machine Management System: AddMachine(details)
+Machine Management System->Machine Management System: FillNewMachineForm(details)
+Machine Management System->Database: SaveMachineData()
+Database-->Machine Management System: MachineSaved(success/failure)
+Machine Management System->Staf Produksi: AddMachineResult(success)
+
+Staf Produksi->Machine Management System: SelectMachine(machineID)
+Machine Management System->Database: GetMachineData(machineID)
+Database-->Machine Management System: MachineData()
+Machine Management System->Staf Produksi: ShowMachineData()
+
+Staf Produksi->Machine Management System: EditMachine(machineID, newDetails)
+Machine Management System->Machine Management System: UpdateMachineForm(newDetails)
+Machine Management System->Database: SaveUpdatedMachineData(machineID, newDetails)
+Database-->Machine Management System: MachineUpdateSaved(success/failure)
+Machine Management System->Staf Produksi: EditMachineResult(success)
+
+Staf Produksi->Machine Management System: DeleteMachine(machineID)
+Machine Management System->Database: RemoveMachineData(machineID)
+Database-->Machine Management System: MachineDeleted(success/failure)
+Machine Management System->Staf Produksi: DeleteMachineResult(success)

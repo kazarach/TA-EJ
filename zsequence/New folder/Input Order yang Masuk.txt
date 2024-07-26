@@ -1,0 +1,17 @@
+title Input Order yang Masuk
+
+participant Staf Marketing
+participant Order System
+participant Database
+
+Staf Marketing->Order System: Login(credentials)
+Order System->Database: VerifyLogin(credentials)
+Database-->Order System: LoginStatus(success/failure)
+Order System->Staf Marketing: LoginResult(success/failure)
+
+    Staf Marketing->Order System: InputOrder(orderDetails)
+    Order System->Order System: EnterCatalogAndCustomerDetails(catalogDetails, customerDetails)
+    Order System->Order System: EnterProductDetails(productDetails)
+    Order System->Database: SaveOrderData(orderDetails)
+    Database-->Order System: OrderSaved(success/failure)
+    Order System->Staf Marketing: InputOrderResult(success)

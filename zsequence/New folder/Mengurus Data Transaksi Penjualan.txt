@@ -1,0 +1,23 @@
+title Mengurus Data Transaksi Penjualan
+
+participant Staf Marketing
+participant Sales Management System
+participant Database
+
+Staf Marketing->Sales Management System: Login(credentials)
+Sales Management System->Database: VerifyLogin(credentials)
+Database-->Sales Management System: LoginStatus(success/failure)
+Sales Management System->Staf Marketing: LoginResult(success/failure)
+
+Staf Marketing->Sales Management System: ManageSalesTransactionData()
+Sales Management System->Sales Management System: EditSalesTransaction(transactionID, newDetails)
+Sales Management System->Sales Management System: UpdateSellingTransactionForm(newDetails)
+Sales Management System->Sales Management System: UpdateProductList(productDetails)
+Sales Management System->Database: SaveUpdatedSalesTransactionData(transactionID, newDetails)
+Database-->Sales Management System: SalesTransactionUpdateSaved(success/failure)
+Sales Management System->Staf Marketing: EditSalesTransactionResult(success)
+
+Staf Marketing->Sales Management System: DeleteSalesTransaction(transactionID)
+Sales Management System->Database: RemoveSalesTransactionData(transactionID)
+Database-->Sales Management System: SalesTransactionDeleted(success/failure)
+Sales Management System->Staf Marketing: DeleteSalesTransactionResult(success)

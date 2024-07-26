@@ -1,0 +1,24 @@
+title Mengurus Data Penjualan
+
+participant Staf Marketing
+participant Sales Management System
+participant Database
+
+
+Staf Marketing->Sales Management System: Login(credentials)
+Sales Management System->Database: VerifyLogin(credentials)
+Database-->Sales Management System: LoginStatus(success/failure)
+Sales Management System->Staf Marketing: LoginResult(success/failure)
+
+Staf Marketing->Sales Management System: ManageSalesData()
+Sales Management System->Sales Management System: AddSales(details)
+Sales Management System->Sales Management System: FillNewSellingForm(details)
+Sales Management System->Sales Management System: FillProductList(productDetails)
+Sales Management System->Database: SaveSalesData()
+Database-->Sales Management System: SalesSaved(success/failure)
+Sales Management System->Staf Marketing: AddSalesResult(success)
+
+Staf Marketing->Sales Management System: ViewSalesData()
+Sales Management System->Database: GetSalesData()
+Database-->Sales Management System: SalesData()
+Sales Management System->Staf Marketing: ShowSalesData()

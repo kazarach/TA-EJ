@@ -1,0 +1,33 @@
+title Mengurus List Workforce
+
+participant Staf Produksi
+participant Workforce Management System
+participant Database
+
+Staf Produksi->Workforce Management System: Login(credentials)
+Workforce Management System->Database: VerifyLogin(credentials)
+Database-->Workforce Management System: LoginStatus(success/failure)
+Workforce Management System->Staf Produksi: LoginResult(success/failure)
+
+Staf Produksi->Workforce Management System: ManageWorkforceList()
+Workforce Management System->Workforce Management System: AddWorkforce(details)
+Workforce Management System->Workforce Management System: FillNewWorkforceForm(details)
+Workforce Management System->Database: SaveWorkforceData()
+Database-->Workforce Management System: WorkforceSaved(success/failure)
+Workforce Management System->Staf Produksi: AddWorkforceResult(success)
+
+Staf Produksi->Workforce Management System: SelectWorkforce(workforceID)
+Workforce Management System->Database: GetWorkforceData(workforceID)
+Database-->Workforce Management System: WorkforceData()
+Workforce Management System->Staf Produksi: ShowWorkforceData()
+
+Staf Produksi->Workforce Management System: EditWorkforce(workforceID, newDetails)
+Workforce Management System->Workforce Management System: UpdateWorkforceForm(newDetails)
+Workforce Management System->Database: SaveUpdatedWorkforceData(workforceID, newDetails)
+Database-->Workforce Management System: WorkforceUpdateSaved(success/failure)
+Workforce Management System->Staf Produksi: EditWorkforceResult(success)
+
+Staf Produksi->Workforce Management System: DeleteWorkforce(workforceID)
+Workforce Management System->Database: RemoveWorkforceData(workforceID)
+Database-->Workforce Management System: WorkforceDeleted(success/failure)
+Workforce Management System->Staf Produksi: DeleteWorkforceResult(success)

@@ -1,0 +1,26 @@
+title Mengelola Data Order Lainnya
+
+participant Staf Marketing
+participant Staf Produksi
+participant Order System
+participant Database
+
+Staf Marketing->Order System: Login(credentials)
+Order System->Database: VerifyLogin(credentials)
+Database-->Order System: LoginStatus(success/failure)
+Order System->Staf Marketing: LoginResult(success/failure)
+
+Staf Marketing->Order System: ViewOrderGrouping()
+Order System->Database: GetOrderGroupingData()
+Database-->Order System: OrderGroupingData()
+Order System->Staf Marketing: ShowOrderGroupingData()
+
+Staf Marketing->Order System: ViewAllDifferentOrders()
+Order System->Database: GetAllDifferentOrdersData()
+Database-->Order System: AllDifferentOrdersData()
+Order System->Staf Marketing: ShowAllDifferentOrdersData()
+
+Staf Produksi->Order System: SelectCustomerClass(customerID)
+Order System->Database: GetCustomerClass(customerID)
+Database-->Order System: CustomerClassData()
+Order System->Staf Produksi: ShowCustomerClassData()

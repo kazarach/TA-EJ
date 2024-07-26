@@ -1,0 +1,28 @@
+title Mengelola Data Customer dan Catalog
+
+participant Staf Marketing
+participant Order System
+participant Database
+
+Staf Marketing->Order System: Login(credentials)
+Order System->Database: VerifyLogin(credentials)
+Database-->Order System: LoginStatus(success/failure)
+Order System->Staf Marketing: LoginResult(success/failure)
+
+Staf Marketing->Order System: ViewAndEditCustomerData(customerID)
+Order System->Database: GetCustomerData(customerID)
+Database-->Order System: CustomerData()
+Order System->Staf Marketing: ShowCustomerData()
+Staf Marketing->Order System: UpdateCustomerData(customerID, newDetails)
+Order System->Database: SaveUpdatedCustomerData(customerID, newDetails)
+Database-->Order System: CustomerUpdateSaved(success/failure)
+Order System->Staf Marketing: UpdateCustomerResult(success)
+
+Staf Marketing->Order System: ViewAndEditCatalogData(catalogID)
+Order System->Database: GetCatalogData(catalogID)
+Database-->Order System: CatalogData()
+Order System->Staf Marketing: ShowCatalogData()
+Staf Marketing->Order System: UpdateCatalogData(catalogID, newDetails)
+Order System->Database: SaveUpdatedCatalogData(catalogID, newDetails)
+Database-->Order System: CatalogUpdateSaved(success/failure)
+Order System->Staf Marketing: UpdateCatalogResult(success)

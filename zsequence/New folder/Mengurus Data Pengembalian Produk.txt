@@ -1,0 +1,27 @@
+title Mengurus Data Pengembalian Produk
+
+participant Staf Inventaris
+participant Product Management System
+participant Database
+
+Staf Inventaris->Product Management System: Login(credentials)
+Product Management System->Database: VerifyLogin(credentials)
+Database-->Product Management System: LoginStatus(success/failure)
+Product Management System->Staf Inventaris: LoginResult(success/failure)
+
+Staf Inventaris->Product Management System: ManageRejectedProductData()
+Product Management System->Product Management System: EditRejectedProduct(productID, newDetails)
+Product Management System->Product Management System: UpdateRejectedProductForm(newDetails)
+Product Management System->Database: SaveUpdatedRejectedProductData(productID, newDetails)
+Database-->Product Management System: RejectedProductUpdateSaved(success/failure)
+Product Management System->Staf Inventaris: EditRejectedProductResult(success)
+
+Staf Inventaris->Product Management System: SelectRejectedProduct(productID)
+Product Management System->Database: GetRejectedProductData(productID)
+Database-->Product Management System: RejectedProductData()
+Product Management System->Staf Inventaris: ShowRejectedProductData()
+
+Staf Inventaris->Product Management System: DeleteRejectedProduct(productID)
+Product Management System->Database: RemoveRejectedProductData(productID)
+Database-->Product Management System: RejectedProductDeleted(success/failure)
+Product Management System->Staf Inventaris: DeleteRejectedProductResult(success)

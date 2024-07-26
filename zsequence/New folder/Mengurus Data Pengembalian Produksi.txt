@@ -1,0 +1,36 @@
+title Mengurus Data Pengembalian Produksi
+
+participant Staf Inventaris
+participant Return Management System
+participant Database
+
+Staf Inventaris->Return Management System: Login(credentials)
+Return Management System->Database: VerifyLogin(credentials)
+Database-->Return Management System: LoginStatus(success/failure)
+Return Management System->Staf Inventaris: LoginResult(success/failure)
+
+Staf Inventaris->Return Management System: ManageProductionReturnData()
+Return Management System->Return Management System: AddProductionReturn(details)
+Return Management System->Return Management System: FillNewReturnProductionForm(details)
+Return Management System->Database: SaveProductionReturnData()
+
+Return Management System->Inventory System: IncreaseMaterialQuantity(materialID, quantity)
+Database-->Return Management System: ProductionReturnSaved(success/failure)
+Return Management System->Staf Inventaris: AddProductionReturnResult(success)
+
+Staf Inventaris->Return Management System: SelectProductionReturn(returnID)
+Return Management System->Database: GetProductionReturnData(returnID)
+Database-->Return Management System: ProductionReturnData()
+Return Management System->Staf Inventaris: ShowProductionReturnData()
+
+Staf Inventaris->Return Management System: EditProductionReturn(returnID, newDetails)
+Return Management System->Return Management System: UpdateReturnProductionForm(newDetails)
+Return Management System->Database: SaveUpdatedProductionReturnData(returnID, newDetails)
+Database-->Return Management System: ProductionReturnUpdateSaved(success/failure)
+Return Management System->Staf Inventaris: EditProductionReturnResult(success)
+
+Staf Inventaris->Return Management System: DeleteProductionReturn(returnID)
+Return Management System->Database: RemoveProductionReturnData(returnID)
+Database-->Return Management System: ProductionReturnDeleted(success/failure)
+Return Management System->Staf Inventaris: DeleteProductionReturnResult(success)
+
