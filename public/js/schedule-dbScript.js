@@ -95,7 +95,7 @@ $(document).ready(function () {
     });   
 
     // Populate production table
-    productionTable = $("#production-table").DataTable({
+    var productionTable = $("#production-table").DataTable({
         ajax: {
             url: "/api/productions/",
             type: "GET",
@@ -104,13 +104,7 @@ $(document).ready(function () {
             },
             dataSrc: function (json) {
                 var productions = json.productions;
-            if (productions.length > 0) {
-                var lastProductionId = productions[productions.length - 1].id;
-                $("#total-production").text(lastProductionId);
-            } else {
-                $("#total-production").text('0');
-            }
-            return productions;
+                return productions;
             },
         },
         columns: [
@@ -136,35 +130,32 @@ $(document).ready(function () {
             },
             { data: "production_date" },
         ],
-        initComplete: function (settings, json) {
-            $('#production-table_length').remove();
-            $('#production-table_filter').remove();
+        initComplete: function(settings, json) {
+            // Update the total entries displayed on initialization
+            var totalEntries = productionTable.data().count();
+            $("#total-production").text(totalEntries);
+        },
+        drawCallback: function (settings) {
+            // Update the total entries displayed whenever the table is redrawn
+            $("#total-production").text(settings._iRecordsTotal);
         }
     });
 
     // populate product table
+    
     $.ajax({
         url: "/api/products/",
         type: "GET",
         success: function (json) {
             console.log(json);
             var products = json.products;
-            if (products.length > 0) {
-                var lastProductsId = products[products.length - 1].id;
-                $("#total-product").text(lastProductsId);
-            } else {
-                $("#total-product").text('0');
-            }
     
+            $("#total-product").text(products.length);
+
             var tableBody = $("#products-table tbody");
             tableBody.empty(); // Clear any existing rows
     
             products.forEach(function (product) {
-                var materialsHtml = "<ul>";
-                product.materials.forEach(function (material) {
-                    materialsHtml += "<li>" + material.name + " (" + material.pivot.quantity + ")</li>";
-                });
-                materialsHtml += "</ul>";
     
                 var row = `
                     <tr>
@@ -193,46 +184,42 @@ $(document).ready(function () {
     });
     
     // populate materials table
-        $.ajax({
-            url: "/api/materials/", // Change this to your actual endpoint
-            type: "GET",
-            success: function (json) {
-                var materials = json.materials;
-            if (materials.length > 0) {
-                var lastMaterialsId = materials[materials.length - 1].id;
-                $("#total-material").text(lastMaterialsId);
-            } else {
-                $("#total-material").text('0');
-            }
+    $.ajax({
+        url: "/api/materials/", // Change this to your actual endpoint
+        type: "GET",
+        success: function (json) {
+            var materials = json.materials;
 
-                var tableBody = $("#materials-table tbody");
-                tableBody.empty(); // Clear any existing rows
+            // Update the total material count
+            $("#total-material").text(materials.length);
 
-                materials.forEach(function (material) {
-                    var row = `
-                        <tr>
-                            <td>${material.id}</td>
-                            <td>${material.name}</td>
-                            <td>${material.stock}</td>
-                            <td>${material.reserved}</td>
-                            <td>${material.materialunit.name}</td>
-                            <td>${material.materialcategory.name}</td>
-                            <td>${material.code}</td>
-                            <td>${material.purchase_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
-                        </tr>
-                    `;
+            var tableBody = $("#materials-table tbody");
+            tableBody.empty(); // Clear any existing rows
 
-                    tableBody.append(row);
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error("Error fetching data:", error);
-            }
-        });
+            materials.forEach(function (material) {
+                var row = `
+                    <tr>
+                        <td>${material.id}</td>
+                        <td>${material.name}</td>
+                        <td>${material.stock}</td>
+                        <td>${material.reserved}</td>
+                        <td>${material.materialunit.name}</td>
+                        <td>${material.materialcategory.name}</td>
+                        <td>${material.code}</td>
+                        <td>${material.purchase_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
+                    </tr>
+                `;
+                tableBody.append(row);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching data:", error);
+        }
+    });
         
 
     // Populate project table
-    projectTable = $("#projects-table").DataTable({
+    var projectTable = $("#projects-table").DataTable({
         ajax: {
             url: "/api/project/",
             type: "GET",
@@ -241,13 +228,7 @@ $(document).ready(function () {
             },
             dataSrc: function (json) {
                 var projects = json.projects;
-            if (projects.length > 0) {
-                var lastProjectsId = projects[projects.length - 1].id;
-                $("#total-project").text(lastProjectsId);
-            } else {
-                $("#total-project").text('0');
-            }
-            return projects;
+                return projects;
             },
         },
         columns: [
@@ -266,8 +247,8 @@ $(document).ready(function () {
                             product.name +
                             " (" +
                             product.size.name +
-                            ")"+
-                            " (" +
+                            ") " +
+                            "(" +
                             product.pivot.quantity +
                             ")</li>";
                     });
@@ -282,11 +263,11 @@ $(document).ready(function () {
                     data.products.forEach(function (product) {
                         productsHtml +=
                             "<li>" +
-                            product.name + 
+                            product.name +
                             " (" +
                             product.size.name +
-                            ")"+
-                            " (" +
+                            ") " +
+                            "(" +
                             product.pivot.producted +
                             ")</li>";
                     });
@@ -295,6 +276,10 @@ $(document).ready(function () {
                 },
             },
         ],
+        initComplete: function(settings, json) {
+            var totalEntries = projectTable.data().count();
+            $("#total-project").text(totalEntries);
+        }
     });
 
     // Change calendar month based on dropdown selection
