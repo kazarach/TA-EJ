@@ -24,10 +24,13 @@ $(document).ready(function () {
     // Append token and role to all sidebar links
     $(".dropdown-top a").each(function() {
         const targetUrl = $(this).attr('href');
-        $(this).attr('href', 'javascript:void(0);');
-        $(this).on('click', function() {
-            navigateTo(targetUrl);
-        });
+        if (role) {
+            const newUrl = `/${role}${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        } else {
+            const newUrl = `${targetUrl}?token=${token}`;
+            $(this).attr('href', newUrl);
+        }
     });
 
 

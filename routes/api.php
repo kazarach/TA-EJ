@@ -151,5 +151,4 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('partial/{type}', [PartialController::class, 'store']);
     Route::put('partial/{type}/{id}', [PartialController::class, 'update']);
     Route::delete('partial/{type}/{id}', [PartialController::class, 'destroy']);
-
 });

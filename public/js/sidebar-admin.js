@@ -5,10 +5,11 @@ $(document).ready(function () {
         return;
     }
 
-    // Append token to all sidebar links
-    $(".nav-link a").each(function() {
-        const targetUrl = $(this).attr('href');
-        $(this).attr('href', targetUrl + "?token=" + token);
+    // Set up global AJAX settings to include the token in the headers
+    $.ajaxSetup({
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     // Handle the active state of sidebar links
