@@ -9,7 +9,7 @@
 .env.backup
 .env.production
 .envcpanel
-.envlocalgcp
+.env.local
 .env.example
 .phpunit.result.cache
 Homestead.json
