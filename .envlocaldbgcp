@@ -12,7 +12,6 @@ DB_PORT=3306
 DB_DATABASE=ta_mantap
 DB_USERNAME=root
 DB_PASSWORD=kaza
-# DB_SOCKET=/cloudsql/smiling-memory-428403-m3:asia-southeast2-c:kazacemil
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
