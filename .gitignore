@@ -21,3 +21,4 @@ yarn-error.log
 /.idea
 /.vscode
 .env.example
+config/logging.php
