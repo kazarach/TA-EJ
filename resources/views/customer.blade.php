@@ -19,6 +19,8 @@
                 <a href="">|</a>
                 <a href="/catalog">Catalog</a>
             </div>
+            <div>
+            </div>
         </div>
     </div>  
 
