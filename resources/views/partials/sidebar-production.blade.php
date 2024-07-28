@@ -6,7 +6,7 @@
             </span>
             <div class="text header-text">
                 <span class="name">PRODACTION</span>
-                <span class="profession" style="color: #255d83">--ADMIN--</span>
+                <span class="profession" style="color: #255d83">--PRODUCTION--</span>
             </div>
         </div>
         {{-- <i class='bx bx-chevron-right toggle'></i> --}}
@@ -16,37 +16,37 @@
         <div class="menu">
             <ul class="menu-links">
                 <li class="nav-link mt-4" id="dashboard-link">
-                    <a href="/admin/dashboard">
+                    <a href="/production/dashboard">
                         <i class='bx bx-home-alt icon'></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-link dropdown" id="order-link">
-                  <a href="/admin/order" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                  <a href="/production/order" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-cart icon'></i>
                       <span class="text nav-text" id="dropdowntext">Order ></span>
                   </a>
                   <ul class="sub-menu">
                       {{-- <li class="nav-link">
-                        <a href="/admin/order">
+                        <a href="/production/order">
                           <i class='bx bx-cart icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Order</span>
                         </a>
                       </li> --}}
                       <li class="nav-link">
-                        <a href="/admin/order/book">
+                        <a href="/production/order/book">
                           <i class='bx bx-cart icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Order Book</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/order/archive">
+                        <a href="/production/order/archive">
                           <i class='bx bx-cart icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Order Archive</span>
                         </a>
                       </li>
                       {{-- <li class="nav-link">
-                        <a href="/admin/customer">
+                        <a href="/production/customer">
                           <i class='bx bx-cart icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Customer</span>
                         </a>
@@ -54,19 +54,19 @@
                   </ul>
               </li>
               <li class="nav-link dropdown" id="planning-link">
-                <a href="/admin/project" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                <a href="/production/project" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-book-content icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Planning ></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-link">
-                      <a href="/admin/project">
+                      <a href="/production/project">
                         <i class='bx bx-book-content icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Project</span>
                       </a>
                     </li>
                     <li class="nav-link">
-                      <a href="/admin/schedule">
+                      <a href="/production/schedule">
                         <i class='bx bx-book-content icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Schedule</span>
                       </a>
@@ -74,31 +74,31 @@
                 </ul>
               </li>
               <li class="nav-link dropdown" id="production-link">
-                <a href="/admin/production" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                <a href="/production/production" onclick="toggleSubMenu(event)" class="togglesubmenu">
                     <i class='bx bx-sitemap icon'></i>
                     <span class="text nav-text" id="dropdowntext2">Production ></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-link">
-                      <a href="/admin/production">
+                      <a href="/production/production">
                         <i class='bx bx-sitemap icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Production</span>
                       </a>
                     </li>
                     <li class="nav-link">
-                      <a href="/admin/production/archive">
+                      <a href="/production/production/archive">
                         <i class='bx bx-sitemap icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Production Archive</span>
                       </a>
                     </li>
                     <li class="nav-link">
-                      <a href="/admin/machine">
+                      <a href="/production/machine">
                         <i class='bx bx-sitemap icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Machine</span>
                       </a>
                     </li>
                     <li class="nav-link">
-                      <a href="/admin/workforce">
+                      <a href="/production/workforce">
                         <i class='bx bx-sitemap icon' id="submenutext"></i>
                         <span class="text nav-text" id="submenutext">Workforce</span>
                       </a>
@@ -106,43 +106,43 @@
                 </ul>
               </li>
                 <li class="nav-link dropdown" id="inventory-link">
-                    <a href="/admin/inventory" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                    <a href="/production/inventory" onclick="toggleSubMenu(event)" class="togglesubmenu">
                         <i class='bx bx-cylinder icon'></i>
                         <span class="text nav-text" id="dropdowntext2">Inventory ></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-link">
-                          <a href="/admin/product">
+                          <a href="/production/product">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Product</span>
                           </a>
                         </li>
                         {{-- <li class="nav-link">
-                          <a href="/admin/rejectedproduct">
+                          <a href="/production/rejectedproduct">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Rejected Product</span>
                           </a>
                         </li> --}}
                         <li class="nav-link">
-                          <a href="/admin/material">
+                          <a href="/production/material">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Material</span>
                           </a>
                         </li>
                         {{-- <li class="nav-link">
-                          <a href="/admin/purchase">
+                          <a href="/production/purchase">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Request Material</span>
                           </a>
                         </li>
                         <li class="nav-link">
-                          <a href="/admin/purchase/transaction">
+                          <a href="/production/purchase/transaction">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Request Transaction</span>
                           </a>
                         </li>
                         <li class="nav-link">
-                          <a href="/admin/purchase/item">
+                          <a href="/production/purchase/item">
                             <i class='bx bx-cylinder icon' id="submenutext"></i>
                             <span class="text nav-text" id="submenutext">Requested Item</span>
                           </a>
@@ -150,25 +150,25 @@
                     </ul>
                 </li>
                 {{-- <li class="nav-link dropdown" id="selling-link">
-                  <a href="/admin/selling" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                  <a href="/production/selling" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-shopping-bag icon'></i>
                       <span class="text nav-text" id="dropdowntext">Selling ></span>
                   </a>
                   <ul class="sub-menu">
                       <li class="nav-link">
-                        <a href="/admin/selling">
+                        <a href="/production/selling">
                           <i class='bx bx-shopping-bag icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Selling</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/selling/transaction">
+                        <a href="/production/selling/transaction">
                           <i class='bx bx-shopping-bag icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Selling Transaction</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/selling/item">
+                        <a href="/production/selling/item">
                           <i class='bx bx-shopping-bag icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Selling Item</span>
                         </a>
@@ -176,43 +176,43 @@
                   </ul>
                 </li> --}}
                 {{-- <li class="nav-link dropdown" id="return-link">
-                  <a href="/admin/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
+                  <a href="/production/returncustomer" onclick="toggleSubMenu(event)" class="togglesubmenu">
                       <i class='bx bx-left-down-arrow-circle icon'></i>
                       <span class="text nav-text" id="dropdowntext">Return ></span>
                   </a>
                   <ul class="sub-menu">
                       <li class="nav-link">
-                        <a href="/admin/returncustomer">
+                        <a href="/production/returncustomer">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Customer</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/returncustomer/archive">
+                        <a href="/production/returncustomer/archive">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Customer Archive</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/returnproduction">
+                        <a href="/production/returnproduction">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Production</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/returnproduction/archive">
+                        <a href="/production/returnproduction/archive">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Production Archive</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/returnmaterial">
+                        <a href="/production/returnmaterial">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Material</span>
                         </a>
                       </li>
                       <li class="nav-link">
-                        <a href="/admin/returnmaterial/archive">
+                        <a href="/production/returnmaterial/archive">
                           <i class='bx bx-book-content icon' id="submenutext"></i>
                           <span class="text nav-text" id="submenutext">Return Material Archive</span>
                         </a>

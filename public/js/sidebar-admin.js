@@ -11,6 +11,10 @@ $(document).ready(function () {
             'Authorization': `Bearer ${token}`
         }
     });
+    $(".nav-link a").each(function() {
+        const targetUrl = $(this).attr('href');
+        $(this).attr('href', targetUrl + "?token=" + token);
+    });
 
     // Handle the active state of sidebar links
     var path = window.location.pathname;

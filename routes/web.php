@@ -94,6 +94,74 @@ Route::middleware(['auth:api','role:admin'])->group(function () {
     });
 });
 
+Route::middleware(['auth:api','role:inventory'])->group(function () {
+    Route::get('/inventory/dashboard', function () {
+        \Log::info('inventory accessing dashboard');
+        return view('dashboard', [
+            'title' => 'Dashboard'
+        ]);
+    })->name('inventory.dashboard');
+
+    Route::get('/inventory/product', [ProductController::class, 'index']);
+    Route::get('/inventory/material', [MaterialController::class, 'index']);
+    Route::get('/inventory/purchase', [PurchaseController::class, 'index']);
+    Route::get('/inventory/purchase/transaction', [PurchaseTransactionController::class, 'index']);
+    Route::get('/inventory/purchase/item', [PurchaseItemController::class, 'index']);
+    Route::get('/inventory/returncustomer', [ReturnCustomerController::class, 'index']);
+    Route::get('/inventory/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
+    Route::get('/inventory/rejectedproduct', [RejectedProductController::class, 'index']);
+});
+
+
+Route::middleware(['auth:api','role:production'])->group(function () {
+    Route::get('/production/dashboard', function () {
+        \Log::info('production accessing dashboard');
+        return view('dashboard', [
+            'title' => 'Dashboard'
+        ]);
+    })->name('production.dashboard');
+
+    Route::get('/production/schedule', function () {
+        return view('schedule', ['title' => 'Schedule Page']);
+    });
+
+    Route::get('/production/product', [ProductController::class, 'index']);
+    Route::get('/production/material', [MaterialController::class, 'index']);
+    Route::get('/production/machine', [MachineController::class, 'index']);
+    Route::get('/production/workforce', [WorkforceController::class, 'index']);
+    Route::get('/production/project', [ProjectController::class, 'index']);
+    Route::get('/production/order/book', [OrderController::class, 'indexbook']);
+    Route::get('/production/order/archive', [OrderController::class, 'indexarchive']);
+    Route::get('/production/production', [ProductionController::class, 'index']);
+    Route::get('/production/production/archive', [ProductionController::class, 'indexArchive']);
+    Route::get('/production/rejectedproduct', [RejectedProductController::class, 'index']);
+});
+
+Route::middleware(['auth:api','role:marketing'])->group(function () {
+    Route::get('/marketing/dashboard', function () {
+        \Log::info('marketing accessing dashboard');
+        return view('dashboard', [
+            'title' => 'Dashboard'
+        ]);
+    })->name('marketing.dashboard');
+
+    Route::get('/marketing/customer', [CustomerController::class, 'index']);
+    Route::get('/marketing/catalog', [CatalogController::class, 'index']);
+    Route::get('/marketing/selling', [SellingController::class, 'index']);
+    Route::get('/marketing/selling/transaction', [SellingTransactionController::class, 'index']);
+    Route::get('/marketing/selling/item', [SellingItemController::class, 'index']);
+    Route::get('/marketing/order', [OrderController::class, 'index']);
+    Route::get('/marketing/order/book', [OrderController::class, 'indexbook']);
+    Route::get('/marketing/order/archive', [OrderController::class, 'indexarchive']);
+    Route::get('/marketing/returncustomer', [ReturnCustomerController::class, 'index']);
+    Route::get('/marketing/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
+    Route::get('/marketing/returnproduction', [ReturnProductionController::class, 'index']);
+    Route::get('/marketing/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
+    Route::get('/marketing/returnmaterial', [ReturnMaterialController::class, 'index']);
+    Route::get('/marketing/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
+    Route::get('/marketing/rejectedproduct', [RejectedProductController::class, 'index']);
+});
+
 Route::middleware(['role:user'])->group(function () {
     Route::get('/user/dashboard', function () {
         return view('dashboard', [
@@ -101,74 +169,7 @@ Route::middleware(['role:user'])->group(function () {
         ]);
     })->name('user.dashboard');
     Route::get('/product', [ProductController::class, 'index'])->name('product');
-
 });
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard', [
-//             'title' => 'Dashboard'
-//         ]);
-//     })->name('dashboard');
-
-//     Route::get('/schedule', function () {
-//         return view('schedule', ['title' => 'Schedule Page']);
-//     });
-
-//     Route::get('/product', [ProductController::class, 'index'])->name('product');
-//     Route::get('/material', [MaterialController::class, 'index']);
-//     Route::get('/machine', [MachineController::class, 'index']);
-//     Route::get('/workforce', [WorkforceController::class, 'index']);
-//     Route::get('/project', [ProjectController::class, 'index']);
-//     Route::get('/customer', [CustomerController::class, 'index']);
-//     Route::get('/selling', [SellingController::class, 'index']);
-//     Route::get('/selling/transaction', [SellingTransactionController::class, 'index']);
-//     Route::get('/selling/item', [SellingItemController::class, 'index']);
-//     Route::get('/purchase', [PurchaseController::class, 'index']);
-//     Route::get('/purchase/transaction', [PurchaseTransactionController::class, 'index']);
-//     Route::get('/purchase/item', [PurchaseItemController::class, 'index']);
-//     Route::get('/order', [OrderController::class, 'index']);
-//     Route::get('/order/book', [OrderController::class, 'indexbook']);
-//     Route::get('/order/archive', [OrderController::class, 'indexarchive']);
-//     Route::get('/catalog', [CatalogController::class, 'index']);
-//     Route::get('/production', [ProductionController::class, 'index']);
-//     Route::get('/production/archive', [ProductionController::class, 'indexArchive']);
-//     Route::get('/returncustomer', [ReturnCustomerController::class, 'index']);
-//     Route::get('/returncustomer/archive', [ReturnCustomerController::class, 'indexArchive']);
-//     Route::get('/returnproduction', [ReturnProductionController::class, 'index']);
-//     Route::get('/returnproduction/archive', [ReturnProductionController::class, 'indexArchive']);
-//     Route::get('/returnmaterial', [ReturnMaterialController::class, 'index']);
-//     Route::get('/returnmaterial/archive', [ReturnMaterialController::class, 'indexArchive']);
-//     Route::get('/rejectedproduct', [RejectedProductController::class, 'index']);
-
-//     Route::post('/logout', function () {
-//         auth()->logout();
-        
-//         return redirect('/login');
-//     });
-// });
-
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'title' => 'Dashboard'
-    ]);
-})->name('dashboard');
-
-Route::get('/', function () {
-    $viewPaths = config('view.paths');
-    \Log::info('View paths:', $viewPaths);
-
-    // Log available files in each path
-    foreach ($viewPaths as $path) {
-        \Log::info('Files in ' . $path . ':', File::allFiles($path));
-    }
-
-    \Log::info('Home route accessed');
-    return view('home', [
-        'title' => 'Home Page'
-    ]);
-})->name('home');
-
 
 Route::get('/home', function () {
     \Log::info('Home 2 route accessed');
@@ -176,38 +177,5 @@ Route::get('/home', function () {
         'title' => 'Home Page'
     ]);
 });
-
-
-Route::get('/debug-views', function () {
-    $viewPaths = config('view.paths');
-    Log::info('View paths:', $viewPaths);
-
-    $viewFiles = [];
-    foreach ($viewPaths as $path) {
-        $files = File::allFiles($path);
-        foreach ($files as $file) {
-            $viewFiles[] = $file->getPathname();
-        }
-    }
-
-    return response()->json([
-        'view_paths' => $viewPaths,
-        'view_files' => $viewFiles
-    ]);
-});
-// Route::get('/boot', function () {
-//     return view('bootstrap', [
-//         'title' => 'Production Page'
-//     ]);
-// });
-
-// Route::get('/juan', function () {
-//     return view('juan', [
-//         'title' => 'Schedule'
-//     ]);
-// });
-// Route::post('/login', [LoginController::class, 'login'])->name('web.login');
-// Route::post('/logout', [LoginController::class, 'logout'])->name('web.logout');
-// Route::post('/refresh', [LoginController::class, 'refresh'])->name('web.refresh');
 
 Auth::routes();
