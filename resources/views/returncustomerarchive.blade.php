@@ -122,6 +122,6 @@
 </div>
   
   
-  <script src="/js/returnCustomerArchive.js"></script>
+  <script src="/js/returnCustomerArchive.js" nonce="{{ $nonce }}"></script>
   
   @endsection

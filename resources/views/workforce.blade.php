@@ -2,7 +2,7 @@
 
 @section('container')
 
-<script src="/js/workforceScript.js"></script>
+<script src="/js/workforceScript.js" nonce="{{ $nonce }}"></script>
 <div class="container-cs">
 <div class="top-bar">
     <div class="header-wrapper">

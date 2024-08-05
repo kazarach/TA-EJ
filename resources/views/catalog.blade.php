@@ -71,7 +71,7 @@
         </tbody>
     </table>
 </section>
-<script src="/js/catalog.js"></script>
+<script src="/js/catalog.js" nonce="{{ $nonce }}"></script>
 
 @endsection
 

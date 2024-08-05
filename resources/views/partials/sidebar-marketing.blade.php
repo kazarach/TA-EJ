@@ -275,6 +275,6 @@
     </div>
   </nav>
   
-  <script src="/js/sidebar-marketing.js"></script>
-  <script src="/js/script.js"></script>
-  <script src="/js/logout.js"></script>
+  <script src="/js/sidebar-marketing.js" nonce="{{ $nonce }}"></script>
+  <script src="/js/script.js" nonce="{{ $nonce }}"></script>
+  <script src="/js/logout.js" nonce="{{ $nonce }}"></script>

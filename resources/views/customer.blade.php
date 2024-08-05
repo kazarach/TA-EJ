@@ -85,6 +85,6 @@
     </table>
 </section>
 
-<script src="/js/customerScript.js"></script>
+<script src="/js/customerScript.js" nonce="{{ $nonce }}"></script>
 
 @endsection

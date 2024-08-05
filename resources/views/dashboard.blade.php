@@ -205,7 +205,7 @@
 </div> 
 
 
-<script src="/js/schedule-dbScript.js"></script>
-{{-- <script src="/js/projectScript.js"></script> --}}
+<script src="/js/schedule-dbScript.js" nonce="{{ $nonce }}"></script>
+{{-- <script src="/js/projectScript.js" nonce="{{ $nonce }}"></script> --}}
 @endsection
 

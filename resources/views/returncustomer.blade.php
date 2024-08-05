@@ -123,6 +123,6 @@
 </div>
   
   
-  <script src="/js/returnCustomer.js"></script>
+  <script src="/js/returnCustomer.js" nonce="{{ $nonce }}"></script>
   
   @endsection

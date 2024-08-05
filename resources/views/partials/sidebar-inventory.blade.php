@@ -242,6 +242,6 @@
   </div>
 </nav>
 
-  <script src="/js/logout.js"></script>
-  <script src="/js/sidebar-inventory.js"></script>
-  <script src="/js/script.js"></script>
+  <script src="/js/logout.js" nonce="{{ $nonce }}"></script>
+  <script src="/js/sidebar-inventory.js" nonce="{{ $nonce }}"></script>
+  <script src="/js/script.js" nonce="{{ $nonce }}"></script>

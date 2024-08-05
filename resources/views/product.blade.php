@@ -206,7 +206,7 @@
 
 </div>
 
-<script src="/js/productScript.js"></script>
+<script src="/js/productScript.js" nonce="{{ $nonce }}"></script>
 
 
 @endsection

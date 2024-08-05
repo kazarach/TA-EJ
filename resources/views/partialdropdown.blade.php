@@ -77,6 +77,6 @@
     </table>
 </section>
 
-<script src="/js/partial.js"></script>
+<script src="/js/partial.js" nonce="{{ $nonce }}"></script>
 
 @endsection

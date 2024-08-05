@@ -151,6 +151,6 @@
     </div>
   
   
-  <script src="/js/order.js"></script>
+  <script src="/js/order.js" nonce="{{ $nonce }}"></script>
   
   @endsection

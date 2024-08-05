@@ -49,7 +49,7 @@
         </tbody>
     </table>
 </section>
-<script src="/js/purchaseItem.js"></script>
+<script src="/js/purchaseItem.js" nonce="{{ $nonce }}"></script>
 
 @endsection
 

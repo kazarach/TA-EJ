@@ -88,6 +88,6 @@
 </div>
   
   
-  <script src="/js/rejectedProduct.js"></script>
+  <script src="/js/rejectedProduct.js" nonce="{{ $nonce }}"></script>
   
   @endsection

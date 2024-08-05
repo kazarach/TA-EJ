@@ -142,7 +142,7 @@
 </div>
 
 
-<script src="/js/scheduleScript.js"></script>
+<script src="/js/scheduleScript.js" nonce="{{ $nonce }}"></script>
 
 
 

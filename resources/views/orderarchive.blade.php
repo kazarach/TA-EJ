@@ -111,6 +111,6 @@
     </table>
 </section>
 
-<script src="/js/orderArchive.js"></script>
+<script src="/js/orderArchive.js" nonce="{{ $nonce }}"></script>
 
 @endsection

@@ -108,6 +108,6 @@
 </div>
   
   
-  <script src="/js/returnMaterialArchive.js"></script>
+  <script src="/js/returnMaterialArchive.js" nonce="{{ $nonce }}"></script>
   
   @endsection

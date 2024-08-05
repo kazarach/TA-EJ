@@ -159,7 +159,7 @@
         </tbody>
     </table>
 </section>
-<script src="/js/sellingTransaction.js"></script>
+<script src="/js/sellingTransaction.js" nonce="{{ $nonce }}"></script>
 
 @endsection
 

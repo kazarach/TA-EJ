@@ -161,7 +161,7 @@
 </div>
 
 
-<script src="/js/selling.js"></script>
+<script src="/js/selling.js" nonce="{{ $nonce }}"></script>
 
 @endsection
 

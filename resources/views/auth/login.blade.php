@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" nonce="{{ $nonce }}"></script>
     <title>Login Page</title>
 </head>
 <body>
@@ -55,6 +55,6 @@
         </div>
     </div>
 
-    <script src="/js/login.js"></script>
+    <script src="/js/login.js" nonce="{{ $nonce }}"></script>
 </body>
 </html>

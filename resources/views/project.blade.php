@@ -143,7 +143,7 @@
 
 </div>
 
-<script src="/js/projectScript.js"></script>
+<script src="/js/projectScript.js" nonce="{{ $nonce }}"></script>
 
 
 @endsection

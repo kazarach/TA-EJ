@@ -44,6 +44,6 @@
     </table>
 </section>
 
-<script src="/js/orderBook.js"></script>
+<script src="/js/orderBook.js" nonce="{{ $nonce }}"></script>
 
 @endsection

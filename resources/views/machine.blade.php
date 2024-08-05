@@ -2,7 +2,7 @@
 
 @section('container')
 
-<script src="/js/machineScript.js"></script>
+<script src="/js/machineScript.js" nonce="{{ $nonce }}"></script>
 <div class="container-cs">
 <div class="top-bar">
     <div class="header-wrapper">

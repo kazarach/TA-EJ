@@ -107,5 +107,5 @@
     </table>
 </div>
 
-<script src="/js/materialScript.js"></script>
+<script src="/js/materialScript.js" nonce="{{ $nonce }}"></script>
 @endsection

@@ -164,6 +164,6 @@
 </div>
   
   
-  <script src="/js/production.js"></script>
+  <script src="/js/production.js" nonce="{{ $nonce }}"></script>
   
   @endsection

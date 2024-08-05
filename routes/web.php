@@ -177,5 +177,11 @@ Route::get('/home', function () {
         'title' => 'Home Page'
     ]);
 });
+Route::get('/', function () {
+    \Log::info('Home 2 route accessed');
+    return view('home', [
+        'title' => 'Home Page'
+    ]);
+});
 
 Auth::routes();

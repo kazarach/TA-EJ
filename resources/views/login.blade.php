@@ -61,6 +61,6 @@
         </div>
     </div>
 
-    <script src="/js/login.js"></script>
+    <script src="/js/login.js" nonce="{{ $nonce }}"></script>
 </body>
 </html>

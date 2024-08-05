@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\NoCache::class,
+            \App\Http\Middleware\AddCSPHeader::class,
         ],
 
         'api' => [
@@ -47,6 +48,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             \App\Http\Middleware\NoCache::class,
             // \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+            // \App\Http\Middleware\AddCSPHeader::class,
         ],
     ];
 

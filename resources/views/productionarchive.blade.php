@@ -200,6 +200,6 @@
 </div>
   
   
-  <script src="/js/productionArchive.js"></script>
+  <script src="/js/productionArchive.js" nonce="{{ $nonce }}"></script>
   
   @endsection

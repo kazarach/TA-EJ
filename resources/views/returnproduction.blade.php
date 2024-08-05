@@ -112,6 +112,6 @@
 </div>
   
   
-  <script src="/js/returnProduction.js"></script>
+  <script src="/js/returnProduction.js" nonce="{{ $nonce }}"></script>
   
   @endsection

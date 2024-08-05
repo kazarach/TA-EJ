@@ -5,7 +5,7 @@
     <div class="text"></div>
     <link rel="stylesheet" href="css/dashboard.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js" nonce="{{ $nonce }}"></script>
 </section>
 <body>
       <section class="navigation"><!--nav-->

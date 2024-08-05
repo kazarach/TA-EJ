@@ -18,26 +18,26 @@
    <link rel="stylesheet" href="css/inventory.css">
    <link rel="stylesheet" href="css/production.css">
    
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-   <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" nonce="{{ $nonce }}"></script>
+   <script  src="https://code.jquery.com/jquery-3.5.1.js" nonce="{{ $nonce }}"></script>
 
 
     {{-- Calendar --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" nonce="{{ $nonce }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" nonce="{{ $nonce }}"></script>
 
     
     {{-- data table --}}
-    <script  src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script  src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
-    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-    <script src= "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> 
+    <script  src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js" nonce="{{ $nonce }}"></script>
+    <script  src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js" nonce="{{ $nonce }}"></script>
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" nonce="{{ $nonce }}"></script> 
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" nonce="{{ $nonce }}"></script> 
+    <script src= "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js" nonce="{{ $nonce }}"></script> 
 
     {{-- Full Calendar --}}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" nonce="{{ $nonce }}"></script>
     
 <body>
 
@@ -45,10 +45,10 @@
 
 
   @yield('container')
-  <script src="/js/script.js"></script>
+  <script src="/js/script.js" nonce="{{ $nonce }}"></script>
   
   {{-- datepicker --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" nonce="{{ $nonce }}"></script>
       <script>
         $(document).ready(function() {
           $('#example').DataTable();

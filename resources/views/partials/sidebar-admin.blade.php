@@ -243,6 +243,6 @@
   </div>
 </nav>
 
-<script src="/js/sidebar-admin.js"></script>
-<script src="/js/script.js"></script>
-<script src="/js/logout.js"></script>
+<script src="/js/sidebar-admin.js" nonce="{{ $nonce }}"></script>
+<script src="/js/script.js" nonce="{{ $nonce }}"></script>
+<script src="/js/logout.js" nonce="{{ $nonce }}"></script>
