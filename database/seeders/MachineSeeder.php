@@ -18,33 +18,26 @@ class MachineSeeder extends Seeder
         $uses = MachineUse::pluck('id')->toArray();
         $statuses = MachineStatus::pluck('id')->toArray();
 
-        Machine::create([
-            'name' => 'Potong 1',
-            'use_id' => $uses[array_rand($uses)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
+        $machines = [
+            'Potong 1',
+            'Potong 2',
+            'Potong 3',
+            'Jahit 1',
+            'Jahit 2',
+            'Jahit 3',
+            'Jahit 4',
+            'Jahit 5',
+            'Setrika 1',
+            'Setrika 2',
+            'Setrika 3',
+        ];
 
-        Machine::create([
-            'name' => 'Jahit 1',
-            'use_id' => $uses[array_rand($uses)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
-
-        Machine::create([
-            'name' => 'Jahit 2',
-            'use_id' => $uses[array_rand($uses)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
-
-        Machine::create([
-            'name' => 'Jahit 3',
-            'use_id' => $uses[array_rand($uses)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
-        Machine::create([
-            'name' => 'Setrika 1',
-            'use_id' => $uses[array_rand($uses)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
+        foreach ($machines as $name) {
+            Machine::create([
+                'name' => $name,
+                'use_id' => $uses[array_rand($uses)],
+                'status_id' => $statuses[array_rand($statuses)],
+            ]);
+        }
     }
 }

@@ -21,7 +21,7 @@ class ProjectProductSeeder extends Seeder
         $productIds = Product::pluck('id')->toArray();
 
         // Define the number of relationships you want to create for each product
-        $numberOfRelationshipsPerProduct = 2;
+        $numberOfRelationshipsPerProduct = 3;
 
         // Create sample relationships between products and products
         foreach ($projectIds as $projectId) {

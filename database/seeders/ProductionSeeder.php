@@ -14,55 +14,25 @@ class ProductionSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('productions')->insert([
-            [
-                'quantity' => 10,
-                'product_id' => 1,
-                'project_id' => 1,
-                'production_date' => Carbon::create(2024, 7, 14),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'quantity' => 3,
-                'product_id' => 1,
-                'project_id' => 2,
-                'production_date' => Carbon::create(2024, 7, 14),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'quantity' => 53,
-                'product_id' => 3,
-                'project_id' => 2,
-                'production_date' => Carbon::create(2024, 7, 14),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'quantity' => 13,
-                'product_id' => 2,
-                'project_id' => 2,
-                'production_date' => Carbon::create(2024, 7, 14),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'quantity' => 25,
-                'product_id' => 2,
-                'project_id' => 3,
-                'production_date' => Carbon::create(2024, 7, 14),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'quantity' => 15,
-                'product_id' => 3,
-                'project_id' => 4,
-                'production_date' => Carbon::create(2024, 7, 14),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        $productions = [];
+        $product_ids = range(1, 10);
+        $project_ids = range(1, 8);
+
+        for ($day = 1; $day <= 30; $day++) {
+            $date = Carbon::create(2024, 8, $day);
+
+            for ($i = 0; $i < 3; $i++) {
+                $productions[] = [
+                    'quantity' => rand(10, 100),
+                    'product_id' => $product_ids[$i % count($product_ids)],
+                    'project_id' => $project_ids[array_rand($project_ids)],
+                    'production_date' => $date,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
+
+        DB::table('productions')->insert($productions);
     }
 }

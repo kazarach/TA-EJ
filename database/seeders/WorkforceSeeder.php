@@ -18,28 +18,35 @@ class WorkforceSeeder extends Seeder
         $positions = WorkforcePosition::pluck('id')->toArray();
         $statuses = WorkforceStatus::pluck('id')->toArray();
 
-        Workforce::create([
-            'name' => 'Juan Meta',
-            'position_id' => $positions[array_rand($positions)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
+        $workforces = [
+            'Juan Meta',
+            'Edwin Makarim',
+            'Sarah Johnson',
+            'Michael Brown',
+            'Jessica Williams',
+            'Daniel Jones',
+            'Emily Davis',
+            'David Wilson',
+            'Sophia Moore',
+            'James Taylor',
+            'Isabella Anderson',
+            'Christopher Thomas',
+            'Mia Jackson',
+            'Matthew White',
+            'Emma Harris',
+            'Joshua Martin',
+            'Olivia Thompson',
+            'Andrew Garcia',
+            'Ava Martinez',
+            'Jacob Robinson'
+        ];
 
-        Workforce::create([
-            'name' => 'Edwin Makarim',
-            'position_id' => $positions[array_rand($positions)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
-
-        Workforce::create([
-            'name' => 'Bagus Mahardika',
-            'position_id' => $positions[array_rand($positions)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
-
-        Workforce::create([
-            'name' => 'Yoandhika Surya',
-            'position_id' => $positions[array_rand($positions)],
-            'status_id' => $statuses[array_rand($statuses)],
-        ]);
+        foreach ($workforces as $name) {
+            Workforce::create([
+                'name' => $name,
+                'position_id' => $positions[array_rand($positions)],
+                'status_id' => $statuses[array_rand($statuses)],
+            ]);
+        }
     }
 }

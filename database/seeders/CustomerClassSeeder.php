@@ -18,7 +18,7 @@ class CustomerClassSeeder extends Seeder
         DB::table('customer_classes')->insert([
             [
                 'name' => 'Retail',
-                'discount' => 10.5,
+                'discount' => 10.0,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -31,6 +31,18 @@ class CustomerClassSeeder extends Seeder
             [
                 'name' => 'Gol B',
                 'discount' => 25.00,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Agen',
+                'discount' => 30.00,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Distributor',
+                'discount' => 40.00,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

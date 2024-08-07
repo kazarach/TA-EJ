@@ -33,6 +33,48 @@ class CatalogSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Agustus Batch 2',
+                'due_date' => Carbon::create(2024, 8, 25),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'September Batch 1',
+                'due_date' => Carbon::create(2024, 9, 5),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'September Batch 2',
+                'due_date' => Carbon::create(2024, 9, 20),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Oktober Batch 1',
+                'due_date' => Carbon::create(2024, 10, 10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Oktober Batch 2',
+                'due_date' => Carbon::create(2024, 10, 25),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'November Batch 1',
+                'due_date' => Carbon::create(2024, 11, 5),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'November Batch 2',
+                'due_date' => Carbon::create(2024, 11, 20),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 
 class ProductionWorkforceSeeder extends Seeder
 {
@@ -14,55 +13,28 @@ class ProductionWorkforceSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('production_workforces')->insert([
-            [
-                'production_id' => 1,
-                'workforce_id' => 1,
-            ],
-            [
-                'production_id' => 2,
-                'workforce_id' => 2,
-            ],
-            [
-                'production_id' => 2,
-                'workforce_id' => 3,
-            ],
-            [
-                'production_id' => 2,
-                'workforce_id' => 4,
-            ],
-            [
-                'production_id' => 3,
-                'workforce_id' => 1,
-            ],
-            [
-                'production_id' => 3,
-                'workforce_id' => 2,
-            ],
-            [
-                'production_id' => 4,
-                'workforce_id' => 4,
-            ],
-            [
-                'production_id' => 4,
-                'workforce_id' => 2,
-            ],
-            [
-                'production_id' => 5,
-                'workforce_id' => 1,
-            ],
-            [
-                'production_id' => 5,
-                'workforce_id' => 2,
-            ],
-            [
-                'production_id' => 6,
-                'workforce_id' => 4,
-            ],
-            [
-                'production_id' => 6,
-                'workforce_id' => 1,
-            ],
-        ]);
+        $productionWorkforces = [];
+        $workforce_ids = range(1, 20);
+
+        for ($production_id = 1; $production_id <= 90; $production_id++) {
+            // Ensure each production has at least 2 to 3 workforce entries
+            $num_workforces = rand(2, 3);
+            $assigned_workforces = [];
+
+            for ($i = 0; $i < $num_workforces; $i++) {
+                $workforce_id = $workforce_ids[array_rand($workforce_ids)];
+                while (in_array($workforce_id, $assigned_workforces)) {
+                    $workforce_id = $workforce_ids[array_rand($workforce_ids)];
+                }
+                $assigned_workforces[] = $workforce_id;
+
+                $productionWorkforces[] = [
+                    'production_id' => $production_id,
+                    'workforce_id' => $workforce_id,
+                ];
+            }
+        }
+
+        DB::table('production_workforces')->insert($productionWorkforces);
     }
 }
