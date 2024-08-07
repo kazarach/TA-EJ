@@ -22,9 +22,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" nonce="{{ $nonce }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" nonce="{{ $nonce }}"></script>
-    <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script>
-    <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js'></script>
-    <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.js'></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js' nonce="{{ $nonce }}"></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js' nonce="{{ $nonce }}"></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.js' nonce="{{ $nonce }}"></script>
     
     {{-- data table --}}
     <script  src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js" nonce="{{ $nonce }}"></script>
@@ -32,11 +32,6 @@
     <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" nonce="{{ $nonce }}"></script> 
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" nonce="{{ $nonce }}"></script> 
     <script src= "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js" nonce="{{ $nonce }}"></script> 
-
-    <!-- Datatable pdf -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" nonce="{{ $nonce }}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" nonce="{{ $nonce }}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js" nonce="{{ $nonce }}"></script>
 
     {{-- Datepicker --}}
       <!-- jQuery UI CSS -->

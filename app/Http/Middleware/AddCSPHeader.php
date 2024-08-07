@@ -30,7 +30,7 @@ class AddCSPHeader
 
         \Log::debug("Middleware: Setting CSP Header and Sharing Nonce");
         // Set CSP header in Report-Only mode
-        $response->headers->set('Content-Security-Policy-Report-Only', $csp);
+        $response->headers->set('Content-Security-Policy', $csp);
 
         return $response;
     }
