@@ -16,8 +16,8 @@ class AddCSPHeader
 
         // Comprehensive CSP with Report-Only
         $csp = "default-src 'self'; " .
-               "script-src 'self' 'nonce-{$nonce}' https://cdn.jsdelivr.net https://code.jquery.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://unpkg.com https://fullcalendar.io https://cdn.datatables.net; " .
-               "style-src 'self' 'nonce-{$nonce}' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://cdn.datatables.net https://code.jquery.com; " .
+               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com https://unpkg.com https://fullcalendar.io https://cdn.datatables.net; " .
+               "style-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://cdn.datatables.net https://code.jquery.com; " .
                "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://unpkg.com; " .
                "img-src 'self' data:; " .
                "connect-src 'self'; " .

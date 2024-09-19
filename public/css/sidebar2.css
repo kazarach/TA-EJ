@@ -661,6 +661,10 @@ body.dark .breadcrumbs-all a {
     color: white;
 }
 
+.col{
+    width: 10%;
+}
+
 .form-control {
     font-size: 14px;
     color: #888888;
